@@ -12,6 +12,7 @@ export default defineNuxtConfig({
     '@nuxtjs/tailwindcss',
     '@vite-pwa/nuxt',
     'nuxt-module-eslint-config',
+    'nuxt-icon',
   ],
 
   experimental: {
