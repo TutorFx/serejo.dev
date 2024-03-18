@@ -18,6 +18,7 @@
     "@iconify-json/carbon": "^1.1.31",
     "@iconify-json/twemoji": "^1.1.15",
     "@nuxtjs/color-mode": "^3.3.2",
+    "@nuxtjs/i18n": "^8.2.0",
     "@nuxtjs/tailwindcss": "^6.11.4",
     "@pinia/nuxt": "^0.5.1",
     "@unocss/eslint-config": "^0.58.6",
@@ -28,7 +29,7 @@
     "eslint": "npm:eslint-ts-patch@8.56.0-0",
     "eslint-plugin-format": "^0.1.0",
     "eslint-ts-patch": "8.56.0-0",
-    "nuxt": "^3.10.3",
+    "nuxt": "^3.11.0",
     "nuxt-icon": "^0.6.9",
     "nuxt-module-eslint-config": "^0.0.2",
     "pinia": "^2.1.7",
@@ -36,9 +37,12 @@
     "vue-tsc": "^1.8.27"
   },
   "dependencies": {
+    "@nuxt/content": "^2.12.1",
     "@nuxt/image": "^1.4.0",
     "@nuxtjs/google-fonts": "^3.2.0",
     "@nuxtjs/seo": "2.0.0-rc.9",
-    "nuxt-speedkit": "^2.2.8"
+    "daisyui": "^4.7.3",
+    "nuxt-speedkit": "^2.2.8",
+    "zod": "^3.22.4"
   }
 }

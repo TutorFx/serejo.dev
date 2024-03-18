@@ -5,15 +5,34 @@ export default defineNuxtConfig({
   modules: [
     '@vueuse/nuxt',
     '@pinia/nuxt',
+    '@nuxtjs/i18n',
     '@nuxtjs/color-mode',
+    '@nuxtjs/tailwindcss',
     '@nuxtjs/google-fonts',
     '@nuxtjs/seo',
     '@nuxt/image',
-    '@nuxtjs/tailwindcss',
+    '@nuxt/content',
     '@vite-pwa/nuxt',
     'nuxt-module-eslint-config',
     'nuxt-icon',
   ],
+
+  i18n: {
+    defaultLocale: 'pt',
+    locales: [
+      {
+        code: 'en',
+        iso: 'en-US',
+        file: 'en-US.ts'
+      },
+      {
+        code: 'pt',
+        iso: 'pt-BR',
+        file: 'pt-BR.ts'
+      }
+    ],
+    langDir: 'locales/',
+  },
 
   experimental: {
     // when using generate, payload js assets included in sw precache manifest
@@ -24,7 +43,15 @@ export default defineNuxtConfig({
   },
 
   colorMode: {
-    classSuffix: '',
+    preference: "light",
+    dataValue: "theme",
+  },
+
+  googleFonts: {
+    families: {
+      "Space Grotesk": [400, 700],
+      "Mochiy Pop One": true
+    },
   },
 
   nitro: {
@@ -53,7 +80,7 @@ export default defineNuxtConfig({
         { name: 'description', content: appDescription },
         { name: 'apple-mobile-web-app-status-bar-style', content: 'black-translucent' },
         { name: 'theme-color', media: '(prefers-color-scheme: light)', content: 'white' },
-        { name: 'theme-color', media: '(prefers-color-scheme: dark)', content: '#222222'},
+        { name: 'theme-color', media: '(prefers-color-scheme: dark)', content: '#222222' },
       ],
     },
   },
@@ -67,4 +94,10 @@ export default defineNuxtConfig({
   eslintConfig: {
     setup: false,
   },
+
+  content: {
+    api: {
+      baseURL: '/api/cms'
+    }
+  }
 })

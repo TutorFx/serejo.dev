@@ -1,0 +1,87 @@
+/** @type {import('tailwindcss').Config} */
+import defaultTheme from "tailwindcss/defaultTheme";
+const colors = require('tailwindcss/colors');
+module.exports = {
+    darkMode: 'selector',
+    content: ["./src/**/*.{vue,js,ts,jsx,tsx}", "docs/content/**/*.md"],
+    plugins: [
+        require('daisyui')
+    ],
+    theme: {
+        fontFamily: {
+            sans: ["Space Grotesk", ...defaultTheme.fontFamily.sans].join(","),
+            logo: ["Mochiy Pop One", ...defaultTheme.fontFamily.sans].join(","),
+        },
+        extend: {
+            typography: (theme: any) => ({
+                DEFAULT: {
+                },
+            }),
+            height: {
+                screen: ["100vh", "100dvh"],
+            },
+            minHeight: {
+                screen: ["100vh", "100dvh"],
+            },
+            keyframes: {
+                "skeleton-loading": {
+                    "0%": { backgroundPosition: "200% 0" },
+                    to: { backgroundPosition: "-200% 0" },
+                },
+                marquee: {
+                    "0%": { transform: "translateX(0%)" },
+                    "100%": { transform: "translateX(-100%)" },
+                },
+            },
+            animation: {
+                marquee: "marquee 25s linear infinite",
+                skeleton: "skeleton-loading 2.0s ease-in-out infinite",
+            },
+            backgroundImage: () => ({
+                "skeleton-gradient":
+                    "linear-gradient(45deg, #252035, #2d2a3d, #393545, #2d2a3d, #252035)",
+                "brand-gradient": 
+                    "linear-gradient(45deg, #f72585, #b5179e, #7209b7, #560bad, #480ca8, #3a0ca3, #3f37c9, #4361ee, #4895ef, #4cc9f0)",
+                "vue-gradient":
+                    "linear-gradient(45deg, #004b23, #006400, #007200, #008000, #38b000, #70e000, #9ef01a, #ccff33)"
+            }),
+            backgroundSize: {
+                400: "400% 100%",
+            },
+            colors: {
+                
+            },
+        },
+    },
+    daisyui: {
+        themes: [
+            {
+                dark: {
+                    "color-scheme": "dark",
+                    "primary": "#FCA311",
+                    "secondary": "#FFFFFF",
+                    "accent": "#14213D",
+                    "neutral": "#E5E5E5",
+                    "neutral-content": "#FFFFFF",
+                    "base-100": colors.stone[950],
+                    "base-200": "#141414",
+                    "base-300": "#141414",
+                    "base-content": "#FFFFFF",
+                },
+                light: {
+                    "color-scheme": "light",
+                    "primary": "#FCA311",
+                    "secondary": "#FFFFFF",
+                    "secondary-content": "oklch(98.71% 0.0106 342.55)",
+                    "accent": "#E5E5E5",
+                    "neutral": "#14213D",
+                    "neutral-content": "#D7DDE4",
+                    "base-100": "oklch(100% 0 0)",
+                    "base-200": "#F2F2F2",
+                    "base-300": "#E5E6E6",
+                    "base-content": "#1f2937",
+                  },
+            },
+        ],
+    },
+};
