@@ -49,7 +49,7 @@ export default defineNuxtConfig({
 
   googleFonts: {
     families: {
-      "Space Grotesk": [400, 700],
+      "Space Grotesk": [300, 400, 700],
       "Mochiy Pop One": true
     },
   },
