@@ -1,5 +1,7 @@
 import { pwa } from './config/pwa'
 import { appDescription } from './constants/index'
+import tailwindTypography from '@tailwindcss/typography'
+import daisyui from 'daisyui'
 
 export default defineNuxtConfig({
   modules: [
@@ -99,5 +101,13 @@ export default defineNuxtConfig({
     api: {
       baseURL: '/api/cms'
     }
-  }
+  },
+
+  tailwindcss: {
+    config: {
+      plugins: [tailwindTypography, daisyui],
+    },
+  },
+
+  typescript: { strict: true },
 })

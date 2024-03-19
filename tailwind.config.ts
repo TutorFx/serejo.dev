@@ -4,9 +4,8 @@ const colors = require('tailwindcss/colors');
 module.exports = {
     darkMode: 'selector',
     content: ["./src/**/*.{vue,js,ts,jsx,tsx}", "docs/content/**/*.md"],
-    plugins: [
-        require('daisyui')
-    ],
+    plugins: ['@tailwindcss/typography', 'prettier-plugin-tailwindcss', 'daisyui'],
+
     theme: {
         fontFamily: {
             sans: ["Space Grotesk", ...defaultTheme.fontFamily.sans].join(","),
