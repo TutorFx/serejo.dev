@@ -1,24 +1,25 @@
 const NAVBAR_CONTENT = defineMenuConfig(() => [
     {
-        content: "Meu Perfil",
+        content: 'menu.about',
         LinkType: LinkType.InternalLink,
         url: 'index',
     },
     {
-        content: "História",
+        content: 'menu.history',
         LinkType: LinkType.InternalLink,
-        url: "about-me",
+        url: "history",
     },
     {
-        content: "Projetos",
+        content: 'menu.projects',
         LinkType: LinkType.InternalLink,
         url: "projects",
     },
     {
-        content: "Blog",
+        content: 'menu.blog',
         LinkType: LinkType.InternalLink,
         url: "blog",
     },
-])
+]
+)
 
 export const useNavbar = () => useMenu(NAVBAR_CONTENT);

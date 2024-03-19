@@ -8,7 +8,7 @@
         <div class="sm:grid items-center overflow-x-auto overflow-y-hidden hidden">
             <div class="flex flex-nowrap justify-end items-center gap-6">
                 <NuxtLink v-for="(item, i) in service.get()" v-bind="item.getBinding()" :key="i" class="text-nowrap leading-none" >
-                    {{ item.content }}
+                    {{ $t(item.content as string) }}
                 </NuxtLink>
             </div>
         </div>

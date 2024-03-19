@@ -40,28 +40,44 @@
                                     class="size-6 md:size-8 lg:size-10 -translate-x-[50%] -translate-y-[50%]" />
                             </div>
                         </div>
-                        <div class="text-[7vw] md:text-6xl lg:text-7xl xl:text-9xl grid gap-1 lg:gap-3 [text-shadow:_6px_1px_50px_var(--fallback-b1,oklch(var(--b1)/1))]">
-                            <div class="leading-snug">&#123; Open sourceror &</div>
+                        <div
+                            class="text-3xl md:text-6xl lg:text-7xl xl:text-9xl grid auto-rows-[1fr] gap-3 md:gap-5 lg:gap-7 [text-shadow:_6px_1px_30px_var(--fallback-b1,oklch(var(--b1)/1))]">
+                            <div class="leading-none grid items-end">
+                                &#123; {{ $t('hero.fl') }}
+                            </div>
                             <div class="pl-6 md:pl-10 lg:pl-12 grid grid-flow-col items-end gap-6">
                                 <div class="grid items-end justify-end relative -mt-6">
-                                    <NuxtImg size="176"
-                                        class="object-contain p-2 lg:p-4 !pb-0 w-16 md:w-24 lg:w-32 xl:w-48 drop-shadow-[20px_5px_10px_var(--fallback-b1,oklch(var(--b1)/.3))]"
-                                        src="/brand/Vue.js.svg" />
+                                    <div class="aspect-[192/154] overflow-hidden" ref="targetvue">
+                                        <Transition enter-from-class="translate-y-[150%]"
+                                            enter-active-class="transition duration-500">
+                                            <NuxtImg size="176" v-show="vue"
+                                                class="object-contain p-2 lg:p-4 !pb-0 w-16 md:w-24 lg:w-32 xl:w-48 drop-shadow-[20px_5px_10px_var(--fallback-b1,oklch(var(--b1)/.3))]"
+                                                src="/brand/Vue.js.svg" />
+                                        </Transition>
+                                    </div>
                                     <div
                                         class="-z-[1] h-6 md:h-10 lg:h-12 xl:h-20 -mt-[100%] w-16 md:w-24 lg:w-32 xl:w-48 rounded-md md:rounded-lg lg:rounded-xl bg-vue-gradient" />
                                 </div>
-                                <div class="leading-snug">
-                                    Desenvolvedor
+                                <div class="leading-none">
+                                    {{ $t('hero.sl') }}
                                 </div>
                             </div>
-                            <div class="pl-3 md:pl-16 lg:pl-20 xl:pl-32 grid grid-flow-col justify-start items-end gap-6">
-                                <div class="leading-snug">
-                                    Experiente
+                            <div
+                                class="pl-3 md:pl-16 lg:pl-20 xl:pl-32 grid grid-flow-col justify-start items-end gap-6">
+                                <div class="leading-none">
+                                    {{ $t('hero.tl') }}
                                 </div>
                                 <div class="grid items-end justify-end relative -mt-6">
-                                    <NuxtImg size="176"
-                                        class="object-contain p-2 lg:p-4 !pb-0 w-16 md:w-24 lg:w-32 xl:w-48 drop-shadow-[20px_5px_10px_var(--fallback-b1,oklch(var(--b1)/.3))]"
-                                        src="/brand/me.png" />
+                                    <div class="aspect-[128/112] md:aspect-[192/176] lg:aspect-[128/112] overflow-hidden" ref="targetme">
+                                        <Transition 
+                                            enter-from-class="translate-y-[150%]"
+                                            enter-active-class="transition duration-500">
+
+                                            <NuxtImg size="176" v-show="me"
+                                                class="object-contain p-2 lg:p-4 !pb-0 w-16 md:w-24 lg:w-32 xl:w-48 drop-shadow-[20px_5px_10px_var(--fallback-b1,oklch(var(--b1)/.3))]"
+                                                src="/brand/me.png" />
+                                        </Transition>
+                                    </div>
                                     <div
                                         class="-z-[1] h-6 md:h-10 lg:h-12 xl:h-20 -mt-[100%] w-16 md:w-24 lg:w-32 xl:w-48 rounded-md md:rounded-lg lg:rounded-xl bg-brand-gradient" />
                                 </div>
@@ -75,16 +91,19 @@
             </Container>
         </div>
         <div>
-            <Icon name="HeroLine" size="100%" class="relative z-[-2] -mt-20 -mb-[20%] md:-mt-[20%] lg:-mt-[20%] lg:-mb-[30%] w-[90%]" />
+            <Icon name="HeroLine" size="100%"
+                class="relative z-[-2] -mt-20 -mb-[20%] md:-mt-[20%] lg:-mt-[20%] lg:-mb-[30%] w-[90%]" />
             <div class="border-b border-neutral opacity-50" />
             <div class="relative">
                 <div class="absolute top-0 inset-x-[-100%] bg-base-100 z-[-2] blur-2xl bottom-[-100%]">
 
                 </div>
-                <container class="py-6 font-light">
+                <container class="py-6 font-light grid md:grid-cols-[1fr_max-content] gap-3">
                     <div>
-                        Olá! Sou desenvolvedor web há vários anos. Vários frameworks e bibliotecas são divertidas de se
-                        trabalhar com. Se eu puder escolher, minha stack dos sonhos é Vue, Nuxt, Typescript e Tailwind.
+                        {{ $t('schedule_support_text') }}
+                    </div>
+                    <div>
+                        <Btn> {{ $t('schedule_cta') }} </Btn>
                     </div>
                 </container>
             </div>
@@ -93,5 +112,23 @@
 </template>
 
 <script lang="ts" setup>
+const targetme = ref()
+const targetvue = ref()
 
+const me = ref(false)
+const vue = ref(false)
+
+useIntersectionObserver(
+    targetme,
+    ([{ isIntersecting }]) => {
+        me.value = isIntersecting
+    },
+)
+
+useIntersectionObserver(
+    targetvue,
+    ([{ isIntersecting }]) => {
+        vue.value = isIntersecting
+    },
+)
 </script>
