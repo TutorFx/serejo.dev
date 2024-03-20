@@ -7,7 +7,8 @@
         </div>
         <div class="sm:grid items-center overflow-x-auto overflow-y-hidden hidden">
             <div class="flex flex-nowrap justify-end items-center gap-6">
-                <NuxtLink v-for="(item, i) in service.get()" v-bind="item.getBinding()" :key="i" class="text-nowrap leading-none" >
+                <NuxtLink v-for="(item, i) in service.get()" v-bind="item.getBinding()" :key="i"
+                    class="text-nowrap leading-none navlink">
                     {{ $t(item.content as string) }}
                 </NuxtLink>
             </div>
@@ -24,3 +25,9 @@ import type MenuService from '~/utils/menu/MenuService';
 defineProps<{ service: MenuService }>()
 const model = defineModel<boolean>()
 </script>
+
+<style scoped>
+.router-link-exact-active.navlink {
+    @apply underline decoration-wavy decoration-primary
+}
+</style>

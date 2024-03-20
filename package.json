@@ -36,6 +36,7 @@
     "nuxt-icon": "^0.6.9",
     "nuxt-module-eslint-config": "^0.0.2",
     "pinia": "^2.1.7",
+    "swiper": "^11.0.7",
     "typescript": "^5.4.2",
     "vue-tsc": "^1.8.27"
   },

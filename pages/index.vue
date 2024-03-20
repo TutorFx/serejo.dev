@@ -1,6 +1,8 @@
 <template>
     <div>
         <Hero />
-        <History />
+        <MeAbroad />
+        <MeStack />
+        <HistorySelector />
     </div>
 </template>
