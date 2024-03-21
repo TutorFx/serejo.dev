@@ -10,5 +10,10 @@ export default class {
 
     getRepository(){
         return this.repository.getRepository(); 
-    } 
+    }
+
+    getItemByIndex(i: number){
+        return this.repository.getItemByIndex(i); 
+    }
+
 }

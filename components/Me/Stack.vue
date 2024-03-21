@@ -2,8 +2,8 @@
     <div>
         <Container class="py-12 md:py-24">
             <div class="grid gap-12 md:grid-cols-2">
-                <div class="grid gap-6 md:gap-12 lg:gap-24">
-                    <div class="grid gap-1 text-center justify-center md:text-start">
+                <div class="grid gap-6 md:gap-12 lg:gap-24 lg:max-w-md">
+                    <div class="grid gap-1 text-center max-md:justify-center md:text-start">
                         <div class="text-neutral-content">
                             {{ $t('sections.about_me.accent') }}
                         </div>
@@ -15,7 +15,7 @@
                         </div>
                     </div>
 
-                    <div class="grid gap-1 text-center justify-center md:text-start">
+                    <div class="grid gap-1 text-center max-md:justify-center md:text-start">
                         <div class="text-neutral-content">
                             {{ $t('sections.stack.accent') }}
                         </div>
@@ -25,7 +25,7 @@
                         <div class="text-lg md:text-xl max-w-md mb-6">
                             {{ $t('me.stack') }}
                         </div>
-                        <div class="grid grid-cols-4 gap-12 justify-start mb-6">
+                        <div class="grid grid-cols-4 gap-12 max-md:justify-center mb-6">
                             <div class="aspect-square p-2">
                                 <NuxtImg class="w-full h-full max-w-full max-h-full" src="/brand/stack/typescript.svg" />
                             </div>
@@ -44,7 +44,7 @@
                         </div>
                     </div>
 
-                    <div class="grid gap-1 text-center justify-center md:text-start">
+                    <div class="grid gap-1 text-center max-md:justify-center md:text-start">
                         <div class="text-neutral-content">
                             {{ $t('sections.open_source.accent') }}
                         </div>
@@ -63,7 +63,7 @@
                 </div>
                 <div>
                     <div class="sticky top-[20%]">
-                        <div class="rounded-t-full overflow-hidden aspect-[882/1103] max-w-md mx-auto">
+                        <div class="rounded-t-full overflow-hidden aspect-[882/1103] mx-auto lg:w-[50dvh]">
                             <NuxtImg class="rounded-b-3xl w-full" src="/brand/pictures/about.png" />
                         </div>
                     </div>

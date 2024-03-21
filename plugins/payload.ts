@@ -17,4 +17,16 @@ export default definePayloadPlugin(() => {
             )
         }
     });
+
+    definePayloadReducer('HistoryController', (data) => {
+        if (data instanceof HistoryController) {
+            return data.toObject()
+        }
+    });
+    
+    definePayloadReviver('HistoryController', (data) => {
+        if (typeof data === 'object') {
+            return new HistoryController(data)
+        }
+    });
 });
