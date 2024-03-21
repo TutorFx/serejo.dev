@@ -1,28 +1,115 @@
 <template>
-    <div v-if="service && (service instanceof HistoryService)" 
-        class="grid gap-12"
-    >
-        <div class="overflow-hidden">
-            <Container>
-                <ClientOnly>
-                    <HistorySelectorRepositorySlider @change="(e) => current = e" :repository="service.repository" />
-        
-                    <template #fallback>
-                        <div>
-                            carregando...
-                        </div>
-                    </template>
-                </ClientOnly>
-            </Container>
+    <div class="grid overflow-hidden relative rounded-3xl pb-12 md:pb-24">
+        <div class="-z-[1] absolute left-[0%] top-[0%]">
+            <div class="max-w-0 max-h-0">
+                <div
+                    class="w-[30vw] aspect-video bg-brand-gradient -translate-x-[50%] -translate-y-[50%] rounded-full blur-3xl opacity-80 md:opacity-30" />
+            </div>
         </div>
-        <Container v-if="current && (current instanceof HistoryController)">
-            <div class="p-6 md:p-24 bg-base-300">
-                <div>
-                    <div>{{  }}</div>
-                    <MDC class="text-xl" :value="current" />
+        <div class="-z-[1] absolute left-[90%] top-[0%]">
+            <div class="max-w-0 max-h-0">
+                <div
+                    class="w-[30vw] aspect-video bg-primary -translate-x-[50%] -translate-y-[50%] rounded-full blur-3xl opacity-80 md:opacity-30" />
+            </div>
+        </div>
+        <div class="-z-[1] absolute left-[90%] bottom-[0%]">
+            <div class="max-w-0 max-h-0">
+                <div
+                    class="w-[30vw] aspect-video bg-primary -translate-x-[50%] -translate-y-[50%] rounded-full blur-3xl opacity-80 md:opacity-30" />
+            </div>
+        </div>
+        <div class="-z-[1] absolute left-[0%] bottom-[0%]">
+            <div class="max-w-0 max-h-0">
+                <div
+                    class="w-[30vw] aspect-video bg-brand-gradient -translate-x-[50%] -translate-y-[50%] rounded-full blur-3xl opacity-80 md:opacity-30" />
+            </div>
+        </div>
+        <div>
+            <div class="relative z-[2] py-24 md:py-48 xl:py-56">
+                <div class="z-[1] absolute left-[10%] bottom-[-10%]">
+                    <div class="max-w-0 max-h-0">
+                        <div
+                            class="w-[30vw] aspect-video bg-rose-400 -translate-x-[50%] -translate-y-[50%] rounded-full blur-[164px] opacity-50 md:opacity-30" />
+                    </div>
+                </div>
+                <div class="z-[1] absolute left-[40%] bottom-[-30%]">
+                    <div class="max-w-0 max-h-0">
+                        <div
+                            class="w-[30vw] aspect-video bg-primary -translate-x-[50%] -translate-y-[50%] rounded-full blur-3xl opacity-50 md:opacity-30" />
+                    </div>
+                </div>
+                <div
+                    class="text-3xl md:text-6xl lg:text-7xl xl:text-9xl text-center drop-shadow-[0px_0px_20px_var(--fallback-b1,oklch(var(--b1)/1))]">
+                    <div class="grid grid-flow-col items-center justify-center gap-3">
+                        <div class="relative">
+                            <div class="absolute inset-0 bg-base-100 z-[-1] blur-xl opacity-45" />
+                            <span>&#123;</span> {{ $t('sections.experiences.title') }} <span>&#125;</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="relative grid items-center justify-center max-w-screen -z-[2] pointer-events-none">
+                    <div class="relative max-h-0 max-w-0 -rotate-[12deg]">
+                        <Icon name="HeroLine"
+                            class="absolute rotate-180 -translate-y-[50%] -translate-x-[50%] w-screen h-screen scale-[99%]"
+                            size="100%" />
+                    </div>
                 </div>
             </div>
-        </Container>
+        </div>
+        <div v-if="service && (service instanceof HistoryService)"
+            class="grid grid-cols-1 gap-6 md:gap-12 relative z-[2]">
+            <div>
+                <div>
+                    <Container>
+                        <ClientOnly>
+                            <HistorySelectorRepositorySlider @change="(e) => current = e"
+                                :repository="service.repository"
+                                class="drop-shadow-[0px_0px_60px_var(--fallback-b1,oklch(var(--b1)/1))]" />
+
+                            <template #fallback>
+                                <div
+                                    class="grid md:grid-cols-3 gap-16 drop-shadow-[0px_0px_20px_var(--fallback-b1,oklch(var(--b1)/1))]">
+                                    <div class="max-md:hidden">
+
+                                    </div>
+                                    <div class="aspect-video bg-brand-gradient rounded-md">
+
+                                    </div>
+                                    <div class="max-md:hidden aspect-video bg-base-300 bg-opacity-50 rounded-md">
+
+                                    </div>
+                                </div>
+                            </template>
+                        </ClientOnly>
+                    </Container>
+                </div>
+            </div>
+
+            <div class="text-center text-primary">
+                <Icon size="48" name="material-symbols:arrow-cool-down-rounded" />
+            </div>
+
+            <div>
+                <Container v-if="current && (current instanceof HistoryController)">
+                    <Transition enter-from-class="-translate-x-[150%]" leave-to-class="-translate-x-[50%]"
+                        enter-active-class="transition duration-500">
+                        <div :key="current._id"
+                            class="z-[1] drop-shadow-[0px_0px_60px_var(--fallback-b1,oklch(var(--b1)/1))]">
+                            <div class="py-6 px-3 md:px-12 md:py-24 bg-base-100 rounded-md">
+                                <div class="grid gap-6">
+                                    <div class="text-primary">{{ current.location }}</div>
+                                    <MDC class="text-xl" :value="current" />
+                                </div>
+                            </div>
+                        </div>
+                    </Transition>
+                </Container>
+    
+                <Container v-else class="py-6 px-3 md:px-12 md:py-24 rounded-md">
+                    Loading...
+                </Container>
+            </div>
+        </div>
     </div>
 </template>
 

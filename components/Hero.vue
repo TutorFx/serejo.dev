@@ -18,6 +18,12 @@
                     <div
                         class="w-[30vw] aspect-video bg-vue-gradient -translate-x-[50%] -translate-y-[50%] rounded-full blur-3xl opacity-80 md:opacity-30" />
                 </div>
+            </div>            
+            <div class="-z-[1] absolute right-[0%] bottom-[25%]">
+                <div class="max-w-0 max-h-0">
+                    <div
+                        class="w-[60vw] aspect-video bg-rose-400 -translate-x-[50%] -translate-y-[50%] rounded-full blur-3xl opacity-20 md:opacity-10" />
+                </div>
             </div>
             <div class="-z-[1] absolute left-[0%] top-[10%]">
                 <div class="max-w-0 max-h-0">

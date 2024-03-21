@@ -42,6 +42,9 @@ export default defineI18nLocale(async locale => {
             open_source: {
                 title: `I ❤️ open source!`,
                 accent: 'Open Source'
+            },
+            experiences: {
+                title: 'Experiences',
             }
         },
         time: {

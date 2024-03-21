@@ -16,7 +16,7 @@
         </Transition>
 
         <Teleport to="body">
-            <Container v-if="menu" class="inset-0 absolute z-50 bg-base-100">
+            <Container v-if="menu" class="inset-0 fixed z-50 bg-base-100">
                 <div class="grid grid-rows-[max-content_1fr] min-h-dvh">
                     <HeaderNav :service="service" v-model="menu" />
                     <div>

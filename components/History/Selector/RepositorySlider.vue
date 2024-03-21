@@ -1,10 +1,9 @@
 <template>
-    <div class="relative">
-        <div class="absolute inset-y-0 left-full z-10 w-1/3 bg-gradient-to-l from-base-100 from-80% to-transparent" />
-        <div class="absolute inset-y-0 right-full z-10 w-1/3 bg-gradient-to-r from-base-100 from-80% to-transparent" />
-        <Swiper class="!overflow-visible" :modules="[Virtual, Controller]" @swiper="swiperEvent" @slideChange="swiperEvent"
-            virtual :autoplay="{ delay: 15000 }" space-between="40" :breakpoints="BREAKPOINTS">
-            <SwiperSlide v-for="(item, i) in repository.getRepository()" :class="{ current: currentItem._id === item._id }" :key="item._id">
+    <div>
+        <Swiper :modules="[Virtual, Controller]" @swiper="swiperEvent" @slideChange="swiperEvent" virtual
+            :autoplay="{ delay: 15000 }" space-between="40" :breakpoints="BREAKPOINTS">
+            <SwiperSlide v-for="(item, i) in repository.getRepository()"
+                :class="{ current: currentItem._id === item._id }" class="overflow-visible" :key="item._id">
                 <HistorySelectorRepositoryItem :item="item" />
             </SwiperSlide>
         </Swiper>
@@ -31,21 +30,25 @@ const emit = defineEmits<{
 
 const BREAKPOINTS = {
     '300': {
-        slidesPerView: 1.05,
-        spaceBetween: 15,
-        centeredSlides: false,
+        slidesPerView: 1.15,
+        spaceBetween: 10,
     },
-    '1024': {
-        slidesPerView: 3,
-        spaceBetween: 30,
-        centeredSlides: true,
-    },
-    '1600': {
-        slidesPerView: 3,
+    '640': {
+        slidesPerView: 1.5,
         spaceBetween: 40,
         centeredSlides: true,
     },
-};
+    '1024': {
+        slidesPerView: 3,
+        spaceBetween: 50,
+        centeredSlides: true,
+    },
+    '1920': {
+        slidesPerView: 3,
+        spaceBetween: 50,
+        centeredSlides: true,
+    },
+}
 
 const getItem = (i: number, repository: HistoryRepository) =>
     repository.getItemByIndex(i);

@@ -58,7 +58,7 @@ module.exports = {
                 dark: {
                     "color-scheme": "dark",
                     "primary": "#FCA311",
-                    "secondary": "#FFFFFF",
+                    "secondary": "#f72585",
                     "accent": "#14213D",
                     "neutral": "#E5E5E5",
                     "neutral-content": "#FFFFFF",
@@ -70,7 +70,7 @@ module.exports = {
                 light: {
                     "color-scheme": "light",
                     "primary": "#FCA311",
-                    "secondary": "#FFFFFF",
+                    "secondary": "#f72585",
                     "secondary-content": "oklch(98.71% 0.0106 342.55)",
                     "accent": "#E5E5E5",
                     "neutral": "#14213D",
