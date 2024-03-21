@@ -3,6 +3,8 @@ import type { MarkdownRoot } from "@nuxt/content/types";
 import type { HistoryEntry } from "../types";
 import { HistoryEntrySchema } from "../schemas";
 
+import dayjs, { Dayjs } from "dayjs"
+
 export default class {
     org: string;
     title: string;
@@ -34,5 +36,21 @@ export default class {
 
     toObject() {
         return { ...this };
+    }
+
+    getDateToLocaleString(locale: string = "en") {
+
+
+        const dates = [];
+        const dateToString = (date: Dayjs) => date.locale(locale).format("MMM, YYYY")
+
+
+
+        dates.push(dayjs(this.start))
+        if (this.end) {
+            dates.push(dayjs(this.end))
+        }
+
+        return dates.map(dateToString)
     }
 }

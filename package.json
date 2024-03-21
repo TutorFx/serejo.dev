@@ -2,6 +2,7 @@
   "type": "module",
   "private": true,
   "packageManager": "pnpm@8.14.1",
+  "name": "serejo.dev",
   "version": "3.0",
   "scripts": {
     "build": "nuxi build",
@@ -29,6 +30,7 @@
     "@vueuse/core": "^10.9.0",
     "@vueuse/nuxt": "^10.9.0",
     "consola": "^3.2.3",
+    "dayjs": "^1.11.10",
     "eslint": "npm:eslint-ts-patch@8.56.0-0",
     "eslint-plugin-format": "^0.1.0",
     "eslint-ts-patch": "8.56.0-0",

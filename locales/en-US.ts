@@ -11,6 +11,9 @@ export default defineI18nLocale(async locale => {
         I help companies to build better web applications and to improve their knowledge, 
         workflows, and culture.`,
         schedule_cta: 'Schedule a call',
+        description: 'Description',
+        see_more: 'See more',
+        copyright: 'All rights reserved',
         me: {
             abroad: `During my career, I have worked on international projects, 
             collaborating daily with people from all over the world and aligning strategies 
@@ -45,10 +48,11 @@ export default defineI18nLocale(async locale => {
             },
             experiences: {
                 title: 'Experiences',
-            }
+            },
         },
         time: {
-            the_moment: 'the moment'
+            the_moment: 'the moment',
+            until_the: 'until'
         }
     }
 })

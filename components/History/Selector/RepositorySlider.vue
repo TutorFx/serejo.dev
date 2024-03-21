@@ -2,7 +2,7 @@
     <div>
         <Swiper :modules="[Virtual, Controller]" @swiper="swiperEvent" @slideChange="swiperEvent" virtual
             :autoplay="{ delay: 15000 }" space-between="40" :breakpoints="BREAKPOINTS">
-            <SwiperSlide v-for="(item, i) in repository.getRepository()"
+            <SwiperSlide v-for="(item, i) in repository.getRepository()" @click="() => currentInstance?.slideTo(i)"
                 :class="{ current: currentItem._id === item._id }" class="overflow-visible" :key="item._id">
                 <HistorySelectorRepositoryItem :item="item" />
             </SwiperSlide>
@@ -56,8 +56,11 @@ const getItem = (i: number, repository: HistoryRepository) =>
 const swiperEvent = (event: s) => {
     emit('change', getItem(event.activeIndex, props.repository));
     currentItem.value = getItem(event.activeIndex, props.repository);
+    currentInstance.value = event;
 }
 
-const currentItem = ref(getItem(0, props.repository))
+const currentItem = ref(getItem(0, props.repository));
+
+const currentInstance = ref<s | null>(null)
 
 </script>

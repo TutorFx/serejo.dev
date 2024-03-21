@@ -2,6 +2,7 @@ import { pwa } from './config/pwa'
 import { appDescription } from './constants/index'
 import tailwindTypography from '@tailwindcss/typography'
 import daisyui from 'daisyui'
+import * as pkg from './package.json'
 
 export default defineNuxtConfig({
   modules: [
@@ -53,6 +54,13 @@ export default defineNuxtConfig({
     families: {
       "Space Grotesk": [300, 400, 700],
       "Mochiy Pop One": true
+    },
+  },
+
+  runtimeConfig: {
+    public: {
+      version: pkg.version,
+      name: pkg.name
     },
   },
 

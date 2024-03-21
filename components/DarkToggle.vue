@@ -9,6 +9,10 @@ useHead({
   }],
 })
 
+defineOptions({
+  inheritAttrs: false,
+})
+
 function toggleDark() {
   color.preference = color.value === 'dark' ? 'light' : 'dark'
 }
@@ -16,7 +20,7 @@ function toggleDark() {
 
 <template>
   <button class="!outline-none" @click="toggleDark">
-    <Icon v-if="color.value === 'dark'" name="i-carbon-moon" />
-    <Icon v-else name="i-carbon-sun" />
+    <Icon v-bind="$attrs" v-if="color.value === 'dark'" name="i-carbon-moon" />
+    <Icon v-bind="$attrs" v-else name="i-carbon-sun" />
   </button>
 </template>

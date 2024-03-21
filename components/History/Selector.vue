@@ -96,8 +96,17 @@
                         <div :key="current._id"
                             class="z-[1] drop-shadow-[0px_0px_60px_var(--fallback-b1,oklch(var(--b1)/1))]">
                             <div class="py-6 px-3 md:px-12 md:py-24 bg-base-100 rounded-md">
-                                <div class="grid gap-6">
-                                    <div class="text-primary">{{ current.location }}</div>
+                                <div class="grid grid-cols-1 gap-6">
+                                    <div class="grid md:grid-cols-[1fr_,max-content] justify-start">
+                                        <div class="text-primary">{{ current.location }}</div>
+                                        <div class="grid grid-flow-col gap-1 justify-start items-center">
+                                            <Icon name="solar:calendar-bold-duotone" />
+                                            <div class="text-neutral">{{ current.getDateToLocaleString('en').join(` ● `) }}</div>
+                                        </div>
+                                    </div>
+                                    <div class="font-bold text-4xl">
+                                        {{ $t('description') }}
+                                    </div>
                                     <MDC class="text-xl" :value="current" />
                                 </div>
                             </div>
@@ -105,7 +114,7 @@
                     </Transition>
                 </Container>
     
-                <Container v-else class="py-6 px-3 md:px-12 md:py-24 rounded-md">
+                <Container v-else class="py-6 px-3 md:px-12 md:py-24 rounded-md bg-base-100">
                     Loading...
                 </Container>
             </div>
