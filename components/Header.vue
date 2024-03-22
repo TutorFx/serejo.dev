@@ -24,9 +24,9 @@
                             <h6>{{ $t('navigation.menu') }}</h6>
                             <HeaderMobileMenu class="py-6" @click.capture="closeMenu" :service="service" />
                             <h6>{{ $t('navigation.settings') }}</h6>
-                            <div class="py-6 grid justify-start grid-flow-col gap-4">
-                                <DarkToggle size="40" />
-                                <LanguageSelector />
+                            <div class="py-6 grid justify-start gap-4">
+                                <DarkToggle size="32" />
+                                <LanguageSelector @click.capture="closeMenu" />
                             </div>
                         </div>
                     </div>

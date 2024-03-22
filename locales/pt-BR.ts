@@ -14,6 +14,7 @@ export default defineI18nLocale(async locale => {
         description: 'Descrição',
         see_more: 'Ver mais',
         copyright: 'Todos os direitos reservados',
+        active: 'Ativo',
         me: {
             abroad: `Durante minha carreira, trabalhei em projetos internacionais, 
           colaborando diariamente com pessoas de todo o mundo e alinhando estratégias 
@@ -62,6 +63,10 @@ export default defineI18nLocale(async locale => {
         time: {
             the_moment: 'o momento',
             until_the: 'até'
+        },
+        settings: {
+            dark_mode: 'Modo noturno',
+            light_mode: 'Modo claro'
         }
     }
 })
