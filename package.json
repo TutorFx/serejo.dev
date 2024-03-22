@@ -58,8 +58,8 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "pnpm lint",
-      "pre-push": "pnpm lint"
+      "pre-commit": "npx lint --fix",
+      "pre-push": "npx lint --fix"
     }
   },
   "lint-staged": {
