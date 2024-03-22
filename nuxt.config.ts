@@ -24,7 +24,7 @@ export default defineNuxtConfig({
     // TODO: Move to `prefix` when the nuxt team fix the issue
     strategy: 'prefix_and_default',
 
-    defaultLocale: 'pt',
+    defaultLocale: 'en',
     locales: [
       {
         code: 'en',
@@ -39,22 +39,23 @@ export default defineNuxtConfig({
         file: 'pt-BR.ts',
       },
     ],
+    customRoutes: 'config', 
     langDir: 'locales/',
     pages: {
       index: {
-        en: '/home',
+        'en': '/',
         'pt-BR': '/inicio'
       },
       blog: {
-        en: '/blog',
-        'pt-BR': '/ptBR/blog'
+        'en': '/blog',
+        'pt-BR': '/blog'
       },
       history: {
-        en: 'my-trajectory',
-        'pt-BR': 'minha-jornada'
+        'en': '/my-trajectory',
+        'pt-BR': '/minha-jornada'
       },
       projects: {
-        en: '/projects',
+        'en': '/projects',
         'pt-BR': '/projetos'
       }
     }
@@ -95,7 +96,7 @@ export default defineNuxtConfig({
     },
     prerender: {
       crawlLinks: true,
-      routes: ['/home', '/inicio'],
+      routes: [],
       ignore: [],
     },
   },

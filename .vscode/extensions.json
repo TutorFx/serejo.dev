@@ -3,6 +3,7 @@
     "antfu.iconify",
     "antfu.goto-alias",
     "csstools.postcss",
+    "antfu.unocss",
     "dbaeumer.vscode-eslint",
     "vue.volar"
   ]
