@@ -1,11 +1,13 @@
 import tailwindTypography from '@tailwindcss/typography'
 import daisyui from 'daisyui'
 import { pwa } from './config/pwa'
-import { appDescription } from './constants/index'
+import { appDescription, appName } from './constants/index'
 import * as pkg from './package.json'
 
 export default defineNuxtConfig({
   modules: [
+    'nuxt-site-config',
+    'nuxt-speedkit',
     '@vueuse/nuxt',
     '@pinia/nuxt',
     '@nuxtjs/i18n',
@@ -96,7 +98,10 @@ export default defineNuxtConfig({
     },
     prerender: {
       crawlLinks: true,
-      routes: [],
+      routes: [
+        '/',
+        '/inicio'
+      ],
       ignore: [],
     },
   },
@@ -104,6 +109,7 @@ export default defineNuxtConfig({
   app: {
     head: {
       viewport: 'width=device-width,initial-scale=1',
+      titleTemplate: '%s %separator %siteName',
       link: [
         { rel: 'icon', href: '/favicon.ico', sizes: 'any' },
         { rel: 'icon', type: 'image/svg+xml', href: '/nuxt.svg' },
@@ -111,11 +117,18 @@ export default defineNuxtConfig({
       ],
       meta: [
         { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-        { name: 'description', content: appDescription },
         { name: 'apple-mobile-web-app-status-bar-style', content: 'black-translucent' },
         { name: 'theme-color', media: '(prefers-color-scheme: light)', content: 'white' },
         { name: 'theme-color', media: '(prefers-color-scheme: dark)', content: '#222222' },
       ],
+    },
+
+    site: {
+      name: appName,
+      description: appDescription,
+      identity: {
+        type: 'Person'
+      },
     },
   },
 

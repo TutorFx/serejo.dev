@@ -24,7 +24,6 @@
     "@nuxtjs/seo": "2.0.0-rc.9",
     "daisyui": "^4.7.3",
     "lint-staged": "^15.2.2",
-    "nuxt-speedkit": "^2.2.8",
     "tailwind-merge": "^2.2.2",
     "zod": "^3.22.4"
   },
@@ -51,6 +50,8 @@
     "nuxt": "^3.11.1",
     "nuxt-icon": "^0.6.10",
     "nuxt-module-eslint-config": "^0.0.2",
+    "nuxt-site-config": "^2.2.11",
+    "nuxt-speedkit": "3.0.0-next.51",
     "pinia": "^2.1.7",
     "swiper": "^11.0.7",
     "typescript": "^5.4.3",
