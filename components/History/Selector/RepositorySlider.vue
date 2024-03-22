@@ -42,6 +42,12 @@ function getItem(i: number, repository: HistoryRepository) {
   return (repository.getRepository().length >= i) ? repository.getItemByIndex(i) : null
 }
 
+const currentIndex = ref(0)
+
+const currentItem = computed(() => getItem(currentIndex.value, props.repository))
+
+const currentInstance = shallowRef<s | null>(null)
+
 function swiperEvent(event: s) {
   const item = getItem(event.activeIndex, props.repository)
   if (!item)
@@ -53,13 +59,7 @@ function swiperEvent(event: s) {
   currentInstance.value = event
 }
 
-const currentIndex = ref(0)
-
-const currentItem = computed(() => getItem(currentIndex.value, props.repository))
-
-const currentInstance = shallowRef<s | null>(null)
-
-watch(() => props.repository, (repository) => {
+watch(() => props.repository, () => {
   if (!currentItem.value)
     return
   emit('change', currentItem.value)
@@ -74,7 +74,7 @@ watch(() => props.repository, (repository) => {
     >
       <SwiperSlide
         v-for="(item, i) in repository.getRepository()" :key="item._id"
-        :class="{ current: currentItem && (currentItem?._id == item._id) }" class="overflow-visible" @click="() => currentInstance?.slideTo(i)"
+        :class="{ current: currentItem && (currentItem?._id === item._id) }" class="overflow-visible" @click="() => currentInstance?.slideTo(i)"
       >
         <HistorySelectorRepositoryItem :item="item" />
       </SwiperSlide>

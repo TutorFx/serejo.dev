@@ -1,7 +1,7 @@
 /** @type {import('tailwindcss').Config} */
 import defaultTheme from 'tailwindcss/defaultTheme'
 
-const colors = require('tailwindcss/colors')
+import colors from 'tailwindcss/colors'
 
 module.exports = {
   darkMode: 'selector',
@@ -14,10 +14,6 @@ module.exports = {
       logo: ['Mochiy Pop One', ...defaultTheme.fontFamily.sans].join(','),
     },
     extend: {
-      typography: (theme: any) => ({
-        DEFAULT: {
-        },
-      }),
       height: {
         screen: ['100vh', '100dvh'],
       },
