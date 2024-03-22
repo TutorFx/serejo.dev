@@ -1,7 +1,7 @@
-import { pwa } from './config/pwa'
-import { appDescription } from './constants/index'
 import tailwindTypography from '@tailwindcss/typography'
 import daisyui from 'daisyui'
+import { pwa } from './config/pwa'
+import { appDescription } from './constants/index'
 import * as pkg from './package.json'
 
 export default defineNuxtConfig({
@@ -27,14 +27,14 @@ export default defineNuxtConfig({
         code: 'en',
         name: 'English',
         iso: 'en-US',
-        file: 'en-US.ts'
+        file: 'en-US.ts',
       },
       {
         code: 'pt-BR',
         name: 'Português',
         iso: 'pt-BR',
-        file: 'pt-BR.ts'
-      }
+        file: 'pt-BR.ts',
+      },
     ],
     langDir: 'locales/',
   },
@@ -48,21 +48,21 @@ export default defineNuxtConfig({
   },
 
   colorMode: {
-    preference: "light",
-    dataValue: "theme",
+    preference: 'light',
+    dataValue: 'theme',
   },
 
   googleFonts: {
     families: {
-      "Space Grotesk": [300, 400, 700],
-      "Mochiy Pop One": true
+      'Space Grotesk': [300, 400, 700],
+      'Mochiy Pop One': true,
     },
   },
 
   runtimeConfig: {
     public: {
       version: pkg.version,
-      name: pkg.name
+      name: pkg.name,
     },
   },
 
@@ -109,8 +109,8 @@ export default defineNuxtConfig({
 
   content: {
     api: {
-      baseURL: '/api/cms'
-    }
+      baseURL: '/api/cms',
+    },
   },
 
   tailwindcss: {

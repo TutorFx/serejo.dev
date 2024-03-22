@@ -8,7 +8,6 @@
             <div class="w-64 h-6 bg-base-300 rounded-lg bg-skeleton-gradient animate-skeleton" />
           </template>
         </ClientOnly>
-        
       </div>
       <div>
         {{ $t('copyright') }} ©2024 — {{ (new Date()).getFullYear() }}

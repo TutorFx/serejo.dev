@@ -1,10 +1,10 @@
-import type MenuRepository from "./MenuRepository";
+import type MenuRepository from './MenuRepository'
 
 export default class MenuService {
   MenuRepository: MenuRepository
 
-  constructor(MenuRepository: MenuRepository){
-    this.MenuRepository = MenuRepository;
+  constructor(MenuRepository: MenuRepository) {
+    this.MenuRepository = MenuRepository
   }
 
   get() {

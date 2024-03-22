@@ -1,19 +1,17 @@
-import HistoryRepository from "./HistoryRepository";
+import type HistoryRepository from './HistoryRepository'
 
 export default class {
-    repository: HistoryRepository;
+  repository: HistoryRepository
 
-    
-    constructor (repository: HistoryRepository) {
-        this.repository = repository;
-    }
+  constructor(repository: HistoryRepository) {
+    this.repository = repository
+  }
 
-    getRepository(){
-        return this.repository.getRepository(); 
-    }
+  getRepository() {
+    return this.repository.getRepository()
+  }
 
-    getItemByIndex(i: number){
-        return this.repository.getItemByIndex(i); 
-    }
-
+  getItemByIndex(i: number) {
+    return this.repository.getItemByIndex(i)
+  }
 }

@@ -1,7 +1,7 @@
 import type { ParsedContent } from '@nuxt/content/dist/runtime/types'
+import type { z } from 'zod'
 import type { HistoryEntrySchema } from './schemas'
-import { z } from 'zod'
 
-type IHistoryEntry = z.infer<typeof HistoryEntrySchema>;
+type IHistoryEntry = z.infer<typeof HistoryEntrySchema>
 
-export type HistoryEntry = ParsedContent & IHistoryEntry;
+export type HistoryEntry = ParsedContent & IHistoryEntry

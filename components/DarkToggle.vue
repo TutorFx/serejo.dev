@@ -1,11 +1,14 @@
 <script setup lang="ts">
-const color = useColorMode()
-
+defineOptions({
+  inheritAttrs: false,
+})
 
 withDefaults(
   defineProps<{ justIcon?: boolean }>(),
-  { justIcon: false }
+  { justIcon: false },
 )
+
+const color = useColorMode()
 
 useHead({
   meta: [{
@@ -15,10 +18,6 @@ useHead({
   }],
 })
 
-defineOptions({
-  inheritAttrs: false,
-})
-
 function toggleDark() {
   color.preference = color.value === 'dark' ? 'light' : 'dark'
 }
@@ -26,9 +25,9 @@ function toggleDark() {
 
 <template>
   <button class="!outline-none grid grid-flow-col items-center justify-start gap-3" @click="toggleDark">
-    <Icon v-bind="$attrs" v-if="color.value === 'dark'" name="i-carbon-moon" />
-    <Icon v-bind="$attrs" v-else name="i-carbon-sun" />
-    <label :class="{'sr-only': justIcon }">
+    <Icon v-if="color.value === 'dark'" v-bind="$attrs" name="i-carbon-moon" />
+    <Icon v-else v-bind="$attrs" name="i-carbon-sun" />
+    <label :class="{ 'sr-only': justIcon }">
       {{ $t('active') }}: {{ color.value === 'light' ? $t('settings.light_mode') : $t('settings.dark_mode') }}
     </label>
   </button>

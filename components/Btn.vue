@@ -1,69 +1,69 @@
 <script setup lang="ts">
-import type { RouteLocationRaw } from "#vue-router";
-import { twMerge } from "tailwind-merge";
-
-const NuxtLink = resolveComponent("NuxtLink");
-
-const styles = {
-  primary: {
-    inside: "text-primary-content",
-    insideOutlined: "text-primary",
-    outside: "bg-primary hover:bg-primary/80",
-    outsideOutlined: "bg-none border border-primary",
-  },
-};
-
-const sizes = {
-  md: {
-    inside: "text-md",
-    outside: "px-3 py-2 rounded-lg",
-  },
-  sm: {
-    inside: "text-sm",
-    outside: "px-2 py-1 rounded-md",
-  },
-  lg: {
-    inside: "text-sm md:text-lg",
-    outside: "px-8 py-4 rounded-md",
-  }
-};
-
-type Style = keyof typeof styles;
-type Size = keyof typeof sizes;
+import { twMerge } from 'tailwind-merge'
+import type { RouteLocationRaw } from '#vue-router'
 
 const props = withDefaults(
   defineProps<{
-    to?: RouteLocationRaw | string;
-    outlined?: boolean;
-    size?: Size;
-    style?: Style;
-    rounded?: boolean;
-    loading?: boolean;
+    to?: RouteLocationRaw | string
+    outlined?: boolean
+    size?: Size
+    style?: Style
+    rounded?: boolean
+    loading?: boolean
   }>(),
   {
-    style: "primary",
-    size: "md",
+    style: 'primary',
+    size: 'md',
     outlined: false,
     loading: false,
     rounded: false,
   },
-);
+)
+
+const NuxtLink = resolveComponent('NuxtLink')
+
+const styles = {
+  primary: {
+    inside: 'text-primary-content',
+    insideOutlined: 'text-primary',
+    outside: 'bg-primary hover:bg-primary/80',
+    outsideOutlined: 'bg-none border border-primary',
+  },
+}
+
+const sizes = {
+  md: {
+    inside: 'text-md',
+    outside: 'px-3 py-2 rounded-lg',
+  },
+  sm: {
+    inside: 'text-sm',
+    outside: 'px-2 py-1 rounded-md',
+  },
+  lg: {
+    inside: 'text-sm md:text-lg',
+    outside: 'px-8 py-4 rounded-md',
+  },
+}
+
+type Style = keyof typeof styles
+type Size = keyof typeof sizes
 
 const outside = computed(() =>
   twMerge(
-    "cursor-pointer",
+    'cursor-pointer',
     sizes[props.size].outside,
-    styles[props.style][props.outlined ? "outsideOutlined" : "outside"],
+    styles[props.style][props.outlined ? 'outsideOutlined' : 'outside'],
   ),
-);
+)
 
 const inside = computed(() =>
   twMerge(
-    "text-center inline-block",
+    'text-center inline-block',
     sizes[props.size].inside,
-    styles[props.style][props.outlined ? "insideOutlined" : "inside"],
+    styles[props.style][props.outlined ? 'insideOutlined' : 'inside'],
   ),
-);
+)
 </script>
 
 <template>

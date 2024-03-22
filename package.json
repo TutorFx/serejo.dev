@@ -1,9 +1,9 @@
 {
+  "name": "serejo.dev",
   "type": "module",
+  "version": "3.0",
   "private": true,
   "packageManager": "pnpm@8.14.1",
-  "name": "serejo.dev",
-  "version": "3.0",
   "scripts": {
     "build": "nuxi build",
     "dev:pwa": "VITE_PLUGIN_PWA=true nuxi dev",
@@ -14,6 +14,16 @@
     "start:generate": "npx serve .output/public",
     "lint": "eslint .",
     "typecheck": "vue-tsc --noEmit"
+  },
+  "dependencies": {
+    "@nuxt/content": "^2.12.1",
+    "@nuxt/image": "^1.4.0",
+    "@nuxtjs/google-fonts": "^3.2.0",
+    "@nuxtjs/seo": "2.0.0-rc.9",
+    "daisyui": "^4.7.3",
+    "nuxt-speedkit": "^2.2.8",
+    "tailwind-merge": "^2.2.2",
+    "zod": "^3.22.4"
   },
   "devDependencies": {
     "@antfu/eslint-config": "^2.9.0",
@@ -41,15 +51,5 @@
     "swiper": "^11.0.7",
     "typescript": "^5.4.3",
     "vue-tsc": "^1.8.27"
-  },
-  "dependencies": {
-    "@nuxt/content": "^2.12.1",
-    "@nuxt/image": "^1.4.0",
-    "@nuxtjs/google-fonts": "^3.2.0",
-    "@nuxtjs/seo": "2.0.0-rc.9",
-    "daisyui": "^4.7.3",
-    "nuxt-speedkit": "^2.2.8",
-    "tailwind-merge": "^2.2.2",
-    "zod": "^3.22.4"
   }
 }
