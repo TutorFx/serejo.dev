@@ -39,11 +39,11 @@ const current = ref()
       </div>
     </div>
     <div>
-      <div class="relative z-[2] py-24 md:py-48 xl:py-56">
-        <div class="z-[1] absolute left-[10%] bottom-[-10%]">
+      <div class="relative py-24 z-[2] md:py-48 xl:py-56">
+        <div class="absolute z-[1] left-[10%] bottom-[-10%]">
           <div class="max-w-0 max-h-0">
             <div
-              class="w-[30vw] aspect-video bg-rose-400 -translate-x-[50%] -translate-y-[50%] rounded-full blur-[164px] opacity-50 md:opacity-30"
+              class="w-[30vw] aspect-video bg-rose-400 -translate-x-[50%] -translate-y-[50%] rounded-full opacity-50 md:opacity-30 blur-[164px]"
             />
           </div>
         </div>
@@ -68,7 +68,7 @@ const current = ref()
           <div class="relative max-h-0 max-w-0 -rotate-[12deg]">
             <Icon
               name="HeroLine"
-              class="absolute rotate-180 -translate-y-[50%] -translate-x-[50%] w-screen h-screen scale-[99%]"
+              class="absolute -translate-y-[50%] -translate-x-[50%] rotate-180 w-screen h-screen scale-[99%]"
               size="100%"
             />
           </div>
@@ -77,7 +77,7 @@ const current = ref()
     </div>
     <div
       v-if="service && (service instanceof HistoryService)"
-      class="grid grid-cols-1 gap-6 md:gap-12 relative z-[2]"
+      class="grid grid-cols-1 gap-6 relative z-[2] md:gap-12"
     >
       <div>
         <div>
@@ -91,11 +91,11 @@ const current = ref()
 
               <template #fallback>
                 <div
-                  class="grid md:grid-cols-3 gap-16 drop-shadow-[0px_0px_20px_var(--fallback-b1,oklch(var(--b1)/1))]"
+                  class="grid drop-shadow-[0px_0px_20px_var(--fallback-b1,oklch(var(--b1)/1))] md:grid-cols-3 gap-16"
                 >
                   <div class="max-md:hidden" />
                   <div class="aspect-video bg-brand-gradient rounded-md" />
-                  <div class="max-md:hidden aspect-video bg-base-300 bg-opacity-50 rounded-md" />
+                  <div class="max-md:hidden aspect-video bg-base-300 rounded-md bg-opacity-50" />
                 </div>
               </template>
             </ClientOnly>
@@ -117,13 +117,13 @@ const current = ref()
               :key="current._id"
               class="z-[1] drop-shadow-[0px_0px_60px_var(--fallback-b1,oklch(var(--b1)/1))]"
             >
-              <div class="py-6 px-3 md:px-12 md:py-24 bg-base-100 rounded-md">
+              <div class="py-6 px-3 bg-base-100 rounded-md md:py-24 md:px-12">
                 <div class="grid grid-cols-1 gap-6">
-                  <div class="grid md:grid-cols-[1fr_,max-content] justify-start">
+                  <div class="grid justify-start md:grid-cols-[1fr_,max-content]">
                     <div class="text-primary">
                       {{ current.location }}
                     </div>
-                    <div class="grid grid-flow-col gap-1 justify-start items-center">
+                    <div class="grid grid-flow-col justify-start items-center gap-1">
                       <Icon name="solar:calendar-bold-duotone" />
                       <div class="text-neutral">
                         {{ current.getDateToLocaleString('en').join(` ● `) }}

@@ -33,21 +33,21 @@ useIntersectionObserver(
       <div class="-z-[1] absolute left-[90%] bottom-[90%]">
         <div class="max-w-0 max-h-0">
           <div
-            class="w-[30vw] aspect-video bg-brand-gradient -translate-x-[50%] -translate-y-[50%] rounded-full blur-3xl opacity-80 md:opacity-30"
+            class="aspect-video bg-brand-gradient -translate-x-[50%] -translate-y-[50%] rounded-full blur-3xl w-[30vw] opacity-80 md:opacity-30"
           />
         </div>
       </div>
       <div class="-z-[1] absolute left-[0%] bottom-[10%]">
         <div class="max-w-0 max-h-0">
           <div
-            class="w-[30vw] aspect-video bg-vue-gradient -translate-x-[50%] -translate-y-[50%] rounded-full blur-3xl opacity-80 md:opacity-30"
+            class="w-[30vw] aspect-video -translate-x-[50%] -translate-y-[50%] rounded-full blur-3xl opacity-80 md:opacity-30 bg-vue-gradient"
           />
         </div>
       </div>
       <div class="-z-[1] absolute right-[0%] bottom-[25%]">
         <div class="max-w-0 max-h-0">
           <div
-            class="w-[60vw] aspect-video bg-rose-400 -translate-x-[50%] -translate-y-[50%] rounded-full blur-3xl opacity-20 md:opacity-10"
+            class="w-[60vw] aspect-video -translate-x-[50%] -translate-y-[50%] rounded-full blur-3xl bg-rose-400 opacity-20 md:opacity-10"
           />
         </div>
       </div>
@@ -65,7 +65,7 @@ useIntersectionObserver(
               <div class="max-w-0 max-h-0">
                 <Icon
                   name="Sparkle" size="48"
-                  class="size-6 md:size-8 lg:size-10 -translate-x-[50%] -translate-y-[50%]"
+                  class="-translate-x-[50%] -translate-y-[50%] size-6 md:size-8 lg:size-10"
                 />
               </div>
             </div>
@@ -78,14 +78,14 @@ useIntersectionObserver(
               </div>
             </div>
             <div
-              class="text-3xl md:text-6xl lg:text-7xl xl:text-9xl grid auto-rows-[1fr] gap-3 md:gap-5 lg:gap-7 [text-shadow:_6px_1px_30px_var(--fallback-b1,oklch(var(--b1)/1))]"
+              class="grid gap-3 text-3xl md:text-6xl lg:text-7xl xl:text-9xl auto-rows-[1fr] md:gap-5 lg:gap-7 [text-shadow:_6px_1px_30px_var(--fallback-b1,oklch(var(--b1)/1))]"
             >
-              <div class="leading-none grid items-end">
+              <div class="grid leading-none items-end">
                 &#123; {{ $t('hero.fl') }}
               </div>
-              <div class="pl-6 md:pl-10 lg:pl-12 grid grid-flow-col items-end gap-6">
-                <div class="grid items-end justify-end relative -mt-6">
-                  <div ref="targetvue" class="aspect-[192/154] overflow-hidden">
+              <div class="grid items-end grid-flow-col pl-6 md:pl-10 lg:pl-12 gap-6">
+                <div class="grid items-end relative justify-end -mt-6">
+                  <div ref="targetvue" class="overflow-hidden aspect-[192/154]">
                     <Transition
                       enter-from-class="translate-y-[150%]"
                       enter-active-class="transition duration-500"
@@ -98,7 +98,7 @@ useIntersectionObserver(
                     </Transition>
                   </div>
                   <div
-                    class="-z-[1] h-6 md:h-10 lg:h-12 xl:h-20 -mt-[100%] w-16 md:w-24 lg:w-32 xl:w-48 rounded-md md:rounded-lg lg:rounded-xl bg-vue-gradient"
+                    class="-z-[1] h-6 w-16 md:w-24 lg:w-32 xl:w-48 bg-vue-gradient md:h-10 lg:h-12 xl:h-20 -mt-[100%] rounded-md md:rounded-lg lg:rounded-xl"
                   />
                 </div>
                 <div class="leading-none">
@@ -106,13 +106,13 @@ useIntersectionObserver(
                 </div>
               </div>
               <div
-                class="pl-3 md:pl-16 lg:pl-20 xl:pl-32 grid grid-flow-col justify-start items-end gap-6"
+                class="grid grid-flow-col items-end gap-6 justify-start pl-3 md:pl-16 lg:pl-20 xl:pl-32"
               >
                 <div class="leading-none">
                   {{ $t('hero.tl') }}
                 </div>
                 <div class="grid items-end justify-end relative -mt-6">
-                  <div ref="targetme" class="aspect-[128/112] md:aspect-[192/176] lg:aspect-[128/112] overflow-hidden">
+                  <div ref="targetme" class="overflow-hidden aspect-[128/112] md:aspect-[192/176] lg:aspect-[128/112]">
                     <Transition
                       enter-from-class="translate-y-[150%]"
                       enter-active-class="transition duration-500"
@@ -144,8 +144,8 @@ useIntersectionObserver(
       />
       <div class="border-b border-neutral opacity-50" />
       <div class="relative">
-        <div class="absolute top-0 inset-x-[-100%] bg-base-100 z-[-2] blur-2xl bottom-[-100%]" />
-        <container class="py-6 font-light grid md:grid-cols-[1fr_max-content] gap-3">
+        <div class="absolute bg-base-100 z-[-2] top-0 inset-x-[-100%] blur-2xl bottom-[-100%]" />
+        <container class="grid gap-3 py-6 font-light md:grid-cols-[1fr_max-content]">
           <div>
             {{ $t('schedule_support_text') }}
           </div>

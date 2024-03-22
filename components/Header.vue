@@ -26,7 +26,7 @@ const closeMenu = () => menu.value = false
     >
       <div
         v-if="!visible"
-        class="inset-x-0 top-0 fixed z-50 bg-base-100 rounded-b-3xl bg-clip-padding backdrop-filter backdrop-blur-lg bg-opacity-90 border border-base-100"
+        class="bg-base-100 top-0 inset-x-0 fixed z-50 rounded-b-3xl bg-clip-padding backdrop-filter backdrop-blur-lg bg-opacity-90 border border-base-100"
       >
         <Container>
           <HeaderNav v-model="menu" :service="service" />
@@ -35,11 +35,11 @@ const closeMenu = () => menu.value = false
     </Transition>
 
     <Teleport to="body">
-      <Container v-if="menu" class="inset-0 fixed z-50 bg-base-100">
-        <div class="grid grid-rows-[max-content_1fr] min-h-dvh">
+      <Container v-if="menu" class="fixed z-50 bg-base-100 inset-0">
+        <div class="grid min-h-dvh grid-rows-[max-content_1fr]">
           <HeaderNav v-model="menu" :service="service" />
           <div>
-            <div class="py-12 grid">
+            <div class="grid py-12">
               <h6>{{ $t('navigation.menu') }}</h6>
               <HeaderMobileMenu class="py-6" :service="service" @click.capture="closeMenu" />
               <h6>{{ $t('navigation.settings') }}</h6>

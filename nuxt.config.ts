@@ -39,26 +39,26 @@ export default defineNuxtConfig({
         file: 'pt-BR.ts',
       },
     ],
-    customRoutes: 'config', 
+    customRoutes: 'config',
     langDir: 'locales/',
     pages: {
       index: {
         'en': '/',
-        'pt-BR': '/inicio'
+        'pt-BR': '/inicio',
       },
       blog: {
         'en': '/blog',
-        'pt-BR': '/blog'
+        'pt-BR': '/blog',
       },
       history: {
         'en': '/my-trajectory',
-        'pt-BR': '/minha-jornada'
+        'pt-BR': '/minha-jornada',
       },
       projects: {
         'en': '/projects',
-        'pt-BR': '/projetos'
-      }
-    }
+        'pt-BR': '/projetos',
+      },
+    },
   },
 
   experimental: {

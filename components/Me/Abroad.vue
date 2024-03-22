@@ -4,7 +4,7 @@
       <div class="-z-[1] absolute left-[10%] -top-[30%]">
         <div class="max-w-0 max-h-0">
           <div
-            class="w-[80vw] aspect-video bg-base-100 -translate-x-[50%] -translate-y-[50%] rounded-full blur-3xl opacity-80"
+            class="aspect-video bg-base-100 -translate-x-[50%] -translate-y-[50%] rounded-full blur-3xl opacity-80 w-[80vw]"
           />
         </div>
       </div>
@@ -15,7 +15,7 @@
           />
         </div>
       </div>
-      <Container class="!max-w-6xl text-center py-12 md:py-24 text-xl md:text-3xl relative z-[1]">
+      <Container class="text-center py-12 relative md:py-24 text-xl z-[1] !max-w-6xl md:text-3xl">
         <MDC :value="$t('me.abroad')" />
       </Container>
     </div>
