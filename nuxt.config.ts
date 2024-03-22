@@ -8,13 +8,14 @@ export default defineNuxtConfig({
   modules: [
     'nuxt-site-config',
     'nuxt-speedkit',
+    '@nuxtjs/seo',
+    '@nuxtjs/sitemap',
     '@vueuse/nuxt',
     '@pinia/nuxt',
     '@nuxtjs/i18n',
     '@nuxtjs/color-mode',
     '@nuxtjs/tailwindcss',
     '@nuxtjs/google-fonts',
-    '@nuxtjs/seo',
     '@nuxt/image',
     '@nuxt/content',
     '@vite-pwa/nuxt',
@@ -101,7 +102,6 @@ export default defineNuxtConfig({
       routes: [
         '/',
         '/blog',
-        '/history',
         '/projects'
       ],
       ignore: [],
@@ -125,14 +125,12 @@ export default defineNuxtConfig({
         { name: 'theme-color', media: '(prefers-color-scheme: dark)', content: '#222222' },
       ],
     },
+  },
 
-    site: {
-      name: appName,
-      description: appDescription,
-      identity: {
-        type: 'Person'
-      },
-    },
+  site: {
+    name: appName,
+    description: appDescription,
+    url: 'https://serejo.dev/'
   },
 
   pwa,
