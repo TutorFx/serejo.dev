@@ -21,6 +21,9 @@ export default defineNuxtConfig({
   ],
 
   i18n: {
+    // TODO: Move to `prefix` when the nuxt team fix the issue
+    strategy: 'prefix_and_default',
+
     defaultLocale: 'pt',
     locales: [
       {
@@ -37,6 +40,24 @@ export default defineNuxtConfig({
       },
     ],
     langDir: 'locales/',
+    pages: {
+      index: {
+        en: '/home',
+        'pt-BR': '/inicio'
+      },
+      blog: {
+        en: '/blog',
+        'pt-BR': '/ptBR/blog'
+      },
+      history: {
+        en: 'my-trajectory',
+        'pt-BR': 'minha-jornada'
+      },
+      projects: {
+        en: '/projects',
+        'pt-BR': '/projetos'
+      }
+    }
   },
 
   experimental: {
