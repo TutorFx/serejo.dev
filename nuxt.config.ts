@@ -100,10 +100,13 @@ export default defineNuxtConfig({
       crawlLinks: true,
       routes: [
         '/',
-        '/inicio'
+        '/blog',
+        '/history',
+        '/projects'
       ],
       ignore: [],
     },
+    preset: 'vercel'
   },
 
   app: {
@@ -147,6 +150,7 @@ export default defineNuxtConfig({
       baseURL: '/api/cms',
     },
   },
+
 
   tailwindcss: {
     config: {
