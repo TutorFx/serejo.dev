@@ -5,7 +5,7 @@ export default class MenuRepository {
 
   constructor(setup: IMenuRepository) {
     if (!MenuSchemas.safeParse(setup).success) {
-      throw new Error("Wrong Type on MenuRepository");
+      throw createError({statusCode: 404, statusMessage: "Wrong Type on MenuRepository"});
     }
     setup.forEach((item: IMenu) => this.Repository.push(new MenuController(item)));
   }

@@ -21,8 +21,13 @@
                     <HeaderNav :service="service" v-model="menu" />
                     <div>
                         <div class="py-12 grid">
-                            <h6>Menu</h6>
-                            <HeaderMobileMenu @click.capture="closeMenu" :service="service" />
+                            <h6>{{ $t('navigation.menu') }}</h6>
+                            <HeaderMobileMenu class="py-6" @click.capture="closeMenu" :service="service" />
+                            <h6>{{ $t('navigation.settings') }}</h6>
+                            <div class="py-6 grid justify-start grid-flow-col gap-4">
+                                <DarkToggle size="40" />
+                                <LanguageSelector />
+                            </div>
                         </div>
                     </div>
                 </div>

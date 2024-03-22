@@ -114,8 +114,10 @@
                     </Transition>
                 </Container>
     
-                <Container v-else class="py-6 px-3 md:px-12 md:py-24 rounded-md bg-base-100">
-                    Loading...
+                <Container v-else>
+                    <div class="py-6 px-3 md:px-12 md:py-24 rounded-md bg-base-100">
+                        Loading...
+                    </div>
                 </Container>
             </div>
         </div>

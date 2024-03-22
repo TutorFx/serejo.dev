@@ -14,7 +14,7 @@ export default class {
         const repository = this.getRepository()
 
         if (i < 0 || i >= repository.length) {
-            throw new Error("Index out of bounds");
+            throw createError({ statusCode: 404, statusMessage: "Error finding history item, please try again." });
         }
 
         return repository[i];

@@ -25,11 +25,13 @@ export default defineNuxtConfig({
     locales: [
       {
         code: 'en',
+        name: 'English',
         iso: 'en-US',
         file: 'en-US.ts'
       },
       {
-        code: 'pt',
+        code: 'pt-BR',
+        name: 'Português',
         iso: 'pt-BR',
         file: 'pt-BR.ts'
       }

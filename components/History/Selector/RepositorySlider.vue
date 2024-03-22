@@ -3,7 +3,7 @@
         <Swiper :modules="[Virtual, Controller]" @swiper="swiperEvent" @slideChange="swiperEvent" virtual
             :autoplay="{ delay: 15000 }" space-between="40" :breakpoints="BREAKPOINTS">
             <SwiperSlide v-for="(item, i) in repository.getRepository()" @click="() => currentInstance?.slideTo(i)"
-                :class="{ current: currentItem._id === item._id }" class="overflow-visible" :key="item._id">
+                :class="{ current: currentItem && (currentItem?._id == item._id) }" class="overflow-visible" :key="item._id">
                 <HistorySelectorRepositoryItem :item="item" />
             </SwiperSlide>
         </Swiper>
@@ -51,16 +51,27 @@ const BREAKPOINTS = {
 }
 
 const getItem = (i: number, repository: HistoryRepository) =>
-    repository.getItemByIndex(i);
+    (repository.getRepository().length >= i) ? repository.getItemByIndex(i) : null;
 
 const swiperEvent = (event: s) => {
-    emit('change', getItem(event.activeIndex, props.repository));
-    currentItem.value = getItem(event.activeIndex, props.repository);
+    const item = getItem(event.activeIndex, props.repository);
+    if (!item) return;
+    
+    emit('change', item);
+    
+    currentIndex.value = event.activeIndex;
     currentInstance.value = event;
 }
 
-const currentItem = ref(getItem(0, props.repository));
+const currentIndex = ref(0)
 
-const currentInstance = ref<s | null>(null)
+const currentItem = computed(() => getItem(currentIndex.value, props.repository));
+
+const currentInstance = shallowRef<s | null>(null)
+
+watch(() => props.repository, (repository) => {
+    if (!currentItem.value) return;
+    emit('change', currentItem.value);
+})
 
 </script>

@@ -33,6 +33,10 @@ export default defineI18nLocale(async locale => {
             sl: "Developer",
             tl: "Experienced"
         },
+        navigation: {
+            menu: 'Menu',
+            settings: 'Settings',
+        },
         sections: {
             about_me: {
                 title: 'The Pixel Architect',

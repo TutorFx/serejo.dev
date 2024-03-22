@@ -6,10 +6,12 @@ import type { HistoryEntry } from "./cms/types";
 
 export const getHistory = () => {
     const { locale } = useI18n()
+    const localeFixed = (locale.value.split('-').at(0) ?? locale.value).toLowerCase()
+
     return useAsyncData(
-        'history',
-        () => queryContent<HistoryEntry>(locale.value, 'history').find().then((data) =>
-            new HistoryRepository(data.map((entry) => new HistoryController(entry)))
+        'HistoryFetcher',
+        () => queryContent<HistoryEntry>(localeFixed, 'history').find().then((data) =>
+            new HistoryRepository(data.map((entry) => reactive(new HistoryController(entry))))
         )
     )
 }
