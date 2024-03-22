@@ -94,9 +94,9 @@ export default defineNuxtConfig({
       },
     },
     prerender: {
-      crawlLinks: false,
-      routes: ['/'],
-      ignore: ['/hi'],
+      crawlLinks: true,
+      routes: ['/home', '/inicio'],
+      ignore: [],
     },
   },
 
