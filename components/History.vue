@@ -32,13 +32,13 @@ const localePath = useLocalePath()
             {{ data.getTruncatedDescription(200) }}
           </div>
         </div>
-        <div class="flex justify-between">
+        <div class="flex justify-between items-end">
           <div class="text-xs">
             <Icon name="gg:alarm" /> {{ data.getLocaleReadingTime() }}
           </div>
-          <NuxtLink :to="localePath({ name:`experience-item`, params: { item: data.org } })">
-            Veja Mais
-          </NuxtLink>
+          <Btn color="light" :to="localePath({ name:`experience-item`, params: { item: data.org } })">
+            {{ $t('see_more') }}
+          </Btn>
         </div>
       </div>
     </div>

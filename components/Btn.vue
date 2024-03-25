@@ -7,12 +7,12 @@ const props = withDefaults(
     to?: RouteLocationRaw | string
     outlined?: boolean
     size?: Size
-    style?: Style
+    color?: Style
     rounded?: boolean
     loading?: boolean
   }>(),
   {
-    style: 'primary',
+    color: 'primary',
     size: 'md',
     outlined: false,
     loading: false,
@@ -27,6 +27,12 @@ const styles = {
     inside: 'text-primary-content',
     insideOutlined: 'text-primary',
     outside: 'bg-primary hover:bg-primary/80',
+    outsideOutlined: 'bg-none border border-primary',
+  },
+  light: {
+    inside: 'group-hover:text-white bold',
+    insideOutlined: 'text-primary',
+    outside: 'group hover:bg-brand-gradient',
     outsideOutlined: 'bg-none border border-primary',
   },
 }
@@ -53,7 +59,7 @@ const outside = computed(() =>
   twMerge(
     'cursor-pointer',
     sizes[props.size].outside,
-    styles[props.style][props.outlined ? 'outsideOutlined' : 'outside'],
+    styles[props.color][props.outlined ? 'outsideOutlined' : 'outside'],
   ),
 )
 
@@ -61,7 +67,7 @@ const inside = computed(() =>
   twMerge(
     'text-center inline-block',
     sizes[props.size].inside,
-    styles[props.style][props.outlined ? 'insideOutlined' : 'inside'],
+    styles[props.color][props.outlined ? 'insideOutlined' : 'inside'],
   ),
 )
 </script>
