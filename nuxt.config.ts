@@ -61,6 +61,10 @@ export default defineNuxtConfig({
         'en': '/projects',
         'pt-BR': '/projetos',
       },
+      'experience/[item]': {
+        'en': '/i-worked-in/[item]',
+        'pt-BR': '/trabalhei-na/[item]',
+      }
     },
   },
 
@@ -70,6 +74,9 @@ export default defineNuxtConfig({
     payloadExtraction: false,
     renderJsonPayloads: true,
     typedPages: true,
+    // By default Nuxt overwrites generated route values
+    // at build time which breaks custom named routes
+    scanPageMeta: true,
   },
 
   colorMode: {
@@ -102,11 +109,11 @@ export default defineNuxtConfig({
       routes: [
         '/',
         '/blog',
-        '/projects'
+        '/projects',
       ],
       ignore: [],
     },
-    preset: 'vercel'
+    preset: 'vercel',
   },
 
   app: {
@@ -130,7 +137,7 @@ export default defineNuxtConfig({
   site: {
     name: appName,
     description: appDescription,
-    url: 'https://serejo.dev/'
+    url: 'https://serejo.dev/',
   },
 
   pwa,
@@ -148,7 +155,6 @@ export default defineNuxtConfig({
       baseURL: '/api/cms',
     },
   },
-
 
   tailwindcss: {
     config: {

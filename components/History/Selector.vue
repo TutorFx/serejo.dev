@@ -68,7 +68,7 @@ const current = ref()
           <div class="relative max-h-0 max-w-0 -rotate-[12deg]">
             <Icon
               name="HeroLine"
-              class="absolute -translate-y-[50%] -translate-x-[50%] rotate-180 w-screen h-screen scale-[99%]"
+              class="absolute -translate-y-[50%] -translate-x-[50%] scale-[99%] rotate-180 w-screen h-screen"
               size="100%"
             />
           </div>
@@ -126,7 +126,7 @@ const current = ref()
                     <div class="grid grid-flow-col justify-start items-center gap-1">
                       <Icon name="solar:calendar-bold-duotone" />
                       <div class="text-neutral">
-                        {{ current.getDateToLocaleString('en').join(` ● `) }}
+                        {{ current.getDateToLocaleString(useLocale()).join(` ● `) }}
                       </div>
                     </div>
                   </div>

@@ -16,4 +16,14 @@ export function getHistory() {
   )
 }
 
+export function getHistoryItem(org: string) {
+  const { locale } = useI18n()
+  const localeFixed = (locale.value.split('-').at(0) ?? locale.value).toLowerCase()
+
+  return useAsyncData(
+    'HistoryFetcher',
+    () => queryContent<HistoryEntry>(localeFixed, 'history').where({ org }).findOne().then(entry => reactive(new HistoryController(entry))),
+  )
+}
+
 export const getHistoryService = (repository: HistoryRepository) => new HistoryService(repository)
