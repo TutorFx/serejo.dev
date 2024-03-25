@@ -6,3 +6,9 @@
     <HistorySelector />
   </div>
 </template>
+
+<script setup lang="ts">
+useHead({
+  titleTemplate: '%siteName'
+})
+</script>
