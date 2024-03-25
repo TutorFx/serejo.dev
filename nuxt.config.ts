@@ -109,6 +109,7 @@ export default defineNuxtConfig({
       routes: [
         '/',
         '/blog',
+        '/history',
         '/projects',
       ],
       ignore: [],

@@ -1,10 +1,68 @@
-<template>
-    <div>
-        {{ item.data }}
-    </div>
-</template>
-
 <script setup lang="ts">
-const route = useRoute();
-const item = getHistoryItem(route.params.item)
+import HistoryItemService from '@/utils/cms/history/HistoryItemService'
+
+const route = useRoute()
+const { data } = await getHistoryItem((route.params as { item: string }).item)
+const itemService = computed(() => data.value && new HistoryItemService(data.value))
+
+if (itemService.value && itemService.value instanceof HistoryItemService) {
+  useHead({
+    title: itemService.value.getItem().org,
+    meta: [
+      { name: 'description', content: itemService.value.getItem().getBodyAsPlain() },
+    ],
+    bodyAttrs: {
+      class: 'test',
+    },
+  })
+}
 </script>
+
+<template>
+  <div v-if="(itemService instanceof HistoryItemService)">
+    <DynamicHero>
+      <Container>
+        <div class="grid justify-center items-center min-h-[40dvh]">
+          <div
+            class="relative grid gap-3 text-3xl md:text-6xl lg:text-7xl xl:text-9xl auto-rows-[1fr] md:gap-5 lg:gap-7 [text-shadow:_6px_1px_30px_var(--fallback-b1,oklch(var(--b1)/1))]"
+          >
+            {{ data?.org }}
+            <div class="bg-base-300 absolute rounded-full -inset-12 z-[-1] blur-xl opacity-90" />
+          </div>
+        </div>
+      </Container>
+      <div
+        class="absolute inset-0 grid items-center justify-center max-w-screen -z-[2] pointer-events-none rotate-180"
+      >
+        <div class="relative max-h-0 max-w-0 -rotate-[12deg]">
+          <Icon
+            name="HeroLine"
+            class="absolute -translate-y-[50%] -translate-x-[50%] rotate-5 w-[100dvw] h-[100dvh] scale-[99%] md:scale-[100%]"
+            size="100%"
+          />
+        </div>
+      </div>
+    </DynamicHero>
+    <div class="bg-base-300 rounded-b-3xl py-24">
+      <Container class="grid gap-3 max-w-4xl">
+        <div class="grid grid-cols-[1fr_max-content]">
+          <div class="text-sm text-primary">
+            {{ itemService.getItem().title }}
+          </div>
+          <div>
+            <div class="grid grid-flow-col justify-start items-center gap-1">
+              <Icon name="solar:calendar-bold-duotone" />
+              <div class="text-neutral text-xs md:text-lg">
+                {{ itemService.getItem().getDateToLocaleString(useLocale()).join(` ● `) }}
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="text-4xl">
+          {{ itemService.getItem().location }}
+        </div>
+        <MDC class="text-xl" :value="itemService.getItem()" />
+      </Container>
+    </div>
+  </div>
+</template>

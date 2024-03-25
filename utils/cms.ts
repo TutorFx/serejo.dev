@@ -21,7 +21,7 @@ export function getHistoryItem(org: string) {
   const localeFixed = (locale.value.split('-').at(0) ?? locale.value).toLowerCase()
 
   return useAsyncData(
-    'HistoryFetcher',
+    'HistoryItemFetcher',
     () => queryContent<HistoryEntry>(localeFixed, 'history').where({ org }).findOne().then(entry => reactive(new HistoryController(entry))),
   )
 }
