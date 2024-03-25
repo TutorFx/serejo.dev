@@ -32,7 +32,7 @@ const styles = {
   light: {
     inside: 'group-hover:text-white bold',
     insideOutlined: 'text-primary',
-    outside: 'group hover:bg-brand-gradient',
+    outside: 'group-hover:bg-brand-gradient',
     outsideOutlined: 'bg-none border border-primary',
   },
 }

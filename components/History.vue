@@ -9,7 +9,7 @@ const localePath = useLocalePath()
 
 <template>
   <div v-if="(service instanceof HistoryService)" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-x-4 gap-y-6 py-12">
-    <div v-for="data in service.getRepository()" :key="data._id" class="grid p-4 bg-base-100 rounded-md aspect-video">
+    <NuxtLink v-for="data in service.getRepository()" :to="localePath({ name:`experience-item`, params: { item: data.org } })" :key="data._id" class="group grid p-4 bg-base-100 rounded-md aspect-video">
       <div class="grid gap-2 grid-rows-[max-content_1fr_max-content]">
         <div class="grid-cols-[1fr_max-content] grid justify-between">
           <div class="text-xl xl:text-3xl">
@@ -36,11 +36,11 @@ const localePath = useLocalePath()
           <div class="text-xs">
             <Icon name="gg:alarm" /> {{ data.getLocaleReadingTime() }}
           </div>
-          <Btn color="light" :to="localePath({ name:`experience-item`, params: { item: data.org } })">
+          <Btn color="light">
             {{ $t('see_more') }}
           </Btn>
         </div>
       </div>
-    </div>
+    </NuxtLink>
   </div>
 </template>

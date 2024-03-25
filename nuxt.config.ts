@@ -77,6 +77,8 @@ export default defineNuxtConfig({
     // By default Nuxt overwrites generated route values
     // at build time which breaks custom named routes
     scanPageMeta: true,
+
+    viewTransition: true,
   },
 
   colorMode: {

@@ -21,7 +21,7 @@ useIntersectionObserver(
 </script>
 
 <template>
-  <div class="overflow-hidden rounded-t-3xl">
+  <div class="overflow-hidden rounded-t-3xl [view-transition-name:hero]">
     <div class="relative pt-6">
       <div class="-z-[1] absolute left-[50%] bottom-[50%]">
         <div class="max-w-0 max-h-0">

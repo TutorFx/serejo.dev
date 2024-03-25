@@ -1,7 +1,7 @@
 <template>
   <div>
     <div>
-      <DynamicHero>
+      <DynamicHero class="[view-transition-name:hero]">
         <Container>
           <div class="grid justify-center items-center min-h-[40dvh]">
             <div
