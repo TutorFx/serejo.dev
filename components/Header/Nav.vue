@@ -14,6 +14,7 @@ const model = defineModel<boolean>()
     </div>
     <div class="items-center sm:grid overflow-x-auto overflow-y-hidden hidden">
       <div class="flex justify-end items-center gap-6 flex-nowrap">
+        <LanguagePopup size="28" />
         <ClientOnly>
           <DarkToggle just-icon size="28" />
           <template #fallback>
