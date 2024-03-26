@@ -31,7 +31,7 @@ defineProps<{
         </div>
       </div>
     </DynamicHero>
-    <div class="bg-base-300 rounded-b-3xl py-24">
+    <div class="bg-base-200 rounded-b-3xl py-24">
       <Container class="grid gap-3 max-w-4xl">
         <div class="grid grid-cols-[1fr_max-content]">
           <div class="text-sm text-primary">

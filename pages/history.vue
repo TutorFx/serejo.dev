@@ -22,7 +22,7 @@
           </div>
         </div>
       </DynamicHero>
-      <div class="bg-base-300 rounded-b-3xl">
+      <div class="bg-base-200 rounded-b-3xl">
         <Container>
           <History />
         </Container>
