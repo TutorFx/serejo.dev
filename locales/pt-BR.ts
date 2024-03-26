@@ -18,7 +18,7 @@ export default defineI18nLocale(async (/* locale */) => {
     me: {
       abroad: `Durante minha carreira, trabalhei em projetos internacionais, 
           colaborando diariamente com pessoas de todo o mundo e alinhando estratégias 
-          com equipes de backend e frontend. Após :gradient-text[7 anos] de experiência, 
+          com equipes de backend e frontend. Após **7 anos** de experiência, 
           ofereço expertise com base em casos concretos.`,
       passion: `Minha paixão é preencher a lacuna entre a imaginação e a realidade, 
           tornando meus sonhos realidade. Respiro código e sonho em pixels. Sou um 
