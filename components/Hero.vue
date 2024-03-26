@@ -1,23 +1,6 @@
 <script lang="ts" setup>
-const targetme = ref()
-const targetvue = ref()
-
 const me = ref(false)
 const vue = ref(false)
-
-useIntersectionObserver(
-  targetme,
-  ([{ isIntersecting }]) => {
-    me.value = isIntersecting
-  },
-)
-
-useIntersectionObserver(
-  targetvue,
-  ([{ isIntersecting }]) => {
-    vue.value = isIntersecting
-  },
-)
 </script>
 
 <template>
@@ -85,13 +68,13 @@ useIntersectionObserver(
               </div>
               <div class="grid items-end grid-flow-col pl-6 md:pl-10 lg:pl-12 gap-6">
                 <div class="grid items-end relative justify-end -mt-6">
-                  <div ref="targetvue" class="overflow-hidden aspect-[192/154]">
+                  <div class="overflow-hidden aspect-[192/154]">
                     <Transition
                       enter-from-class="translate-y-[150%]"
                       enter-active-class="transition duration-500"
                     >
                       <NuxtImg
-                        v-show="vue" size="176"
+                        :key="vue ? 'vl' : undefined" placeholder @load="vue = true" size="176"
                         class="object-contain p-2 lg:p-4 !pb-0 w-16 md:w-24 lg:w-32 xl:w-48 drop-shadow-[20px_5px_10px_var(--fallback-b1,oklch(var(--b1)/.3))]"
                         src="/brand/Vue.js.svg"
                       />
@@ -112,13 +95,13 @@ useIntersectionObserver(
                   {{ $t('hero.tl') }}
                 </div>
                 <div class="grid items-end justify-end relative -mt-6">
-                  <div ref="targetme" class="overflow-hidden aspect-[128/112] md:aspect-[192/176] lg:aspect-[128/112]">
+                  <div class="overflow-hidden aspect-[128/112] md:aspect-[192/176] lg:aspect-[128/112]">
                     <Transition
                       enter-from-class="translate-y-[150%]"
                       enter-active-class="transition duration-500"
                     >
                       <NuxtImg
-                        v-show="me" size="176"
+                        :key="me ? 'ml' : undefined" size="176" @load="me = true"
                         class="object-contain p-2 lg:p-4 !pb-0 w-16 md:w-24 lg:w-32 xl:w-48 drop-shadow-[20px_5px_10px_var(--fallback-b1,oklch(var(--b1)/.3))]"
                         src="/brand/me.png"
                       />
