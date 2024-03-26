@@ -26,7 +26,6 @@ export default class {
 
     this.title = cms.title
     this.body = cms.body
-    this.body = cms.body
     this._id = cms._id
   }
 
