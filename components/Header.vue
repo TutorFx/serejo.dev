@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 const service = useNavbar()
-const menu = useScrollLock(document)
+const menu = useScrollLock(document?.body)
 const startMenu = ref()
 const visible = ref(false)
 
@@ -11,7 +11,9 @@ useIntersectionObserver(
   },
 )
 
-const closeMenu = () => menu.value = false
+function toggleMenu() {
+  menu.value = !menu.value
+}
 </script>
 
 <template>
@@ -41,11 +43,11 @@ const closeMenu = () => menu.value = false
           <div>
             <div class="grid py-12">
               <h6>{{ $t('navigation.menu') }}</h6>
-              <HeaderMobileMenu class="py-6" :service="service" @click.capture="closeMenu" />
+              <HeaderMobileMenu class="py-6" :service="service" @click="toggleMenu()" />
               <h6>{{ $t('navigation.settings') }}</h6>
               <div class="py-6 grid justify-start gap-4">
                 <DarkToggle size="32" />
-                <LanguageSelector @click.capture="closeMenu" />
+                <LanguageSelector @click="toggleMenu()" />
               </div>
             </div>
           </div>
