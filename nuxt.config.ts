@@ -26,7 +26,7 @@ export default defineNuxtConfig({
 
   i18n: {
     // TODO: Move to `prefix` when the nuxt team fix the issue
-    strategy: 'prefix_and_default',
+    strategy: 'prefix',
 
     defaultLocale: 'en',
     locales: [
