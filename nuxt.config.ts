@@ -74,6 +74,9 @@ export default defineNuxtConfig({
         'pt-BR': '/trabalhei-na/[item]',
       },
     },
+    experimental: {
+      localeDetector: './localeDetector.ts'
+    }
   },
 
   experimental: {
@@ -122,7 +125,7 @@ export default defineNuxtConfig({
       ],
       ignore: [],
     },
-    preset: 'vercel',
+    preset: isProd ? 'vercel' : 'node',
   },
 
   app: {
