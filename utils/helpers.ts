@@ -29,7 +29,7 @@ export function processArray<T extends CmsEntry, C extends new (Controller: T) =
     catch (e) {
       if (e instanceof ZodError) {
         const validationError = fromZodError(e)
-        return console.warn(entry._path, validationError.toString())
+        console.warn(entry._path, validationError.toString())
       }
 
       return null

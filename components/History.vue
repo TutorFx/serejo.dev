@@ -1,8 +1,8 @@
 <script lang="ts" setup>
 import HistoryService from '~/utils/cms/history/HistoryService'
 
-const history = await getHistory()
-const service = computed(() => history.data.value && getHistoryService(history.data.value))
+const { data } = await getHistory()
+const service = computed(() => (data.value instanceof HistoryService) && getHistoryService(data.value))
 
 const localePath = useLocalePath()
 </script>

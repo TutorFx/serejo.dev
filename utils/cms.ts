@@ -1,3 +1,5 @@
+import { fromZodError } from 'zod-validation-error'
+import { ZodError } from 'zod'
 import HistoryController from './cms/history/HistoryController'
 import HistoryRepository from './cms/history/HistoryRepository'
 import HistoryService from './cms/history/HistoryService'
@@ -31,8 +33,21 @@ export const getProjectService = (repository: ProjectRepository) => new ProjectS
 export function getProject() {
   return useAsyncData(
     'ProjectFetcher',
-    () => queryContent<ProjectEntry>(useLocale(), 'project').find().then(data =>
-      processArray(data, ProjectController, ProjectRepository),
+    () => queryContent<ProjectEntry>(useLocale(), 'project').find().then(data => {
+        const instances = data.map((entry) => {
+          try {
+            return reactive(new ProjectController(entry))
+          }
+          catch (e) {
+            if (e instanceof ZodError) {
+              const validationError = fromZodError(e)
+              console.warn(entry._path, validationError.toString())
+            }
+            return null
+          }
+        }).filter(Boolean) as ProjectController[]
+        return new ProjectRepository(instances)
+      }
     ),
   )
 }
@@ -40,8 +55,20 @@ export function getProject() {
 export function getHistory() {
   return useAsyncData(
     'HistoryFetcher',
-    () => queryContent<HistoryEntry>(useLocale(), 'history').find().then(data =>
-      processArray(data, HistoryController, HistoryRepository),
-    ),
+    () => queryContent<HistoryEntry>(useLocale(), 'history').find().then((data) => {
+      const instances = data.map((entry) => {
+        try {
+          return reactive(new HistoryController(entry))
+        }
+        catch (e) {
+          if (e instanceof ZodError) {
+            const validationError = fromZodError(e)
+            console.warn(entry._path, validationError.toString())
+          }
+          return null
+        }
+      }).filter(Boolean) as HistoryController[]
+      return new HistoryRepository(instances)
+    }),
   )
 }
