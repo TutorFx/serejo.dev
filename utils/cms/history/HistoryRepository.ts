@@ -1,9 +1,8 @@
+import CmsRepository from '../CmsRepository'
 import type HistoryController from './HistoryController'
 
-export default class {
-  private repository: HistoryController[]
-
-  getRepository = () => this.repository.sort((a, b) => {
+export default class extends CmsRepository<HistoryController> {
+  getSortedRepository = () => this.getRepository().sort((a, b) => {
     const aTime = new Date(a.start)
     const bTime = new Date(b.start)
 
@@ -11,7 +10,7 @@ export default class {
   })
 
   getItemByIndex = (i: number) => {
-    const repository = this.getRepository()
+    const repository = this.getSortedRepository()
 
     if (i < 0 || i >= repository.length)
       throw createError({ statusCode: 404, statusMessage: 'Error finding history item, please try again.' })
@@ -20,6 +19,6 @@ export default class {
   }
 
   constructor(repository: HistoryController[]) {
-    this.repository = repository
+    super(repository)
   }
 }

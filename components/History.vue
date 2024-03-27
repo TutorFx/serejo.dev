@@ -8,10 +8,10 @@ const localePath = useLocalePath()
 </script>
 
 <template>
-  <div v-if="(service instanceof HistoryService)" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-x-4 gap-y-6 py-12">
-    <NuxtLink v-for="data in service.getRepository()" :to="localePath({ name:`experience-item`, params: { item: data.org } })" :key="data._id" class="group grid p-4 bg-base-100 rounded-md aspect-video">
+  <div v-if="(service instanceof HistoryService)" class="grid py-12 sm:grid-cols-2 lg:grid-cols-3 gap-x-4 gap-y-6">
+    <NuxtLink v-for="data in service.getRepository()" :key="data._id" :to="localePath({ name: `experience-item`, params: { item: data.org } })" class="grid bg-base-100 aspect-video rounded-md group p-4">
       <div class="grid gap-2 grid-rows-[max-content_1fr_max-content]">
-        <div class="grid-cols-[1fr_max-content] grid justify-between">
+        <div class="grid grid-cols-[1fr_max-content] justify-between">
           <div class="text-xl xl:text-3xl">
             {{ data.org }}
           </div>
@@ -28,7 +28,7 @@ const localePath = useLocalePath()
           </div>
         </div>
         <div class="relative">
-          <div class="inset-0 line-clamp-2 overflow-hidden text-ellipsis">
+          <div class="inset-0 overflow-hidden line-clamp-2 text-ellipsis">
             {{ data.getTruncatedDescription(200) }}
           </div>
         </div>

@@ -16,10 +16,9 @@ function hasValueProperty(node: any): node is { value: string } {
 }
 
 export default class {
-
   title: string
   body: MarkdownRoot | null
-  _id: string 
+  _id: string
 
   constructor(cms: CmsEntry) {
     CmsEntrySchema.parse(cms)
@@ -71,7 +70,7 @@ export default class {
   }
 
   getLocaleReadingTime() {
-    return this.getDayjs().duration(this.getReadingTime(), "seconds").locale(useLocale()).humanize();
+    return this.getDayjs().duration(this.getReadingTime(), 'seconds').locale(useLocale()).humanize()
   }
 
   getTruncatedDescription(maxLength: number = 60) {

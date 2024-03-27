@@ -1,3 +1,9 @@
+<script setup lang="ts">
+useHead({
+  titleTemplate: '%siteName',
+})
+</script>
+
 <template>
   <div class="grid grid-cols-1">
     <Hero />
@@ -6,9 +12,3 @@
     <HistorySelector />
   </div>
 </template>
-
-<script setup lang="ts">
-useHead({
-  titleTemplate: '%siteName'
-})
-</script>

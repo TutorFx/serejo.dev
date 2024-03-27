@@ -1,3 +1,4 @@
+/* eslint-disable node/prefer-global/process */
 import tailwindTypography from '@tailwindcss/typography'
 import daisyui from 'daisyui'
 import { pwa } from './config/pwa'
@@ -45,26 +46,26 @@ export default defineNuxtConfig({
     customRoutes: 'config',
     langDir: 'locales/',
     pages: {
-      index: {
+      'index': {
         'en': '/',
         'pt-BR': '/inicio',
       },
-      blog: {
+      'blog': {
         'en': '/blog',
         'pt-BR': '/blog',
       },
-      history: {
+      'history': {
         'en': '/my-trajectory',
         'pt-BR': '/minha-jornada',
       },
-      projects: {
+      'projects': {
         'en': '/projects',
         'pt-BR': '/projetos',
       },
       'experience/[item]': {
         'en': '/i-worked-in/[item]',
         'pt-BR': '/trabalhei-na/[item]',
-      }
+      },
     },
   },
 
@@ -97,6 +98,7 @@ export default defineNuxtConfig({
     public: {
       version: pkg.version,
       name: pkg.name,
+      dev: Boolean(process.env.NODE_ENV !== 'production'),
     },
   },
 

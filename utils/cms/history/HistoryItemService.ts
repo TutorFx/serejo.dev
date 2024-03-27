@@ -1,4 +1,4 @@
-import type HistoryController from "./HistoryController"
+import type HistoryController from './HistoryController'
 
 export default class {
   item: HistoryController

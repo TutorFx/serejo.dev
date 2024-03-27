@@ -7,6 +7,10 @@ export const HistoryEntrySchema = z.object({
   end: z.string({ invalid_type_error: 'HistoryEntry without end' }).datetime('Invalid END datetime').nullable(),
 })
 
+export const ProjectEntrySchema = z.object({
+  url: z.string().url(),
+})
+
 export const CmsEntrySchema = z.object({
   title: z.string().min(1),
 })

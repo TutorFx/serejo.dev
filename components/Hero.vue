@@ -63,7 +63,7 @@ const vue = ref(false)
             <div
               class="grid gap-3 text-3xl md:text-6xl lg:text-7xl xl:text-9xl auto-rows-[1fr] md:gap-5 lg:gap-7 [text-shadow:_6px_1px_30px_var(--fallback-b1,oklch(var(--b1)/1))]"
             >
-              <div class="grid leading-none items-end">
+              <div class="grid items-end leading-none">
                 &#123; {{ $t('hero.fl') }}
               </div>
               <div class="grid items-end grid-flow-col pl-6 md:pl-10 lg:pl-12 gap-6">
@@ -74,14 +74,14 @@ const vue = ref(false)
                       enter-active-class="transition duration-500"
                     >
                       <NuxtImg
-                        :key="vue ? 'vl' : undefined" placeholder @load="vue = true" size="176"
-                        class="object-contain p-2 lg:p-4 !pb-0 w-16 md:w-24 lg:w-32 xl:w-48 drop-shadow-[20px_5px_10px_var(--fallback-b1,oklch(var(--b1)/.3))]"
+                        :key="vue ? 'vl' : undefined" placeholder size="176" class="object-contain p-2 lg:p-4 !pb-0 w-16 md:w-24 lg:w-32 xl:w-48 drop-shadow-[20px_5px_10px_var(--fallback-b1,oklch(var(--b1)/.3))]"
                         src="/brand/Vue.js.svg"
+                        @load="vue = true"
                       />
                     </Transition>
                   </div>
                   <div
-                    class="-z-[1] h-6 w-16 md:w-24 lg:w-32 xl:w-48 bg-vue-gradient md:h-10 lg:h-12 xl:h-20 -mt-[100%] rounded-md md:rounded-lg lg:rounded-xl"
+                    class="-z-[1] h-6 w-16 md:w-24 lg:w-32 xl:w-48 bg-vue-gradient rounded-md md:h-10 lg:h-12 xl:h-20 -mt-[100%] md:rounded-lg lg:rounded-xl"
                   />
                 </div>
                 <div class="leading-none">
@@ -101,9 +101,9 @@ const vue = ref(false)
                       enter-active-class="transition duration-500"
                     >
                       <NuxtImg
-                        :key="me ? 'ml' : undefined" size="176" @load="me = true"
-                        class="object-contain p-2 lg:p-4 !pb-0 w-16 md:w-24 lg:w-32 xl:w-48 drop-shadow-[20px_5px_10px_var(--fallback-b1,oklch(var(--b1)/.3))]"
+                        :key="me ? 'ml' : undefined" size="176" class="object-contain p-2 lg:p-4 !pb-0 w-16 md:w-24 lg:w-32 xl:w-48 drop-shadow-[20px_5px_10px_var(--fallback-b1,oklch(var(--b1)/.3))]"
                         src="/brand/me.png"
+                        @load="me = true"
                       />
                     </Transition>
                   </div>

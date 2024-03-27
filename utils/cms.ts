@@ -2,28 +2,46 @@ import HistoryController from './cms/history/HistoryController'
 import HistoryRepository from './cms/history/HistoryRepository'
 import HistoryService from './cms/history/HistoryService'
 
-import type { HistoryEntry } from './cms/types'
+import ProjectController from './cms/project/ProjectController'
+import ProjectRepository from './cms/project/ProjectRepository'
+import ProjectService from './cms/project/ProjectService'
 
-export function getHistory() {
-  const { locale } = useI18n()
-  const localeFixed = (locale.value.split('-').at(0) ?? locale.value).toLowerCase()
-
-  return useAsyncData(
-    'HistoryFetcher',
-    () => queryContent<HistoryEntry>(localeFixed, 'history').find().then(data =>
-      new HistoryRepository(data.map(entry => reactive(new HistoryController(entry)))),
-    ),
-  )
-}
+import type { HistoryEntry, ProjectEntry } from './cms/types'
 
 export function getHistoryItem(org: string) {
-  const { locale } = useI18n()
-  const localeFixed = (locale.value.split('-').at(0) ?? locale.value).toLowerCase()
-
   return useAsyncData(
     'HistoryItemFetcher',
-    () => queryContent<HistoryEntry>(localeFixed, 'history').where({ org }).findOne().then(entry => reactive(new HistoryController(entry))),
+    () => queryContent<HistoryEntry>(useLocale(), 'history').where({ org }).findOne().then(entry => reactive(new HistoryController(entry))),
   )
 }
 
 export const getHistoryService = (repository: HistoryRepository) => new HistoryService(repository)
+
+export const getProjectService = (repository: ProjectRepository) => new ProjectService(repository)
+
+/* export function getHistory() {
+  return useAsyncData(
+    'HistoryFetcher',
+    () => queryContent<HistoryEntry>(useLocale(), 'history').find().then(data =>
+      new HistoryRepository(data.map(entry => reactive(new HistoryController(entry)))),
+    ),
+  )
+} */
+
+export function getProject() {
+  return useAsyncData(
+    'ProjectFetcher',
+    () => queryContent<ProjectEntry>(useLocale(), 'project').find().then(data =>
+      processArray(data, ProjectController, ProjectRepository),
+    ),
+  )
+}
+
+export function getHistory() {
+  return useAsyncData(
+    'HistoryFetcher',
+    () => queryContent<HistoryEntry>(useLocale(), 'history').find().then(data =>
+      processArray(data, HistoryController, HistoryRepository),
+    ),
+  )
+}

@@ -13,7 +13,7 @@ export default class extends CmsController {
   end: string | null
 
   constructor(history: HistoryEntry) {
-    super(history);
+    super(history)
     HistoryEntrySchema.parse(history)
     this.org = history.org
     this.location = history.location
@@ -34,5 +34,4 @@ export default class extends CmsController {
 
     return dates.map(dateToString)
   }
-
 }

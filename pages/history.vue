@@ -1,3 +1,11 @@
+<script setup lang="ts">
+const { t } = useI18n()
+
+useHead({
+  title: t('menu.history'),
+})
+</script>
+
 <template>
   <div>
     <div>
@@ -7,7 +15,7 @@
             <div
               class="relative grid gap-3 text-3xl md:text-6xl lg:text-7xl xl:text-9xl auto-rows-[1fr] md:gap-5 lg:gap-7 [text-shadow:_6px_1px_30px_var(--fallback-b1,oklch(var(--b1)/1))]"
             >
-            {{ $t('sections.experiences.title') }}
+              {{ $t('sections.experiences.title') }}
               <div class="bg-base-300 absolute rounded-full -inset-12 z-[-1] blur-xl opacity-90" />
             </div>
           </div>
@@ -22,7 +30,7 @@
           </div>
         </div>
       </DynamicHero>
-      <div class="bg-base-200 rounded-b-3xl">
+      <div class="rounded-b-3xl bg-base-200">
         <Container>
           <History />
         </Container>
@@ -30,11 +38,3 @@
     </div>
   </div>
 </template>
-
-<script setup lang="ts">
-const { t } = useI18n()
-
-useHead({
-  title: t('menu.history')
-})
-</script>

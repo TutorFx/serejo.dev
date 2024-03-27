@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import HistoryController from '~/utils/cms/history/HistoryController';
+import HistoryController from '~/utils/cms/history/HistoryController'
 
 defineProps<{
-    value: HistoryController
+  value: HistoryController
 }>()
 </script>
 

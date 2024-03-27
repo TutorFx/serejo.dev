@@ -54,6 +54,9 @@ export default defineI18nLocale(async (/* locale */) => {
       experiences: {
         title: 'Experiences',
       },
+      projects: {
+        title: 'Projects',
+      },
     },
     time: {
       the_moment: 'the moment',
@@ -62,6 +65,9 @@ export default defineI18nLocale(async (/* locale */) => {
     settings: {
       dark_mode: 'Dark mode',
       light_mode: 'Light mode',
+    },
+    errors: {
+      invalidString: { url: 'teste' },
     },
   }
 })

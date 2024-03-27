@@ -58,7 +58,10 @@ export default defineI18nLocale(async (/* locale */) => {
       },
       experiences: {
         title: 'Experiências',
-        description: ''
+        description: '',
+      },
+      projects: {
+        title: 'Projetos',
       },
     },
     time: {

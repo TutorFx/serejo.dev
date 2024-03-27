@@ -4,8 +4,8 @@ export function useCountry() {
 }
 
 export function useLocale() {
-    const { locale } = useI18n()
-    return (locale.value.split('-').at(0) ?? locale.value).toLowerCase()
+  const { locale } = useI18n()
+  return (locale.value.split('-').at(0) ?? locale.value).toLowerCase()
 }
 
 export function useFlag(countryLang: string) {
