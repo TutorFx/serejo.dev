@@ -22,7 +22,8 @@ export default defineNuxtConfig({
     '@nuxtjs/google-fonts',
     '@nuxt/image',
     '@nuxt/content',
-    '@vite-pwa/nuxt',
+    // PWA still redirecting the defaultLocale
+    //'@vite-pwa/nuxt',
     'nuxt-module-eslint-config',
     'nuxt-icon',
   ],
@@ -30,7 +31,7 @@ export default defineNuxtConfig({
   i18n: {
     // TODO: Move to `prefix` when the nuxt team fix the issue
     // TODO: Move the app to customRoutes: 'config'
-    //strategy: isDev ? 'prefix_and_default' : 'no_prefix',
+    strategy: 'prefix_except_default',
 
     defaultLocale: 'en',
     locales: [
@@ -39,17 +40,14 @@ export default defineNuxtConfig({
         name: 'English',
         iso: 'en-US',
         file: 'en-US.ts',
-        domain: 'serejo.dev'
       },
       {
         code: 'pt-BR',
         name: 'Português',
         iso: 'pt-BR',
         file: 'pt-BR.ts',
-        domain: 'br.serejo.dev'
       },
     ],
-    differentDomains: isProd,
     customRoutes: 'config',
     langDir: 'locales/',
     pages: {

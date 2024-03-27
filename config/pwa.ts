@@ -35,7 +35,7 @@ export const pwa: ModuleOptions = {
     ],
   },
   workbox: {
-    globPatterns: ['**/*.{js,css,html,txt,png,ico,svg}'],
+    globPatterns: ['**/*.{js,css,html,txt,png,ico,svg,json}'],
     cleanupOutdatedCaches: true,
     runtimeCaching: [
       {
