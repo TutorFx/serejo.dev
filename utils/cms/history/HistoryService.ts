@@ -7,7 +7,7 @@ export default class {
   }
 
   getRepository() {
-    return this.repository.getRepository()
+    return this.repository.getSortedRepository()
   }
 
   getItemByIndex(i: number) {
