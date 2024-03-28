@@ -7,6 +7,20 @@ export default defineI18nLocale(async (/* locale */) => {
       projects: 'Projects',
       blog: 'Blog',
     },
+    meta: {
+      home: {
+        description: 'High-quality web development for new and legacy projects. Contact Gabriel Serejo today!',
+        keywords: 'Web development, new projects, legacy projects, custom solutions, high quality, Gabriel Serejo'
+      },
+      history: {
+        description: 'Experienced web developer with a proven track record in international projects and a passion for turning ideas into reality. Skilled in various technologies including Vue, Nuxt and JavaScript. Open-source enthusiast and ready for new challenges.',
+        keywords: 'Web Developer, Front-end, Vue, Nuxt, JavaScript, Hexagonal Architecture, Service Layers, Vuetify, WordPress, Legacy Projects, Website Development, Landing Pages, International, Portugal, Brazil'
+      },
+      projects: {
+        description: 'Gabriel Serejo Dev: Professional journey and projects. Experiences in front-end development and feature implementation.',
+        keywords: 'Gabriel Serejo, Web Developer, Front-end Developer, Feature Implementation, Web Projects, Professional Journey, Experience, Portfolio'
+      }
+    },
     schedule_support_text: `Hey! I am Gabriel, a web engineering consultant based in Brazil. 
         I help companies to build better web applications and to improve their knowledge, 
         workflows, and culture.`,

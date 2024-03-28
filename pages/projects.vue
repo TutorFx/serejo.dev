@@ -3,6 +3,10 @@ const { t } = useI18n()
 
 useHead({
   title: t('menu.projects'),
+  meta: [
+    { name: 'description', content: t('meta.projects.description') },
+    { name: 'keywords', content: t('meta.projects.keywords') }
+  ]
 })
 </script>
 

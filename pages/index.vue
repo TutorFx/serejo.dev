@@ -1,7 +1,15 @@
 <script setup lang="ts">
+const { t } = useI18n();
+
 useHead({
   titleTemplate: '%siteName',
+  meta: [
+    { name: 'description', content: t('meta.home.description') },
+    { name: 'keywords', content: t('meta.home.keywords') }
+  ]
 })
+
+
 </script>
 
 <template>
