@@ -52,6 +52,7 @@
     "eslint-ts-patch": "8.57.0-0",
     "husky": "^9.0.11",
     "nuxt": "^3.11.1",
+    "nuxt-build-cache": "^0.1.1",
     "nuxt-icon": "^0.6.10",
     "nuxt-module-eslint-config": "^0.0.2",
     "nuxt-site-config": "^2.2.11",

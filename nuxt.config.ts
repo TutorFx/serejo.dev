@@ -10,6 +10,7 @@ const isProd = Boolean(process.env.NODE_ENV === 'production')
 
 export default defineNuxtConfig({
   modules: [
+    'nuxt-build-cache',
     'nuxt-site-config',
     'nuxt-speedkit',
     '@nuxtjs/seo',
