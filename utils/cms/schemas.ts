@@ -9,6 +9,7 @@ export const HistoryEntrySchema = z.object({
 
 export const ProjectEntrySchema = z.object({
   url: z.string().url(),
+  github: z.string().url().optional()
 })
 
 export const CmsEntrySchema = z.object({

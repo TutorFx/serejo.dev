@@ -150,7 +150,7 @@ export default defineNuxtConfig({
     url: 'https://serejo.dev',
   },
 
-  pwa,
+  //pwa,
 
   devtools: {
     enabled: true,
