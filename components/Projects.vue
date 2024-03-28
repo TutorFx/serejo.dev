@@ -8,7 +8,7 @@ const service = computed(() => (data.value instanceof ProjectRepository) && getP
 
 <template>
   <div>
-    <div v-if="(service instanceof ProjectService)" class="grid md:grid-cols-2 xl:grid-cols-3 mx-auto gap-6">
+    <div v-if="(service instanceof ProjectService)" class="grid lg:grid-cols-3 mx-auto gap-6 grid-cols-1 min-[650px]:grid-cols-2">
       <div v-for="item in service.getRepository()" :key="item._id">
         <ProjectsCard :item />
       </div>

@@ -1,33 +1,41 @@
-<template>
-    <div class="bg-base-100 rounded-2xl grid grid-rows-[max-content_1fr] overflow-hidden aspect-[3/4]">
-        <div class="p-6 grid gap-3">
-            <div class="text-3xl text-center">
-                {{ item.title }}
-            </div>
-            <div class="text-center text-balance mx-auto">
-                <MDC :value="item" />
-            </div>
-            <div class="grid items-center grid-flow-col justify-center gap-3">
-                <NuxtLink v-if="item.github" :href="item.github">
-                    <Icon size="28" name="mdi:github" />
-                </NuxtLink>
-                <NuxtLink v-if="item.url" :href="item.url">
-                    <Icon size="24" name="mage:external-link" />
-                </NuxtLink>
-            </div>
-        </div>
-        <div class="relative overflow-hidden">
-            <div v-if="item.scroller" class="absolute">
-                <NuxtImg class="animate-marquee-y" width="400" lazyload :src="`/projects/scroll-img/${item.scroller}`" />
-            </div>
-        </div>
-    </div>
-</template>
-
 <script setup lang="ts">
-import type ProjectController from '~/utils/cms/project/ProjectController';
+import type ProjectController from '~/utils/cms/project/ProjectController'
 
 defineProps<{
-    item: ProjectController
+  item: ProjectController
 }>()
 </script>
+
+<template>
+  <div class="bg-base-100 rounded-2xl grid grid-rows-[max-content_1fr] overflow-hidden aspect-square md:aspect-[3/4] relative">
+    <div class="grid relative">
+      <div class="grid gap-3 relative z-[1] bg-gradient-to-b from-base-100 to-base-100/0 [text-shadow:_6px_1px_20px_var(--fallback-b1,oklch(var(--b1)/1))] py-12 px-4 lg:py-18">
+        <div class="text-3xl text-center">
+          {{ item.title }}
+        </div>
+        <div class="text-center text-balance mx-auto text-neutral">
+          <MDC :value="item" />
+        </div>
+        <div class="grid items-center grid-flow-col justify-center gap-3">
+          <NuxtLink v-if="item.github" :href="item.github">
+            <Icon size="28" name="mdi:github" />
+          </NuxtLink>
+          <NuxtLink v-if="item.url" :href="item.url">
+            <Icon size="24" name="mage:external-link" />
+          </NuxtLink>
+        </div>
+        <div class="absolute rounded-full bg-base-100 inset-0 blur-3xl -z-[1]" />
+      </div>
+    </div>
+    <div class="relative z-[0]">
+      <div class="absolute inset-0 rotate-[60deg]">
+        <div class="relative">
+          <NuxtImg
+            v-if="item.scroller" class="animate-marquee-y w-full" width="200" lazyload
+            :src="`/projects/scroll-img/${item.scroller}`"
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+</template>

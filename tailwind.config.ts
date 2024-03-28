@@ -9,6 +9,9 @@ module.exports = {
   plugins: ['@tailwindcss/typography', 'prettier-plugin-tailwindcss', 'daisyui'],
 
   theme: {
+    screen: {
+      xs: '630px'
+    },
     fontFamily: {
       sans: ['Space Grotesk', ...defaultTheme.fontFamily.sans].join(','),
       logo: ['Mochiy Pop One', ...defaultTheme.fontFamily.sans].join(','),
@@ -26,8 +29,8 @@ module.exports = {
           'to': { backgroundPosition: '-200% 0' },
         },
         'marquee-y': {
-          '0%': { transform: 'translateY(0%)' },
-          '100%': { transform: 'translateY(-100%)' },
+          '0%': { transform: 'translateY(-10%)' },
+          '100%': { transform: 'translateY(-90%)' },
         },
       },
       animation: {
