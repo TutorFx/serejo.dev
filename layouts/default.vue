@@ -1,5 +1,5 @@
 <template>
-  <main class="grid min-h-dvh grid-rows-[max-content_1fr_max-content]">
+  <main class="grid grid-rows-[max-content_1fr_max-content] min-h-[100svh]">
     <Header />
     <slot />
     <Footer />

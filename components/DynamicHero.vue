@@ -3,7 +3,7 @@
     <div class="-z-[1] absolute left-[50%] bottom-[50%]">
       <div class="max-w-0 max-h-0">
         <div
-          class="w-[60vw] aspect-video bg-brand-gradient -translate-x-[50%] -translate-y-[50%] rounded-full blur-3xl opacity-10"
+          class="aspect-video -translate-x-[50%] -translate-y-[50%] rounded-full blur-3xl w-[60vw] bg-brand-gradient opacity-10"
         />
       </div>
     </div>

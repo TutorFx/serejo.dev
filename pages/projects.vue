@@ -15,7 +15,7 @@ useHead({
     <div>
       <DynamicHero class="[view-transition-name:hero]">
         <Container>
-          <div class="grid justify-center items-center min-h-[40dvh]">
+          <div class="grid justify-center items-center min-h-[20rem]">
             <div
               class="relative grid gap-3 text-3xl md:text-6xl lg:text-7xl xl:text-9xl auto-rows-[1fr] md:gap-5 lg:gap-7 [text-shadow:_6px_1px_30px_var(--fallback-b1,oklch(var(--b1)/1))]"
             >
