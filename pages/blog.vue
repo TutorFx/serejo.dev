@@ -7,5 +7,7 @@ useHead({
 </script>
 
 <template>
-  <div />
+  <div class="grid items-center justify-center text-3xl">
+    Under construction :)
+  </div>
 </template>
