@@ -8,7 +8,7 @@ const model = defineModel<boolean>()
 <template>
   <div class="py-6 grid gap-6 grid-cols-[max-content_1fr]">
     <div>
-      <h2 class="font-logo text-2xl">
+      <h2 class="text-2xl font-logo">
         Gabriel S.
       </h2>
     </div>

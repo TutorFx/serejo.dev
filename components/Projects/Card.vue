@@ -7,13 +7,13 @@ defineProps<{
 </script>
 
 <template>
-  <div class="bg-base-100 rounded-2xl grid grid-rows-[max-content_1fr] overflow-hidden aspect-square md:aspect-[3/4] relative">
+  <div class="bg-base-100 grid grid-rows-[max-content_1fr] overflow-hidden aspect-square relative rounded-2xl md:aspect-[3/4]">
     <div class="grid relative">
-      <div class="grid gap-3 relative z-[1] bg-gradient-to-b from-base-100 to-base-100/0 [text-shadow:_6px_1px_20px_var(--fallback-b1,oklch(var(--b1)/1))] py-12 px-4 lg:py-18">
+      <div class="grid gap-3 relative z-[1] py-12 bg-gradient-to-b from-base-100 to-base-100/0 [text-shadow:_6px_1px_20px_var(--fallback-b1,oklch(var(--b1)/1))] px-4 lg:py-18">
         <div class="text-3xl text-center">
           {{ item.title }}
         </div>
-        <div class="text-center text-balance mx-auto text-neutral">
+        <div class="text-center mx-auto text-neutral text-balance">
           <MDC :value="item" />
         </div>
         <div class="grid items-center grid-flow-col justify-center gap-3">
@@ -31,7 +31,7 @@ defineProps<{
       <div class="absolute inset-0 rotate-[60deg]">
         <div class="relative">
           <NuxtImg
-            v-if="item.scroller" class="animate-marquee-y w-full" width="200" lazyload
+            v-if="item.scroller" class="w-full animate-marquee-y" width="200" lazyload
             :src="`/projects/scroll-img/${item.scroller}`"
           />
         </div>

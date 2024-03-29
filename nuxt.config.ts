@@ -1,7 +1,6 @@
 /* eslint-disable node/prefer-global/process */
 import tailwindTypography from '@tailwindcss/typography'
 import daisyui from 'daisyui'
-import { pwa } from './config/pwa'
 import { appDescription, appName } from './constants/index'
 import * as pkg from './package.json'
 
@@ -24,7 +23,7 @@ export default defineNuxtConfig({
     '@nuxt/image',
     '@nuxt/content',
     // PWA still redirecting the defaultLocale
-    //'@vite-pwa/nuxt',
+    // '@vite-pwa/nuxt',
     'nuxt-module-eslint-config',
     'nuxt-icon',
   ],
@@ -74,8 +73,8 @@ export default defineNuxtConfig({
       },
     },
     experimental: {
-      localeDetector: './localeDetector.ts'
-    }
+      localeDetector: './localeDetector.ts',
+    },
   },
 
   experimental: {
@@ -151,7 +150,7 @@ export default defineNuxtConfig({
     url: 'https://serejo.dev',
   },
 
-  //pwa,
+  // pwa,
 
   devtools: {
     enabled: true,

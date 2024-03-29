@@ -10,7 +10,7 @@ module.exports = {
 
   theme: {
     screen: {
-      xs: '630px'
+      xs: '630px',
     },
     fontFamily: {
       sans: ['Space Grotesk', ...defaultTheme.fontFamily.sans].join(','),
@@ -34,7 +34,7 @@ module.exports = {
         },
       },
       animation: {
-        marquee: 'marquee 25s linear infinite',
+        'marquee': 'marquee 25s linear infinite',
         'marquee-y': 'marquee-y 200s linear infinite',
       },
       backgroundImage: () => ({

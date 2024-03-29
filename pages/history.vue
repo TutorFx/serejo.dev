@@ -5,8 +5,8 @@ useHead({
   title: t('menu.history'),
   meta: [
     { name: 'description', content: t('meta.history.description') },
-    { name: 'keywords', content: t('meta.history.keywords') }
-  ]
+    { name: 'keywords', content: t('meta.history.keywords') },
+  ],
 })
 </script>
 

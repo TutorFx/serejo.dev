@@ -10,16 +10,16 @@ export default defineI18nLocale(async (/* locale */) => {
     meta: {
       home: {
         description: 'Desenvolvimento web de alta qualidade para projetos novos e legados. Entre em contato com Gabriel Serejo. hoje mesmo!',
-        keywords: 'Desenvolvimento web, projetos novos, projetos legados, soluções personalizadas, alta qualidade, Gabriel Serejo'
+        keywords: 'Desenvolvimento web, projetos novos, projetos legados, soluções personalizadas, alta qualidade, Gabriel Serejo',
       },
       history: {
         description: 'Desenvolvedor web experiente com histórico comprovado em projetos internacionais e paixão por transformar ideias em realidade. Habilidade em diversas tecnologias, incluindo Vue, Nuxt e JavaScript. Entusiasta de código aberto e pronto para novos desafios.',
-        keywords: 'Desenvolvedor Web, Front-end, Vue, Nuxt, JavaScript, Arquitetura Hexagonal, Camadas de Serviço, Vuetify, WordPress, Projetos Legados, Desenvolvimento de Sites, Landing Pages, Internacional, Portugal, Brasil'
+        keywords: 'Desenvolvedor Web, Front-end, Vue, Nuxt, JavaScript, Arquitetura Hexagonal, Camadas de Serviço, Vuetify, WordPress, Projetos Legados, Desenvolvimento de Sites, Landing Pages, Internacional, Portugal, Brasil',
       },
       projects: {
         description: 'Gabriel Serejo Dev: Trajetória profissional e projetos. Experiências em desenvolvimento front-end e implementação de recursos.',
-        keywords: 'Gabriel Serejo, Desenvolvedor Web, Desenvolvedor Front-end, Implementação de Recursos, Projetos Web, Trajetória Profissional, Experiência, Portfólio'
-      }
+        keywords: 'Gabriel Serejo, Desenvolvedor Web, Desenvolvedor Front-end, Implementação de Recursos, Projetos Web, Trajetória Profissional, Experiência, Portfólio',
+      },
     },
     schedule_support_text: `Olá! Sou Gabriel, consultor de engenharia web baseado no Brasil. 
         Ajudo empresas a construir melhores aplicações web e a aprimorar seus conhecimentos, 
