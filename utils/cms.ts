@@ -1,5 +1,3 @@
-import { fromZodError } from 'zod-validation-error'
-import { ZodError } from 'zod'
 import HistoryController from './cms/history/HistoryController'
 import HistoryRepository from './cms/history/HistoryRepository'
 import HistoryService from './cms/history/HistoryService'
@@ -30,7 +28,7 @@ export const getProjectService = (repository: ProjectRepository) => new ProjectS
   )
 } */
 
-export function getProject() {
+/* export function getProject() {
   return useAsyncData(
     'ProjectFetcher',
     () => queryContent<ProjectEntry>(useLocale(), 'project').find().then(data => {
@@ -70,5 +68,23 @@ export function getHistory() {
       })
       return new HistoryRepository(instances)
     }),
+  )
+} */
+
+export function getHistory() {
+  return useAsyncData(
+    'HistoryFetcher',
+    () => queryContent<HistoryEntry>(useLocale(), 'history').find().then(
+      data => processArray(data, HistoryController, HistoryRepository),
+    ),
+  )
+}
+
+export function getProject() {
+  return useAsyncData(
+    'ProjectFetcher',
+    () => queryContent<ProjectEntry>(useLocale(), 'project').find().then(
+      data => processArray(data, ProjectController, ProjectRepository),
+    ),
   )
 }
