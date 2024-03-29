@@ -34,7 +34,7 @@ useHead({
           </div>
         </div>
       </DynamicHero>
-      <div class="bg-base-200 rounded-b-3xl">
+      <div class="rounded-b-3xl bg-base-200">
         <Container class="py-6">
           <Projects />
         </Container>
