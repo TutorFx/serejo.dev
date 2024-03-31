@@ -27,7 +27,7 @@
             </div>
             <div class="grid gap-12 max-md:justify-center mb-6 grid-cols-4">
               <div class="p-2 aspect-square">
-                <NuxtImg class="w-full h-full max-w-full max-h-full" src="/brand/stack/typescript.svg" />
+                <NuxtImg class="w-full max-w-full h-full max-h-full" src="/brand/stack/typescript.svg" />
               </div>
               <div class="aspect-square">
                 <NuxtImg class="w-full h-full max-w-full max-h-full" src="/brand/stack/tailwind.svg" />

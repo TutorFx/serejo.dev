@@ -103,6 +103,7 @@ export default defineNuxtConfig({
   },
 
   runtimeConfig: {
+    gemini_api_key: process.env.GEMINI_API_KEY,
     public: {
       version: pkg.version,
       name: pkg.name,

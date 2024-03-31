@@ -6,10 +6,10 @@ import type User from '@/utils/chat/entities/Agent/User'
 const chat = getChat()
 const message = ref('')
 
-function sendMessage() {
+async function sendMessage() {
   if (!message.value)
     return
-  chat.sendMessage(message.value)
+  await chat.sendMessage(message.value)
   message.value = ''
 }
 
@@ -31,9 +31,9 @@ watch(() => chat.messageRepository.messages, () => {
       </div>
     </div>
 
-    <div class="bg-gray-300 p-4">
+    <div class="p-4 bg-gray-300">
       <input
-        v-model="message" class="flex items-center h-10 w-full px-3 text-sm rounded" type="text"
+        v-model="message" class="flex items-center w-full px-3 text-sm h-10 rounded" type="text"
         placeholder="Type your message…" @keydown.enter="sendMessage"
       >
     </div>

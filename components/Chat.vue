@@ -7,7 +7,7 @@ const chat = ref(true)
     <div class="grid gap-3 min-w-[500px] max-w-2xl">
       <div class="grid">
         <Transition>
-          <ChatContainer v-show="chat" class="pointer-events-auto grid" />
+          <ChatContainer v-show="chat" class="grid pointer-events-auto" />
         </Transition>
       </div>
       <div class="grid justify-end">

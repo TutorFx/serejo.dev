@@ -1,13 +1,14 @@
 import type { IAbstractAgent } from '../types'
+import { AbstractAgentSchema } from '../schemas'
 
 export default abstract class {
-  name;
-  image;
-  role;
+  name
+  role
 
   constructor(operator: IAbstractAgent) {
+    AbstractAgentSchema.parse(operator)
+
     this.name = operator.name
-    this.image = operator.image
     this.role = operator.role
   }
 }

@@ -1,3 +1,4 @@
+import { MessageSchema } from '../schemas'
 import type AbstractAgent from './AbstractAgent'
 
 export default class <T extends AbstractAgent> {
@@ -5,6 +6,8 @@ export default class <T extends AbstractAgent> {
   agent: T
 
   constructor(agent: T, message: string) {
+    MessageSchema.parse({ agent, message })
+
     this.agent = agent
     this.message = message
   }

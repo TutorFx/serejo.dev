@@ -25,7 +25,7 @@ export default class <T extends Message<User & Bot>> {
   getGoogleHistory() {
     return this.messages.map(m => ({
       role: m.agent.role,
-      parts: [{ text: m.message }]
+      parts: [{ text: m.message }],
     } as Content))
   }
 }
