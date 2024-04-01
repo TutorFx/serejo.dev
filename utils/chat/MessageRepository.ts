@@ -3,6 +3,7 @@ import type { Content } from '@google/generative-ai'
 import type User from './entities/Agent/User'
 import type Bot from './entities/Agent/Bot'
 import Message from './entities/Message'
+import { AgentType } from './schemas'
 
 export default class <T extends Message<User & Bot>> {
   messages
@@ -22,10 +23,19 @@ export default class <T extends Message<User & Bot>> {
     return null
   }
 
-  getGoogleHistory() {
+  getGoogleFormat() {
     return this.messages.map(m => ({
       role: m.agent.role,
       parts: [{ text: m.message }],
     } as Content))
+  }
+
+  getGoogleFormatSingle(initialPrompt: string, finalPrompt: string) {
+    return ({
+      role: AgentType.User,
+      parts: [
+        { text: initialPrompt + this.messages.map(m => m.message).join('\n') + finalPrompt }, 
+      ],
+    } as Content)
   }
 }

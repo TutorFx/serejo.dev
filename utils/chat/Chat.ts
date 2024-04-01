@@ -17,7 +17,7 @@ export default class {
   }
 
   getGoogleContents(): Content[] {
-    return this.messageRepository.getGoogleHistory()
+    return this.messageRepository.getGoogleFormat()
   }
 
   async sendMessage(message: string) {

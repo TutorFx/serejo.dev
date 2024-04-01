@@ -12,10 +12,10 @@ export async function queryProcessedContent(event: H3Event) {
   const content = await serverQueryContent(event, 'en').find()
 
   const historyEntries = content.filter(i => i._path?.includes('history')) as HistoryEntry[]
-  const history = processArray(historyEntries, HistoryController, HistoryRepository, false)
+  const history = processArray(historyEntries, HistoryController, HistoryRepository, false) as HistoryRepository
 
   const projectEntries = content.filter(i => i._path?.includes('projects')) as ProjectEntry[]
-  const project = processArray(projectEntries, ProjectController, ProjectRepository, false)
+  const project = processArray(projectEntries, ProjectController, ProjectRepository, false) as ProjectRepository
 
   return { history, project }
 }
