@@ -148,6 +148,17 @@ export default defineNuxtConfig({
     },
   },
 
+  typescript: {
+    tsConfig: {
+      compilerOptions: {
+        esModuleInterop: true,
+        allowSyntheticDefaultImports: true,
+        experimentalDecorators: true,
+      }
+    },
+    strict: true
+  },
+
   site: {
     name: appName,
     description: appDescription,
@@ -175,6 +186,4 @@ export default defineNuxtConfig({
       plugins: [tailwindTypography, daisyui],
     },
   },
-
-  typescript: { strict: true },
 })

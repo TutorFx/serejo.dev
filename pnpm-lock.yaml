@@ -92,8 +92,8 @@ devDependencies:
     specifier: ^3.2.3
     version: 3.2.3
   dayjs:
-    specifier: ^1.11.10
-    version: 1.11.10
+    specifier: 2.0.0-alpha.4
+    version: 2.0.0-alpha.4
   eslint:
     specifier: npm:eslint-ts-patch@8.57.0-0
     version: /eslint-ts-patch@8.57.0-0
@@ -6550,8 +6550,8 @@ packages:
       is-data-view: 1.0.1
     dev: true
 
-  /dayjs@1.11.10:
-    resolution: {integrity: sha512-vjAczensTgRcqDERK0SR2XMwsF/tSvnvlv6VcF2GIhg6Sx4yOIt/irsr1RDJsKiIyBzJDpCoXiWWq28MqH2cnQ==}
+  /dayjs@2.0.0-alpha.4:
+    resolution: {integrity: sha512-1iNcyGuh1/uip1b3tP2LSK8pWIO0CZuBC3XI4ShYO9oeJUJP7DfvDEOkr1I8aElvATTYKeY4J+N1b4d+qA5XEg==}
     dev: true
 
   /db0@0.1.4:

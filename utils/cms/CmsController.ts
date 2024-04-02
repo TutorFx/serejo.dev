@@ -1,8 +1,8 @@
 import type { MarkdownRoot } from '@nuxt/content/types'
 import dayjs from 'dayjs'
 import { visit } from 'unist-util-visit'
-import duration from 'dayjs/plugin/duration.js'
-import relativeTime from 'dayjs/plugin/relativeTime.js'
+import duration from 'dayjs/plugin/duration'
+import relativeTime from 'dayjs/plugin/relativeTime'
 
 import type { CmsEntry } from './types'
 import { CmsEntrySchema } from './schemas'
@@ -70,6 +70,7 @@ export default class {
   }
 
   getLocaleReadingTime() {
+    // @ts-expect-error: For some reason, the DayJS 2.0 have some issues with the types on ESM
     return this.getDayjs().duration(this.getReadingTime(), 'seconds').locale(useLocale()).humanize()
   }
 
