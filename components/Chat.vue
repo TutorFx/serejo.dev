@@ -1,5 +1,5 @@
 <script setup lang="ts">
-const chat = ref(true)
+const chat = ref(false)
 </script>
 
 <template>
