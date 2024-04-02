@@ -1,6 +1,8 @@
 <script setup lang="ts">
 import HistoryController from '~/utils/cms/history/HistoryController'
 
+const localePath = useLocalePath()
+
 defineProps<{
   value: HistoryController
 }>()
@@ -31,7 +33,14 @@ defineProps<{
         </div>
       </div>
     </DynamicHero>
-    <div class="bg-base-200 rounded-b-3xl py-24">
+    <div class="max-h-0">
+      <div class="-translate-y-[50%]">
+        <Container>
+          <Btn :to="localePath({ name: `history` })"><Icon name="mdi:chevron-left" /> {{ $t('navigation.back')}}</Btn>
+        </Container>
+      </div>
+    </div>
+    <div class="bg-base-200 rounded-b-3xl py-24 pt-12">
       <Container class="grid gap-3 max-w-4xl">
         <div class="grid grid-cols-[1fr_max-content]">
           <div class="text-sm text-primary">
