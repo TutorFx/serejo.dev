@@ -3,7 +3,7 @@ const chat = ref(false)
 </script>
 
 <template>
-  <div class="grid p-3 justify-end fixed pointer-events-none inset-0 items-end z-[3]">
+  <div class="grid justify-end items-end fixed inset-0 p-3 pointer-events-none z-[3]">
     <div class="grid gap-3">
       <div class="grid">
         <Transition
@@ -15,7 +15,7 @@ const chat = ref(false)
         </Transition>
       </div>
       <div class="grid justify-end">
-        <div class="pointer-events-auto aspect-square p-4 rounded-full bg-base-300" @click="chat = !chat">
+        <div class="pointer-events-auto rounded-full bg-base-300 p-4 aspect-square" @click="chat = !chat">
           <Icon size="32" name="material-symbols:robot-outline" />
         </div>
       </div>

@@ -28,7 +28,7 @@ function toggleMenu() {
     >
       <div
         v-if="!visible"
-        class="bg-base-100 fixed top-0 inset-x-0 z-50 rounded-b-3xl bg-clip-padding backdrop-filter backdrop-blur-lg bg-opacity-90 border border-base-100"
+        class="fixed bg-base-100 top-0 z-50 inset-x-0 rounded-b-3xl bg-clip-padding backdrop-filter backdrop-blur-lg bg-opacity-90 border border-base-100"
       >
         <Container>
           <HeaderNav v-model="menu" :service="service" />

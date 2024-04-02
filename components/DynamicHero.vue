@@ -1,6 +1,6 @@
 <template>
   <div class="relative overflow-hidden rounded-t-3xl p-12">
-    <div class="-z-[1] absolute left-[50%] bottom-[50%]">
+    <div class="absolute -z-[1] left-[50%] bottom-[50%]">
       <div class="max-w-0 max-h-0">
         <div
           class="rounded-full aspect-video -translate-x-[50%] -translate-y-[50%] blur-3xl w-[60vw] bg-brand-gradient opacity-10"

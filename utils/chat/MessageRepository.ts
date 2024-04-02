@@ -1,3 +1,4 @@
+/* eslint style/type-generic-spacing: 0 */
 import type { Content } from '@google/generative-ai'
 
 import type User from './entities/Agent/User'
@@ -5,7 +6,7 @@ import type Bot from './entities/Agent/Bot'
 import Message from './entities/Message'
 import { AgentType } from './schemas'
 
-export default class<T extends Message<User & Bot>> {
+export default class <T extends Message<User & Bot>> {
   messages
 
   constructor(messages: T[] = []) {

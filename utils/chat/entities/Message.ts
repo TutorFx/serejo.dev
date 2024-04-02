@@ -1,7 +1,8 @@
+/* eslint style/type-generic-spacing: 0 */
 import { MessageSchema } from '../schemas'
 import type AbstractAgent from './AbstractAgent'
 
-export default class<T extends AbstractAgent> {
+export default class <T extends AbstractAgent> {
   message: string
   agent: T
 

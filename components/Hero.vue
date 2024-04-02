@@ -43,7 +43,7 @@ const config = useRuntimeConfig()
         </div>
       </div>
       <Container>
-        <div class="grid items-center justify-center py-24 md:py-32 lg:py-48">
+        <div class="grid justify-center items-center py-24 md:py-32 lg:py-48">
           <div class="relative">
             <div class="absolute -right-[0%] -top-[10%]">
               <div class="max-w-0 max-h-0">
