@@ -10,10 +10,10 @@ At ITH Pós\-Graduação, I was responsible for refactoring the entire applicati
 
 - Languages: Javascript
 
-* CMS: Wordpress
+- CMS: Wordpress
 
-* Databases: PostgreSQL
+- Databases: PostgreSQL
 
-* Frameworks: Vue2, Vue3
+- Frameworks: Vue2, Vue3
 
-* Methodology: Kanban
+- Methodology: Kanban

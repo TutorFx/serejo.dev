@@ -10,10 +10,10 @@ At Agência Industrial, I was responsible for developing client websites. My rol
 
 - Languages: Typescript, Javascript, Python
 
-* Databases: MongoDB, mySQL
+- Databases: MongoDB, mySQL
 
-* CMS: Contentful, Wordpress
+- CMS: Contentful, Wordpress
 
-* Frameworks: Nuxt2, Nuxt3, Nextjs
+- Frameworks: Nuxt2, Nuxt3, Nextjs
 
-* Methodology: Kanban
+- Methodology: Kanban

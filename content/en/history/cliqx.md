@@ -10,8 +10,8 @@ As a Front\-End developer at Cliqx, I worked on several projects, mostly softwar
 
 - Languages: Typescript, Javascript, C#
 
-* Databases: Redis, PostgreSQL
+- Databases: Redis, PostgreSQL
 
-* Frameworks: Tailwind, Nuxt3, .Net
+- Frameworks: Tailwind, Nuxt3, .Net
 
-* Methodology: Scrum
+- Methodology: Scrum
