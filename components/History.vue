@@ -33,7 +33,7 @@ const localePath = useLocalePath()
             {{ item.getTruncatedDescription(200) }}
           </div>
         </div>
-        <div class="justify-between flex items-end">
+        <div class="justify-between items-end flex">
           <div class="text-xs">
             <Icon name="gg:alarm" /> {{ item.getLocaleReadingTime() }}
           </div>

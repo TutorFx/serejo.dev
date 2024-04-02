@@ -42,7 +42,7 @@ function onEnter(el: any, done: any) {
   <div
     class="grid rounded-lg overflow-hidden bg-base-300 grid-rows-[max-content_1fr_max-content] shadow-xl max-h-[65vh]"
   >
-    <div class="p-4 bg-blue-600 text-white grid gap-3 items-center grid-cols-[max-content_1fr]">
+    <div class="p-4 grid gap-3 items-center bg-blue-600 text-white grid-cols-[max-content_1fr]">
       <div class="relative">
         <NuxtImg width="64" src="/felina/chat.jpg" class="rounded-full mx-auto" />
         <div class="absolute rounded-full top-0 right-0 aspect-square w-5 bg-emerald-300 border-2 border-blue-600" />
