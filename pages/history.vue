@@ -24,7 +24,7 @@ useHead({
             </div>
           </div>
         </Container>
-        <div class="absolute inset-0 grid items-center justify-center max-w-screen -z-[2] pointer-events-none rotate-180">
+        <div class="absolute inset-0 grid items-center justify-center pointer-events-none max-w-screen -z-[2] rotate-180">
           <div class="relative max-h-0 max-w-0 -rotate-[12deg]">
             <Icon
               name="HeroLine"

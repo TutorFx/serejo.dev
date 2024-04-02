@@ -1,11 +1,11 @@
 <template>
-  <footer class="bg-base-100 py-8 text-center text-lg font-bold text-base-content">
+  <footer class="bg-base-100 text-center py-8 text-lg font-bold text-base-content">
     <div class="grid gap-3">
-      <div class="flex justify-center">
+      <div class="justify-center flex">
         <ClientOnly>
           <DarkToggle size="28" />
           <template #fallback>
-            <div class="w-64 h-6 bg-base-300 rounded-lg bg-skeleton-gradient animate-skeleton" />
+            <div class="bg-base-300 h-6 w-64 rounded-lg bg-skeleton-gradient animate-skeleton" />
           </template>
         </ClientOnly>
       </div>

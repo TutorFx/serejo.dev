@@ -5,6 +5,7 @@ import type { RouteLocationRaw } from '#vue-router'
 const props = withDefaults(
   defineProps<{
     to?: RouteLocationRaw | string
+    href?: string
     outlined?: boolean
     size?: Size
     color?: Style
@@ -74,10 +75,11 @@ const inside = computed(() =>
 
 <template>
   <component
-    :is="to ? NuxtLink : 'button'"
-    class="select-none"
+    :is="to || href ? NuxtLink : 'button'"
+    class="select-none inline-block"
     :class="outside"
-    :to="to"
+    :to
+    :href
   >
     <div class="select-none" :class="inside">
       <Icon

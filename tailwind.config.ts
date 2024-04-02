@@ -2,11 +2,12 @@
 import defaultTheme from 'tailwindcss/defaultTheme'
 
 import colors from 'tailwindcss/colors'
+import typography from '@tailwindcss/typography'
 
 module.exports = {
   darkMode: 'selector',
   content: ['./src/**/*.{vue,js,ts,jsx,tsx}', 'docs/content/**/*.md'],
-  plugins: ['@tailwindcss/typography', 'prettier-plugin-tailwindcss', 'daisyui'],
+  plugins: [typography, 'prettier-plugin-tailwindcss', 'daisyui'],
 
   theme: {
     screen: {

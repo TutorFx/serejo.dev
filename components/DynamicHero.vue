@@ -1,9 +1,9 @@
 <template>
-  <div class="relative overflow-hidden p-12 rounded-t-3xl">
-    <div class="-z-[1] absolute left-[50%] bottom-[50%]">
+  <div class="relative overflow-hidden rounded-t-3xl p-12">
+    <div class="absolute -z-[1] left-[50%] bottom-[50%]">
       <div class="max-w-0 max-h-0">
         <div
-          class="aspect-video -translate-x-[50%] -translate-y-[50%] rounded-full blur-3xl w-[60vw] bg-brand-gradient opacity-10"
+          class="rounded-full aspect-video -translate-x-[50%] -translate-y-[50%] blur-3xl w-[60vw] bg-brand-gradient opacity-10"
         />
       </div>
     </div>

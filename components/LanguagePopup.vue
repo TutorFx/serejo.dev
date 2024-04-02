@@ -24,7 +24,7 @@ onClickOutside(target, toggleLangSelector)
               <div class="relative">
                 <div class="absolute">
                   <Icon
-                    name="mdi:close" class="bg-primary rounded-full relative -translate-x-[25%] -translate-y-[25%]"
+                    name="mdi:close" class="rounded-full relative bg-primary -translate-x-[25%] -translate-y-[25%]"
                     size="24"
                     @click="toggleLangSelector"
                   />

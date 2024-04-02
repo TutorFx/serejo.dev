@@ -1,6 +1,7 @@
 <script lang="ts" setup>
 const me = ref(false)
 const vue = ref(false)
+const config = useRuntimeConfig()
 </script>
 
 <template>
@@ -9,7 +10,7 @@ const vue = ref(false)
       <div class="-z-[1] absolute left-[50%] bottom-[50%]">
         <div class="max-w-0 max-h-0">
           <div
-            class="w-[60vw] aspect-video bg-brand-gradient -translate-x-[50%] -translate-y-[50%] rounded-full blur-3xl opacity-10"
+            class="rounded-full w-[60vw] aspect-video bg-brand-gradient -translate-x-[50%] -translate-y-[50%] blur-3xl opacity-10"
           />
         </div>
       </div>
@@ -81,7 +82,7 @@ const vue = ref(false)
                     </Transition>
                   </div>
                   <div
-                    class="-z-[1] h-6 w-16 md:w-24 lg:w-32 xl:w-48 bg-vue-gradient rounded-md md:h-10 lg:h-12 xl:h-20 -mt-[100%] md:rounded-lg lg:rounded-xl"
+                    class="-z-[1] w-16 md:w-24 lg:w-32 xl:w-48 bg-vue-gradient h-6 rounded-md md:h-10 lg:h-12 xl:h-20 -mt-[100%] md:rounded-lg lg:rounded-xl"
                   />
                 </div>
                 <div class="leading-none">
@@ -127,13 +128,15 @@ const vue = ref(false)
       />
       <div class="border-b border-neutral opacity-50" />
       <div class="relative">
-        <div class="absolute bg-base-100 z-[-2] top-0 inset-x-[-100%] blur-2xl bottom-[-100%]" />
+        <div class="absolute z-[-2] bg-base-100 top-0 inset-x-[-100%] blur-2xl bottom-[-100%]" />
         <container class="grid gap-3 py-6 font-light md:grid-cols-[1fr_max-content]">
           <div>
             {{ $t('schedule_support_text') }}
           </div>
           <div>
-            <Btn> {{ $t('schedule_cta') }} </Btn>
+            <Btn :href="config.public.schedule" target="_blank">
+              {{ $t('schedule_cta') }}
+            </Btn>
           </div>
         </container>
       </div>

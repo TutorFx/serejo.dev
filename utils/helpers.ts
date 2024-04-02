@@ -21,10 +21,15 @@ export function processArray<T extends CmsEntry, C extends new (Controller: T) =
   arr: T[],
   Controller: C,
   Repository: R,
+  Reactivity: boolean = true,
 ) {
   const instances = arr.map((entry) => {
     try {
-      return reactive(new Controller(entry))
+      const controller = new Controller(entry)
+      if (Reactivity)
+        return reactive(controller)
+      else
+        return controller
     }
     catch (e) {
       if (e instanceof ZodError) {
