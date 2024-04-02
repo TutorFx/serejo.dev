@@ -24,6 +24,7 @@
     "@nuxtjs/seo": "2.0.0-rc.9",
     "@rollup/plugin-typescript": "^11.1.6",
     "daisyui": "^4.9.0",
+    "gsap": "^3.12.5",
     "lint-staged": "^15.2.2",
     "tailwind-merge": "^2.2.2",
     "tsyringe": "^4.8.0",

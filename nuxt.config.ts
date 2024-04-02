@@ -1,7 +1,7 @@
 /* eslint-disable node/prefer-global/process */
 import tailwindTypography from '@tailwindcss/typography'
 import daisyui from 'daisyui'
-import { appDescription, appName } from './constants/index'
+import { appDescription, appName, phoneNumber, schedule, siteUrl } from './constants/index'
 import * as pkg from './package.json'
 
 const isDev = Boolean(process.env.NODE_ENV !== 'production')
@@ -108,6 +108,9 @@ export default defineNuxtConfig({
       version: pkg.version,
       name: pkg.name,
       dev: isDev,
+      url: siteUrl,
+      phoneNumber,
+      schedule,
     },
   },
 
@@ -148,7 +151,7 @@ export default defineNuxtConfig({
   site: {
     name: appName,
     description: appDescription,
-    url: 'https://serejo.dev',
+    url: siteUrl,
   },
 
   // pwa,

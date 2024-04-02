@@ -1,6 +1,7 @@
 <script lang="ts" setup>
 const me = ref(false)
 const vue = ref(false)
+const config = useRuntimeConfig()
 </script>
 
 <template>
@@ -133,7 +134,7 @@ const vue = ref(false)
             {{ $t('schedule_support_text') }}
           </div>
           <div>
-            <Btn> {{ $t('schedule_cta') }} </Btn>
+            <Btn :href="config.public.schedule" target="_blank"> {{ $t('schedule_cta') }} </Btn>
           </div>
         </container>
       </div>

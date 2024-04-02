@@ -3,10 +3,14 @@ const chat = ref(true)
 </script>
 
 <template>
-  <div class="fixed pointer-events-none inset-0 grid items-end p-3 z-[3] md:justify-end">
-    <div class="grid gap-3 min-w-[500px] max-w-2xl">
+  <div class="grid p-3 justify-end fixed pointer-events-none inset-0 items-end z-[3]">
+    <div class="grid gap-3">
       <div class="grid">
-        <Transition>
+        <Transition
+          enter-from-class="translate-y-[150%]"
+          enter-active-class="transition duration-500"
+          leave-active-class="translate-y-[200%] duration-500"
+          >
           <ChatContainer v-show="chat" class="grid pointer-events-auto" />
         </Transition>
       </div>

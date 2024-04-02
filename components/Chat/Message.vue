@@ -10,24 +10,18 @@ defineProps<{ value: Message<T> }>()
 
 <template>
   <div v-if="(value.agent instanceof Bot)">
-    <div class="grid gap-3 justify-start grid-cols-[max-content_minmax(0,_max-content)]">
-      <div class="rounded-full h-10 bg-gray-300 flex-shrink-0 w-10" />
+    <div class="gap-3 grid justify-start grid-cols-[minmax(0,_max-content)]">
       <div class="gap-2 overflow-hidden">
-        <div class="bg-gray-300 p-3 text-sm rounded-r-lg rounded-bl-lg">
-          {{ value.message }}
-        </div>
+        <MDC :value="value.message" class="bg-base-100 p-3 text-sm rounded-r-lg rounded-bl-lg prose prose-md" />
       </div>
     </div>
   </div>
   <div v-else-if="(value.agent instanceof User)">
-    <div class="grid justify-end gap-3 grid-cols-[minmax(0,_max-content)_max-content]">
+    <div class="grid gap-3 justify-end grid-cols-[minmax(0,_max-content)">
       <div class="gap-2 overflow-hidden">
         <div class="p-3 text-sm bg-blue-600 text-white rounded-l-lg rounded-br-lg">
           {{ value.message }}
         </div>
-      </div>
-      <div>
-        <div class="flex-shrink-0 h-10 w-10 rounded-full bg-gray-300" />
       </div>
     </div>
   </div>

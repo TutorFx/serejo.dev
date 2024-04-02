@@ -1,4 +1,6 @@
 <script setup lang="ts" generic="T extends Message<User & Bot>">
+import gsap from 'gsap'
+
 import type Message from '@/utils/chat/entities/Message'
 import type Bot from '@/utils/chat/entities/Agent/Bot'
 import type User from '@/utils/chat/entities/Agent/User'
@@ -9,33 +11,66 @@ const message = ref('')
 async function sendMessage() {
   if (!message.value)
     return
-  await chat.sendMessage(message.value)
+  chat.sendMessage(message.value)
   message.value = ''
 }
 
 const list = ref<HTMLElement>()
 
-watch(() => chat.messageRepository.messages, () => {
-  nextTick(() => list.value?.scrollTo(0, list.value.scrollHeight))
-}, { deep: true })
+const scrollDown = () => list.value?.scrollTo(0, list.value.scrollHeight)
+
+const messages = computed(() => chat.getMessages())
+
+function onBeforeEnter(el: any) {
+  scrollDown()
+  el.style.opacity = 0
+  el.style.height = 0
+}
+
+function onEnter(el: any, done: any) {
+  scrollDown()
+  gsap.to(el, {
+    opacity: 1,
+    height: 'auto',
+    delay: el.dataset.index * 0.15,
+    onComplete: done
+  })
+}
 </script>
 
 <template>
-  <div class="grid rounded-lg overflow-hidden bg-white shadow-xl grid-rows-[1fr_max-content] h-[65vh] max-w-full">
+  <div
+    class="grid rounded-lg overflow-hidden bg-base-300 shadow-xl max-h-[65vh] grid-rows-[max-content_1fr_max-content]">
+    <div class="p-4 bg-blue-600 text-white grid gap-3 grid-cols-[max-content_1fr] items-center">
+      <div class="relative">
+        <NuxtImg width="64" src="/felina/chat.jpg" class="rounded-full mx-auto" />
+        <div class="absolute rounded-full top-0 right-0 aspect-square w-5 bg-emerald-300 border-2 border-blue-600" />
+      </div>
+      <div>
+        <div class="text-xl">
+          Felina
+        </div>
+        <div class="text-sm">
+          {{$t('chat.reply_in_second')}}
+        </div>
+      </div>
+    </div>
     <div ref="list" class="overflow-auto">
-      <div class="grid p-4 gap-3 items-start">
+      <div v-if="messages.length > 0" class="grid p-4 gap-3 items-start max-w-xs" >
         <!-- Comment Zone -->
-        <TransitionGroup>
-          <ChatMessage v-for="(value, i) in chat.getMessages()" :key="i" :value="value" />
+        <TransitionGroup :css="false" @before-enter="onBeforeEnter" @enter="onEnter" @after-enter="scrollDown">
+          <ChatMessage v-for="(value, i) in messages" :key="i" :value="value" />
         </TransitionGroup>
+      </div>
+      <div v-else class="grid p-4 py-12 text-center max-w-xs text-sm gap-3">
+        {{ $t('chat.talk_to_cat') }}
       </div>
     </div>
 
-    <div class="p-4 bg-gray-300">
+    <div class="p-4 border-t border-t-base-100">
       <input
-        v-model="message" class="flex items-center w-full px-3 text-sm h-10 rounded" type="text"
-        placeholder="Type your message…" @keydown.enter="sendMessage"
-      >
+        v-model="message" class="text-sm h-10 flex items-center w-full px-3 rounded bg-base-100 outline-none"
+        type="text" :placeholder="$t('chat.input_label')" @keydown.enter="sendMessage">
     </div>
   </div>
 </template>
