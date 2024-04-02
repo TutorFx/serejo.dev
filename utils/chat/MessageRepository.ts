@@ -34,7 +34,7 @@ export default class <T extends Message<User & Bot>> {
     return ({
       role: AgentType.User,
       parts: [
-        { text: initialPrompt + this.messages.map(m => m.message).join('\n') + finalPrompt }, 
+        { text: initialPrompt + this.messages.map(m => m.message).join('\n') + finalPrompt },
       ],
     } as Content)
   }

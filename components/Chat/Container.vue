@@ -33,15 +33,16 @@ function onEnter(el: any, done: any) {
     opacity: 1,
     height: 'auto',
     delay: el.dataset.index * 0.15,
-    onComplete: done
+    onComplete: done,
   })
 }
 </script>
 
 <template>
   <div
-    class="grid rounded-lg overflow-hidden bg-base-300 shadow-xl max-h-[65vh] grid-rows-[max-content_1fr_max-content]">
-    <div class="p-4 bg-blue-600 text-white grid gap-3 grid-cols-[max-content_1fr] items-center">
+    class="grid rounded-lg overflow-hidden bg-base-300 grid-rows-[max-content_1fr_max-content] shadow-xl max-h-[65vh]"
+  >
+    <div class="p-4 bg-blue-600 text-white grid gap-3 items-center grid-cols-[max-content_1fr]">
       <div class="relative">
         <NuxtImg width="64" src="/felina/chat.jpg" class="rounded-full mx-auto" />
         <div class="absolute rounded-full top-0 right-0 aspect-square w-5 bg-emerald-300 border-2 border-blue-600" />
@@ -51,12 +52,12 @@ function onEnter(el: any, done: any) {
           Felina
         </div>
         <div class="text-sm">
-          {{$t('chat.reply_in_second')}}
+          {{ $t('chat.reply_in_second') }}
         </div>
       </div>
     </div>
     <div ref="list" class="overflow-auto">
-      <div v-if="messages.length > 0" class="grid p-4 gap-3 items-start max-w-xs" >
+      <div v-if="messages.length > 0" class="grid p-4 gap-3 items-start max-w-xs">
         <!-- Comment Zone -->
         <TransitionGroup :css="false" @before-enter="onBeforeEnter" @enter="onEnter" @after-enter="scrollDown">
           <ChatMessage v-for="(value, i) in messages" :key="i" :value="value" />
@@ -69,8 +70,9 @@ function onEnter(el: any, done: any) {
 
     <div class="p-4 border-t border-t-base-100">
       <input
-        v-model="message" class="text-sm h-10 flex items-center w-full px-3 rounded bg-base-100 outline-none"
-        type="text" :placeholder="$t('chat.input_label')" @keydown.enter="sendMessage">
+        v-model="message" class="text-sm flex items-center w-full px-3 bg-base-100 h-10 rounded outline-none"
+        type="text" :placeholder="$t('chat.input_label')" @keydown.enter="sendMessage"
+      >
     </div>
   </div>
 </template>

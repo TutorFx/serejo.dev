@@ -58,7 +58,7 @@ export function initial_prompt() {
   Here are some additional details about Gabriel:`
 }
 
-export function final_prompt () {
+export function final_prompt() {
   return `Use this information to personalize your responses and make them more engaging.
   * the response must to be in the MDC syntax, You could use the components but wait for :
   ** Remember, if you scape using '\\"', the component will not work, so take care of it.

@@ -10,7 +10,7 @@ const chat = ref(false)
           enter-from-class="translate-y-[150%]"
           enter-active-class="transition duration-500"
           leave-active-class="translate-y-[200%] duration-500"
-          >
+        >
           <ChatContainer v-show="chat" class="grid pointer-events-auto" />
         </Transition>
       </div>

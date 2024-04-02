@@ -89,7 +89,7 @@ export default defineI18nLocale(async (/* locale */) => {
     chat: {
       input_label: 'Digite sua mensagem...',
       reply_in_second: 'Típicamente responde em 1s',
-      talk_to_cat: 'Ela pode ser sarcástica, mas também é incrivelmente inteligente e engraçada. 😹 Quem sabe, se você a pegar de bom humor, ela até te conta alguns segredos felinos!'
-    }
+      talk_to_cat: 'Ela pode ser sarcástica, mas também é incrivelmente inteligente e engraçada. 😹 Quem sabe, se você a pegar de bom humor, ela até te conta alguns segredos felinos!',
+    },
   }
 })

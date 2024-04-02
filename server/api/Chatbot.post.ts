@@ -59,17 +59,16 @@ export default defineEventHandler(async (event) => {
   ])
 
   const googleTrain = train.getGoogleFormatSingle(initial_prompt(), final_prompt())
-  
+
   const historyFetched = [] as Content[]
   historyFetched.push(googleTrain)
 
   historyFetched.push({ parts: [{ text: 'Ok.' }], role: AgentType.Ai })
 
-  
   const googleHistory = repository.getGoogleFormat()
 
   const cuttedHistory = googleHistory.splice(0, googleHistory.length - 1)
-  
+
   historyFetched.push(...cuttedHistory)
 
   const chat = model.startChat({
@@ -77,7 +76,6 @@ export default defineEventHandler(async (event) => {
     safetySettings,
     history: historyFetched,
   })
-
 
   const message = googleHistory.at(-1)?.parts.at(0)?.text
 
