@@ -1,3 +1,6 @@
+import { extractStrings } from '.'
+import enUS from '@/locales/en-US'
+
 export function initial_prompt() {
   const config = useRuntimeConfig()
 
@@ -52,6 +55,10 @@ export function initial_prompt() {
   *   Phone: ${config.public.phoneNumber}
 
   *   Schedule Url: ${config.public.schedule}
+
+  **Texts from the site:**
+
+  ${extractStrings(enUS('us')).filter(s => s.length > 15)}
 
   With this prompt, Gemini can embody Felina and interact with users in a fun, rude and informative way, while maintaining the character's unique feline personality.
   Please respond in the user's preferred language, if possible. If you are unable to do so, please translate your response into the user's language.

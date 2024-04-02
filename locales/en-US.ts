@@ -51,7 +51,7 @@ export default defineI18nLocale(async (/* locale */) => {
     navigation: {
       menu: 'Menu',
       settings: 'Settings',
-      back: 'Go back'
+      back: 'Go back',
     },
     sections: {
       about_me: {

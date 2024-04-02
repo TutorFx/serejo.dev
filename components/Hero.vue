@@ -43,7 +43,7 @@ const config = useRuntimeConfig()
         </div>
       </div>
       <Container>
-        <div class="grid justify-center items-center py-24 md:py-32 lg:py-48">
+        <div class="grid items-center justify-center py-24 md:py-32 lg:py-48">
           <div class="relative">
             <div class="absolute -right-[0%] -top-[10%]">
               <div class="max-w-0 max-h-0">
@@ -82,7 +82,7 @@ const config = useRuntimeConfig()
                     </Transition>
                   </div>
                   <div
-                    class="-z-[1] w-16 md:w-24 lg:w-32 xl:w-48 bg-vue-gradient h-6 rounded-md md:h-10 lg:h-12 xl:h-20 -mt-[100%] md:rounded-lg lg:rounded-xl"
+                    class="-z-[1] w-16 md:w-24 lg:w-32 xl:w-48 bg-vue-gradient rounded-md h-6 md:h-10 lg:h-12 xl:h-20 -mt-[100%] md:rounded-lg lg:rounded-xl"
                   />
                 </div>
                 <div class="leading-none">

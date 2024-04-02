@@ -4,7 +4,7 @@ const target = ref()
 const button = ref()
 
 onClickOutside(target, () => chat.value ? chat.value = false : null, {
-  ignore: [button]
+  ignore: [button],
 })
 </script>
 
@@ -17,7 +17,7 @@ onClickOutside(target, () => chat.value ? chat.value = false : null, {
           enter-active-class="transition duration-500"
           leave-active-class="translate-y-[200%] duration-500"
         >
-          <ChatContainer ref="target" v-show="chat" class="grid pointer-events-auto" />
+          <ChatContainer v-show="chat" ref="target" class="grid pointer-events-auto" />
         </Transition>
       </div>
       <div ref="button" class="grid justify-end">
