@@ -7,7 +7,7 @@ defineProps<{
 </script>
 
 <template>
-  <div class="rounded-md bg-base-300 aspect-video grid bg-opacity-50 select-none p-6 grid-rows-[1fr] [.current_&]:bg-opacity-100 [.current_&]:bg-brand-gradient transition-all">
+  <div class="rounded-md bg-base-300 aspect-video grid bg-opacity-50 select-none p-6 grid-rows-[1fr] [.current_&]:bg-opacity-100 [.current_&]:bg-brand-gradient transition-all cursor-grab">
     <div class="[.current_&]:text-white">
       {{ (new Date(item.start)).getFullYear() }}
     </div>

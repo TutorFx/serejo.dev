@@ -9,7 +9,7 @@ defineProps<{
 <template>
   <div class="bg-base-100 grid grid-rows-[max-content_1fr] overflow-hidden relative aspect-square rounded-2xl md:aspect-[3/4]">
     <div class="grid relative">
-      <div class="grid gap-3 relative z-[1] py-12 bg-gradient-to-b from-base-100 to-base-100/0 [text-shadow:_6px_1px_20px_var(--fallback-b1,oklch(var(--b1)/1))] px-4 lg:py-18">
+      <div class="grid gap-3 relative py-12 z-[1] bg-gradient-to-b from-base-100 to-base-100/0 [text-shadow:_6px_1px_20px_var(--fallback-b1,oklch(var(--b1)/1))] px-4 lg:py-18">
         <div class="text-3xl text-center">
           {{ item.title }}
         </div>
@@ -17,10 +17,10 @@ defineProps<{
           <MDC :value="item" />
         </div>
         <div class="grid items-center grid-flow-col justify-center gap-3">
-          <NuxtLink v-if="item.github" :href="item.github">
+          <NuxtLink v-if="item.github" :href="item.github" target="_blank">
             <Icon size="28" name="mdi:github" />
           </NuxtLink>
-          <NuxtLink v-if="item.url" :href="item.url">
+          <NuxtLink v-if="item.url" :href="item.url" target="_blank">
             <Icon size="24" name="mage:external-link" />
           </NuxtLink>
         </div>

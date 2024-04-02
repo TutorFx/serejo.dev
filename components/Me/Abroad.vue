@@ -15,7 +15,7 @@
           />
         </div>
       </div>
-      <Container class="text-center py-12 relative text-xl md:py-24 z-[1] !max-w-6xl md:text-3xl">
+      <Container class="text-center py-12 relative text-xl z-[1] md:py-24 !max-w-6xl md:text-3xl">
         <MDC :value="$t('me.abroad')" />
       </Container>
     </div>

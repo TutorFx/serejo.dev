@@ -154,9 +154,9 @@ export default defineNuxtConfig({
         esModuleInterop: true,
         allowSyntheticDefaultImports: true,
         experimentalDecorators: true,
-      }
+      },
     },
-    strict: true
+    strict: true,
   },
 
   site: {

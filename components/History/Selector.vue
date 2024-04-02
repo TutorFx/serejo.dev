@@ -133,7 +133,7 @@ const current = ref()
                   <div class="font-bold text-4xl">
                     {{ $t('description') }}
                   </div>
-                  <MDC class="text-lg md:text-xl text-pretty prose prose-md" :value="current" />
+                  <MDC class="text-lg md:text-xl prose prose-md text-pretty" :value="current" />
                 </div>
               </div>
             </div>
