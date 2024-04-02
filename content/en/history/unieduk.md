@@ -6,4 +6,12 @@ start: 2022-05-01
 end: 2023-01-01
 ---
 
-At UniFAJ, an educational institution, I was tasked with developing an onboarding application for students. We used Nuxt2 and Vuetify for front-end development and held daily meetings to align deliveries. My responsibilities included implementing new features and restructuring legacy code, adhering to clean code principles. I was also responsible for coordinating with the backend team to align the delivery of new features. We utilized the Scrum methodology in this project.
+At UniFAJ, I participated in the development of an application for student admission. My main contribution was developing screens from registration to exams and essays. My responsibilities included implementing new features and restructuring legacy code, adhering to "clean code" principles.
+
+- Languages: Typescript, C#, Javascript, Python
+
+- Databases: PostgreSQL
+
+- Frameworks: Nuxt2, Vuetify
+
+- Methodology: Scrum

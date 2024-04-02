@@ -6,4 +6,13 @@ start: 2022-05-01
 end: 2023-01-01
 ---
 
-Na UniFAJ, uma instituição educacional, fui encarregado de desenvolver um aplicativo de onboarding para os alunos. Usamos Nuxt2 e Vuetify para o desenvolvimento front-end e realizamos reuniões diárias para alinhar as entregas. Minhas responsabilidades incluíam implementar novos recursos e reestruturar o código legado, aderindo aos princípios do "clean code". Também fui responsável por coordenar com a equipe de backend para alinhar a entrega de novos recursos. Utilizamos a metodologia Scrum neste projeto.
+Na UniFAJ, participei do desenvolvimento de um aplicativo, no qual o intuito principal á admissão de alunos para a instituição de ensino. Minha principal entrega no projeto foi desenvolver
+desde a tela de cadastro até as telas de provas e redação. Minhas responsabilidades incluíam implementar novos recursos e reestruturar o código legado, aderindo aos princípios do "clean code".
+
+- Linguagens: Typescript, C#, Javascript, Python
+
+- Databases: PostgreSQL
+
+- Frameworks: Nuxt2, Vuetify
+
+- Metodologia: Scrum

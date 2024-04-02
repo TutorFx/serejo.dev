@@ -2,12 +2,20 @@
 title: Software Engineer
 org: TLScontact
 location: Lisbon, Portugal
-start: 2023-07-01
+start: 2023-06-01
 end:
 ---
 
-In my current role at TLScontact, I have had the opportunity to grow both professionally and personally, working on a variety of tasks that include implementing new features, mitigating vulnerabilities, and participating in daily reviews with team members from around the globe. I develop various institutional tools for visa issuance, working with both Vue 3 and 2 in my daily tasks.
+At TLScontact, I perform a variety of tasks including implementing new features, mitigating vulnerabilities, and refactoring code. I work directly with institutional tools for issuing visas. The frameworks used are Vue 2 and Vue 3.
 
-One of my notable achievements was restructuring the entire help module for a new architecture, specifically a hexagonal architecture, and migrating it to the Feature Services architecture. This added more value and sustainability to the code. I have been studying Node.js for 5 years and applying it (Nest.js and H3) in personal projects, and just over a year ago, I started studying Java Springboot.
+One of my main contributions within the project was the restructuring of the help module to a new architecture. Specifically, I extracted the module from the hexagonal architecture and migrated it to a "Feature Services" architecture. This change brought value and sustainability to the project.
 
-Among my job duties, I speak daily with people from all over the world, aligning strategies with both the backend and frontend teams.
+- Languages: Typescript, Java, Javascript
+
+- CMS: Directus
+
+- Databases: Redis
+
+- Frameworks: Tailwind, Vue2, Vue3, Nuxt3, Spring Boot
+
+- Methodology: Agile

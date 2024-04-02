@@ -49,7 +49,7 @@ defineProps<{
         <div class="text-4xl">
           {{ value.location }}
         </div>
-        <MDC class="text-xl" :value="value" />
+        <MDC class="text-xl prose prose-md" :value="value" />
       </Container>
     </div>
   </div>

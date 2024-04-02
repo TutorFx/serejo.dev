@@ -2,8 +2,20 @@
 title: Software Engineer
 org: ITH PÓS GRADUAÇÃO
 location: Goiânia Goiás, Brazil
-start: 2020-07-01
-end: 2021-08-31
+start: 2019-07-01
+end: 2021-09-31
 ---
 
-Na ITH Pós-Graduação, participei do desenvolvimento de um front-end para o projeto legado deles. Desenvolvi um aplicativo usando Nuxt2 que consumia um endpoint que criei no WordPress deles. Isso levou a melhorias significativas nos resultados do Google Speed Insights para a empresa. Minhas responsabilidades também incluíam desenvolvimento de sites e APIs, gamificação de cursos e gerenciamento da experiência do usuário online.
+No ITH Pós-Graduação, fui responsável pela refatoração do código de toda aplicação. Também desenvolvi um aplicativo usando Nuxt2 que
+consumia um endpoint na ferramenta que eles utilizavam, WordPress. O principal resultado foi a melhoria
+nos resultados do Google Speed Insight, reduzindo os gastos no ADS.
+
+- Languages: Javascript
+
+- CMS: Wordpress
+
+- Databases: PostgreSQL
+
+- Frameworks: Vue2, Vue3
+
+- Methodology: Kanban

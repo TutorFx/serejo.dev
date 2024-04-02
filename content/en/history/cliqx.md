@@ -3,7 +3,15 @@ title: Software Engineer
 org: Cliqx
 location: São Paulo, Brazil
 start: 2023-01-01
-end: 2023-07-01
+end: 2023-08-01
 ---
 
-At Cliqx, I was involved in the front-end development of an application for Pernambucanas. I contributed to structuring the application using a hexagonal architecture with service layers. In collaboration with the backend development team, we devised a scalable strategy using Redis, SWR, and Nuxt3 to reduce server workload. We worked under the Kanban methodology, which helped us manage work efficiently. By the time I left the company, the application had achieved 90% test coverage.
+As a Front\-End developer at Cliqx, I worked on several projects, mostly software for the retail market. My main contribution was structuring an application for Pernambucanas, where I proposed the use of the Nuxt3 framework and collaborated on the application development using a hexagonal architecture with service layers. Overall, the project was designed with a scalable strategy using Redis, SWR, and Nuxt3 to reduce server workload.
+
+- Languages: Typescript, Javascript, C#
+
+* Databases: Redis, PostgreSQL
+
+* Frameworks: Tailwind, Nuxt3, .Net
+
+* Methodology: Scrum
