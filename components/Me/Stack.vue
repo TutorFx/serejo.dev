@@ -63,7 +63,7 @@
         </div>
         <div>
           <div class="sticky top-[20%]">
-            <div class="overflow-hidden mx-auto rounded-t-full aspect-[882/1103] lg:w-[50dvh] max-w-full">
+            <div class="overflow-hidden mx-auto max-w-full rounded-t-full aspect-[882/1103] lg:w-[50dvh]">
               <NuxtImg width="472" class="rounded-b-3xl w-full" src="/brand/pictures/about.png" />
             </div>
           </div>

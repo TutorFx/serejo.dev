@@ -1,5 +1,5 @@
 <template>
-  <div class="relative overflow-hidden rounded-t-3xl p-12">
+  <div class="overflow-hidden relative rounded-t-3xl p-12">
     <div class="absolute -z-[1] left-[50%] bottom-[50%]">
       <div class="max-w-0 max-h-0">
         <div
