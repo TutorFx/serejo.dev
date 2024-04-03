@@ -22,6 +22,7 @@ export default defineNuxtConfig({
     '@nuxtjs/google-fonts',
     '@nuxt/image',
     '@nuxt/content',
+    '@nuxthq/studio',
     // PWA still redirecting the defaultLocale
     // '@vite-pwa/nuxt',
     'nuxt-module-eslint-config',
