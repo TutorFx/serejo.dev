@@ -21,8 +21,8 @@ onClickOutside(target, () => chat.value ? chat.value = false : null, {
         </Transition>
       </div>
       <div ref="button" class="grid justify-end">
-        <div class="pointer-events-auto rounded-full bg-base-300 p-4 aspect-square cursor-pointer" @click="chat = !chat">
-          <Icon size="32" name="material-symbols:robot-outline" />
+        <div class="pointer-events-auto rounded-full bg-base-300 aspect-square cursor-pointer overflow-hidden shadow-xl" @click="chat = !chat">
+          <NuxtImg width="64" src="/felina/robot.jpg"/>
         </div>
       </div>
     </div>

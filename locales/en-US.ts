@@ -34,10 +34,9 @@ export default defineI18nLocale(async (/* locale */) => {
             collaborating daily with people from all over the world and aligning strategies 
             with backend and frontend teams. After **7 years** of experience, I offer expertise 
             based on concrete cases.`,
-      passion: `My passion is to bridge the gap between imagination and reality, making my dreams come 
-            true. I breathe code and dream in pixels. I'm a web developer with a passion for crafting beautiful 
+      passion: `My passion is to bridge the gap between imagination and reality. I breathe code and dream in pixels. I'm a web developer with a passion for crafting beautiful 
             and functional web applications.`,
-      stack: `I love working with so many great frameworks and libraries! But for my ideal project, I'd definitely choose to use...`,
+      stack: `I love working with so many great frameworks and libraries! For my ideal project, I'd definitely choose to use...`,
       legacy: `While greenfield projects are exciting, I'm also comfortable tackling existing codebases. I'm skilled at working with 
             and migrating legacy technologies like Vue 2, Nuxt 2, various component libraries, plain JavaScript, jQuery, and more. So, 
             bring on your brownfield projects - I'm ready to modernize and optimize them!`,

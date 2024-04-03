@@ -60,7 +60,7 @@ const localePath = useLocalePath()
         <div class="text-4xl">
           {{ value.location }}
         </div>
-        <MDC class="text-xl prose prose-md" :value="value" />
+        <MDC class="text-xl prose prose-md max-w-none" :value="value" />
       </Container>
     </div>
   </div>
