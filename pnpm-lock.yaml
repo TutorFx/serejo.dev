@@ -6,8 +6,8 @@ settings:
 
 dependencies:
   '@google/generative-ai':
-    specifier: ^0.3.1
-    version: 0.3.1
+    specifier: ^0.4.0
+    version: 0.4.0
   '@nuxt/content':
     specifier: ^2.12.1
     version: 2.12.1(nuxt@3.11.1)(rollup@4.13.2)(vue@3.4.21)
@@ -2040,8 +2040,8 @@ packages:
       '@fortawesome/fontawesome-common-types': 6.5.1
     dev: false
 
-  /@google/generative-ai@0.3.1:
-    resolution: {integrity: sha512-Zh1EK5nCWqIhxPm3K1KOM2mOwwgBvp6lkze74yTj6+Zqibtf55Db1q87cbbzWZeET3ZbNgHMYjVf2JyMM6pI7A==}
+  /@google/generative-ai@0.4.0:
+    resolution: {integrity: sha512-AtVXUKT28MtRbyl48vx4o2l+oUsNhM8iqgV6ynkNV9KMWuPUdwYeKvmiVvsHQENFMRBb+tcmiwcPcjs0d4psUQ==}
     engines: {node: '>=18.0.0'}
     dev: false
 
