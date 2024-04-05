@@ -5,11 +5,10 @@ import FlagsRepository from '~/utils/flags/FlagsRepository'
 
 export default defineNuxtPlugin(() => {
     const featureStore = defineStore('FeatureFlags', () => {
-
         const features = new FlagsRepository([
             new FlagsController(FeatureFlags.CHAT, true, false),
         ])
-
+        
         return {
             features,
         }
