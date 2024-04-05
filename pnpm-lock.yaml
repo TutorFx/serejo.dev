@@ -32,6 +32,9 @@ dependencies:
   lint-staged:
     specifier: ^15.2.2
     version: 15.2.2
+  reflect-metadata:
+    specifier: ^0.2.2
+    version: 0.2.2
   tailwind-merge:
     specifier: ^2.2.2
     version: 2.2.2
@@ -12517,6 +12520,10 @@ packages:
     engines: {node: '>=4'}
     dependencies:
       redis-errors: 1.2.0
+
+  /reflect-metadata@0.2.2:
+    resolution: {integrity: sha512-urBwgfrvVP/eAyXx4hluJivBKzuEbSQs9rKWCrCkbSxNv8mxPcUZKeuoF3Uy4mJl3Lwprp6yy5/39VWigZ4K6Q==}
+    dev: false
 
   /regenerate-unicode-properties@10.1.1:
     resolution: {integrity: sha512-X007RyZLsCJVVrjgEFVpLUTZwyOZk3oiL75ZcuYjlIWd6rNJtOjkBwQc5AsRrpbKVkxN6sklw/k/9m2jJYOf8Q==}

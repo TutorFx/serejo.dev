@@ -26,6 +26,7 @@
     "daisyui": "^4.9.0",
     "gsap": "^3.12.5",
     "lint-staged": "^15.2.2",
+    "reflect-metadata": "^0.2.2",
     "tailwind-merge": "^2.2.2",
     "tsyringe": "^4.8.0",
     "zod": "^3.22.4",
