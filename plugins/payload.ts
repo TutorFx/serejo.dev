@@ -59,7 +59,7 @@ export default definePayloadPlugin(() => {
   definePayloadReviver('FlagsRepository', (data) => {
     if (Array.isArray(data)) {
       return new FlagsRepository(
-        data.map(item => new FlagsController(item.name , item.active, item.defaultvalue)),
+        data.map(item => new FlagsController(item.name, item.active, item.defaultvalue)),
       )
     }
   })
@@ -70,6 +70,6 @@ export default definePayloadPlugin(() => {
   })
   definePayloadReviver('FlagsController', (data) => {
     if (typeof data === 'object')
-      return new FlagsController(data.name , data.active, data.defaultvalue)
+      return new FlagsController(data.name, data.active, data.defaultvalue)
   })
 })

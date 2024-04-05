@@ -1,4 +1,4 @@
-import "reflect-metadata";
+import 'reflect-metadata'
 import { injectable } from 'tsyringe'
 import type { FeatureFlags } from '@/utils/flags/Flags'
 
