@@ -31,7 +31,7 @@ export default class {
       body: this.serialize(),
     })
 
-    if (typeof response.data !== 'string')
+    if (!response || typeof response.data !== 'string')
       return
 
     this.messageRepository.pushMessage(new Message(bot, response.data))
