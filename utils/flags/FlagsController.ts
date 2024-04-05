@@ -1,10 +1,15 @@
-import 'reflect-metadata'
-import { injectable } from 'tsyringe'
 import type { FeatureFlags } from '@/utils/flags/Flags'
 
-@injectable()
 export default class {
-  constructor(private _name: FeatureFlags, private _active: boolean, private _defaultvalue: boolean) { }
+  private _name
+  private _active
+  private _defaultvalue
+
+  constructor(name: FeatureFlags, active: boolean, defaultvalue: boolean) {
+    this._name = name
+    this._active = active
+    this._defaultvalue = defaultvalue
+  }
 
   public get active(): boolean {
     return this._active

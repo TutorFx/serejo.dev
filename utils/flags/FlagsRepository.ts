@@ -1,12 +1,11 @@
 import 'reflect-metadata'
 
-import { injectAll, injectable } from 'tsyringe'
-
 import type { FeatureFlags } from '@/utils/flags/Flags'
-import FlagsController from '@/utils/flags/FlagsController'
+import type FlagsController from '@/utils/flags/FlagsController'
 
-@injectable()
 export default class {
+  private _flagsRepository: FlagsController[] = []
+
   public get flagsRepository(): FlagsController[] {
     return this._flagsRepository
   }
@@ -24,6 +23,7 @@ export default class {
     return flag.active
   }
 
-  constructor(@injectAll(FlagsController)
-        private _flagsRepository: FlagsController[]) {}
+  constructor(flags: FlagsController[]) {
+    this._flagsRepository = flags
+  }
 }
