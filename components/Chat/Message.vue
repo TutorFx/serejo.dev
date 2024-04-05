@@ -12,7 +12,7 @@ defineProps<{ value: Message<T> }>()
   <div v-if="(value.agent instanceof Bot)">
     <div class="gap-3 grid justify-start grid-cols-[minmax(0,_max-content)]">
       <div class="gap-2 overflow-hidden">
-        <MDC :value="value.message" class="bg-base-100 p-3 text-sm rounded-r-lg rounded-bl-lg prose prose-md" />
+        <MDC :value="value.message" class="bg-base-100 p-3 text-sm prose prose-md rounded-r-lg rounded-bl-lg" />
       </div>
     </div>
   </div>
