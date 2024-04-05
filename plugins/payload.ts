@@ -2,6 +2,8 @@ import HistoryController from '~/utils/cms/history/HistoryController'
 import HistoryRepository from '~/utils/cms/history/HistoryRepository'
 import ProjectController from '~/utils/cms/project/ProjectController'
 import ProjectRepository from '~/utils/cms/project/ProjectRepository'
+import FlagsController from '~/utils/flags/FlagsController'
+import FlagsRepository from '~/utils/flags/FlagsRepository'
 
 // payload.js
 
@@ -48,5 +50,26 @@ export default definePayloadPlugin(() => {
   definePayloadReviver('ProjectController', (data) => {
     if (typeof data === 'object')
       return new ProjectController(data)
+  })
+
+  definePayloadReducer('FlagsRepository', (data) => {
+    if (data instanceof FlagsRepository)
+      return data.flagsRepository.map(item => item.toObject())
+  })
+  definePayloadReviver('FlagsRepository', (data) => {
+    if (Array.isArray(data)) {
+      return new FlagsRepository(
+        data.map(item => new FlagsController(item.name , item.active, item.defaultvalue)),
+      )
+    }
+  })
+
+  definePayloadReducer('FlagsController', (data) => {
+    if (data instanceof FlagsController)
+      return data.toObject()
+  })
+  definePayloadReviver('FlagsController', (data) => {
+    if (typeof data === 'object')
+      return new FlagsController(data.name , data.active, data.defaultvalue)
   })
 })

@@ -149,15 +149,30 @@ export default defineNuxtConfig({
     },
   },
 
+  pinia: {
+    storesDirs: ['./stores/**'],
+  },
+
   typescript: {
     tsConfig: {
       compilerOptions: {
         esModuleInterop: true,
         allowSyntheticDefaultImports: true,
         experimentalDecorators: true,
+        emitDecoratorMetadata: true,
       },
     },
     strict: true,
+  },
+
+  vite: {
+    esbuild: {
+      tsconfigRaw: {
+        compilerOptions: {
+          experimentalDecorators: true
+        }
+      }
+    }
   },
 
   site: {
