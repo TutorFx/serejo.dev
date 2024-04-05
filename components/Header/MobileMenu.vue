@@ -8,7 +8,7 @@ defineProps<{ service: MenuService }>()
   <div class="grid gap-6">
     <NuxtLink
       v-for="(item, i) in service.get()" v-bind="item.getBinding()" :key="i"
-      class="leading-none text-4xl text-nowrap"
+      class="leading-none text-nowrap text-4xl"
     >
       {{ $t(item.content as string) }}
     </NuxtLink>
