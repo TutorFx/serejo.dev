@@ -1,6 +1,7 @@
 /* eslint-disable node/prefer-global/process */
 import tailwindTypography from '@tailwindcss/typography'
 import daisyui from 'daisyui'
+import type { Nitro } from "nitropack"
 import { appDescription, appName, phoneNumber, schedule, siteUrl } from './constants/index'
 import * as pkg from './package.json'
 
@@ -195,6 +196,12 @@ export default defineNuxtConfig({
     api: {
       baseURL: '/api/cms',
     },
+  },
+
+  hooks: {
+    'nitro:build:before': (nitro: Nitro) => {
+      nitro.options.moduleSideEffects.push('reflect-metadata')
+    }
   },
 
   tailwindcss: {
