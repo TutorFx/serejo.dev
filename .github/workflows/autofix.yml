@@ -26,3 +26,5 @@ jobs:
         run: pnpm run lint --fix
 
       - uses: autofix-ci/action@d3e591514b99d0fca6779455ff8338516663f7cc
+        with:
+          commit-message: 🚨 Fix compiler / linter warnings.
