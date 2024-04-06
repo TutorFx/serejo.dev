@@ -1,5 +1,9 @@
 import { z } from 'zod'
 
+export const BlogEntrySchema = z.object({
+  createdAt: z.string().datetime(),
+})
+
 export const HistoryEntrySchema = z.object({
   org: z.string().min(1),
   location: z.string().min(1),
