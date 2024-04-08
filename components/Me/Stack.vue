@@ -1,7 +1,7 @@
 <template>
   <div>
     <Container class="py-12 md:py-24">
-      <div class="grid gap-12 md:grid-cols-2">
+      <div class="grid md:grid-cols-2 gap-12">
         <div class="grid gap-6 md:gap-12 lg:gap-24 lg:max-w-md">
           <div class="grid text-center gap-1 max-md:justify-center md:text-start">
             <div class="text-neutral-content">

@@ -15,5 +15,5 @@ export default class extends CmsController {
 
   getDateToLocaleString(locale: string = 'en') {
     return dayjs(this.createdAt).locale(locale).format('MMM DD, YYYY')
-  } 
+  }
 }

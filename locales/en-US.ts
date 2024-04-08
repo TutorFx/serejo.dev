@@ -75,7 +75,7 @@ export default defineI18nLocale(async (/* locale */) => {
     time: {
       the_moment: 'the moment',
       until_the: 'until',
-      reading_time: '{time} reading'
+      reading_time: '{time} reading',
     },
     settings: {
       dark_mode: 'Dark mode',
