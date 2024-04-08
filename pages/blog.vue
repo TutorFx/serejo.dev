@@ -7,7 +7,7 @@ useHead({
 </script>
 
 <template>
-  <div class="grid items-center justify-center text-3xl">
-    Under construction :)
-  </div>
+  <Container class="py-24">
+    <Blog />
+  </Container>
 </template>

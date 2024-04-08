@@ -1,5 +1,7 @@
 import BlogController from './cms/blog/BlogController'
 import BlogRepository from './cms/blog/BlogRepository'
+import BlogService from './cms/blog/BlogService'
+
 import HistoryController from './cms/history/HistoryController'
 import HistoryRepository from './cms/history/HistoryRepository'
 import HistoryService from './cms/history/HistoryService'
@@ -20,6 +22,8 @@ export function getHistoryItem(org: string) {
 export const getHistoryService = (repository: HistoryRepository) => new HistoryService(repository)
 
 export const getProjectService = (repository: ProjectRepository) => new ProjectService(repository)
+
+export const getBlogService = (repository: BlogRepository) => new BlogService(repository)
 
 /* export function getHistory() {
   return useAsyncData(

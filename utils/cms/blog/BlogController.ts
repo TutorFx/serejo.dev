@@ -10,10 +10,10 @@ export default class extends CmsController {
   constructor(post: BlogEntry) {
     super(post)
     BlogEntrySchema.parse(post)
-    this.createdAt = post.createAt
+    this.createdAt = post.createdAt
   }
 
   getDateToLocaleString(locale: string = 'en') {
-    return dayjs(this.createdAt).locale(locale).format('MMM, YYYY')
-  }
+    return dayjs(this.createdAt).locale(locale).format('MMM DD, YYYY')
+  } 
 }

@@ -1,3 +1,5 @@
+import BlogController from '~/utils/cms/blog/BlogController'
+import BlogRepository from '~/utils/cms/blog/BlogRepository'
 import HistoryController from '~/utils/cms/history/HistoryController'
 import HistoryRepository from '~/utils/cms/history/HistoryRepository'
 import ProjectController from '~/utils/cms/project/ProjectController'
@@ -50,6 +52,27 @@ export default definePayloadPlugin(() => {
   definePayloadReviver('ProjectController', (data) => {
     if (typeof data === 'object')
       return new ProjectController(data)
+  })
+
+  definePayloadReducer('BlogRepository', (data) => {
+    if (data instanceof BlogRepository)
+      return data.getRepository().map(item => item.toObject())
+  })
+  definePayloadReviver('BlogRepository', (data) => {
+    if (Array.isArray(data)) {
+      return new BlogRepository(
+        data.map(item => new BlogController(item)),
+      )
+    }
+  })
+
+  definePayloadReducer('BlogController', (data) => {
+    if (data instanceof BlogController)
+      return data.toObject()
+  })
+  definePayloadReviver('BlogController', (data) => {
+    if (typeof data === 'object')
+      return new BlogController(data)
   })
 
   definePayloadReducer('FlagsRepository', (data) => {
