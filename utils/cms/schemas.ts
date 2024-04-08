@@ -2,6 +2,7 @@ import { z } from 'zod'
 
 export const BlogEntrySchema = z.object({
   createdAt: z.string().datetime(),
+  _id: z.string()
 })
 
 export const HistoryEntrySchema = z.object({

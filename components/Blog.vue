@@ -11,7 +11,7 @@ const localePath = useLocalePath()
 <template>
   <div>
     <div v-if="(service instanceof BlogService)" class="grid gap-4 lg:grid-cols-3 md:grid-cols-2">
-      <NuxtLink v-for="value in service.blog.getSortedRepository()" :key="value._id" :to="localePath({ name: `post-item`, params: { item: value.title } })">
+      <NuxtLink v-for="value in service.blog.getSortedRepository()" :key="value._id" :to="localePath({ name: `post-item`, params: { item: value.filename } })">
         <BlogItem :value />
       </NuxtLink>
     </div>

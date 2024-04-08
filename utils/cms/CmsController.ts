@@ -28,6 +28,14 @@ export default class {
     this._id = cms._id
   }
 
+  get id() {
+    return this._id.match(/([a-z]{2})\:([a-z]+)\:([a-z-]+)\.md/i)?.splice(1)
+  }
+
+  get filename() {
+    return this.id?.at(-1)
+  }
+
   toJSON() {
     return this.toObject()
   }

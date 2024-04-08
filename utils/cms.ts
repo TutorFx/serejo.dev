@@ -19,6 +19,13 @@ export function getHistoryItem(org: string) {
   )
 }
 
+export function getBlogItem(filename: string) {
+  return useAsyncData(
+    'BlogItemFetcher',
+    () => queryContent<BlogEntry>(useLocale(), 'blog').where({ _id: `content:${useLocale()}:blog:${filename}.md` }).findOne().then(entry => reactive(new BlogController(entry)))
+  )
+}
+
 export const getHistoryService = (repository: HistoryRepository) => new HistoryService(repository)
 
 export const getProjectService = (repository: ProjectRepository) => new ProjectService(repository)
