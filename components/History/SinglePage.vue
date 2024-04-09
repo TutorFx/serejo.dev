@@ -1,11 +1,21 @@
 <script setup lang="ts">
 import HistoryController from '~/utils/cms/history/HistoryController'
 
-defineProps<{
+const { value } = defineProps<{
   value: HistoryController
 }>()
 
 const localePath = useLocalePath()
+
+const { t } = useI18n()
+
+defineOgImage({
+  component: 'CmsPage',
+  props: {
+    description: value.getTruncatedDescription(330),
+    readingTime: t('time.reading_time', { time: value.getLocaleReadingTime() })
+  }
+})
 </script>
 
 <template>
