@@ -78,6 +78,11 @@ export default defineNuxtConfig({
     },
   },
 
+  routeRules: {
+    '/pt-BR/blog': { prerender: true },
+    '/pt-BR/minha-jornada': { prerender: true },
+  },
+
   experimental: {
     // when using generate, payload js assets included in sw precache manifest
     // but missing on offline, disabling extraction it until fixed
