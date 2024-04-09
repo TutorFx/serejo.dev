@@ -130,6 +130,7 @@ export default defineNuxtConfig({
       crawlLinks: true,
       routes: [
         '/',
+        '/pt-BR',
       ],
       ignore: [],
     },
