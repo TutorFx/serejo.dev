@@ -79,8 +79,8 @@ export default defineNuxtConfig({
   },
 
   routeRules: {
-    '/pt-BR/blog': { prerender: true },
-    '/pt-BR/minha-jornada': { prerender: true },
+    '/': { prerender: true },
+    '/pt-BR/inicio': { prerender: true },
   },
 
   experimental: {
@@ -128,11 +128,6 @@ export default defineNuxtConfig({
     },
     prerender: {
       crawlLinks: true,
-      routes: [
-        '/',
-        '/pt-BR',
-      ],
-      ignore: [],
     },
     preset: isProd ? 'vercel' : 'node',
   },
