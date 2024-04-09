@@ -11,8 +11,8 @@ import 'dayjs/locale/pt'
 import 'dayjs/locale/fr'
 import 'dayjs/locale/es'
 
-function hasValueProperty(node: any): node is { value: string } {
-  return typeof node === 'object' && node !== null && 'value' in node
+function hasValueProperty(node: any): boolean {
+  return typeof node === 'object' && node !== null && 'value' in node && typeof node.value === 'string'
 }
 
 export default class {
@@ -26,6 +26,14 @@ export default class {
     this.title = cms.title
     this.body = cms.body
     this._id = cms._id
+  }
+
+  get id() {
+    return this._id.match(/([a-z]{2})\:([a-z]+)\:([a-z-]+)\.md/i)?.splice(1)
+  }
+
+  get filename() {
+    return this.id?.at(-1)
   }
 
   toJSON() {
@@ -44,7 +52,7 @@ export default class {
 
     visit(this.body, 'text', (node: any) => {
       if (hasValueProperty(node))
-        plainText += node.value
+        plainText += `${node.value}. `
     })
 
     return plainText
@@ -56,8 +64,11 @@ export default class {
 
     let seconds = 0
 
-    visit(this.body, 'text', () => {
-      seconds += 4
+    visit(this.body, 'text', (node: any) => {
+      if (hasValueProperty(node)) {
+        const words = node.value.split(' ')
+        seconds += 0.5 * words.length
+      }
     })
 
     return seconds

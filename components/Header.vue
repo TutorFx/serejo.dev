@@ -28,7 +28,7 @@ function toggleMenu() {
     >
       <div
         v-if="!visible"
-        class="fixed bg-base-100 top-0 z-50 inset-x-0 rounded-b-3xl bg-clip-padding backdrop-filter backdrop-blur-lg bg-opacity-90 border border-base-100"
+        class="fixed bg-base-100 border top-0 z-50 rounded-b-3xl inset-x-0 bg-clip-padding backdrop-filter backdrop-blur-lg bg-opacity-90 border-base-100"
       >
         <Container>
           <HeaderNav v-model="menu" :service="service" />
@@ -38,7 +38,7 @@ function toggleMenu() {
 
     <Teleport to="body">
       <Container v-if="menu" class="fixed z-50 bg-base-100 inset-0">
-        <div class="grid min-h-dvh grid-rows-[max-content_1fr]">
+        <div class="grid grid-rows-[max-content_1fr] min-h-dvh">
           <HeaderNav v-model="menu" :service="service" />
           <div>
             <div class="grid py-12">

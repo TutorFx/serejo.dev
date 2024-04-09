@@ -35,7 +35,7 @@ const localePath = useLocalePath()
         </div>
         <div class="justify-between items-end flex">
           <div class="text-xs">
-            <Icon name="gg:alarm" /> {{ item.getLocaleReadingTime() }}
+            <Icon name="gg:alarm" /> {{ $t('time.reading_time', { time: item.getLocaleReadingTime() }) }}
           </div>
           <Btn color="light">
             {{ $t('see_more') }}

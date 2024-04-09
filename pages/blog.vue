@@ -7,7 +7,14 @@ useHead({
 </script>
 
 <template>
-  <div class="grid items-center justify-center text-3xl">
-    Under construction :)
+  <div class="bg-base-300">
+    <Container class="py-24 grid gap-6">
+      <div>
+        <h2 class="text-3xl">
+          Blog
+        </h2>
+      </div>
+      <Blog />
+    </Container>
   </div>
 </template>

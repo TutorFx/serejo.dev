@@ -1,3 +1,7 @@
+import BlogController from './cms/blog/BlogController'
+import BlogRepository from './cms/blog/BlogRepository'
+import BlogService from './cms/blog/BlogService'
+
 import HistoryController from './cms/history/HistoryController'
 import HistoryRepository from './cms/history/HistoryRepository'
 import HistoryService from './cms/history/HistoryService'
@@ -6,7 +10,7 @@ import ProjectController from './cms/project/ProjectController'
 import ProjectRepository from './cms/project/ProjectRepository'
 import ProjectService from './cms/project/ProjectService'
 
-import type { HistoryEntry, ProjectEntry } from './cms/types'
+import type { BlogEntry, HistoryEntry, ProjectEntry } from './cms/types'
 
 export function getHistoryItem(org: string) {
   return useAsyncData(
@@ -15,9 +19,18 @@ export function getHistoryItem(org: string) {
   )
 }
 
+export function getBlogItem(filename: string) {
+  return useAsyncData(
+    'BlogItemFetcher',
+    () => queryContent<BlogEntry>(useLocale(), 'blog').where({ _id: `content:${useLocale()}:blog:${filename}.md` }).findOne().then(entry => reactive(new BlogController(entry))),
+  )
+}
+
 export const getHistoryService = (repository: HistoryRepository) => new HistoryService(repository)
 
 export const getProjectService = (repository: ProjectRepository) => new ProjectService(repository)
+
+export const getBlogService = (repository: BlogRepository) => new BlogService(repository)
 
 /* export function getHistory() {
   return useAsyncData(
@@ -85,6 +98,15 @@ export function getProject() {
     'ProjectFetcher',
     () => queryContent<ProjectEntry>(useLocale(), 'project').find().then(
       data => processArray(data, ProjectController, ProjectRepository),
+    ),
+  )
+}
+
+export function getBlog() {
+  return useAsyncData(
+    'BlogFetcher',
+    () => queryContent<BlogEntry>(useLocale(), 'blog').find().then(
+      data => processArray(data, BlogController, BlogRepository),
     ),
   )
 }
