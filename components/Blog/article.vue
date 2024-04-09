@@ -7,7 +7,7 @@ defineProps<{
 </script>
 
 <template>
-  <Container class="max-w-xl">
+  <Container class="max-w-3xl">
     <div class="grid py-12 gap-1">
       <div class="text-3xl">
         {{ value.title }}
@@ -17,7 +17,7 @@ defineProps<{
           <Icon name="gg:calendar" /> {{ value.getDateToLocaleString() }}
         </span>
       </div>
-      <ContentRenderer :value class="prose" />
+      <ContentRenderer :value class="prose max-w-full" />
     </div>
   </Container>
 </template>

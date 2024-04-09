@@ -20,8 +20,11 @@ defineProps<{
           <Icon name="gg:calendar" /> {{ value.getDateToLocaleString(useLocale()) }}
         </span>
       </div>
-      <div class="line-clamp-2">
+      <div class="line-clamp-2 mb-3">
         {{ value.getTruncatedDescription(150) }}
+      </div>
+      <div>
+        {{ $t('see_more') }}
       </div>
     </div>
   </div>

@@ -25,8 +25,8 @@ function toggleDark() {
 
 <template>
   <button class="grid gap-3 grid-flow-col items-center justify-start !outline-none" @click="toggleDark">
-    <Icon v-if="color.value === 'dark'" v-bind="$attrs" name="i-carbon-moon" />
-    <Icon v-else v-bind="$attrs" name="i-carbon-sun" />
+    <Icon prefetch v-if="color.value === 'dark'" v-bind="$attrs" name="i-carbon-moon" />
+    <Icon prefetch v-else v-bind="$attrs" name="i-carbon-sun" />
     <label :class="{ 'sr-only': justIcon }">
       {{ $t('active') }}: {{ color.value === 'light' ? $t('settings.light_mode') : $t('settings.dark_mode') }}
     </label>

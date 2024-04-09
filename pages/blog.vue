@@ -7,7 +7,12 @@ useHead({
 </script>
 
 <template>
-  <Container class="py-24">
-    <Blog />
-  </Container>
+  <div class="bg-base-300">
+    <Container class="py-24 grid gap-6">
+      <div>
+        <h2 class="text-3xl">Blog</h2>
+      </div>
+      <Blog />
+    </Container>
+  </div>
 </template>
