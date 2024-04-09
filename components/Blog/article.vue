@@ -11,8 +11,8 @@ defineOgImage({
   component: 'CmsPage',
   props: {
     description: value.getTruncatedDescription(330),
-    readingTime: t('time.reading_time', { time: value.getLocaleReadingTime() })
-  }
+    readingTime: t('time.reading_time', { time: value.getLocaleReadingTime() }),
+  },
 })
 </script>
 

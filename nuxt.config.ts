@@ -134,14 +134,14 @@ export default defineNuxtConfig({
 
   ogImage: {
     defaults: {
-      emojis: 'twemoji'
+      emojis: 'twemoji',
     },
     fonts: [
       // will load the Noto Sans font from Google fonts
       'Space+Grotesk:300',
       'Space+Grotesk:400',
       'Space+Grotesk:700',
-    ]
+    ],
   },
 
   app: {
