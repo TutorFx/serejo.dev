@@ -10,7 +10,9 @@ useHead({
   <div class="bg-base-300">
     <Container class="py-24 grid gap-6">
       <div>
-        <h2 class="text-3xl">Blog</h2>
+        <h2 class="text-3xl">
+          Blog
+        </h2>
       </div>
       <Blog />
     </Container>
