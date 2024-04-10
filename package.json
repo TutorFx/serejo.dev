@@ -33,13 +33,13 @@
     "zod-validation-error": "^3.1.0"
   },
   "devDependencies": {
-    "@antfu/eslint-config": "^2.12.1",
+    "@antfu/eslint-config": "^2.13.2",
     "@iconify-json/carbon": "^1.1.31",
     "@iconify-json/twemoji": "^1.1.15",
     "@nuxthq/studio": "^1.0.13",
     "@nuxtjs/color-mode": "^3.3.3",
     "@nuxtjs/i18n": "^8.3.0",
-    "@nuxtjs/sitemap": "^5.1.2",
+    "@nuxtjs/sitemap": "^5.1.4",
     "@nuxtjs/tailwindcss": "^6.11.4",
     "@pinia/nuxt": "^0.5.1",
     "@tailwindcss/typography": "^0.5.12",
@@ -57,11 +57,11 @@
     "nuxt-build-cache": "^0.1.1",
     "nuxt-icon": "^0.6.10",
     "nuxt-module-eslint-config": "^0.1.1",
-    "nuxt-site-config": "^2.2.11",
+    "nuxt-site-config": "^2.2.12",
     "nuxt-speedkit": "3.0.0-next.51",
     "pinia": "^2.1.7",
-    "swiper": "^11.1.0",
+    "swiper": "^11.1.1",
     "typescript": "^5.4.4",
-    "vue-tsc": "^2.0.10"
+    "vue-tsc": "^2.0.11"
   }
 }
