@@ -4,6 +4,10 @@ const { t } = useI18n()
 useHead({
   title: t('menu.blog'),
 })
+
+defineOgImage({
+  component: 'default'
+})
 </script>
 
 <template>

@@ -8,6 +8,10 @@ useHead({
     { name: 'keywords', content: t('meta.projects.keywords') },
   ],
 })
+
+defineOgImage({
+  component: 'default'
+})
 </script>
 
 <template>

@@ -8,6 +8,10 @@ useHead({
     { name: 'keywords', content: t('meta.history.keywords') },
   ],
 })
+
+defineOgImage({
+  component: 'default'
+})
 </script>
 
 <template>
