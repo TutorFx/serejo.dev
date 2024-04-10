@@ -16,7 +16,7 @@ function removeInvalidChars(text: string) {
     data-theme="dark"
   >
     <div class="absolute flex inset-0 opacity-20">
-      <div class="rounded-full shadow-xl top-[-50%] right-[-50%] bg-[radial-gradient(#9233ea,#0c0a09,#0c0a09)] size-300" />
+      <div class="rounded-full shadow-xl size-300 top-[-50%] right-[-50%] bg-[radial-gradient(#9233ea,#0c0a09,#0c0a09)]" />
     </div>
     <div class="absolute flex inset-0 opacity-20">
       <div class="rounded-full shadow-xl left-[-50%] bottom-[-50%] bg-[radial-gradient(#B5179E,#0c0a09,#0c0a09)] size-120" />
