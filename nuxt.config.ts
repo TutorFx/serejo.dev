@@ -132,6 +132,16 @@ export default defineNuxtConfig({
     preset: isProd ? 'vercel' : 'node',
   },
 
+  ogImage: {
+    defaults: {},
+    fonts: [
+      // will load the Noto Sans font from Google fonts
+      'Space+Grotesk:300',
+      'Space+Grotesk:400',
+      'Space+Grotesk:700',
+    ],
+  },
+
   app: {
     head: {
       viewport: 'width=device-width,initial-scale=1',

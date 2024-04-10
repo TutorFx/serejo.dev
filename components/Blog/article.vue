@@ -1,9 +1,19 @@
 <script lang="ts" setup>
 import type BlogController from '@/utils/cms/blog/BlogController'
 
-defineProps<{
+const { value } = defineProps<{
   value: BlogController
 }>()
+
+const { t } = useI18n()
+
+defineOgImage({
+  component: 'CmsPage',
+  props: {
+    description: value.getSafeTruncatedDescription(330),
+    readingTime: t('time.reading_time', { time: value.getLocaleReadingTime() }),
+  },
+})
 </script>
 
 <template>
