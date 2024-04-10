@@ -21,8 +21,8 @@ defineProps < {
       {{ title }}
     </div>
 
-    <div class="text-stone-600 justify-between items-center">
-      <div class="text-6xl font-bold">
+    <div class="justify-between items-center text-stone-600">
+      <div class="font-bold text-6xl">
         SEREJO.DEV
       </div>
     </div>
