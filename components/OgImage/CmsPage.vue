@@ -12,7 +12,7 @@ function removeInvalidChars(text: string) {
 
 <template>
   <div
-    class="w-full h-full justify-between relative p-24 bg-stone-950"
+    class="w-full justify-between relative h-full p-24 bg-stone-950"
     data-theme="dark"
   >
     <div class="absolute flex inset-0 opacity-20">

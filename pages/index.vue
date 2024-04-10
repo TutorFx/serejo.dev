@@ -10,7 +10,7 @@ useHead({
 })
 
 defineOgImage({
-  component: 'default'
+  component: 'default',
 })
 </script>
 
