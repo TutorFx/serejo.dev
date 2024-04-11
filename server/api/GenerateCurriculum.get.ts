@@ -1,5 +1,5 @@
-import { PassThrough } from 'node:stream';
-import PDFDocument from 'pdfkit';
+import { PassThrough } from 'node:stream'
+import PDFDocument from 'pdfkit'
 
 export default defineEventHandler(async (event) => {
     const t = await useTranslation(event);
@@ -22,6 +22,7 @@ export default defineEventHandler(async (event) => {
         }
     );
 
+  const { history } = await queryProcessedContent(event, lang)
     const { history } = await queryProcessedContent(event, lang);
 
     doc.pipe(pdfStream);
