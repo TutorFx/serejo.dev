@@ -49,7 +49,7 @@ export default defineI18nLocale(async (/* locale */) => {
             bring on your brownfield projects - I'm ready to modernize and optimize them!`,
       open_source: `My enthusiasm for open source software drives me to make meaningful contributions during my free time. Feel free to give a look at my github!`,
       years_old: 'I am {years} years old',
-      live_in: 'Actually i live in Brazil'
+      live_in: 'Actually i live in Brazil',
     },
     hero: {
       fl: 'Consultant &',
