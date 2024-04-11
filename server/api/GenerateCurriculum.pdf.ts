@@ -6,8 +6,7 @@ import PDFDocument from 'pdfkit'
 export default defineEventHandler(async (event) => {
   const lang = tryCookieLocale(event, { lang: '', name: 'i18n_redirected' })?.language
 
-  const path = resolve(import.meta.dev ? 'public/assets' : 'assets')
-  const fileData = await promises.readFile(`${path}/fonts/SpaceGrotesk-Regular.ttf`)
+  const fileData = await $fetch<Blob>(`https://raw.githubusercontent.com/google/fonts/main/ofl/spacegrotesk/SpaceGrotesk%5Bwght%5D.ttf`)
 
   const t = await useTranslation(event)
   const me = 'Gabriel Serejo'
@@ -23,7 +22,7 @@ export default defineEventHandler(async (event) => {
 
   const fontname = 'spacegrotesk'
 
-  doc.registerFont(fontname, fileData)
+  doc.registerFont(fontname, await fileData.arrayBuffer())
 
   const { history } = await queryProcessedContent(event, lang)
 
