@@ -22,7 +22,6 @@ export default defineEventHandler(async (event) => {
         }
     );
 
-  const { history } = await queryProcessedContent(event, lang)
     const { history } = await queryProcessedContent(event, lang);
 
     doc.pipe(pdfStream);
