@@ -1,6 +1,8 @@
 /* eslint-disable node/prefer-global/process */
+import path from 'node:path';
 import tailwindTypography from '@tailwindcss/typography'
 import daisyui from 'daisyui'
+import { copy } from 'fs-extra';
 import { appDescription, appName, phoneNumber, schedule, siteUrl } from './constants/index'
 import * as pkg from './package.json'
 
@@ -130,9 +132,6 @@ export default defineNuxtConfig({
       crawlLinks: true,
     },
     preset: isProd ? 'vercel' : 'node',
-    publicAssets: [
-      { dir: '/assets/font' },
-    ],
   },
 
   ogImage: {
