@@ -1,6 +1,4 @@
 import { PassThrough } from 'node:stream'
-import { promises } from 'node:fs'
-import { resolve } from 'pathe'
 import PDFDocument from 'pdfkit'
 
 export default defineEventHandler(async (event) => {
