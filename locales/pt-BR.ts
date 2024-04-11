@@ -54,7 +54,7 @@ export default defineI18nLocale(async (/* locale */) => {
           contribuições significativas durante meu tempo livre. Sinta-se à vontade para 
           dar uma olhada no meu github!`,
       years_old: 'Eu tenho {years} anos',
-      live_in: 'Atualmente eu vivo no Brasil, em Goiânia - GO.'
+      live_in: 'Atualmente eu vivo no Brasil, em Goiânia - GO.',
     },
     hero: {
       fl: 'Consultor &',
