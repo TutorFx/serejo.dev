@@ -15,8 +15,13 @@
           />
         </div>
       </div>
-      <Container class="text-center py-12 relative text-xl z-[1] md:py-24 !max-w-6xl md:text-3xl">
-        <MDC :value="$t('me.abroad')" />
+      <Container class="text-center py-12 relative z-[1] md:py-24 !max-w-6xl grid gap-6">
+        <div>
+          <MDC class="text-xl md:text-3xl" :value="$t('me.abroad')" />
+        </div>
+        <div>
+          <CurriculumDownloadButton />
+        </div>
       </Container>
     </div>
   </div>

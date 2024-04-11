@@ -27,6 +27,7 @@ export default defineI18nLocale(async (/* locale */) => {
     description: 'Descrição',
     see_more: 'Ver mais',
     copyright: 'Todos os direitos reservados',
+    download_curriculum: 'Baixar Curriculum',
     active: 'Ativo',
     me: {
       abroad: `Em **7 anos** de trajetória, trabalhei com uma ampla variedade de produtos. Transformando 

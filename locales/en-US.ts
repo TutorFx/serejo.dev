@@ -29,6 +29,7 @@ export default defineI18nLocale(async (/* locale */) => {
     see_more: 'See more',
     copyright: 'All rights reserved',
     active: 'Active',
+    download_curriculum: 'Download Curriculum',
     me: {
       abroad: `During my career, I have worked on international projects, 
             collaborating daily with people from all over the world and aligning strategies 
