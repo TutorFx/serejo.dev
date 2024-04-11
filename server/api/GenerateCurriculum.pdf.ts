@@ -6,8 +6,8 @@ import PDFDocument from 'pdfkit'
 export default defineEventHandler(async (event) => {
   const lang = tryCookieLocale(event, { lang: '', name: 'i18n_redirected' })?.language
 
-  const path = resolve(import.meta.dirname, 'server')
-  const fileData = await promises.readFile(`${path}/assets/font/SpaceGrotesk-Regular.ttf`)
+  const path = resolve(import.meta.dirname, 'assets')
+  const fileData = await promises.readFile(`${path}/font/SpaceGrotesk-Regular.ttf`)
 
   const t = await useTranslation(event)
   const me = 'Gabriel Serejo'
