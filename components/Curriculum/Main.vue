@@ -1,6 +1,6 @@
 <template>
-    <div>
-        teste aaa olá
-        teste
-    </div>
+  <div>
+    teste aaa olá
+    teste
+  </div>
 </template>
