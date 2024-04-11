@@ -31,10 +31,6 @@ export default defineEventHandler(async (event) => {
     paragraphGap: 32,
   })
 
-  doc.font(fontname).fontSize(16).text(t('curriculum.summary'), {
-    paragraphGap: 20,
-  })
-
   doc.font(fontname).fontSize(12).text(t('me.summary'), {
     paragraphGap: 20,
   })
@@ -53,6 +49,10 @@ export default defineEventHandler(async (event) => {
 
   doc.font(fontname).fontSize(12).text(config.public.phoneNumber, {
     paragraphGap: 10,
+  })
+
+  doc.font(fontname).fontSize(16).text(t('curriculum.summary'), {
+    paragraphGap: 20,
   })
 
   doc.font(fontname).fontSize(16).text(t('curriculum.work_experience'), {
