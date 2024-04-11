@@ -8,8 +8,8 @@ import HistoryRepository from '~/utils/cms/history/HistoryRepository'
 import ProjectController from '~/utils/cms/project/ProjectController'
 import ProjectRepository from '~/utils/cms/project/ProjectRepository'
 
-export async function queryProcessedContent(event: H3Event) {
-  const content = await serverQueryContent(event, 'en').find()
+export async function queryProcessedContent(event: H3Event, lang: string = 'en') {
+  const content = await serverQueryContent(event, lang).find()
 
   const historyEntries = content.filter(i => i._path?.includes('history')) as HistoryEntry[]
   const history = processArray(historyEntries, HistoryController, HistoryRepository, false) as HistoryRepository

@@ -27,8 +27,15 @@ export default defineI18nLocale(async (/* locale */) => {
     description: 'Descrição',
     see_more: 'Ver mais',
     copyright: 'Todos os direitos reservados',
+    download_curriculum: 'Baixar Curriculum',
+    curriculum: {
+      summary: 'Sumário',
+      work_experience: 'Experiência de trabalho',
+      education: 'Educação',
+    },
     active: 'Ativo',
     me: {
+      summary: 'Gabriel Serejo é um desenvolvedor web altamente experiente com paixão por transformar ideias em realidade. Sua expertise abrange desenvolvimento front-end e back-end, modernização de sistemas legados e contribuição para projetos de código aberto. Com um histórico comprovado em projetos internacionais, Gabriel se destaca em colaborar com equipes diversas e alavancar tecnologias como Vue, Nuxt e JavaScript para entregar aplicações web de alta qualidade.',
       abroad: `Em **7 anos** de trajetória, trabalhei com uma ampla variedade de produtos. Transformando 
       idéias em códigos e construído aplicações pixel perfect. Minha jornada é baseada em 
       estudos constantes, para não só me adaptar a tecnologia,
@@ -46,6 +53,8 @@ export default defineI18nLocale(async (/* locale */) => {
       open_source: `Meu entusiasmo por software de código aberto, me leva a fazer 
           contribuições significativas durante meu tempo livre. Sinta-se à vontade para 
           dar uma olhada no meu github!`,
+      years_old: 'Eu tenho {years} anos',
+      live_in: 'Atualmente eu vivo no Brasil, em Goiânia - GO.',
     },
     hero: {
       fl: 'Consultor &',
