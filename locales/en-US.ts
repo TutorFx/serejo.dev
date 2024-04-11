@@ -36,7 +36,7 @@ export default defineI18nLocale(async (/* locale */) => {
     active: 'Active',
     download_curriculum: 'Download Curriculum',
     me: {
-      summary: 'Gabriel Serejo is a highly experienced web developer with a passion for turning ideas into reality. His expertise spans front-end development, legacy system modernization, and open-source contribution. With a proven track record in international projects, Gabriel excels in collaborating with diverse teams and leveraging technologies like Vue, Nuxt, and JavaScript to deliver high-quality web applications.',
+      summary: 'Gabriel Serejo is a highly experienced web developer with a passion for turning ideas into reality. His expertise spans front-end and back-end development, legacy system modernization, and open-source contribution. With a proven track record in international projects, Gabriel excels in collaborating with diverse teams and leveraging technologies like Vue, Nuxt, and JavaScript to deliver high-quality web applications.',
       abroad: `During my career, I have worked on international projects, 
             collaborating daily with people from all over the world and aligning strategies 
             with backend and frontend teams. After **7 years** of experience, I offer expertise 
@@ -48,6 +48,8 @@ export default defineI18nLocale(async (/* locale */) => {
             and migrating legacy technologies like Vue 2, Nuxt 2, various component libraries, plain JavaScript, jQuery, and more. So, 
             bring on your brownfield projects - I'm ready to modernize and optimize them!`,
       open_source: `My enthusiasm for open source software drives me to make meaningful contributions during my free time. Feel free to give a look at my github!`,
+      years_old: 'I am {years} years old',
+      live_in: 'Actually i live in Brazil'
     },
     hero: {
       fl: 'Consultant &',

@@ -1,64 +1,82 @@
 import { PassThrough } from 'node:stream'
+import { promises } from 'node:fs'
+import { resolve } from 'pathe'
 import PDFDocument from 'pdfkit'
 
 export default defineEventHandler(async (event) => {
-  const t = await useTranslation(event)
-  const lang = 'en'
-  const me = 'Gabriel Serejo'
 
-  const config = useRuntimeConfig()
+    const lang = tryCookieLocale(event, { lang: '', name: 'i18n_redirected' })?.language
 
-  // Create a PassThrough stream to capture the PDF data
-  const pdfStream = new PassThrough()
+    const path = resolve(import.meta.dirname, 'server')
+    const fileData = await promises.readFile(`${path}/assets/font/SpaceGrotesk-Regular.ttf`);
 
-  const doc = new PDFDocument({ size: 'A4', margin: 20 })
+    const t = await useTranslation(event);
+    const me = 'Gabriel Serejo'
+    const birth = new Date('08-12-1997')
+    const yearsOld = (new Date().getFullYear() - birth.getFullYear()) - 1
 
-  let pageNumber = 0
+    const config = useRuntimeConfig()
 
-  doc.on('pageAdded', () => {
-    // Don't forget the reset the font family, size & color if needed
-    doc.fontSize(14).text(String(++pageNumber + 1), 0.5 * (doc.page.width - 100), 40, { width: 100, align: 'center' })
-  })
+    // Create a PassThrough stream to capture the PDF data
+    const pdfStream = new PassThrough();
 
-  const { history } = await queryProcessedContent(event, lang)
+    const doc = new PDFDocument({ size: 'A4', margin: 20 });
 
-  doc.pipe(pdfStream)
+    const fontname = 'spacegrotesk'
 
-  doc.fontSize(16).text(me, {
-    align: 'center',
-    paragraphGap: 32,
-  })
+    doc.registerFont(fontname, fileData)
 
-  doc.fontSize(16).text(t('curriculum.summary'), {
-    paragraphGap: 20,
-  })
+    const { history } = await queryProcessedContent(event, lang);
 
-  doc.fontSize(12).text(t('me.summary'), {
-    paragraphGap: 20,
-  })
+    doc.pipe(pdfStream);
 
-  doc.fontSize(12).text('gabrieltfserejo@gmail.com', {
-    paragraphGap: 5,
-  })
+    doc.font(fontname).fontSize(16).text(me, {
+        align: 'center',
+        paragraphGap: 32
+    });
 
-  doc.fontSize(12).text(config.public.phoneNumber, {
-    paragraphGap: 10,
-  })
+    doc.font(fontname).fontSize(16).text(t('curriculum.summary'), {
+        paragraphGap: 20
+    });
 
-  doc.fontSize(16).text(t('curriculum.work_experience'), {
-    paragraphGap: 20,
-  })
+    doc.font(fontname).fontSize(12).text(t('me.summary'), {
+        paragraphGap: 20
+    });
 
-  history.getSortedRepository().forEach((element) => {
-    doc.fontSize(16).text(element.org)
-    doc.fontSize(12).text(`${element.title} - ${element.location} (${element.getDateToLocaleString(lang).join(` ${t('time.until_the')} `)})`)
-    doc.fontSize(12).text(element.getBodyAsPlain(), {
-      paragraphGap: 30,
-    })
-  })
+    doc.font(fontname).fontSize(12).text(t('me.live_in'), {
+        paragraphGap: 5
+    });
 
-  doc.end()
+    doc.font(fontname).fontSize(12).text(t('me.years_old', { years: yearsOld }), {
+        paragraphGap: 5
+    });
 
-  // Return the PDF data as a stream
-  return await sendStream(event, pdfStream)
+    doc.font(fontname).fontSize(12).text('gabrieltfserejo@gmail.com', {
+        paragraphGap: 5
+    });
+
+    doc.font(fontname).fontSize(12).text(config.public.phoneNumber, {
+        paragraphGap: 10
+    });
+
+    doc.font(fontname).fontSize(16).text(t('curriculum.work_experience'), {
+        paragraphGap: 20
+    });
+
+    history.getSortedRepository().forEach(element => {
+        doc.font(fontname).fontSize(18).text(element.org, {
+            paragraphGap: 5
+        });
+        doc.font(fontname).fontSize(12).text(`${element.title} - ${element.location} (${element.getDateToLocaleString(lang).join(` ${t('time.until_the')} `)})`, {
+            paragraphGap: 5
+        });
+        doc.font(fontname).fontSize(12).text(element.getSafeTruncatedDescription(30000).replace(/(\r\n|\n|\r)/gm, ""), {
+            paragraphGap: 30
+        });
+    });
+
+    doc.end();
+
+    // Return the PDF data as a stream
+    return await sendStream(event, pdfStream);
 })
