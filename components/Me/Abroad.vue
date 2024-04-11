@@ -1,5 +1,5 @@
 <template>
-  <div class="relative z-[-2] bg-base-300 overflow-hidden">
+  <div class="relative bg-base-300 overflow-hidden">
     <div class="relative">
       <div class="-z-[1] absolute left-[10%] -top-[30%]">
         <div class="max-w-0 max-h-0">
@@ -15,12 +15,14 @@
           />
         </div>
       </div>
-      <Container class="text-center py-12 relative z-[1] md:py-24 grid gap-6 !max-w-6xl">
-        <div>
-          <MDC class="text-xl md:text-3xl" :value="$t('me.abroad')" />
-        </div>
-        <div>
-          <CurriculumDownloadButton />
+      <Container>
+        <div class="text-center py-12 relative z-[30] md:py-24 grid gap-6 !max-w-6xl">
+          <div>
+            <MDC class="text-xl md:text-3xl" :value="$t('me.abroad')" />
+          </div>
+          <div>
+            <CurriculumDownloadButton />
+          </div>
         </div>
       </Container>
     </div>
