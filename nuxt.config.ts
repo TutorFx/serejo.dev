@@ -29,12 +29,6 @@ export default defineNuxtConfig({
     'nuxt-icon',
   ],
 
-  nitro: {
-    publicAssets: [
-      '/assets/font'
-    ]
-  },
-
   i18n: {
     // TODO: Move to `prefix` when the nuxt team fix the issue
     // TODO: Move the app to customRoutes: 'config'
@@ -136,6 +130,9 @@ export default defineNuxtConfig({
       crawlLinks: true,
     },
     preset: isProd ? 'vercel' : 'node',
+    publicAssets: [
+      { dir: '/assets/font' },
+    ],
   },
 
   ogImage: {
