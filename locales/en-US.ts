@@ -28,9 +28,15 @@ export default defineI18nLocale(async (/* locale */) => {
     description: 'Description',
     see_more: 'See more',
     copyright: 'All rights reserved',
+    curriculum: {
+      summary: 'Summary',
+      work_experience: 'Work Experience',
+      education: 'Education',
+    },
     active: 'Active',
     download_curriculum: 'Download Curriculum',
     me: {
+      summary: 'Gabriel Serejo is a highly experienced web developer with a passion for turning ideas into reality. His expertise spans front-end development, legacy system modernization, and open-source contribution. With a proven track record in international projects, Gabriel excels in collaborating with diverse teams and leveraging technologies like Vue, Nuxt, and JavaScript to deliver high-quality web applications.',
       abroad: `During my career, I have worked on international projects, 
             collaborating daily with people from all over the world and aligning strategies 
             with backend and frontend teams. After **7 years** of experience, I offer expertise 

@@ -1,47 +1,66 @@
-import { createWriteStream, promises } from 'node:fs';
+import { PassThrough } from 'node:stream';
 import PDFDocument from 'pdfkit';
 
 export default defineEventHandler(async (event) => {
-    const t = await useTranslation(event)
+    const t = await useTranslation(event);
+    const lang = 'en';
+    const me = 'Gabriel Serejo'
 
-    const lang = 'en'
+    const config = useRuntimeConfig()
 
-    const doc = new PDFDocument({
-        size: 'A4',
-        margin: 20
-    });
+    // Create a PassThrough stream to capture the PDF data
+    const pdfStream = new PassThrough();
 
-    const outputFilePath = '.nuxt/output.pdf'; // Define the output file path
+    const doc = new PDFDocument({ size: 'A4', margin: 20 });
 
-    const writeStream = createWriteStream(outputFilePath); // Create a write stream
+    let pageNumber = 0;
 
-    const { history } = await queryProcessedContent(event, lang)
+    doc.on('pageAdded',
+        () => {
+            // Don't forget the reset the font family, size & color if needed
+            doc.fontSize(14).text(String(++pageNumber + 1), 0.5 * (doc.page.width - 100), 40, { width: 100, align: 'center' });
+        }
+    );
 
-    doc.pipe(writeStream); // Pipe the PDF document to the write stream
+    const { history } = await queryProcessedContent(event, lang);
 
-    doc.fontSize(16).text('Gabriel Serejo', {
+    doc.pipe(pdfStream);
+
+    doc.fontSize(16).text(me, {
         align: 'center',
         paragraphGap: 32
+    });
+
+    doc.fontSize(16).text(t('curriculum.summary'), {
+        paragraphGap: 20
+    });
+
+    doc.fontSize(12).text(t('me.summary'), {
+        paragraphGap: 20
+    });
+
+    doc.fontSize(12).text('gabrieltfserejo@gmail.com', {
+        paragraphGap: 5
+    });
+
+    doc.fontSize(12).text(config.public.phoneNumber, {
+        paragraphGap: 10
+    });
+
+    doc.fontSize(16).text(t('curriculum.work_experience'), {
+        paragraphGap: 20
     });
 
     history.getSortedRepository().forEach(element => {
         doc.fontSize(16).text(element.org);
         doc.fontSize(12).text(`${element.title} - ${element.location} (${element.getDateToLocaleString(lang).join(` ${t('time.until_the')} `)})`);
         doc.fontSize(12).text(element.getBodyAsPlain(), {
-            paragraphGap: 24
+            paragraphGap: 30
         });
     });
 
+    doc.end();
 
-    doc.end(); // Finalize the PDF document
-
-    // Wait for the write stream to finish and then read the file
-    await new Promise((resolve, reject) => {
-        writeStream.on('finish', resolve);
-        writeStream.on('error', reject);
-    });
-
-    const pdfData = await promises.readFile(outputFilePath);
-
-    return pdfData; // Return the PDF data as the response
+    // Return the PDF data as a stream
+    return await sendStream(event, pdfStream);
 })
