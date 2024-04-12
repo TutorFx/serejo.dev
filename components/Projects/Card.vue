@@ -9,7 +9,7 @@ defineProps<{
 <template>
   <div class="bg-base-100 grid overflow-hidden relative aspect-square grid-rows-[max-content_1fr] rounded-2xl md:aspect-[3/4]">
     <div class="grid relative">
-      <div class="grid gap-3 relative py-12 z-[1] px-4 bg-gradient-to-b from-base-100 to-base-100/0 [text-shadow:_6px_1px_20px_var(--fallback-b1,oklch(var(--b1)/1))] lg:py-18">
+      <div class="grid gap-3 relative py-12 px-4 z-[1] bg-gradient-to-b from-base-100 to-base-100/0 [text-shadow:_6px_1px_20px_var(--fallback-b1,oklch(var(--b1)/1))] lg:py-18">
         <div class="text-3xl text-center">
           {{ item.title }}
         </div>

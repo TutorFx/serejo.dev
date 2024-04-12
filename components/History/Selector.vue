@@ -47,7 +47,7 @@ const current = ref()
             />
           </div>
         </div>
-        <div class="z-[1] absolute left-[40%] bottom-[-30%]">
+        <div class="z-[1] absolute bottom-[-30%] left-[40%]">
           <div class="max-w-0 max-h-0">
             <div
               class="w-[30vw] aspect-video bg-primary -translate-x-[50%] -translate-y-[50%] rounded-full blur-3xl opacity-50 md:opacity-30"
