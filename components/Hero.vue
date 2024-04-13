@@ -3,7 +3,6 @@ import { TransitionPresets, useTransition } from '@vueuse/core'
 
 const { $gsap } = useNuxtApp()
 
-const tl = $gsap.timeline({ repeat: 2, repeatDelay: 1 })
 
 const me = ref(false)
 const vue = ref(false)
@@ -38,53 +37,57 @@ useIntersectionObserver(
 onMounted(() => {
   lineCompletion.value = 100
 
-  tl.to(starOneRef.value, { scale: 0.1, repeat: -1, duration: 3, ease: 'power5.inOut', yoyo: true })
-    .to(starTwoRef.value, { scale: 0.1, repeat: -1, duration: 3, ease: 'power5.inOut', yoyo: true })
+  if (import.meta.client) {
+    const tl = $gsap.timeline({ repeat: 2, repeatDelay: 1 })
 
-  tl.to(itemOneRef.value, {
-    duration: 6,
-    x: '+=50',
-    y: '+=30',
-    ease: 'power4.inOut',
-    repeat: -1,
-    yoyo: true,
-  })
-
-  tl.to(itemTwoRef.value, {
-    duration: 9,
-    x: '-=90',
-    y: '+=60',
-    ease: 'power4.inOut',
-    repeat: -1,
-    yoyo: true,
-  })
-
-  tl.to(itemThreeRef.value, {
-    duration: 4,
-    x: '+=90',
-    y: '+=60',
-    ease: 'power4.inOut',
-    repeat: -1,
-    yoyo: true,
-  })
-
-  tl.to(itemFourRef.value, {
-    duration: 5,
-    x: '+=160',
-    y: '+=100',
-    ease: 'power4.inOut',
-    repeat: -1,
-    yoyo: true,
-  })
-
-  tl.to(itemFiveRef.value, {
-    duration: 3,
-    x: '+=70',
-    y: '+=60',
-    ease: 'power4.inOut',
-    repeat: -1,
-    yoyo: true,
-  })
+    tl.to(starOneRef.value, { scale: 0.1, repeat: -1, duration: 3, ease: 'power5.inOut', yoyo: true })
+      .to(starTwoRef.value, { scale: 0.1, repeat: -1, duration: 3, ease: 'power5.inOut', yoyo: true })
+  
+    tl.to(itemOneRef.value, {
+      duration: 6,
+      x: '+=50',
+      y: '+=30',
+      ease: 'power4.inOut',
+      repeat: -1,
+      yoyo: true,
+    })
+  
+    tl.to(itemTwoRef.value, {
+      duration: 9,
+      x: '-=90',
+      y: '+=60',
+      ease: 'power4.inOut',
+      repeat: -1,
+      yoyo: true,
+    })
+  
+    tl.to(itemThreeRef.value, {
+      duration: 4,
+      x: '+=90',
+      y: '+=60',
+      ease: 'power4.inOut',
+      repeat: -1,
+      yoyo: true,
+    })
+  
+    tl.to(itemFourRef.value, {
+      duration: 5,
+      x: '+=160',
+      y: '+=100',
+      ease: 'power4.inOut',
+      repeat: -1,
+      yoyo: true,
+    })
+  
+    tl.to(itemFiveRef.value, {
+      duration: 3,
+      x: '+=70',
+      y: '+=60',
+      ease: 'power4.inOut',
+      repeat: -1,
+      yoyo: true,
+    }) 
+  }
 })
 </script>
 

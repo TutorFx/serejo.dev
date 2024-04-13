@@ -20,7 +20,9 @@ function ticker(time: number, timeDelta: number) {
   applyRotation.value(rotation.value + (y.value * 0.5))
 }
 
-$gsap.ticker.add(ticker)
+if (import.meta.client)
+  $gsap.ticker.add(ticker);
+
 
 onMounted(() => {
   isMounted.value = true
