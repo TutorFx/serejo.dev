@@ -1,4 +1,5 @@
 <script lang="ts" setup>
+import { TransitionPresets } from '@vueuse/core';
 import HistoryService from '~/utils/cms/history/HistoryService'
 import HistoryController from '~/utils/cms/history/HistoryController'
 
@@ -6,6 +7,22 @@ const history = getHistory()
 const service = computed(() => history.data.value && getHistoryService(history.data.value))
 
 const current = ref()
+const lineRef = ref()
+const lineCompletion = ref(0)
+
+const lineCompletionOutput = useTransition(lineCompletion, {
+  duration: 5000,
+  transition: TransitionPresets.easeOutExpo,
+})
+
+useIntersectionObserver(
+  lineRef,
+  ([{ isIntersecting }]) => {
+    isIntersecting ? 
+      lineCompletion.value = 100 : 
+      lineCompletion.value = 0
+  },
+)
 </script>
 
 <template>
@@ -67,6 +84,8 @@ const current = ref()
         <div class="relative grid items-center justify-center max-w-screen -z-[2] pointer-events-none">
           <div class="relative max-h-0 max-w-0 -rotate-[12deg]">
             <Icon
+              ref="lineRef"
+              :value="lineCompletionOutput"
               name="HeroLine"
               class="absolute -translate-y-[50%] -translate-x-[50%] scale-[99%] rotate-180 w-screen h-screen"
               size="100%"
