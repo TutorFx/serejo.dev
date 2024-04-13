@@ -1,8 +1,8 @@
 <script setup lang="ts">
 const props = withDefaults(defineProps<{
-  value?: number;
+  value?: number
 }>(), {
-  value: 100
+  value: 100,
 })
 
 const clamp = computed(() => Math.max(0, Math.min((100 - props.value), 100)))

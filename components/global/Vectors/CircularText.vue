@@ -1,10 +1,10 @@
 <script setup lang="ts">
 withDefaults(
   defineProps<{
-    value?: string,
-    a?: number,
-    b?: number,
-    c?: number,
+    value?: string
+    a?: number
+    b?: number
+    c?: number
   }>(),
   { value: 'FRONTEND DEV * MOTION DESIGNER *', a: 180, b: 120, c: 50 },
 )

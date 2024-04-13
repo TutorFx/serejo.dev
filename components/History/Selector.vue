@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { TransitionPresets } from '@vueuse/core';
+import { TransitionPresets } from '@vueuse/core'
 import HistoryService from '~/utils/cms/history/HistoryService'
 import HistoryController from '~/utils/cms/history/HistoryController'
 
@@ -18,9 +18,9 @@ const lineCompletionOutput = useTransition(lineCompletion, {
 useIntersectionObserver(
   lineRef,
   ([{ isIntersecting }]) => {
-    isIntersecting ? 
-      lineCompletion.value = 100 : 
-      lineCompletion.value = 0
+    isIntersecting
+      ? lineCompletion.value = 100
+      : lineCompletion.value = 0
   },
 )
 </script>
