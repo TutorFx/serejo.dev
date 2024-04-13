@@ -3,7 +3,6 @@ import { TransitionPresets, useTransition } from '@vueuse/core'
 
 const { $gsap } = useNuxtApp()
 
-
 const me = ref(false)
 const vue = ref(false)
 const config = useRuntimeConfig()
@@ -42,7 +41,7 @@ onMounted(() => {
 
     tl.to(starOneRef.value, { scale: 0.1, repeat: -1, duration: 3, ease: 'power5.inOut', yoyo: true })
       .to(starTwoRef.value, { scale: 0.1, repeat: -1, duration: 3, ease: 'power5.inOut', yoyo: true })
-  
+
     tl.to(itemOneRef.value, {
       duration: 6,
       x: '+=50',
@@ -51,7 +50,7 @@ onMounted(() => {
       repeat: -1,
       yoyo: true,
     })
-  
+
     tl.to(itemTwoRef.value, {
       duration: 9,
       x: '-=90',
@@ -60,7 +59,7 @@ onMounted(() => {
       repeat: -1,
       yoyo: true,
     })
-  
+
     tl.to(itemThreeRef.value, {
       duration: 4,
       x: '+=90',
@@ -69,7 +68,7 @@ onMounted(() => {
       repeat: -1,
       yoyo: true,
     })
-  
+
     tl.to(itemFourRef.value, {
       duration: 5,
       x: '+=160',
@@ -78,7 +77,7 @@ onMounted(() => {
       repeat: -1,
       yoyo: true,
     })
-  
+
     tl.to(itemFiveRef.value, {
       duration: 3,
       x: '+=70',
@@ -86,7 +85,7 @@ onMounted(() => {
       ease: 'power4.inOut',
       repeat: -1,
       yoyo: true,
-    }) 
+    })
   }
 })
 </script>

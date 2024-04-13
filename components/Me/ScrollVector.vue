@@ -21,8 +21,7 @@ function ticker(time: number, timeDelta: number) {
 }
 
 if (import.meta.client)
-  $gsap.ticker.add(ticker);
-
+  $gsap.ticker.add(ticker)
 
 onMounted(() => {
   isMounted.value = true
