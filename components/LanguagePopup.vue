@@ -20,7 +20,7 @@ onClickOutside(target, toggleLangSelector)
       <Transition enter-from-class="opacity-0" enter-active-class="transition duration-500">
         <div v-if="!!menu" class="fixed inset-0 z-50 bg-base-300/50">
           <div enter-from-class="translate-x-[150%] entering" enter-active-class="transition duration-500">
-            <div ref="target" class="absolute bg-base-100 top-24 right-0 rounded-l-xl">
+            <div ref="target" class="absolute bg-base-100 right-0 top-24 rounded-l-xl">
               <div class="relative">
                 <div class="absolute">
                   <Icon
