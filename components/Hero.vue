@@ -1,41 +1,127 @@
 <script lang="ts" setup>
+import { TransitionPresets, useTransition } from '@vueuse/core'
+
+const { $gsap } = useNuxtApp()
+
 const me = ref(false)
 const vue = ref(false)
 const config = useRuntimeConfig()
+
+const itemOneRef = ref<null | HTMLElement>(null)
+const itemTwoRef = ref<null | HTMLElement>(null)
+const itemThreeRef = ref<null | HTMLElement>(null)
+const itemFourRef = ref<null | HTMLElement>(null)
+const itemFiveRef = ref<null | HTMLElement>(null)
+
+const starOneRef = ref<null | HTMLElement>(null)
+const starTwoRef = ref<null | HTMLElement>(null)
+const lineRef = ref()
+
+const lineCompletion = ref(0)
+
+const lineCompletionOutput = useTransition(lineCompletion, {
+  duration: 5000,
+  transition: TransitionPresets.easeOutExpo,
+})
+
+useIntersectionObserver(
+  lineRef,
+  ([{ isIntersecting }]) => {
+    isIntersecting
+      ? lineCompletion.value = 100
+      : lineCompletion.value = 0
+  },
+)
+
+onMounted(() => {
+  lineCompletion.value = 100
+
+  if (import.meta.client) {
+    const tl = $gsap.timeline({ repeat: 2, repeatDelay: 1 })
+
+    tl.to(starOneRef.value, { scale: 0.1, repeat: -1, duration: 3, ease: 'power5.inOut', yoyo: true })
+      .to(starTwoRef.value, { scale: 0.1, repeat: -1, duration: 3, ease: 'power5.inOut', yoyo: true })
+
+    tl.to(itemOneRef.value, {
+      duration: 6,
+      x: '+=50',
+      y: '+=30',
+      ease: 'power4.inOut',
+      repeat: -1,
+      yoyo: true,
+    })
+
+    tl.to(itemTwoRef.value, {
+      duration: 9,
+      x: '-=90',
+      y: '+=60',
+      ease: 'power4.inOut',
+      repeat: -1,
+      yoyo: true,
+    })
+
+    tl.to(itemThreeRef.value, {
+      duration: 4,
+      x: '+=90',
+      y: '+=60',
+      ease: 'power4.inOut',
+      repeat: -1,
+      yoyo: true,
+    })
+
+    tl.to(itemFourRef.value, {
+      duration: 5,
+      x: '+=160',
+      y: '+=100',
+      ease: 'power4.inOut',
+      repeat: -1,
+      yoyo: true,
+    })
+
+    tl.to(itemFiveRef.value, {
+      duration: 3,
+      x: '+=70',
+      y: '+=60',
+      ease: 'power4.inOut',
+      repeat: -1,
+      yoyo: true,
+    })
+  }
+})
 </script>
 
 <template>
-  <div class="overflow-hidden rounded-t-3xl [view-transition-name:hero]">
+  <div class="overflow-hidden rounded-t-3xl">
     <div class="relative pt-6">
-      <div class="-z-[1] absolute left-[50%] bottom-[50%]">
+      <div ref="itemOneRef" class="-z-[1] absolute left-[50%] bottom-[50%]">
         <div class="max-w-0 max-h-0">
           <div
             class="rounded-full w-[60vw] aspect-video bg-brand-gradient -translate-x-[50%] -translate-y-[50%] blur-3xl opacity-10"
           />
         </div>
       </div>
-      <div class="-z-[1] absolute left-[90%] bottom-[90%]">
+      <div ref="itemTwoRef" class="-z-[1] absolute left-[90%] bottom-[90%]">
         <div class="max-w-0 max-h-0">
           <div
             class="aspect-video bg-brand-gradient -translate-x-[50%] -translate-y-[50%] rounded-full blur-3xl w-[30vw] opacity-80 md:opacity-30"
           />
         </div>
       </div>
-      <div class="-z-[1] absolute left-[0%] bottom-[10%]">
+      <div ref="itemThreeRef" class="-z-[1] absolute left-[0%] bottom-[10%]">
         <div class="max-w-0 max-h-0">
           <div
-            class="w-[30vw] aspect-video -translate-x-[50%] -translate-y-[50%] rounded-full blur-3xl opacity-80 md:opacity-30 bg-vue-gradient"
+            class="w-[30vw] aspect-video -translate-x-[50%] -translate-y-[50%] rounded-full blur-3xl opacity-80 md:opacity-30 bg-rose-500"
           />
         </div>
       </div>
-      <div class="-z-[1] absolute right-[0%] bottom-[25%]">
+      <div ref="itemFourRef" class="-z-[1] absolute right-[0%] bottom-[25%]">
         <div class="max-w-0 max-h-0">
           <div
             class="w-[60vw] aspect-video -translate-x-[50%] -translate-y-[50%] rounded-full blur-3xl bg-rose-400 opacity-20 md:opacity-10"
           />
         </div>
       </div>
-      <div class="-z-[1] absolute left-[0%] top-[10%]">
+      <div ref="itemFiveRef" class="-z-[1] absolute left-[0%] top-[10%]">
         <div class="max-w-0 max-h-0">
           <div
             class="w-[60vw] aspect-video -translate-x-[50%] -translate-y-[50%] rounded-full blur-3xl opacity-20 bg-primary"
@@ -46,7 +132,7 @@ const config = useRuntimeConfig()
         <div class="grid items-center justify-center py-24 md:py-32 lg:py-48">
           <div class="relative">
             <div class="absolute -right-[0%] -top-[10%]">
-              <div class="max-w-0 max-h-0">
+              <div ref="starOneRef" class="max-w-0 max-h-0">
                 <Icon
                   name="Sparkle" size="48"
                   class="-translate-x-[50%] -translate-y-[50%] size-6 md:size-8 lg:size-10"
@@ -54,8 +140,8 @@ const config = useRuntimeConfig()
               </div>
             </div>
             <div class="absolute left-[50%] -bottom-[20%]">
-              <div class="max-w-0 max-h-0">
-                <Icon
+              <div ref="starTwoRef" class="max-w-0 max-h-0">
+                <SparkleOutline
                   name="SparkleOutline" size="48"
                   class="size-6 md:size-8 lg:size-10 -translate-x-[50%] -translate-y-[50%]"
                 />
@@ -82,7 +168,7 @@ const config = useRuntimeConfig()
                     </Transition>
                   </div>
                   <div
-                    class="-z-[1] w-16 md:w-24 lg:w-32 xl:w-48 bg-vue-gradient h-6 rounded-md md:h-10 lg:h-12 xl:h-20 -mt-[100%] md:rounded-lg lg:rounded-xl"
+                    class="-z-[1] w-16 md:w-24 lg:w-32 xl:w-48 h-6 bg-vue-gradient rounded-md md:h-10 lg:h-12 xl:h-20 -mt-[100%] md:rounded-lg lg:rounded-xl"
                   />
                 </div>
                 <div class="leading-none">
@@ -123,8 +209,11 @@ const config = useRuntimeConfig()
     </div>
     <div>
       <Icon
-        name="HeroLine" size="100%"
-        class="relative z-[-2] -mt-20 -mb-[20%] md:-mt-[20%] lg:-mt-[20%] lg:-mb-[30%] w-[90%]"
+        ref="lineRef"
+        name="HeroLine"
+        :value="lineCompletionOutput"
+        size="100%"
+        class="relative z-[-2] -mt-20 -mb-[20%] md:-mt-[20%] lg:-mt-[20%] lg:-mb-[30%] w-[90%] h-full"
       />
       <div class="border-b border-neutral opacity-50" />
       <div class="relative">

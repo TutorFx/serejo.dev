@@ -1,6 +1,20 @@
+<script setup lang="ts">
+const props = withDefaults(defineProps<{
+  value?: number
+}>(), {
+  value: 100,
+})
+
+const clamp = computed(() => Math.max(0, Math.min((100 - props.value), 100)))
+
+const completion = computed(() => clamp.value * 32)
+</script>
+
 <template>
-  <svg width="1365" height="672" viewBox="0 0 1365 672" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <svg stroke-dasharray="3200" :stroke-dashoffset="completion" width="1365" height="672" viewBox="0 0 1365 672" fill="none" xmlns="http://www.w3.org/2000/svg">
     <path
+      stroke-linecap="round"
+      stroke-linejoin="round"
       d="M-52.3139 231.34C522.311 15.1499 738.014 -32.4809 822.066 90.3251C924.727 279.5 476.727 587.088 365.566 493.325C273.346 415.539 315.227 258.4 734.065 224.325C945.682 207.109 1059.07 236.949 1170 303.5C1268.16 362.39 1371 489.5 1333 667"
       stroke="url(#paint)" stroke-width="46"
     />

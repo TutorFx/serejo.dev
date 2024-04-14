@@ -12,12 +12,3 @@ import { FeatureFlags } from '~/utils/flags/Flags'
     <Footer />
   </main>
 </template>
-
-<style>
-::view-transition-old(hero),
-::view-transition-new(hero) {
-  width: auto;
-  animation-duration: 0.5s;
-  transition: all;
-}
-</style>

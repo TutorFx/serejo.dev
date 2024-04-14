@@ -63,8 +63,13 @@
         </div>
         <div>
           <div class="sticky top-[20%]">
-            <div class="overflow-hidden mx-auto max-w-full rounded-t-full aspect-[882/1103] lg:w-[50dvh]">
-              <NuxtImg width="472" class="rounded-b-3xl w-full" src="/brand/pictures/about.png" />
+            <div class="grid justify-center">
+              <div class="overflow-hidden max-w-full relative rounded-t-full aspect-[882/1103] lg:w-[50dvh]">
+                <div class="grid justify-center absolute right-0 bottom-0">
+                  <MeScrollVector class="z-2" />
+                </div>
+                <NuxtImg width="472" class="rounded-b-3xl w-full" src="/brand/pictures/about.png" />
+              </div>
             </div>
           </div>
         </div>

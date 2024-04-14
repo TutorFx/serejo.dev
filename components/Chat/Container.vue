@@ -45,7 +45,7 @@ function onEnter(el: any, done: any) {
     <div class="p-4 grid gap-3 items-center bg-blue-600 text-white grid-cols-[max-content_1fr]">
       <div class="relative">
         <NuxtImg width="64" src="/felina/chat.jpg" class="rounded-full mx-auto" />
-        <div class="absolute rounded-full top-0 right-0 aspect-square w-5 bg-emerald-300 border-2 border-blue-600" />
+        <div class="absolute rounded-full top-0 aspect-square right-0 w-5 bg-emerald-300 border-2 border-blue-600" />
       </div>
       <div>
         <div class="text-xl">
