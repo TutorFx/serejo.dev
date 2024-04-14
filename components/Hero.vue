@@ -91,7 +91,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="overflow-hidden rounded-t-3xl [view-transition-name:hero]">
+  <div class="overflow-hidden rounded-t-3xl">
     <div class="relative pt-6">
       <div ref="itemOneRef" class="-z-[1] absolute left-[50%] bottom-[50%]">
         <div class="max-w-0 max-h-0">
@@ -110,7 +110,7 @@ onMounted(() => {
       <div ref="itemThreeRef" class="-z-[1] absolute left-[0%] bottom-[10%]">
         <div class="max-w-0 max-h-0">
           <div
-            class="w-[30vw] aspect-video -translate-x-[50%] -translate-y-[50%] rounded-full blur-3xl opacity-80 md:opacity-30 bg-vue-gradient"
+            class="w-[30vw] aspect-video -translate-x-[50%] -translate-y-[50%] rounded-full blur-3xl opacity-80 md:opacity-30 bg-rose-500"
           />
         </div>
       </div>
