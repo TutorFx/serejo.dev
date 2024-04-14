@@ -8,7 +8,6 @@ const itemFourRef = ref<null | HTMLElement>(null)
 const itemFiveRef = ref<null | HTMLElement>(null)
 
 onMounted(() => {
-
   if (import.meta.client) {
     const tl = $gsap.timeline({ repeat: 2, repeatDelay: 1 })
 
@@ -62,7 +61,7 @@ onMounted(() => {
 
 <template>
   <div class="overflow-hidden relative rounded-t-3xl p-12">
-    <div class="absolute inset-0 backdrop-blur-3xl" />
+    <div class="inset-0 absolute backdrop-blur-3xl" />
     <div ref="itemOneRef" class="absolute -z-[1] left-[50%] bottom-[50%]">
       <div class="max-w-0 max-h-0">
         <div

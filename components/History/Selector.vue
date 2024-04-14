@@ -88,7 +88,6 @@ onMounted(() => {
 
 <template>
   <div class="grid overflow-hidden relative rounded-3xl pb-12 md:pb-24">
-
     <div ref="itemOneRef" class="-z-[1] absolute left-[0%] top-[0%]">
       <div class="max-w-0 max-h-0">
         <div
@@ -143,7 +142,7 @@ onMounted(() => {
             </div>
           </div>
         </div>
-        <div class="relative grid items-center justify-center max-w-screen -z-[2] pointer-events-none">
+        <div class="relative grid items-center justify-center pointer-events-none max-w-screen -z-[2]">
           <div class="relative max-h-0 max-w-0 -rotate-[12deg]">
             <Icon
               ref="lineRef"
