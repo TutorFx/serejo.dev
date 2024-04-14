@@ -3,12 +3,20 @@ import { TransitionPresets } from '@vueuse/core'
 import HistoryService from '~/utils/cms/history/HistoryService'
 import HistoryController from '~/utils/cms/history/HistoryController'
 
+const { $gsap } = useNuxtApp()
+
 const history = getHistory()
 const service = computed(() => history.data.value && getHistoryService(history.data.value))
 
 const current = ref()
 const lineRef = ref()
 const lineCompletion = ref(0)
+
+const itemOneRef = ref<null | HTMLElement>(null)
+const itemTwoRef = ref<null | HTMLElement>(null)
+const itemThreeRef = ref<null | HTMLElement>(null)
+const itemFourRef = ref<null | HTMLElement>(null)
+const itemFiveRef = ref<null | HTMLElement>(null)
 
 const lineCompletionOutput = useTransition(lineCompletion, {
   duration: 5000,
@@ -23,32 +31,85 @@ useIntersectionObserver(
       : lineCompletion.value = 0
   },
 )
+
+onMounted(() => {
+  lineCompletion.value = 100
+
+  if (import.meta.client) {
+    const tl = $gsap.timeline({ repeat: 2, repeatDelay: 1 })
+
+    tl.to(itemOneRef.value, {
+      duration: 6,
+      x: '+=150',
+      y: '+=60',
+      ease: 'power4.inOut',
+      repeat: -1,
+      yoyo: true,
+    })
+
+    tl.to(itemTwoRef.value, {
+      duration: 9,
+      x: '-=60',
+      y: '+=140',
+      ease: 'power4.inOut',
+      repeat: -1,
+      yoyo: true,
+    })
+
+    tl.to(itemThreeRef.value, {
+      duration: 4,
+      x: '+=90',
+      y: '+=60',
+      ease: 'power4.inOut',
+      repeat: -1,
+      yoyo: true,
+    })
+
+    tl.to(itemFourRef.value, {
+      duration: 5,
+      x: '+=160',
+      y: '+=200',
+      ease: 'power4.inOut',
+      repeat: -1,
+      yoyo: true,
+    })
+
+    tl.to(itemFiveRef.value, {
+      duration: 3,
+      x: '+=70',
+      y: '+=360',
+      ease: 'power4.inOut',
+      repeat: -1,
+      yoyo: true,
+    })
+  }
+})
 </script>
 
 <template>
   <div class="grid overflow-hidden relative rounded-3xl pb-12 md:pb-24">
-    <div class="-z-[1] absolute left-[0%] top-[0%]">
+    <div ref="itemOneRef" class="-z-[1] absolute left-[0%] top-[0%]">
       <div class="max-w-0 max-h-0">
         <div
           class="w-[30vw] aspect-video bg-brand-gradient -translate-x-[50%] -translate-y-[50%] rounded-full blur-3xl opacity-80 md:opacity-30"
         />
       </div>
     </div>
-    <div class="-z-[1] absolute left-[90%] top-[0%]">
+    <div ref="itemTwoRef" class="-z-[1] absolute left-[90%] top-[0%]">
       <div class="max-w-0 max-h-0">
         <div
           class="w-[30vw] aspect-video bg-primary -translate-x-[50%] -translate-y-[50%] rounded-full blur-3xl opacity-80 md:opacity-30"
         />
       </div>
     </div>
-    <div class="-z-[1] absolute left-[90%] bottom-[0%]">
+    <div ref="itemThreeRef" class="-z-[1] absolute left-[90%] bottom-[0%]">
       <div class="max-w-0 max-h-0">
         <div
           class="w-[30vw] aspect-video bg-primary -translate-x-[50%] -translate-y-[50%] rounded-full blur-3xl opacity-80 md:opacity-30"
         />
       </div>
     </div>
-    <div class="-z-[1] absolute left-[0%] bottom-[0%]">
+    <div ref="itemFourRef" class="-z-[1] absolute left-[0%] bottom-[0%]">
       <div class="max-w-0 max-h-0">
         <div
           class="w-[30vw] aspect-video bg-brand-gradient -translate-x-[50%] -translate-y-[50%] rounded-full blur-3xl opacity-80 md:opacity-30"
@@ -57,7 +118,7 @@ useIntersectionObserver(
     </div>
     <div>
       <div class="relative py-24 z-[2] md:py-48 xl:py-56">
-        <div class="absolute left-[10%] z-[1] bottom-[-10%]">
+        <div ref="itemFiveRef" class="absolute left-[10%] z-[1] bottom-[-10%]">
           <div class="max-w-0 max-h-0">
             <div
               class="w-[30vw] aspect-video bg-rose-400 -translate-x-[50%] -translate-y-[50%] rounded-full opacity-50 md:opacity-30 blur-[164px]"
