@@ -18,6 +18,12 @@ export const ProjectEntrySchema = z.object({
   scroller: z.string(),
 })
 
+export const EducationEntrySchema = z.object({
+  org: z.string(),
+  start: z.string({ invalid_type_error: 'HistoryEntry without start' }).datetime('Invalid START datetime'),
+  end: z.string({ invalid_type_error: 'HistoryEntry without end' }).datetime('Invalid END datetime').nullable(),
+})
+
 export const CmsEntrySchema = z.object({
   title: z.string().min(1),
 })
