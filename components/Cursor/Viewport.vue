@@ -64,7 +64,7 @@ if (import.meta.client) {
     <div ref="cursor" class="h-6 rounded-full flex items-center justify-center bg-primary/30 w-6 backdrop-blur-sm">
       <ClientOnly>
         <Transition :css="false" @before-enter="onBeforeEnter" @enter="onEnter">
-          <Icon v-if="store.pointer" :name="store.pointer.icon" />
+          <Icon :key="store.pointer.icon" v-if="store.pointer" :name="store.pointer.icon" />
         </Transition>
       </ClientOnly>
     </div>
