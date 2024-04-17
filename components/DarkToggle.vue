@@ -24,7 +24,7 @@ function toggleDark() {
 </script>
 
 <template>
-  <button class="grid gap-3 grid-flow-col items-center justify-start !outline-none" v-hoverable:lightmode @click="toggleDark">
+  <button v-hoverable:lightmode class="grid gap-3 grid-flow-col items-center justify-start !outline-none" @click="toggleDark">
     <Icon v-if="color.value === 'dark'" prefetch v-bind="$attrs" name="i-carbon-moon" />
     <Icon v-else prefetch v-bind="$attrs" name="i-carbon-sun" />
     <label :class="{ 'sr-only': justIcon }">

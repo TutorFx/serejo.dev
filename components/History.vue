@@ -10,11 +10,11 @@ const localePath = useLocalePath()
 
 <template>
   <div v-if="(service instanceof HistoryService)" class="grid py-12 lg:grid-cols-3 sm:grid-cols-2 gap-x-4 gap-y-6">
-    <NuxtLink 
-      v-for="item in service.getRepository()" 
-      :key="item._id" 
+    <NuxtLink
+      v-for="item in service.getRepository()"
+      :key="item._id"
       v-hoverable:history
-      :to="localePath({ name: `experience-item`, params: { item: item.org } })" 
+      :to="localePath({ name: `experience-item`, params: { item: item.org } })"
       class="grid aspect-video bg-base-100 rounded-md p-4 group"
     >
       <div class="grid grid-rows-[max-content_1fr_max-content] gap-2">

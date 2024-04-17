@@ -1,5 +1,5 @@
 import { acceptHMRUpdate, defineStore } from 'pinia'
-import type { ICursor } from '~/config/cursor';
+import type { ICursor } from '~/config/cursor'
 import { Cursor } from '~/config/cursor'
 
 export const useCursorStore = defineStore('cursor', () => {
@@ -9,16 +9,15 @@ export const useCursorStore = defineStore('cursor', () => {
     const value = a.split(':')
 
     if (!value)
-      return;
+      return
 
     const kind = value[0]
     const status = Boolean(Number.parseInt(value[1]))
 
-    if(!status) 
-      return pointer.value = null;
+    if (!status)
+      return pointer.value = null
 
-    pointer.value = Cursor.find((item) => item.name === kind) ?? null
-
+    pointer.value = Cursor.find(item => item.name === kind) ?? null
   })
 
   useEventListener(document, 'mousedown', () => {
@@ -26,7 +25,7 @@ export const useCursorStore = defineStore('cursor', () => {
   })
 
   return {
-    pointer
+    pointer,
   }
 })
 

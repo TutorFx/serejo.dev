@@ -14,7 +14,7 @@ const model = defineModel<boolean>()
     </div>
     <div class="items-center sm:grid overflow-x-auto overflow-y-hidden hidden">
       <div class="flex justify-end items-center gap-6 flex-nowrap">
-        <LanguagePopup size="28" v-hoverable:lang />
+        <LanguagePopup v-hoverable:lang size="28" />
         <ClientOnly>
           <DarkToggle just-icon size="28" />
           <template #fallback>
@@ -22,7 +22,7 @@ const model = defineModel<boolean>()
           </template>
         </ClientOnly>
         <NuxtLink
-          v-for="(item, i) in service.get()" v-bind="item.getBinding()" v-hoverable:internal :key="i"
+          v-for="(item, i) in service.get()" v-bind="item.getBinding()" :key="i" v-hoverable:internal
           class="leading-none text-nowrap navlink"
         >
           {{ $t(item.content as string) }}

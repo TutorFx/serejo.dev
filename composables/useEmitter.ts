@@ -1,5 +1,5 @@
 export default () => {
-    const nuxtApp = useNuxtApp();
+  const nuxtApp = useNuxtApp()
 
-    return nuxtApp.$emitter;
-};  
+  return nuxtApp.$emitter
+}
