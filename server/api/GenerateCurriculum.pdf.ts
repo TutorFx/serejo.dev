@@ -22,17 +22,13 @@ export default defineEventHandler(async (event) => {
 
   doc.registerFont(fontname, await fileData.arrayBuffer())
 
-  const { history } = await queryProcessedContent(event, lang)
+  const { history, education } = await queryProcessedContent(event, lang)
 
   doc.pipe(pdfStream)
 
   doc.font(fontname).fontSize(16).text(me, {
     align: 'center',
     paragraphGap: 32,
-  })
-
-  doc.font(fontname).fontSize(12).text(t('me.summary'), {
-    paragraphGap: 20,
   })
 
   doc.font(fontname).fontSize(12).text(t('me.live_in'), {
@@ -55,6 +51,10 @@ export default defineEventHandler(async (event) => {
     paragraphGap: 20,
   })
 
+  doc.font(fontname).fontSize(12).text(t('me.summary'), {
+    paragraphGap: 20,
+  })
+
   doc.font(fontname).fontSize(16).text(t('curriculum.work_experience'), {
     paragraphGap: 20,
   })
@@ -67,6 +67,22 @@ export default defineEventHandler(async (event) => {
       paragraphGap: 5,
     })
     doc.font(fontname).fontSize(12).text(element.getSafeTruncatedDescription(30000).replace(/(\r\n|\n|\r)/gm, ''), {
+      paragraphGap: 30,
+    })
+  })
+
+  doc.font(fontname).fontSize(16).text(t('curriculum.education'), {
+    paragraphGap: 20,
+  })
+
+  education.getSortedRepository().forEach((element) => {
+    doc.font(fontname).fontSize(18).text(element.org, {
+      paragraphGap: 5,
+    })
+    doc.font(fontname).fontSize(12).text(`${element.title} (${element.getDateToLocaleString(lang).join(` ${t('time.until_the')} `)})`, {
+      paragraphGap: 5,
+    })
+    doc.font(fontname).fontSize(12).text(element.getSafeTruncatedDescription(30000).replace(/(\r\n|\n|\r)/gm, ' '), {
       paragraphGap: 30,
     })
   })

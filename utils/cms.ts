@@ -2,6 +2,9 @@ import BlogController from './cms/blog/BlogController'
 import BlogRepository from './cms/blog/BlogRepository'
 import BlogService from './cms/blog/BlogService'
 
+import EducationController from './cms/education/EducationController'
+import EducationRepository from './cms/education/EducationRepository'
+
 import HistoryController from './cms/history/HistoryController'
 import HistoryRepository from './cms/history/HistoryRepository'
 import HistoryService from './cms/history/HistoryService'
@@ -10,7 +13,7 @@ import ProjectController from './cms/project/ProjectController'
 import ProjectRepository from './cms/project/ProjectRepository'
 import ProjectService from './cms/project/ProjectService'
 
-import type { BlogEntry, HistoryEntry, ProjectEntry } from './cms/types'
+import type { BlogEntry, EducationEntry, HistoryEntry, ProjectEntry } from './cms/types'
 
 export function getHistoryItem(org: string) {
   return useAsyncData(
@@ -107,6 +110,15 @@ export function getBlog() {
     'BlogFetcher',
     () => queryContent<BlogEntry>(useLocale(), 'blog').find().then(
       data => processArray(data, BlogController, BlogRepository),
+    ),
+  )
+}
+
+export function getEducation() {
+  return useAsyncData(
+    'EducationFetcher',
+    () => queryContent<EducationEntry>(useLocale(), 'education').find().then(
+      data => processArray(data, EducationController, EducationRepository),
     ),
   )
 }
