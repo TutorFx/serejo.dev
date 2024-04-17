@@ -16,7 +16,7 @@
         </div>
       </div>
       <Container>
-        <div class="text-center py-12 relative grid gap-6 md:py-24 z-[30] !max-w-6xl">
+        <div class="text-center py-12 relative grid gap-6 md:py-24 z-[1] !max-w-6xl">
           <div>
             <MDC class="text-xl md:text-3xl" :value="$t('me.abroad')" />
           </div>

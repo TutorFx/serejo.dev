@@ -9,7 +9,7 @@ onClickOutside(target, () => chat.value ? chat.value = false : null, {
 </script>
 
 <template>
-  <div class="grid justify-end items-end fixed inset-0 p-3 pointer-events-none z-[3]">
+  <div class="grid justify-end items-end fixed inset-0 p-3 pointer-events-none z-[4]">
     <div class="grid gap-3">
       <div class="grid">
         <Transition
