@@ -223,7 +223,7 @@ onMounted(() => {
             {{ $t('schedule_support_text') }}
           </div>
           <div>
-            <Btn :href="config.public.schedule" target="_blank">
+            <Btn v-hoverable:schedule :href="config.public.schedule" target="_blank">
               {{ $t('schedule_cta') }}
             </Btn>
           </div>

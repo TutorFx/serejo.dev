@@ -35,7 +35,7 @@ defineOgImage({
     <div class="max-h-0">
       <div class="-translate-y-[50%]">
         <Container>
-          <Btn :to="localePath({ name: `history` })">
+          <Btn v-hoverable:internal :to="localePath({ name: `history` })">
             <Icon name="mdi:chevron-left" /> {{ $t('navigation.back') }}
           </Btn>
         </Container>

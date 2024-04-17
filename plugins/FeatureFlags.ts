@@ -4,9 +4,15 @@ import FlagsController from '~/utils/flags/FlagsController'
 import FlagsRepository from '~/utils/flags/FlagsRepository'
 
 export default defineNuxtPlugin(() => {
+  const device = useDevice()
+
+  
+
   const featureStore = defineStore('FeatureFlags', () => {
+    
     const features = new FlagsRepository([
       new FlagsController(FeatureFlags.CHAT, true, false),
+      new FlagsController(FeatureFlags.CURSOR, device.isDesktop, false),
     ])
 
     return {

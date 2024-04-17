@@ -21,7 +21,7 @@ onClickOutside(target, () => chat.value ? chat.value = false : null, {
         </Transition>
       </div>
       <div ref="button" class="grid justify-end">
-        <div class="pointer-events-auto rounded-full overflow-hidden bg-base-300 aspect-square cursor-pointer shadow-xl" @click="chat = !chat">
+        <div v-hoverable:chat class="pointer-events-auto rounded-full overflow-hidden bg-base-300 aspect-square cursor-pointer shadow-xl" @click="chat = !chat">
           <NuxtImg width="64" src="/felina/robot.jpg" />
         </div>
       </div>

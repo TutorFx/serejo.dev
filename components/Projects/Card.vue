@@ -17,10 +17,10 @@ defineProps<{
           <MDC :value="item" />
         </div>
         <div class="grid items-center grid-flow-col justify-center gap-3">
-          <NuxtLink v-if="item.github" :href="item.github" target="_blank">
+          <NuxtLink v-if="item.github" :href="item.github" target="_blank" v-hoverable:github>
             <Icon size="28" name="mdi:github" />
           </NuxtLink>
-          <NuxtLink v-if="item.url" :href="item.url" target="_blank">
+          <NuxtLink v-if="item.url" :href="item.url" target="_blank" v-hoverable:external>
             <Icon size="24" name="mage:external-link" />
           </NuxtLink>
         </div>
