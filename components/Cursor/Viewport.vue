@@ -39,6 +39,7 @@ if (import.meta.client) {
     }, 300)
 
     useEventListener('mousedown', () => {
+      store.resetPointer()
       xS(0.5)
       yS(0.5)
       start()
