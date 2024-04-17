@@ -5,7 +5,7 @@ import { Cursor } from '~/config/cursor'
 export const useCursorStore = defineStore('cursor', () => {
   const mitt = useEmitter()
   const pointer = ref<null | ICursor>(null)
-  
+
   const resetPointer = () => {
     pointer.value = null
   }
@@ -31,7 +31,7 @@ export const useCursorStore = defineStore('cursor', () => {
 
   return {
     pointer,
-    resetPointer
+    resetPointer,
   }
 })
 
