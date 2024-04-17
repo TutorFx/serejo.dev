@@ -15,7 +15,7 @@ const localePath = useLocalePath()
       :key="item._id"
       v-hoverable:history
       :to="localePath({ name: `experience-item`, params: { item: item.org } })"
-      class="grid aspect-video bg-base-100 p-4 rounded-md group"
+      class="grid aspect-video bg-base-100 rounded-md p-4 group"
     >
       <div class="grid grid-rows-[max-content_1fr_max-content] gap-2">
         <div class="grid grid-cols-[1fr_max-content] justify-between">
