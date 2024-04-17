@@ -31,12 +31,7 @@ export default class <T extends Message<User & Bot>> {
     } as Content))
   }
 
-  getGoogleFormatSingle(initialPrompt: string, finalPrompt: string) {
-    return ({
-      role: AgentType.User,
-      parts: [
-        { text: initialPrompt + this.messages.map(m => m.message).join('\n') + finalPrompt },
-      ],
-    } as Content)
+  getGoogleFormatSingle() {
+    return this.messages.map(m => m.message).join('\n')
   }
 }

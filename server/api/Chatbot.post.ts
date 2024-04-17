@@ -36,8 +36,8 @@ const safetySettings = [
 export default defineEventHandler(async (event) => {
   const config = useRuntimeConfig()
   const genAI = new GoogleGenerativeAI(config.gemini_api_key)
-  const model = genAI.getGenerativeModel({ model: 'gemini-1.0-pro' })
-  const { history } = await queryProcessedContent(event)
+  const model = genAI.getGenerativeModel({ model: 'gemini-1.5-pro-latest' })
+  const { history, education } = await queryProcessedContent(event)
 
   const result = await readValidatedBody(event, (body) => {
     return ChatSchema.safeParse(body)
@@ -52,16 +52,24 @@ export default defineEventHandler(async (event) => {
 
   const train = new MessageRepository([
     ...history.getSortedRepository().map(r => r.toMessage()),
+    ...education.getSortedRepository().map(r => r.toMessage()),
   ])
 
   const repository = new MessageRepository([
     ...messages.map(m => new Message(m.agent, m.message)),
   ])
 
-  const googleTrain = train.getGoogleFormatSingle(initial_prompt(), final_prompt())
+  const googleTrain = train.getGoogleFormatSingle()
 
-  const historyFetched = [] as Content[]
-  historyFetched.push(googleTrain)
+  const prompt: Content = {
+    role: AgentType.User,
+    parts: [
+      { text: initial_prompt() + googleTrain + final_prompt() },
+    ],
+  }
+
+  const historyFetched: Content[] = []
+  historyFetched.push(prompt)
 
   historyFetched.push({ parts: [{ text: 'Ok.' }], role: AgentType.Ai })
 
