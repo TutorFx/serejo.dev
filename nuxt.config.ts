@@ -16,6 +16,7 @@ export default defineNuxtConfig({
     '@nuxtjs/sitemap',
     '@vueuse/nuxt',
     '@pinia/nuxt',
+    '@nuxtjs/device',
     '@nuxtjs/i18n',
     '@nuxtjs/color-mode',
     '@nuxtjs/tailwindcss',

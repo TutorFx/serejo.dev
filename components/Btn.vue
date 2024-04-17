@@ -58,7 +58,7 @@ type Size = keyof typeof sizes
 
 const outside = computed(() =>
   twMerge(
-    'cursor-pointer',
+    'cursor-inherit',
     sizes[props.size].outside,
     styles[props.color][props.outlined ? 'outsideOutlined' : 'outside'],
   ),

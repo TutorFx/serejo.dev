@@ -16,7 +16,7 @@ const localePath = useLocalePath()
         :key="value._id" :to="localePath({ name: `post-item`, params: { item: value.filename } })"
         class="border border-accent rounded-xl py-2 px-4 bg-base-100"
       >
-        <BlogItem :value />
+        <BlogItem v-hoverable:blog :value />
       </NuxtLink>
     </div>
   </div>
