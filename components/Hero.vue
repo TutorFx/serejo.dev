@@ -153,7 +153,7 @@ onMounted(() => {
               <div class="grid items-end leading-none">
                 &#123; {{ $t('hero.fl') }}
               </div>
-              <div class="grid items-end grid-flow-col pl-6 md:pl-10 lg:pl-12 gap-6">
+              <div class="grid items-end grid-flow-col gap-6 pl-6 md:pl-10 lg:pl-12">
                 <div class="grid items-end relative justify-end -mt-6">
                   <div class="overflow-hidden aspect-[192/154]">
                     <Transition
