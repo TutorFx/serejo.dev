@@ -39,6 +39,7 @@ if (import.meta.client) {
     }, 300)
 
     useEventListener('mousedown', () => {
+      store.resetPointer()
       xS(0.5)
       yS(0.5)
       start()
@@ -62,9 +63,11 @@ if (import.meta.client) {
 <template>
   <div v-show="cursor" class="fixed inset-0 pointer-events-none width-screen height-screen z-[5000]">
     <div ref="cursor" class="h-6 rounded-full flex items-center justify-center bg-primary/30 w-6 backdrop-blur-sm">
-      <Transition :css="false" @before-enter="onBeforeEnter" @enter="onEnter">
-        <Icon v-if="store.pointer" :name="store.pointer.icon" />
-      </Transition>
+      <ClientOnly>
+        <Transition :css="false" @before-enter="onBeforeEnter" @enter="onEnter">
+          <Icon v-if="store.pointer" :key="store.pointer.icon" :name="store.pointer.icon" />
+        </Transition>
+      </ClientOnly>
     </div>
   </div>
 </template>
