@@ -8,7 +8,6 @@ const isDev = Boolean(process.env.NODE_ENV !== 'production')
 const isProd = Boolean(process.env.NODE_ENV === 'production')
 
 export default defineNuxtConfig({
-  debug: true,
   modules: [
     'nuxt-build-cache',
     'nuxt-site-config',
