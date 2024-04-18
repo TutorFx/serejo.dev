@@ -1,4 +1,6 @@
 <script lang="ts" setup>
+import { Icon } from '#components'
+
 const { $gsap } = useNuxtApp()
 
 const mouse = usePointer()
@@ -33,12 +35,12 @@ if (import.meta.client) {
     const xS = $gsap.quickTo(cursor.value, 'scaleX', { duration: 0.6, ease: 'power3' })
     const yS = $gsap.quickTo(cursor.value, 'scaleY', { duration: 0.6, ease: 'power3' })
 
-    const { start } = useTimeoutFn(() => {
+    const { start, stop } = useTimeoutFn(() => {
       xS(1)
       yS(1)
     }, 300)
 
-    useEventListener('mousedown', () => {
+    const cleanup = useEventListener('mousedown', () => {
       store.resetPointer()
       xS(0.5)
       yS(0.5)
@@ -56,6 +58,11 @@ if (import.meta.client) {
       xTo(x.value)
       yTo(y.value)
     }, { deep: true })
+
+    onBeforeUnmount(() => {
+      cleanup()
+      stop()
+    })
   })
 }
 </script>
