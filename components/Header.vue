@@ -4,12 +4,16 @@ const menu = useScrollLock(document?.body)
 const startMenu = ref()
 const visible = ref(false)
 
-useIntersectionObserver(
+const { stop } = useIntersectionObserver(
   startMenu,
   ([{ isIntersecting }]) => {
     visible.value = isIntersecting
   },
 )
+
+onBeforeRouteLeave(() => {
+  stop()
+})
 
 function toggleMenu() {
   menu.value = !menu.value

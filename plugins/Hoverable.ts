@@ -5,12 +5,13 @@ export default defineNuxtPlugin((nuxtApp) => {
     const store = useFeatureFlagsStore()
     if (store.features.check(FeatureFlags.CURSOR)) {
       const emitter = useEmitter()
-      const { isOutside } = useMouseInElement(el)
+      const { isOutside, stop } = useMouseInElement(el)
       watch(() => isOutside.value, (isInactive) => {
         const modifier = arg as unknown as string
         const signal = `${modifier}:${+!isInactive}`
         emitter.emit('pointer', signal)
       })
+      onBeforeRouteLeave(() => stop())
     }
   })
 })

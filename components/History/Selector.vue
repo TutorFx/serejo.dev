@@ -23,7 +23,7 @@ const lineCompletionOutput = useTransition(lineCompletion, {
   transition: TransitionPresets.easeOutExpo,
 })
 
-useIntersectionObserver(
+const { stop } = useIntersectionObserver(
   lineRef,
   ([{ isIntersecting }]) => {
     isIntersecting
@@ -31,6 +31,10 @@ useIntersectionObserver(
       : lineCompletion.value = 0
   },
 )
+
+onBeforeRouteLeave(() => {
+  stop()
+})
 
 onMounted(() => {
   lineCompletion.value = 100
