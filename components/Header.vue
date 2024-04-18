@@ -3,6 +3,7 @@ const service = useNavbar()
 const menu = useScrollLock(document?.body)
 const startMenu = ref()
 const visible = ref(false)
+const route = useRoute()
 
 const { stop } = useIntersectionObserver(
   startMenu,
@@ -11,7 +12,7 @@ const { stop } = useIntersectionObserver(
   },
 )
 
-onBeforeRouteLeave(() => {
+watch(() => route.name, () => {
   stop()
 })
 
@@ -26,14 +27,9 @@ function toggleMenu() {
       <HeaderNav v-model="menu" :service="service" />
     </div>
 
-    <Transition
-      enter-from-class="-translate-y-[150%]"
-      enter-active-class="transition duration-500"
-    >
-      <div
-        v-if="!visible"
-        class="fixed bg-base-100 border top-0 z-50 rounded-b-3xl inset-x-0 bg-clip-padding backdrop-filter backdrop-blur-lg bg-opacity-90 border-base-100"
-      >
+    <Transition enter-from-class="-translate-y-[150%]" enter-active-class="transition duration-500">
+      <div v-if="!visible"
+        class="fixed bg-base-100 border top-0 z-50 rounded-b-3xl inset-x-0 bg-clip-padding backdrop-filter backdrop-blur-lg bg-opacity-90 border-base-100">
         <Container>
           <HeaderNav v-model="menu" :service="service" />
         </Container>
