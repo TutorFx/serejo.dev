@@ -2,8 +2,8 @@ import { FeatureFlags } from '~/utils/flags/Flags'
 
 export default defineNuxtPlugin((nuxtApp) => {
   nuxtApp.vueApp.directive('hoverable', {
-    
-    mounted (el, { arg }) {
+
+    mounted(el, { arg }) {
       const { isOutside, stop } = useMouseInElement(el)
       const store = useFeatureFlagsStore()
       if (store.features.check(FeatureFlags.CURSOR)) {
@@ -18,7 +18,7 @@ export default defineNuxtPlugin((nuxtApp) => {
     },
     unmounted(el) {
       // Unregister the event listener in the 'unmounted' hook
-      el._stop();
+      el._stop()
     },
   })
 })
