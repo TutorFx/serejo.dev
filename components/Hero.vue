@@ -6,6 +6,7 @@ const { $gsap } = useNuxtApp()
 const me = ref(false)
 const vue = ref(false)
 const config = useRuntimeConfig()
+const analytics = useAnalytics()
 
 const itemOneRef = ref<null | HTMLElement>(null)
 const itemTwoRef = ref<null | HTMLElement>(null)
@@ -227,7 +228,7 @@ onMounted(() => {
             {{ $t('schedule_support_text') }}
           </div>
           <div>
-            <Btn v-hoverable:schedule :href="config.public.schedule" target="_blank">
+            <Btn v-hoverable:schedule :href="config.public.schedule" target="_blank" @click="analytics.trackSchedule()">
               {{ $t('schedule_cta') }}
             </Btn>
           </div>

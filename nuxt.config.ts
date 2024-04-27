@@ -28,6 +28,7 @@ export default defineNuxtConfig({
     // '@vite-pwa/nuxt',
     'nuxt-module-eslint-config',
     'nuxt-icon',
+    'nuxt-gtag'
   ],
 
   i18n: {
@@ -82,6 +83,10 @@ export default defineNuxtConfig({
   routeRules: {
     '/': { prerender: true },
     '/pt-BR/inicio': { prerender: true },
+  },
+
+  gtag: {
+    id: process.env.GTAG
   },
 
   experimental: {

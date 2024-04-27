@@ -1,3 +1,4 @@
+import { FetchError } from 'ofetch'
 import type { Content } from '@google/generative-ai'
 
 import MessageRepository from './MessageRepository'
@@ -7,9 +8,11 @@ import Bot from './entities/Agent/Bot'
 
 export default class {
   messageRepository
+  analytics
 
   constructor(messages: Message<User & Bot>[] = []) {
     this.messageRepository = new MessageRepository(messages)
+    this.analytics = useAnalytics()
   }
 
   getMessages() {
@@ -26,15 +29,22 @@ export default class {
 
     this.messageRepository.pushMessage(new Message(user, message))
 
-    const response = await $fetch('/api/Chatbot', {
-      method: 'POST',
-      body: this.serialize(),
-    })
+    try {
+      const response = await $fetch('/api/Chatbot', {
+        method: 'POST',
+        body: this.serialize(),
+      })
 
-    if (!response || typeof response.data !== 'string')
-      return
+      if (!response || typeof response.data !== 'string')
+        return
 
-    this.messageRepository.pushMessage(new Message(bot, response.data))
+      this.messageRepository.pushMessage(new Message(bot, response.data))
+      this.analytics.trackChatMessage(message)
+    }
+    catch (e) {
+      if (e instanceof FetchError)
+        console.warn('Erro')
+    }
   }
 
   serialize() {

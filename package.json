@@ -29,6 +29,7 @@
     "gsap": "^3.12.5",
     "jspdf": "^2.5.1",
     "lint-staged": "^15.2.2",
+    "nuxt-gtag": "^2.0.5",
     "pdfkit": "^0.15.0",
     "reflect-metadata": "^0.2.2",
     "tailwind-merge": "^2.2.2",
