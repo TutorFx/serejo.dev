@@ -1,25 +1,25 @@
 export default class {
   private route
-  private gtag;
+  private gtag
 
   constructor() {
     const { gtag } = useGtag()
 
-    this.gtag = gtag;
+    this.gtag = gtag
     this.route = useRoute()
   };
 
   viewPage() {
     this.gtag('event', 'screen_view', {
       screen_name: this.route.name,
-    });
+    })
   }
 
   trackLeadGeneration() {
     this.gtag('event', 'generate_lead', {
       event_category: 'engagement',
       page_location: this.route.path,
-    });
+    })
   }
 
   trackDownload() {
@@ -35,14 +35,14 @@ export default class {
       event_category: 'engagement',
       page_location: this.route.path,
       event_label: message,
-    });
+    })
   }
 
   trackError(error: string) {
     this.gtag('event', error, {
       event_category: 'error',
       page_location: this.route.path,
-    });
+    })
   }
 
   private trackEngagement(action: string, label?: string) {
@@ -50,6 +50,6 @@ export default class {
       event_category: 'engagement',
       page_location: this.route.path,
       event_label: label,
-    });
+    })
   }
 }

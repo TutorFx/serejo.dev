@@ -28,7 +28,7 @@ export default defineNuxtConfig({
     // '@vite-pwa/nuxt',
     'nuxt-module-eslint-config',
     'nuxt-icon',
-    'nuxt-gtag'
+    'nuxt-gtag',
   ],
 
   i18n: {
@@ -86,7 +86,7 @@ export default defineNuxtConfig({
   },
 
   gtag: {
-    id: process.env.GTAG
+    id: process.env.GTAG,
   },
 
   experimental: {
