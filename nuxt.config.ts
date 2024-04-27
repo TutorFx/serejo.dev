@@ -9,9 +9,9 @@ const isProd = Boolean(process.env.NODE_ENV === 'production')
 
 export default defineNuxtConfig({
   modules: [
+    'nuxt-booster',
     'nuxt-build-cache',
     'nuxt-site-config',
-    'nuxt-booster',
     '@nuxtjs/seo',
     '@nuxtjs/sitemap',
     '@vueuse/nuxt',
@@ -21,6 +21,7 @@ export default defineNuxtConfig({
     '@nuxtjs/color-mode',
     '@nuxtjs/tailwindcss',
     '@nuxtjs/google-fonts',
+    '@nuxtjs/fontaine',
     '@nuxt/image',
     '@nuxt/content',
     '@nuxthq/studio',
