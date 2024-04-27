@@ -11,7 +11,7 @@ export default defineNuxtConfig({
   modules: [
     'nuxt-build-cache',
     'nuxt-site-config',
-    'nuxt-speedkit',
+    'nuxt-booster',
     '@nuxtjs/seo',
     '@nuxtjs/sitemap',
     '@vueuse/nuxt',
