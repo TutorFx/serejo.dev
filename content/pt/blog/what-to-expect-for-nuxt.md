@@ -21,7 +21,7 @@ O objetivo do Nuxt 4 não é criar hype sobre essa versão. É se manter estáve
 
 Durante os últimos anos, a atualização `Nuxt 2 → Nuxt 3` fez com que o repositório do Nuxt fosse completamente re-escrito para apresentar as mudanças absurdas de desempenho recentes. Porém, esse ano a equipe do NuxtLabs pisou no freio. E isso mostra que o Nuxt já é um Framework Fullstack maduro e pronto para diversos cenários.
 
-- As propriedades `process.client` e `process.server` deixarão de ser suportadas.
+- As propriedades `process.client` e `process.server` serão soft-deprecated, ou seja, o uso das mesmas irá emitir um warning. O correto a partir de agora, será usar `import.meta.client` or `import.meta.server`
 
 - O `NuxtLink` irá perder os props `noPrefetch`, `noRel` e `externalRelAttribute`. No momento atual, está sendo discutido se essas props serão inclusas em um módulo, para que, se caso o usuário pretenda continuar utilizando, seja possível.
 
