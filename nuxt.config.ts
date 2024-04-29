@@ -9,8 +9,7 @@ const isProd = Boolean(process.env.NODE_ENV === 'production')
 
 export default defineNuxtConfig({
   modules: [
-    'nuxt-booster',
-    'nuxt-build-cache',
+    //'nuxt-booster',
     'nuxt-site-config',
     '@nuxtjs/seo',
     '@nuxtjs/sitemap',
@@ -21,13 +20,12 @@ export default defineNuxtConfig({
     '@nuxtjs/color-mode',
     '@nuxtjs/tailwindcss',
     '@nuxtjs/google-fonts',
-    '@nuxtjs/fontaine',
     '@nuxt/image',
     '@nuxt/content',
     '@nuxthq/studio',
     // PWA still redirecting the defaultLocale
     // '@vite-pwa/nuxt',
-    'nuxt-module-eslint-config',
+    '@nuxt/eslint',
     'nuxt-icon',
     'nuxt-gtag',
   ],
@@ -193,8 +191,10 @@ export default defineNuxtConfig({
     enabled: true,
   },
 
-  eslintConfig: {
-    setup: false,
+  eslint: {
+    config: {
+      standalone: false,
+    },
   },
 
   content: {
@@ -208,4 +208,5 @@ export default defineNuxtConfig({
       plugins: [tailwindTypography, daisyui],
     },
   },
+
 })
