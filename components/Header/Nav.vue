@@ -6,34 +6,34 @@ const model = defineModel<boolean>()
 </script>
 
 <template>
-  <div class="py-6 grid gap-6 grid-cols-[max-content_1fr]">
+  <div class="grid grid-cols-[max-content_1fr] gap-6 py-6">
     <div>
-      <h2 class="text-2xl font-logo">
+      <h2 class="font-logo text-2xl">
         Gabriel S.
       </h2>
     </div>
-    <div class="items-center sm:grid overflow-x-auto overflow-y-hidden hidden">
-      <div class="flex justify-end items-center gap-6 flex-nowrap">
+    <div class="hidden items-center overflow-x-auto overflow-y-hidden sm:grid">
+      <div class="flex flex-nowrap items-center justify-end gap-6">
         <LanguagePopup v-hoverable:lang size="28" />
         <ClientOnly>
           <DarkToggle just-icon size="28" />
           <template #fallback>
-            <div class="h-6 bg-base-300 rounded-full w-6" />
+            <div class="bg-base-300 h-6 w-6 rounded-full" />
           </template>
         </ClientOnly>
         <NuxtLink
           v-for="(item, i) in service.get()" v-bind="item.getBinding()" :key="i" v-hoverable:internal
-          class="leading-none text-nowrap navlink"
+          class="navlink text-nowrap leading-none"
         >
           {{ $t(item.content as string) }}
         </NuxtLink>
       </div>
     </div>
-    <div class="grid justify-end grid-flow-col gap-6 items-center sm:hidden">
+    <div class="grid grid-flow-col items-center justify-end gap-6 sm:hidden">
       <ClientOnly>
         <DarkToggle just-icon size="28" />
         <template #fallback>
-          <div class="w-6 h-6 bg-base-300 rounded-full" />
+          <div class="bg-base-300 h-6 w-6 rounded-full" />
         </template>
       </ClientOnly>
       <HeaderToggleMenu v-model="model" />

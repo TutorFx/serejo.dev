@@ -16,7 +16,7 @@ if (BlogItem.value && BlogItem.value instanceof BlogItemService) {
 </script>
 
 <template>
-  <div class="border-t border-accent">
+  <div class="border-accent border-t">
     <div v-if="(BlogItem instanceof BlogItemService)">
       <BlogArticle :value="BlogItem.getItem()" />
     </div>

@@ -9,7 +9,7 @@ const isProd = Boolean(process.env.NODE_ENV === 'production')
 
 export default defineNuxtConfig({
   modules: [
-    //'nuxt-booster',
+    // 'nuxt-booster',
     'nuxt-site-config',
     '@nuxtjs/seo',
     '@nuxtjs/sitemap',

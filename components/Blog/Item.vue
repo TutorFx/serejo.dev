@@ -8,11 +8,11 @@ defineProps<{
 
 <template>
   <div>
-    <div class="grid group cursor-pointer py-2">
-      <div class="text-2xl group-hover:underline group-hover:decoration-wavy group-hover:decoration-primary">
+    <div class="group grid cursor-pointer py-2">
+      <div class="group-hover:decoration-primary text-2xl group-hover:underline group-hover:decoration-wavy">
         {{ value.title }}
       </div>
-      <div class="grid grid-flow-col justify-start gap-2 text-accent">
+      <div class="text-accent grid grid-flow-col justify-start gap-2">
         <span>
           <Icon name="gg:alarm" /> {{ $t('time.reading_time', { time: value.getLocaleReadingTime() }) }}
         </span>

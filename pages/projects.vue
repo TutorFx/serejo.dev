@@ -19,17 +19,17 @@ defineOgImage({
     <div>
       <DynamicHero>
         <Container>
-          <div class="grid justify-center items-center min-h-[20rem]">
+          <div class="grid min-h-[20rem] items-center justify-center">
             <div
-              class="relative grid gap-3 text-3xl md:text-6xl lg:text-7xl xl:text-9xl auto-rows-[1fr] md:gap-5 lg:gap-7 [text-shadow:_6px_1px_30px_var(--fallback-b1,oklch(var(--b1)/1))]"
+              class="[text-shadow:_6px_1px_30px_var(--fallback-b1,oklch(var(--b1)/1))] relative grid auto-rows-[1fr] gap-3 text-3xl lg:gap-7 md:gap-5 lg:text-7xl md:text-6xl xl:text-9xl"
             >
               {{ $t('sections.projects.title') }}
-              <div class="bg-base-300 absolute rounded-full -inset-12 z-[-1] blur-xl opacity-90" />
+              <div class="bg-base-300 absolute z-[-1] rounded-full opacity-90 blur-xl -inset-12" />
             </div>
           </div>
         </Container>
       </DynamicHero>
-      <div class="rounded-b-3xl bg-base-200">
+      <div class="bg-base-200 rounded-b-3xl">
         <Container class="py-6">
           <Projects />
         </Container>

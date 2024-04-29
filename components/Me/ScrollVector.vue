@@ -39,7 +39,7 @@ watch(() => y.value, (after, before) => {
 <template>
   <div ref="wheel" class="relative" :class="{ 'animate-[spin_10s_linear_infinite]': !isMounted }">
     <div class="absolute">
-      <VectorsCircularText class="text-primary translate-y-[-50%] translate-x-[-50%] scale-125" />
+      <VectorsCircularText class="text-primary translate-x-[-50%] translate-y-[-50%] scale-125" />
     </div>
   </div>
 </template>

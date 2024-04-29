@@ -76,7 +76,7 @@ const inside = computed(() =>
 <template>
   <component
     :is="to || href ? NuxtLink : 'button'"
-    class="select-none inline-block"
+    class="inline-block select-none"
     :class="outside"
     :to
     :href

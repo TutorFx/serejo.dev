@@ -91,68 +91,68 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="grid overflow-hidden relative rounded-3xl pb-12 md:pb-24">
-    <div ref="itemOneRef" class="-z-[1] absolute left-[0%] top-[0%]">
-      <div class="max-w-0 max-h-0">
+  <div class="relative grid overflow-hidden rounded-3xl pb-12 md:pb-24">
+    <div ref="itemOneRef" class="absolute left-[0%] top-[0%] -z-[1]">
+      <div class="max-h-0 max-w-0">
         <div
-          class="w-[30vw] aspect-video bg-brand-gradient -translate-x-[50%] -translate-y-[50%] rounded-full blur-3xl opacity-80 md:opacity-30"
+          class="bg-brand-gradient aspect-video w-[30vw] rounded-full opacity-80 blur-3xl -translate-x-[50%] -translate-y-[50%] md:opacity-30"
         />
       </div>
     </div>
-    <div ref="itemTwoRef" class="-z-[1] absolute left-[90%] top-[0%]">
-      <div class="max-w-0 max-h-0">
+    <div ref="itemTwoRef" class="absolute left-[90%] top-[0%] -z-[1]">
+      <div class="max-h-0 max-w-0">
         <div
-          class="w-[30vw] aspect-video bg-primary -translate-x-[50%] -translate-y-[50%] rounded-full blur-3xl opacity-80 md:opacity-30"
+          class="bg-primary aspect-video w-[30vw] rounded-full opacity-80 blur-3xl -translate-x-[50%] -translate-y-[50%] md:opacity-30"
         />
       </div>
     </div>
-    <div ref="itemThreeRef" class="-z-[1] absolute left-[90%] bottom-[0%]">
-      <div class="max-w-0 max-h-0">
+    <div ref="itemThreeRef" class="absolute bottom-[0%] left-[90%] -z-[1]">
+      <div class="max-h-0 max-w-0">
         <div
-          class="w-[30vw] aspect-video bg-primary -translate-x-[50%] -translate-y-[50%] rounded-full blur-3xl opacity-80 md:opacity-30"
+          class="bg-primary aspect-video w-[30vw] rounded-full opacity-80 blur-3xl -translate-x-[50%] -translate-y-[50%] md:opacity-30"
         />
       </div>
     </div>
-    <div ref="itemFourRef" class="-z-[1] absolute left-[0%] bottom-[0%]">
-      <div class="max-w-0 max-h-0">
+    <div ref="itemFourRef" class="absolute bottom-[0%] left-[0%] -z-[1]">
+      <div class="max-h-0 max-w-0">
         <div
-          class="w-[30vw] aspect-video bg-brand-gradient -translate-x-[50%] -translate-y-[50%] rounded-full blur-3xl opacity-80 md:opacity-30"
+          class="bg-brand-gradient aspect-video w-[30vw] rounded-full opacity-80 blur-3xl -translate-x-[50%] -translate-y-[50%] md:opacity-30"
         />
       </div>
     </div>
     <div>
-      <div class="relative py-24 z-[2] md:py-48 xl:py-56">
-        <div ref="itemFiveRef" class="absolute left-[10%] z-[1] bottom-[-10%]">
-          <div class="max-w-0 max-h-0">
+      <div class="relative z-[2] py-24 md:py-48 xl:py-56">
+        <div ref="itemFiveRef" class="absolute bottom-[-10%] left-[10%] z-[1]">
+          <div class="max-h-0 max-w-0">
             <div
-              class="w-[30vw] aspect-video bg-rose-400 -translate-x-[50%] -translate-y-[50%] rounded-full opacity-50 md:opacity-30 blur-[164px]"
+              class="aspect-video w-[30vw] rounded-full bg-rose-400 opacity-50 blur-[164px] -translate-x-[50%] -translate-y-[50%] md:opacity-30"
             />
           </div>
         </div>
-        <div class="z-[1] absolute left-[40%] bottom-[-30%]">
-          <div class="max-w-0 max-h-0">
+        <div class="absolute bottom-[-30%] left-[40%] z-[1]">
+          <div class="max-h-0 max-w-0">
             <div
-              class="w-[30vw] aspect-video bg-primary -translate-x-[50%] -translate-y-[50%] rounded-full blur-3xl opacity-50 md:opacity-30"
+              class="bg-primary aspect-video w-[30vw] rounded-full opacity-50 blur-3xl -translate-x-[50%] -translate-y-[50%] md:opacity-30"
             />
           </div>
         </div>
         <div
-          class="text-3xl md:text-6xl lg:text-7xl xl:text-9xl text-center drop-shadow-[0px_0px_20px_var(--fallback-b1,oklch(var(--b1)/1))]"
+          class="text-center text-3xl drop-shadow-[0px_0px_20px_var(--fallback-b1,oklch(var(--b1)/1))] lg:text-7xl md:text-6xl xl:text-9xl"
         >
           <div class="grid grid-flow-col items-center justify-center gap-3">
             <div class="relative">
-              <div class="absolute inset-0 bg-base-100 z-[-1] blur-xl opacity-45" />
+              <div class="bg-base-100 absolute inset-0 z-[-1] opacity-45 blur-xl" />
               <span>&#123;</span> {{ $t('sections.experiences.title') }} <span>&#125;</span>
             </div>
           </div>
         </div>
-        <div class="relative grid items-center justify-center pointer-events-none max-w-screen -z-[2]">
+        <div class="pointer-events-none relative grid max-w-screen items-center justify-center -z-[2]">
           <div class="relative max-h-0 max-w-0 -rotate-[12deg]">
             <Icon
               ref="lineRef"
               :value="lineCompletionOutput"
               name="HeroLine"
-              class="absolute -translate-y-[50%] -translate-x-[50%] scale-[99%] rotate-180 w-screen h-screen"
+              class="absolute h-screen w-screen rotate-180 scale-[99%] -translate-x-[50%] -translate-y-[50%]"
               size="100%"
             />
           </div>
@@ -161,7 +161,7 @@ onMounted(() => {
     </div>
     <div
       v-if="service && (service instanceof HistoryService)"
-      class="grid grid-cols-1 gap-6 relative z-[2] md:gap-12"
+      class="relative z-[2] grid grid-cols-1 gap-6 md:gap-12"
     >
       <div>
         <div>
@@ -175,11 +175,11 @@ onMounted(() => {
 
               <template #fallback>
                 <div
-                  class="grid drop-shadow-[0px_0px_20px_var(--fallback-b1,oklch(var(--b1)/1))] md:grid-cols-3 gap-16"
+                  class="grid gap-16 drop-shadow-[0px_0px_20px_var(--fallback-b1,oklch(var(--b1)/1))] md:grid-cols-3"
                 >
                   <div class="max-md:hidden" />
-                  <div class="aspect-video bg-brand-gradient rounded-md" />
-                  <div class="max-md:hidden aspect-video bg-base-300 rounded-md bg-opacity-50" />
+                  <div class="bg-brand-gradient aspect-video rounded-md" />
+                  <div class="bg-base-300 aspect-video rounded-md bg-opacity-50 max-md:hidden" />
                 </div>
               </template>
             </ClientOnly>
@@ -187,7 +187,7 @@ onMounted(() => {
         </div>
       </div>
 
-      <div class="text-center text-primary">
+      <div class="text-primary text-center">
         <Icon size="48" name="material-symbols:arrow-cool-down-rounded" />
       </div>
 
@@ -201,23 +201,23 @@ onMounted(() => {
               :key="current._id"
               class="z-[1] drop-shadow-[0px_0px_60px_var(--fallback-b1,oklch(var(--b1)/1))]"
             >
-              <div class="py-6 px-3 bg-base-100 rounded-md md:py-24 md:px-12">
+              <div class="bg-base-100 rounded-md px-3 py-6 md:px-12 md:py-24">
                 <div class="grid grid-cols-1 gap-6">
                   <div class="grid justify-start md:grid-cols-[1fr_,max-content]">
                     <div class="text-primary">
                       {{ current.location }}
                     </div>
-                    <div class="grid grid-flow-col justify-start items-center gap-1">
+                    <div class="grid grid-flow-col items-center justify-start gap-1">
                       <Icon name="solar:calendar-bold-duotone" />
                       <div class="text-neutral">
                         {{ current.getDateToLocaleString(useLocale()).join(` ● `) }}
                       </div>
                     </div>
                   </div>
-                  <div class="font-bold text-4xl">
+                  <div class="text-4xl font-bold">
                     {{ $t('description') }}
                   </div>
-                  <ContentRenderer class="text-lg prose prose-md max-w-none md:text-xl text-pretty" :value="current" />
+                  <ContentRenderer class="prose-md max-w-none text-pretty text-lg prose md:text-xl" :value="current" />
                 </div>
               </div>
             </div>
@@ -225,7 +225,7 @@ onMounted(() => {
         </Container>
 
         <Container v-else>
-          <div class="py-6 px-3 md:px-12 md:py-24 rounded-md bg-base-100">
+          <div class="bg-base-100 rounded-md px-3 py-6 md:px-12 md:py-24">
             Loading...
           </div>
         </Container>

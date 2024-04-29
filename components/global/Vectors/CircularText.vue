@@ -23,7 +23,7 @@ withDefaults(
     <g>
       <use xlink:href="#criclePath" fill="none" />
       <text class="fill-current">
-        <textPath xlink:href="#criclePath" class="font-bold text-[42px]">
+        <textPath xlink:href="#criclePath" class="text-[42px] font-bold">
           {{ value }}
         </textPath>
       </text>

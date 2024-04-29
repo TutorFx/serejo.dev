@@ -60,40 +60,40 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="overflow-hidden relative rounded-t-3xl p-12">
-    <div class="inset-0 absolute backdrop-blur-3xl" />
-    <div ref="itemOneRef" class="absolute -z-[1] left-[50%] bottom-[50%]">
-      <div class="max-w-0 max-h-0">
+  <div class="relative overflow-hidden rounded-t-3xl p-12">
+    <div class="absolute inset-0 backdrop-blur-3xl" />
+    <div ref="itemOneRef" class="absolute bottom-[50%] left-[50%] -z-[1]">
+      <div class="max-h-0 max-w-0">
         <div
-          class="rounded-full aspect-video -translate-x-[50%] -translate-y-[50%] blur-3xl w-[60vw] bg-brand-gradient opacity-40"
+          class="bg-brand-gradient aspect-video w-[60vw] rounded-full opacity-40 blur-3xl -translate-x-[50%] -translate-y-[50%]"
         />
       </div>
     </div>
-    <div ref="itemTwoRef" class="-z-[1] absolute left-[90%] bottom-[90%]">
-      <div class="max-w-0 max-h-0">
+    <div ref="itemTwoRef" class="absolute bottom-[90%] left-[90%] -z-[1]">
+      <div class="max-h-0 max-w-0">
         <div
-          class="aspect-video bg-brand-gradient -translate-x-[50%] -translate-y-[50%] rounded-full blur-3xl w-[30vw] opacity-80 md:opacity-80"
+          class="bg-brand-gradient aspect-video w-[30vw] rounded-full opacity-80 blur-3xl -translate-x-[50%] -translate-y-[50%] md:opacity-80"
         />
       </div>
     </div>
-    <div ref="itemThreeRef" class="-z-[1] absolute left-[0%] bottom-[10%]">
-      <div class="max-w-0 max-h-0">
+    <div ref="itemThreeRef" class="absolute bottom-[10%] left-[0%] -z-[1]">
+      <div class="max-h-0 max-w-0">
         <div
-          class="w-[30vw] aspect-video -translate-x-[50%] -translate-y-[50%] rounded-full blur-3xl opacity-80 bg-purple-500 md:opacity-90"
+          class="aspect-video w-[30vw] rounded-full bg-purple-500 opacity-80 blur-3xl -translate-x-[50%] -translate-y-[50%] md:opacity-90"
         />
       </div>
     </div>
-    <div ref="itemFourRef" class="-z-[1] absolute right-[0%] bottom-[25%]">
-      <div class="max-w-0 max-h-0">
+    <div ref="itemFourRef" class="absolute bottom-[25%] right-[0%] -z-[1]">
+      <div class="max-h-0 max-w-0">
         <div
-          class="w-[60vw] aspect-video -translate-x-[50%] -translate-y-[50%] rounded-full blur-3xl bg-rose-400 opacity-60 md:opacity-40"
+          class="aspect-video w-[60vw] rounded-full bg-rose-400 opacity-60 blur-3xl -translate-x-[50%] -translate-y-[50%] md:opacity-40"
         />
       </div>
     </div>
-    <div ref="itemFiveRef" class="-z-[1] absolute left-[0%] top-[10%]">
-      <div class="max-w-0 max-h-0">
+    <div ref="itemFiveRef" class="absolute left-[0%] top-[10%] -z-[1]">
+      <div class="max-h-0 max-w-0">
         <div
-          class="w-[60vw] aspect-video -translate-x-[50%] -translate-y-[50%] rounded-full blur-3xl opacity-40 bg-primary"
+          class="bg-primary aspect-video w-[60vw] rounded-full opacity-40 blur-3xl -translate-x-[50%] -translate-y-[50%]"
         />
       </div>
     </div>

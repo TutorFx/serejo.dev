@@ -98,82 +98,82 @@ onMounted(() => {
 <template>
   <div class="overflow-hidden rounded-t-3xl">
     <div class="relative pt-6">
-      <div ref="itemOneRef" class="-z-[1] absolute left-[50%] bottom-[50%]">
-        <div class="max-w-0 max-h-0">
+      <div ref="itemOneRef" class="absolute bottom-[50%] left-[50%] -z-[1]">
+        <div class="max-h-0 max-w-0">
           <div
-            class="rounded-full w-[60vw] aspect-video bg-brand-gradient -translate-x-[50%] -translate-y-[50%] blur-3xl opacity-10"
+            class="bg-brand-gradient aspect-video w-[60vw] rounded-full opacity-10 blur-3xl -translate-x-[50%] -translate-y-[50%]"
           />
         </div>
       </div>
-      <div ref="itemTwoRef" class="-z-[1] absolute left-[90%] bottom-[90%]">
-        <div class="max-w-0 max-h-0">
+      <div ref="itemTwoRef" class="absolute bottom-[90%] left-[90%] -z-[1]">
+        <div class="max-h-0 max-w-0">
           <div
-            class="aspect-video bg-brand-gradient -translate-x-[50%] -translate-y-[50%] rounded-full blur-3xl w-[30vw] opacity-80 md:opacity-30"
+            class="bg-brand-gradient aspect-video w-[30vw] rounded-full opacity-80 blur-3xl -translate-x-[50%] -translate-y-[50%] md:opacity-30"
           />
         </div>
       </div>
-      <div ref="itemThreeRef" class="-z-[1] absolute left-[0%] bottom-[10%]">
-        <div class="max-w-0 max-h-0">
+      <div ref="itemThreeRef" class="absolute bottom-[10%] left-[0%] -z-[1]">
+        <div class="max-h-0 max-w-0">
           <div
-            class="w-[30vw] aspect-video -translate-x-[50%] -translate-y-[50%] rounded-full blur-3xl opacity-80 md:opacity-30 bg-rose-500"
+            class="aspect-video w-[30vw] rounded-full bg-rose-500 opacity-80 blur-3xl -translate-x-[50%] -translate-y-[50%] md:opacity-30"
           />
         </div>
       </div>
-      <div ref="itemFourRef" class="-z-[1] absolute right-[0%] bottom-[25%]">
-        <div class="max-w-0 max-h-0">
+      <div ref="itemFourRef" class="absolute bottom-[25%] right-[0%] -z-[1]">
+        <div class="max-h-0 max-w-0">
           <div
-            class="w-[60vw] aspect-video -translate-x-[50%] -translate-y-[50%] rounded-full blur-3xl bg-rose-400 opacity-20 md:opacity-10"
+            class="aspect-video w-[60vw] rounded-full bg-rose-400 opacity-20 blur-3xl -translate-x-[50%] -translate-y-[50%] md:opacity-10"
           />
         </div>
       </div>
-      <div ref="itemFiveRef" class="-z-[1] absolute left-[0%] top-[10%]">
-        <div class="max-w-0 max-h-0">
+      <div ref="itemFiveRef" class="absolute left-[0%] top-[10%] -z-[1]">
+        <div class="max-h-0 max-w-0">
           <div
-            class="w-[60vw] aspect-video -translate-x-[50%] -translate-y-[50%] rounded-full blur-3xl opacity-20 bg-primary"
+            class="bg-primary aspect-video w-[60vw] rounded-full opacity-20 blur-3xl -translate-x-[50%] -translate-y-[50%]"
           />
         </div>
       </div>
       <Container>
-        <div class="grid items-center justify-center py-24 md:py-32 lg:py-48">
+        <div class="grid items-center justify-center py-24 lg:py-48 md:py-32">
           <div class="relative">
             <div class="absolute -right-[0%] -top-[10%]">
-              <div ref="starOneRef" class="max-w-0 max-h-0">
+              <div ref="starOneRef" class="max-h-0 max-w-0">
                 <Icon
                   name="Sparkle" size="48"
-                  class="-translate-x-[50%] -translate-y-[50%] size-6 md:size-8 lg:size-10"
+                  class="size-6 lg:size-10 md:size-8 -translate-x-[50%] -translate-y-[50%]"
                 />
               </div>
             </div>
             <div class="absolute left-[50%] -bottom-[20%]">
-              <div ref="starTwoRef" class="max-w-0 max-h-0">
+              <div ref="starTwoRef" class="max-h-0 max-w-0">
                 <SparkleOutline
                   name="SparkleOutline" size="48"
-                  class="size-6 md:size-8 lg:size-10 -translate-x-[50%] -translate-y-[50%]"
+                  class="size-6 lg:size-10 md:size-8 -translate-x-[50%] -translate-y-[50%]"
                 />
               </div>
             </div>
             <div
-              class="grid gap-3 text-3xl md:text-6xl lg:text-7xl xl:text-9xl auto-rows-[1fr] md:gap-5 lg:gap-7 [text-shadow:_6px_1px_30px_var(--fallback-b1,oklch(var(--b1)/1))]"
+              class="[text-shadow:_6px_1px_30px_var(--fallback-b1,oklch(var(--b1)/1))] grid auto-rows-[1fr] gap-3 text-3xl lg:gap-7 md:gap-5 lg:text-7xl md:text-6xl xl:text-9xl"
             >
               <div class="grid items-end leading-none">
                 &#123; {{ $t('hero.fl') }}
               </div>
-              <div class="grid items-end grid-flow-col gap-6 pl-6 md:pl-10 lg:pl-12">
-                <div class="grid items-end relative justify-end -mt-6">
-                  <div class="overflow-hidden aspect-[192/154]">
+              <div class="grid grid-flow-col items-end gap-6 pl-6 lg:pl-12 md:pl-10">
+                <div class="relative grid items-end justify-end -mt-6">
+                  <div class="aspect-[192/154] overflow-hidden">
                     <Transition
                       enter-from-class="translate-y-[150%]"
                       enter-active-class="transition duration-500"
                     >
                       <NuxtImg
-                        :key="vue ? 'vl' : undefined" placeholder size="176" class="object-contain p-2 lg:p-4 !pb-0 w-16 md:w-24 lg:w-32 xl:w-48 drop-shadow-[20px_5px_10px_var(--fallback-b1,oklch(var(--b1)/.3))]"
+                        :key="vue ? 'vl' : undefined" placeholder size="176" class="w-16 object-contain p-2 drop-shadow-[20px_5px_10px_var(--fallback-b1,oklch(var(--b1)/.3))] lg:w-32 md:w-24 xl:w-48 lg:p-4 !pb-0"
                         src="/brand/Vue.js.svg"
                         @load="vue = true"
                       />
                     </Transition>
                   </div>
                   <div
-                    class="-z-[1] w-16 md:w-24 lg:w-32 xl:w-48 h-6 rounded-md bg-vue-gradient md:h-10 lg:h-12 xl:h-20 -mt-[100%] md:rounded-lg lg:rounded-xl"
+                    class="bg-vue-gradient h-6 w-16 rounded-md -z-[1] -mt-[100%] lg:h-12 lg:w-32 md:h-10 md:w-24 xl:h-20 xl:w-48 lg:rounded-xl md:rounded-lg"
                   />
                 </div>
                 <div class="leading-none">
@@ -181,26 +181,26 @@ onMounted(() => {
                 </div>
               </div>
               <div
-                class="grid grid-flow-col items-end gap-6 justify-start pl-3 md:pl-16 lg:pl-20 xl:pl-32"
+                class="grid grid-flow-col items-end justify-start gap-6 pl-3 lg:pl-20 md:pl-16 xl:pl-32"
               >
                 <div class="leading-none">
                   {{ $t('hero.tl') }}
                 </div>
-                <div class="grid items-end justify-end relative -mt-6">
-                  <div class="overflow-hidden aspect-[128/112] md:aspect-[192/176] lg:aspect-[128/112]">
+                <div class="relative grid items-end justify-end -mt-6">
+                  <div class="aspect-[128/112] overflow-hidden lg:aspect-[128/112] md:aspect-[192/176]">
                     <Transition
                       enter-from-class="translate-y-[150%]"
                       enter-active-class="transition duration-500"
                     >
                       <NuxtImg
-                        :key="me ? 'ml' : undefined" size="176" class="object-contain p-2 lg:p-4 !pb-0 w-16 md:w-24 lg:w-32 xl:w-48 drop-shadow-[20px_5px_10px_var(--fallback-b1,oklch(var(--b1)/.3))]"
+                        :key="me ? 'ml' : undefined" size="176" class="w-16 object-contain p-2 drop-shadow-[20px_5px_10px_var(--fallback-b1,oklch(var(--b1)/.3))] lg:w-32 md:w-24 xl:w-48 lg:p-4 !pb-0"
                         src="/brand/me.png"
                         @load="me = true"
                       />
                     </Transition>
                   </div>
                   <div
-                    class="-z-[1] h-6 md:h-10 lg:h-12 xl:h-20 -mt-[100%] w-16 md:w-24 lg:w-32 xl:w-48 rounded-md md:rounded-lg lg:rounded-xl bg-brand-gradient"
+                    class="bg-brand-gradient h-6 w-16 rounded-md -z-[1] -mt-[100%] lg:h-12 lg:w-32 md:h-10 md:w-24 xl:h-20 xl:w-48 lg:rounded-xl md:rounded-lg"
                   />
                 </div>
                 <div>
@@ -218,11 +218,11 @@ onMounted(() => {
         name="HeroLine"
         :value="lineCompletionOutput"
         size="100%"
-        class="relative z-[-2] -mt-20 -mb-[20%] md:-mt-[20%] lg:-mt-[20%] lg:-mb-[30%] w-[90%] h-full"
+        class="relative z-[-2] h-full w-[90%] -mb-[20%] -mt-20 lg:-mb-[30%] lg:-mt-[20%] md:-mt-[20%]"
       />
       <div class="border-b border-neutral opacity-50" />
       <div class="relative">
-        <div class="absolute z-[-2] bg-base-100 top-0 inset-x-[-100%] blur-2xl bottom-[-100%]" />
+        <div class="bg-base-100 absolute inset-x-[-100%] bottom-[-100%] top-0 z-[-2] blur-2xl" />
         <container class="grid gap-3 py-6 font-light md:grid-cols-[1fr_max-content]">
           <div>
             {{ $t('schedule_support_text') }}

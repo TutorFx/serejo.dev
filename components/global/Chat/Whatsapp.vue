@@ -8,7 +8,7 @@ const whatsappLink = computed(() => `https://wa.me/${config.public.phoneNumber}?
 
 <template>
   <Btn :href="whatsappLink">
-    <div class="gap-3 items-center inline-flex">
+    <div class="inline-flex items-center gap-3">
       <span>{{ label }}</span><Icon size="20" name="prime:whatsapp" />
     </div>
   </Btn>

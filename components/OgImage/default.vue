@@ -8,21 +8,21 @@ defineProps < {
 
 <template>
   <div
-    class="w-full h-full justify-center relative p-24 bg-stone-950"
+    class="relative h-full w-full justify-center bg-stone-950 p-24"
     data-theme="dark"
   >
-    <div class="absolute flex inset-0 opacity-20">
-      <div class="rounded-full shadow-xl size-300 top-[-20%] right-[-30%] bg-[radial-gradient(#F22B29,#0c0a09,#0c0a09)]" />
+    <div class="absolute inset-0 flex opacity-20">
+      <div class="right-[-30%] top-[-20%] size-300 rounded-full bg-[radial-gradient(#F22B29,#0c0a09,#0c0a09)] shadow-xl" />
     </div>
-    <div class="absolute flex inset-0 opacity-20">
-      <div class="rounded-full bottom-[-30%] shadow-xl size-300 left-[-20%] bg-[radial-gradient(#F49D37,#0c0a09,#0c0a09)]" />
+    <div class="absolute inset-0 flex opacity-20">
+      <div class="bottom-[-30%] left-[-20%] size-300 rounded-full bg-[radial-gradient(#F49D37,#0c0a09,#0c0a09)] shadow-xl" />
     </div>
-    <div class="text-white font-bold mx-auto text-center text-[140px]">
+    <div class="mx-auto text-center text-[140px] text-white font-bold">
       {{ title }}
     </div>
 
-    <div class="justify-between items-center text-stone-600">
-      <div class="font-bold text-6xl">
+    <div class="items-center justify-between text-stone-600">
+      <div class="text-6xl font-bold">
         SEREJO.DEV
       </div>
     </div>

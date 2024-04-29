@@ -18,16 +18,16 @@ defineOgImage({
 
 <template>
   <Container class="max-w-3xl">
-    <div class="grid py-12 gap-1">
+    <div class="grid gap-1 py-12">
       <div class="text-3xl">
         {{ value.title }}
       </div>
-      <div class="grid grid-flow-col justify-start gap-2 text-accent">
+      <div class="text-accent grid grid-flow-col justify-start gap-2">
         <span>
           <Icon name="gg:calendar" /> {{ value.getDateToLocaleString() }}
         </span>
       </div>
-      <ContentRenderer :value class="prose max-w-full" />
+      <ContentRenderer :value class="max-w-full prose" />
     </div>
   </Container>
 </template>

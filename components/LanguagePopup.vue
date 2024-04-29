@@ -18,13 +18,13 @@ onClickOutside(target, toggleLangSelector)
     <Icon v-bind="$attrs" :name="useFlag($i18n.locale)" @click="toggleLangSelector" />
     <Teleport to="body">
       <Transition enter-from-class="opacity-0" enter-active-class="transition duration-500">
-        <div v-if="!!menu" class="fixed inset-0 z-50 bg-base-300/50">
+        <div v-if="!!menu" class="bg-base-300/50 fixed inset-0 z-50">
           <div enter-from-class="translate-x-[150%] entering" enter-active-class="transition duration-500">
-            <div ref="target" class="absolute bg-base-100 right-0 top-24 rounded-l-xl">
+            <div ref="target" class="bg-base-100 absolute right-0 top-24 rounded-l-xl">
               <div class="relative">
                 <div class="absolute">
                   <Icon
-                    name="mdi:close" class="rounded-full relative bg-primary -translate-x-[25%] -translate-y-[25%]"
+                    name="mdi:close" class="bg-primary relative rounded-full -translate-x-[25%] -translate-y-[25%]"
                     size="24"
                     @click="toggleLangSelector"
                   />

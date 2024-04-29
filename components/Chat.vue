@@ -9,7 +9,7 @@ onClickOutside(target, () => chat.value ? chat.value = false : null, {
 </script>
 
 <template>
-  <div class="grid justify-end items-end fixed inset-0 p-3 pointer-events-none z-[4]">
+  <div class="pointer-events-none fixed inset-0 z-[4] grid items-end justify-end p-3">
     <div class="grid gap-3">
       <div class="grid">
         <Transition
@@ -17,11 +17,11 @@ onClickOutside(target, () => chat.value ? chat.value = false : null, {
           enter-active-class="transition duration-500"
           leave-active-class="translate-y-[200%] duration-500"
         >
-          <ChatContainer v-show="chat" ref="target" class="grid pointer-events-auto" />
+          <ChatContainer v-show="chat" ref="target" class="pointer-events-auto grid" />
         </Transition>
       </div>
       <div ref="button" class="grid justify-end">
-        <div v-hoverable:chat class="pointer-events-auto rounded-full overflow-hidden bg-base-300 aspect-square cursor-pointer shadow-xl" @click="chat = !chat">
+        <div v-hoverable:chat class="bg-base-300 pointer-events-auto aspect-square cursor-pointer overflow-hidden rounded-full shadow-xl" @click="chat = !chat">
           <NuxtImg width="64" src="/felina/robot.jpg" />
         </div>
       </div>
