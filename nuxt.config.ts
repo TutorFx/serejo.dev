@@ -133,9 +133,9 @@ export default defineNuxtConfig({
       },
     },
     prerender: {
+      autoSubfolderIndex: false,
       crawlLinks: true,
     },
-    preset: isProd ? 'vercel' : 'node',
   },
 
   ogImage: {
