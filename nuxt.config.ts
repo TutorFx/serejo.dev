@@ -136,6 +136,11 @@ export default defineNuxtConfig({
       autoSubfolderIndex: false,
       crawlLinks: true,
     },
+    vercel: {
+      functions: {
+        maxDuration: 300,
+      }
+    }
   },
 
   ogImage: {
