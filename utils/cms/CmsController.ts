@@ -29,7 +29,7 @@ export default class {
   }
 
   get id() {
-    return this._id.match(/([a-z]{2})\:([a-z]+)\:([a-z-]+)\.md/i)?.splice(1)
+    return this._id.match(/([a-z]{2}):([a-z]+):([a-z-]+)\.md/i)?.splice(1)
   }
 
   get filename() {
@@ -94,6 +94,6 @@ export default class {
   }
 
   getSafeTruncatedDescription(maxLength?: number) {
-    return this.getTruncatedDescription(maxLength).replace(/([\u2700-\u27BF]|[\uE000-\uF8FF]|\uD83C[\uDC00-\uDFFF]|\uD83D[\uDC00-\uDFFF]|[\u2011-\u26FF]|\uD83E[\uDD10-\uDDFF])/g, '')
+    return this.getTruncatedDescription(maxLength).replace(/([\u2700-\u27BF\uE000-\uF8FF\u2011-\u26FF]|\uD83C[\uDC00-\uDFFF]|\uD83D[\uDC00-\uDFFF]|\uD83E[\uDD10-\uDDFF])/g, '')
   }
 }

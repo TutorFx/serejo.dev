@@ -1,4 +1,6 @@
-/* eslint-disable node/prefer-global/process */
+/* eslint-disable unused-imports/no-unused-vars */
+
+import process from 'node:process'
 import tailwindTypography from '@tailwindcss/typography'
 import daisyui from 'daisyui'
 import { appDescription, appName, phoneNumber, schedule, siteUrl } from './constants/index'
@@ -139,8 +141,8 @@ export default defineNuxtConfig({
     vercel: {
       functions: {
         maxDuration: 300,
-      }
-    }
+      },
+    },
   },
 
   ogImage: {

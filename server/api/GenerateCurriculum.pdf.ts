@@ -66,7 +66,7 @@ export default defineEventHandler(async (event) => {
     doc.font(fontname).fontSize(12).text(`${element.title} - ${element.location} (${element.getDateToLocaleString(lang).join(` ${t('time.until_the')} `)})`, {
       paragraphGap: 5,
     })
-    doc.font(fontname).fontSize(12).text(element.getSafeTruncatedDescription(30000).replace(/(\r\n|\n|\r)/gm, ''), {
+    doc.font(fontname).fontSize(12).text(element.getSafeTruncatedDescription(30000).replace(/(\r\n|\n|\r)/g, ''), {
       paragraphGap: 30,
     })
   })
@@ -82,7 +82,7 @@ export default defineEventHandler(async (event) => {
     doc.font(fontname).fontSize(12).text(`${element.title} (${element.getDateToLocaleString(lang).join(` ${t('time.until_the')} `)})`, {
       paragraphGap: 5,
     })
-    doc.font(fontname).fontSize(12).text(element.getSafeTruncatedDescription(30000).replace(/(\r\n|\n|\r)/gm, ' '), {
+    doc.font(fontname).fontSize(12).text(element.getSafeTruncatedDescription(30000).replace(/(\r\n|\n|\r)/g, ' '), {
       paragraphGap: 30,
     })
   })

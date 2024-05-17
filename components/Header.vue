@@ -47,7 +47,7 @@ function toggleMenu() {
               <h6>{{ $t('navigation.menu') }}</h6>
               <HeaderMobileMenu class="py-6" :service="service" @click="toggleMenu()" />
               <h6>{{ $t('navigation.settings') }}</h6>
-              <div class="py-6 grid justify-start gap-4">
+              <div class="py-6 grid gap-4 justify-start">
                 <DarkToggle size="32" />
                 <LanguageSelector @click="toggleMenu()" />
               </div>
