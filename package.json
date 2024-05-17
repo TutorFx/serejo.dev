@@ -57,7 +57,7 @@
     "@vueuse/nuxt": "^10.9.0",
     "consola": "^3.2.3",
     "dayjs": "2.0.0-alpha.4",
-    "eslint": "npm:eslint-ts-patch@8.57.0-0",
+    "eslint": "^9.2.0",
     "eslint-plugin-format": "^0.1.1",
     "eslint-ts-patch": "9.2.0-6",
     "nuxt": "^3.11.2",
