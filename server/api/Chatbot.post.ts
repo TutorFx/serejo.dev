@@ -36,7 +36,7 @@ const safetySettings = [
 export default defineEventHandler(async (event) => {
   const config = useRuntimeConfig()
   const genAI = new GoogleGenerativeAI(config.gemini_api_key)
-  const model = genAI.getGenerativeModel({ model: 'gemini-1.5-pro-latest' })
+  const model = genAI.getGenerativeModel({ model: 'gemini-1.5-flash-latest' })
   const { history, education } = await queryProcessedContent(event)
 
   const result = await readValidatedBody(event, (body) => {
@@ -64,7 +64,7 @@ export default defineEventHandler(async (event) => {
   const prompt: Content = {
     role: AgentType.User,
     parts: [
-      { text: initial_prompt() + googleTrain + final_prompt() },
+      { text: initial_prompt(event) + googleTrain + final_prompt() },
     ],
   }
 
