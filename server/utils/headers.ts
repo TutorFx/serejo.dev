@@ -10,8 +10,13 @@ export function getVercelHeaders(event: H3Event<EventHandlerRequest>) {
   const state = stateHeader ? decodeURIComponent(stateHeader) : '-'
   const ipHeader = getHeader(event, 'x-forwarded-for')
   const ip = ipHeader ? ipHeader.split(',')[0] : '-'
-  const locale = tryCookieLocale(event, { lang: '', name: 'i18n_redirected' }) 
+  const locale = tryCookieLocale(event, { lang: '', name: 'i18n_redirected' })
   return {
-    host, city, state, ip, locale, country
+    host,
+    city,
+    state,
+    ip,
+    locale,
+    country,
   }
 }
