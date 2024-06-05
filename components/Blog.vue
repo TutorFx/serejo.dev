@@ -14,7 +14,7 @@ const localePath = useLocalePath()
       <NuxtLink
         v-for="value in service.blog.getSortedRepository()"
         :key="value._id" :to="localePath({ name: `post-item`, params: { item: value.filename } })"
-        class="border border-accent rounded-xl py-2 px-4 bg-base-100"
+        class="border bg-base-100 border-accent rounded-xl py-2 px-4"
       >
         <BlogItem v-hoverable:blog :value />
       </NuxtLink>
