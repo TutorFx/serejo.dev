@@ -30,7 +30,7 @@ function toggleMenu() {
     <Transition enter-from-class="-translate-y-[150%]" enter-active-class="transition duration-500">
       <div
         v-if="!visible"
-        class="bg-base-100 border fixed top-0 z-50 rounded-b-3xl inset-x-0 bg-clip-padding backdrop-filter backdrop-blur-lg bg-opacity-90 border-base-100"
+        class="bg-base-100 fixed border top-0 z-50 rounded-b-3xl inset-x-0 bg-clip-padding backdrop-filter backdrop-blur-lg bg-opacity-90 border-base-100"
       >
         <Container>
           <HeaderNav v-model="menu" :service="service" />
@@ -47,7 +47,7 @@ function toggleMenu() {
               <h6>{{ $t('navigation.menu') }}</h6>
               <HeaderMobileMenu class="py-6" :service="service" @click="toggleMenu()" />
               <h6>{{ $t('navigation.settings') }}</h6>
-              <div class="py-6 grid gap-4 justify-start">
+              <div class="py-6 grid justify-start gap-4">
                 <DarkToggle size="32" />
                 <LanguageSelector @click="toggleMenu()" />
               </div>
