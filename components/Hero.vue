@@ -166,7 +166,7 @@ onMounted(() => {
                       enter-active-class="transition duration-500"
                     >
                       <NuxtImg
-                        :key="vue ? 'vl' : undefined" placeholder size="176" class="object-contain p-2 lg:p-4 !pb-0 w-16 md:w-24 lg:w-32 xl:w-48 drop-shadow-[20px_5px_10px_var(--fallback-b1,oklch(var(--b1)/.3))]"
+                        :key="vue ? 'vl' : undefined" placeholder size="176" class="p-2 object-contain lg:p-4 !pb-0 w-16 md:w-24 lg:w-32 xl:w-48 drop-shadow-[20px_5px_10px_var(--fallback-b1,oklch(var(--b1)/.3))]"
                         src="/brand/Vue.js.svg"
                         @load="vue = true"
                       />
@@ -218,9 +218,9 @@ onMounted(() => {
         name="HeroLine"
         :value="lineCompletionOutput"
         size="100%"
-        class="relative z-[-2] -mt-20 -mb-[20%] md:-mt-[20%] lg:-mt-[20%] lg:-mb-[30%] w-[90%] h-full"
+        class="relative h-full z-[-2] -mt-20 -mb-[20%] md:-mt-[20%] lg:-mt-[20%] lg:-mb-[30%] w-[90%]"
       />
-      <div class="border-b border-neutral opacity-50" />
+      <div class="opacity-50 border-b border-neutral" />
       <div class="relative">
         <div class="absolute z-[-2] bg-base-100 top-0 inset-x-[-100%] blur-2xl bottom-[-100%]" />
         <container class="grid gap-3 py-6 font-light md:grid-cols-[1fr_max-content]">

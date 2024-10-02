@@ -26,7 +26,7 @@
               {{ $t('me.stack') }}
             </div>
             <div class="grid gap-12 max-md:justify-center mb-6 grid-cols-4">
-              <div class="p-2 aspect-square">
+              <div class="aspect-square p-2">
                 <NuxtImg class="w-full max-w-full h-full max-h-full" src="/brand/stack/typescript.svg" />
               </div>
               <div class="aspect-square">

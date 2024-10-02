@@ -12,7 +12,7 @@ defineOgImage({
 
 <template>
   <div class="bg-base-300">
-    <Container class="py-24 grid gap-6">
+    <Container class="grid gap-6 py-24">
       <div>
         <h2 class="text-3xl">
           Blog
