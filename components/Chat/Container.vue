@@ -42,10 +42,10 @@ function onEnter(el: any, done: any) {
   <div
     class="grid rounded-lg overflow-hidden bg-base-300 grid-rows-[max-content_1fr_max-content] shadow-xl max-h-[65vh]"
   >
-    <div class="p-4 grid gap-3 items-center bg-blue-600 text-white grid-cols-[max-content_1fr]">
+    <div class="grid p-4 gap-3 items-center bg-blue-600 text-white grid-cols-[max-content_1fr]">
       <div class="relative">
         <NuxtImg width="64" src="/felina/chat.jpg" class="rounded-full mx-auto" />
-        <div class="absolute rounded-full top-0 aspect-square right-0 w-5 bg-emerald-300 border-2 border-blue-600" />
+        <div class="rounded-full absolute top-0 aspect-square right-0 w-5 bg-emerald-300 border-2 border-blue-600" />
       </div>
       <div>
         <div class="text-xl">
@@ -63,14 +63,14 @@ function onEnter(el: any, done: any) {
           <ChatMessage v-for="(value, i) in messages" :key="i" :value="value" />
         </TransitionGroup>
       </div>
-      <div v-else class="grid p-4 py-12 text-center max-w-xs text-sm gap-3">
+      <div v-else class="grid p-4 py-12 max-w-xs text-sm gap-3 text-center">
         {{ $t('chat.talk_to_cat') }}
       </div>
     </div>
 
     <div class="p-4 border-t border-t-base-100">
       <input
-        v-model="message" class="text-sm flex items-center w-full px-3 bg-base-100 h-10 rounded outline-none"
+        v-model="message" class="text-sm items-center bg-base-100 flex w-full px-3 h-10 rounded outline-none"
         type="text" :placeholder="$t('chat.input_label')" @keydown.enter="sendMessage"
       >
     </div>

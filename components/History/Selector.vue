@@ -161,7 +161,7 @@ onMounted(() => {
     </div>
     <div
       v-if="service && (service instanceof HistoryService)"
-      class="grid grid-cols-1 gap-6 relative z-[2] md:gap-12"
+      class="grid gap-6 relative z-[2] grid-cols-1 md:gap-12"
     >
       <div>
         <div>

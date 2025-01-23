@@ -9,7 +9,7 @@ const analytics = useAnalytics()
       download="Gabriel Serejo Curriculum"
       @click="analytics.trackDownload()"
     >
-      <Btn v-hoverable:download class="z-50 relative translate-x-1">
+      <Btn v-hoverable:download class="relative z-50 translate-x-1">
         {{ $t('download_curriculum') }}
       </Btn>
     </a>

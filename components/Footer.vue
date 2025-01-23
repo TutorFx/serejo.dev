@@ -5,7 +5,7 @@
         <ClientOnly>
           <DarkToggle size="28" />
           <template #fallback>
-            <div class="bg-base-300 h-6 w-64 rounded-lg bg-skeleton-gradient animate-skeleton" />
+            <div class="bg-base-300 h-6 rounded-lg w-64 bg-skeleton-gradient animate-skeleton" />
           </template>
         </ClientOnly>
       </div>

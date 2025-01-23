@@ -27,7 +27,7 @@ defineOgImage({
             class="relative grid gap-3 text-3xl md:text-6xl lg:text-7xl auto-rows-[1fr] md:gap-5 lg:gap-7 [text-shadow:_6px_1px_30px_var(--fallback-b1,oklch(var(--b1)/1))]"
           >
             {{ value.org }}
-            <div class="bg-base-300 absolute rounded-full -inset-12 z-[-1] blur-xl opacity-50" />
+            <div class="bg-base-300 absolute rounded-full z-[-1] blur-xl opacity-50 -inset-12" />
           </div>
         </div>
       </Container>
@@ -41,7 +41,7 @@ defineOgImage({
         </Container>
       </div>
     </div>
-    <div class="bg-base-200 rounded-b-3xl py-24 pt-12">
+    <div class="rounded-b-3xl py-24 bg-base-200 pt-12">
       <Container class="grid gap-3 max-w-4xl">
         <div class="grid grid-cols-[1fr_max-content]">
           <div class="text-sm text-primary">

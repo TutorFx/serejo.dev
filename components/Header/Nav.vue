@@ -6,7 +6,7 @@ const model = defineModel<boolean>()
 </script>
 
 <template>
-  <div class="py-6 grid gap-6 grid-cols-[max-content_1fr]">
+  <div class="grid gap-6 grid-cols-[max-content_1fr] py-6">
     <div>
       <h2 class="text-2xl font-logo">
         Gabriel S.
