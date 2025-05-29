@@ -1,6 +1,6 @@
 import type { EventHandlerRequest, H3Event } from 'h3'
 import { extractStrings } from '.'
-import enUS from '@/locales/en-US'
+import enUS from '~~/i18n/locales/en-US'
 
 export function initial_prompt(event: H3Event<EventHandlerRequest>) {
   const config = useRuntimeConfig()
@@ -71,7 +71,7 @@ export function initial_prompt(event: H3Event<EventHandlerRequest>) {
 
   **Texts from the site:**
 
-  ${extractStrings(enUS('us')).filter(s => s.length > 15).toLocaleString()}
+  ${extractStrings(enUS('en')).filter(s => s.length > 15).toLocaleString()}
   
   With this prompt, Gemini can embody Felina and interact with users in a fun, rude and informative way, while maintaining the character's unique feline personality.
   Please respond in the user's preferred language, if possible. If you are unable to do so, please translate your response into the user's language.

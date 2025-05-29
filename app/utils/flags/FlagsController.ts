@@ -1,4 +1,5 @@
-import type { FeatureFlags } from '../../app/utils/flags/Flags'
+import type { FeatureFlags } from "./Flags"
+
 
 export default class {
   private _name

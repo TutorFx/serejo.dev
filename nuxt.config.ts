@@ -11,24 +11,24 @@ const isProd = Boolean(process.env.NODE_ENV === 'production')
 
 export default defineNuxtConfig({
   modules: [
-    'nuxt-build-cache',
-    'nuxt-site-config',
-    'nuxt-booster',
-    '@nuxtjs/seo',
-    '@nuxtjs/sitemap',
+    // 'nuxt-build-cache',
+    // 'nuxt-site-config',
+    // 'nuxt-booster',
+    // '@nuxtjs/sitemap',
     '@vueuse/nuxt',
     '@pinia/nuxt',
     '@nuxtjs/device',
     '@nuxtjs/i18n',
+    '@nuxtjs/seo',
     '@nuxtjs/color-mode',
     '@nuxtjs/tailwindcss',
     '@nuxtjs/google-fonts',
     '@nuxt/image',
     '@nuxt/content',
-    '@nuxthq/studio',
+    // '@nuxthq/studio',
     // PWA still redirecting the defaultLocale
     // '@vite-pwa/nuxt',
-    'nuxt-module-eslint-config',
+    // 'nuxt-module-eslint-config',
     'nuxt-icon',
     'nuxt-gtag',
   ],
@@ -43,13 +43,13 @@ export default defineNuxtConfig({
       {
         code: 'en',
         name: 'English',
-        iso: 'en-US',
+        language: 'en-US',
         file: 'en-US.ts',
       },
       {
         code: 'pt-BR',
         name: 'Português',
-        iso: 'pt-BR',
+        language: 'pt-BR',
         file: 'pt-BR.ts',
       },
     ],
@@ -76,10 +76,14 @@ export default defineNuxtConfig({
         'en': '/i-worked-in/[item]',
         'pt-BR': '/trabalhei-na/[item]',
       },
+      '/sitemap.xml': {
+        'en': '/sitemap.xml',
+        'pt-BR': '/sitemap.xml'
+      }
     },
     experimental: {
-      localeDetector: './localeDetector.ts',
-    },
+      localeDetector: 'localeDetector.ts'
+    }
   },
 
   routeRules: {
@@ -103,6 +107,12 @@ export default defineNuxtConfig({
 
     viewTransition: true,
   },
+
+  future: {
+    compatibilityVersion: 4,
+  },
+
+  compatibilityDate: '2024-11-01',
 
   colorMode: {
     preference: 'light',
