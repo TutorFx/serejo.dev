@@ -197,7 +197,7 @@ export default defineNuxtConfig({
         'en': '/projects',
         'pt-BR': '/projetos',
       },
-      'experience/[item]': {
+      'experience-item': {
         'en': '/i-worked-in/[item]',
         'pt-BR': '/trabalhei-na/[item]',
       },
