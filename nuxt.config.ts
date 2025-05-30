@@ -11,27 +11,152 @@ const isProd = Boolean(process.env.NODE_ENV === 'production')
 
 export default defineNuxtConfig({
   modules: [
-    'nuxt-build-cache',
-    'nuxt-site-config',
-    'nuxt-booster',
-    '@nuxtjs/seo',
-    '@nuxtjs/sitemap',
+    // 'nuxt-build-cache',
+    // 'nuxt-site-config',
+    // 'nuxt-booster',
+    // '@nuxtjs/sitemap',
     '@vueuse/nuxt',
     '@pinia/nuxt',
     '@nuxtjs/device',
     '@nuxtjs/i18n',
+    '@nuxtjs/seo',
     '@nuxtjs/color-mode',
     '@nuxtjs/tailwindcss',
     '@nuxtjs/google-fonts',
     '@nuxt/image',
     '@nuxt/content',
-    '@nuxthq/studio',
+    '@nuxt/eslint',
+    // '@nuxthq/studio',
     // PWA still redirecting the defaultLocale
     // '@vite-pwa/nuxt',
-    'nuxt-module-eslint-config',
+    // 'nuxt-module-eslint-config',
     'nuxt-icon',
     'nuxt-gtag',
   ],
+
+  // pwa,
+
+  devtools: {
+    enabled: true,
+  },
+
+  app: {
+    head: {
+      viewport: 'width=device-width,initial-scale=1',
+      titleTemplate: '%s %separator %siteName',
+      link: [
+        { rel: 'icon', href: '/favicon.ico', sizes: 'any' },
+        { rel: 'icon', type: 'image/svg+xml', href: '/nuxt.svg' },
+        { rel: 'apple-touch-icon', href: '/apple-touch-icon.png' },
+      ],
+      meta: [
+        { name: 'viewport', content: 'width=device-width, initial-scale=1' },
+        { name: 'apple-mobile-web-app-status-bar-style', content: 'black-translucent' },
+        { name: 'theme-color', media: '(prefers-color-scheme: light)', content: 'white' },
+        { name: 'theme-color', media: '(prefers-color-scheme: dark)', content: '#222222' },
+      ],
+    },
+  },
+
+  site: {
+    name: appName,
+    description: appDescription,
+    url: siteUrl,
+  },
+
+  colorMode: {
+    preference: 'light',
+    dataValue: 'theme',
+  },
+
+  content: {
+    api: {
+      baseURL: '/api/cms',
+    },
+  },
+
+  runtimeConfig: {
+    gemini_api_key: process.env.GEMINI_API_KEY,
+    public: {
+      version: pkg.version,
+      name: pkg.name,
+      dev: isDev,
+      url: siteUrl,
+      phoneNumber,
+      schedule,
+    },
+  },
+
+  routeRules: {
+    '/': { prerender: true },
+    '/pt-BR/inicio': { prerender: true },
+  },
+
+  future: {
+    compatibilityVersion: 4,
+  },
+
+  experimental: {
+    // when using generate, payload js assets included in sw precache manifest
+    // but missing on offline, disabling extraction it until fixed
+    payloadExtraction: false,
+    renderJsonPayloads: true,
+    typedPages: true,
+    // By default Nuxt overwrites generated route values
+    // at build time which breaks custom named routes
+    scanPageMeta: true,
+
+    viewTransition: true,
+  },
+
+  compatibilityDate: '2024-11-01',
+
+  nitro: {
+    esbuild: {
+      options: {
+        target: 'esnext',
+      },
+    },
+    prerender: {
+      autoSubfolderIndex: false,
+      crawlLinks: true,
+    },
+    vercel: {
+      functions: {
+        maxDuration: 300,
+      },
+    },
+  },
+
+  typescript: {
+    tsConfig: {
+      compilerOptions: {
+        esModuleInterop: true,
+        allowSyntheticDefaultImports: true,
+      },
+    },
+    strict: true,
+  },
+
+  eslint: {
+    config: {
+      standalone: false,
+      nuxt: {
+        sortConfigKeys: true,
+      },
+    },
+  },
+
+  googleFonts: {
+    families: {
+      'Space Grotesk': [300, 400, 700],
+      'Mochiy Pop One': true,
+    },
+  },
+
+  gtag: {
+    id: process.env.GTAG,
+  },
 
   i18n: {
     // TODO: Move to `prefix` when the nuxt team fix the issue
@@ -43,13 +168,13 @@ export default defineNuxtConfig({
       {
         code: 'en',
         name: 'English',
-        iso: 'en-US',
+        language: 'en-US',
         file: 'en-US.ts',
       },
       {
         code: 'pt-BR',
         name: 'Português',
-        iso: 'pt-BR',
+        language: 'pt-BR',
         file: 'pt-BR.ts',
       },
     ],
@@ -72,76 +197,17 @@ export default defineNuxtConfig({
         'en': '/projects',
         'pt-BR': '/projetos',
       },
-      'experience/[item]': {
+      'experience-item': {
         'en': '/i-worked-in/[item]',
         'pt-BR': '/trabalhei-na/[item]',
       },
+      '/sitemap.xml': {
+        'en': '/sitemap.xml',
+        'pt-BR': '/sitemap.xml',
+      },
     },
     experimental: {
-      localeDetector: './localeDetector.ts',
-    },
-  },
-
-  routeRules: {
-    '/': { prerender: true },
-    '/pt-BR/inicio': { prerender: true },
-  },
-
-  gtag: {
-    id: process.env.GTAG,
-  },
-
-  experimental: {
-    // when using generate, payload js assets included in sw precache manifest
-    // but missing on offline, disabling extraction it until fixed
-    payloadExtraction: false,
-    renderJsonPayloads: true,
-    typedPages: true,
-    // By default Nuxt overwrites generated route values
-    // at build time which breaks custom named routes
-    scanPageMeta: true,
-
-    viewTransition: true,
-  },
-
-  colorMode: {
-    preference: 'light',
-    dataValue: 'theme',
-  },
-
-  googleFonts: {
-    families: {
-      'Space Grotesk': [300, 400, 700],
-      'Mochiy Pop One': true,
-    },
-  },
-
-  runtimeConfig: {
-    gemini_api_key: process.env.GEMINI_API_KEY,
-    public: {
-      version: pkg.version,
-      name: pkg.name,
-      dev: isDev,
-      url: siteUrl,
-      phoneNumber,
-      schedule,
-    },
-  },
-
-  nitro: {
-    esbuild: {
-      options: {
-        target: 'esnext',
-      },
-    },
-    prerender: {
-      autoSubfolderIndex: false,
-      crawlLinks: true,
-    },
-    vercel: {
-      functions: {
-        maxDuration: 300,
-      },
+      localeDetector: 'localeDetector.ts',
     },
   },
 
@@ -155,58 +221,8 @@ export default defineNuxtConfig({
     ],
   },
 
-  app: {
-    head: {
-      viewport: 'width=device-width,initial-scale=1',
-      titleTemplate: '%s %separator %siteName',
-      link: [
-        { rel: 'icon', href: '/favicon.ico', sizes: 'any' },
-        { rel: 'icon', type: 'image/svg+xml', href: '/nuxt.svg' },
-        { rel: 'apple-touch-icon', href: '/apple-touch-icon.png' },
-      ],
-      meta: [
-        { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-        { name: 'apple-mobile-web-app-status-bar-style', content: 'black-translucent' },
-        { name: 'theme-color', media: '(prefers-color-scheme: light)', content: 'white' },
-        { name: 'theme-color', media: '(prefers-color-scheme: dark)', content: '#222222' },
-      ],
-    },
-  },
-
   pinia: {
     storesDirs: ['./stores/**'],
-  },
-
-  typescript: {
-    tsConfig: {
-      compilerOptions: {
-        esModuleInterop: true,
-        allowSyntheticDefaultImports: true,
-      },
-    },
-    strict: true,
-  },
-
-  site: {
-    name: appName,
-    description: appDescription,
-    url: siteUrl,
-  },
-
-  // pwa,
-
-  devtools: {
-    enabled: true,
-  },
-
-  eslintConfig: {
-    setup: false,
-  },
-
-  content: {
-    api: {
-      baseURL: '/api/cms',
-    },
   },
 
   tailwindcss: {

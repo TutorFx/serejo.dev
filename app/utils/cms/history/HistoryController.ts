@@ -1,11 +1,11 @@
 import type { Dayjs } from 'dayjs'
 import dayjs from 'dayjs'
 
-import User from '@/utils/chat/entities/Agent/User'
-import Message from '@/utils/chat/entities/Message'
-import CmsController from '~/utils/cms/CmsController'
-import { HistoryEntrySchema } from '~/utils/cms/schemas'
-import type { HistoryEntry } from '~/utils/cms/types'
+import type { HistoryEntry } from '../types'
+import { HistoryEntrySchema } from '../schemas'
+import CmsController from '../CmsController'
+import Message from '~/utils/chat/entities/Message'
+import User from '~/utils/chat/entities/Agent/User'
 
 export default class extends CmsController {
   org: string

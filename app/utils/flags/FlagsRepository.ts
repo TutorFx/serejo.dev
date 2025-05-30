@@ -1,7 +1,6 @@
 import 'reflect-metadata'
-
-import type { FeatureFlags } from '../../app/utils/flags/Flags'
-import type FlagsController from '../../app/utils/flags/FlagsController'
+import type { FeatureFlags } from './Flags'
+import type FlagsController from './FlagsController'
 
 export default class {
   private _flagsRepository: FlagsController[] = []

@@ -3,9 +3,9 @@ import type { Content } from '@google/generative-ai'
 import { GoogleGenerativeAI, HarmBlockThreshold, HarmCategory } from '@google/generative-ai'
 
 import { final_prompt, initial_prompt } from '../utils/prompts'
-import { AgentType, ChatSchema } from '@/utils/chat/schemas'
-import MessageRepository from '@/utils/chat/MessageRepository'
-import Message from '@/utils/chat/entities/Message'
+import Message from '~/utils/chat/entities/Message'
+import MessageRepository from '~/utils/chat/MessageRepository'
+import { AgentType, ChatSchema } from '~/utils/chat/schemas'
 
 const generationConfig = {
   temperature: 0.9,
