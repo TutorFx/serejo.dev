@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import type MenuService from '~/app/utils/menu/MenuService'
+import type MenuService from '~/utils/menu/MenuService';
 
 defineProps<{ service: MenuService }>()
 </script>

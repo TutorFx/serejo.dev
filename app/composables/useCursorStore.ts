@@ -17,7 +17,7 @@ export const useCursorStore = defineStore('cursor', () => {
       return
 
     const kind = value[0]
-    const status = Boolean(Number.parseInt(value[1]))
+    const status = Boolean(value[1] ? Number.parseInt(value[1]) : 0)
 
     if (!status)
       return pointer.value = null

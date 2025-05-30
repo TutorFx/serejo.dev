@@ -7,8 +7,11 @@ const route = useRoute()
 
 const { stop } = useIntersectionObserver(
   startMenu,
-  ([{ isIntersecting }]) => {
-    visible.value = isIntersecting
+  (entries) => {
+    const entry = entries[0];
+    if (entry && entry.isIntersecting !== undefined) {
+      visible.value = entry.isIntersecting;
+    }
   },
 )
 
