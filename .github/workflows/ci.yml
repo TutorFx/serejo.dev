@@ -14,30 +14,26 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: pnpm/action-setup@v2
-      - uses: actions/setup-node@v4
+      - uses: oven-sh/setup-bun@v1 # Substitui pnpm/action-setup e actions/setup-node
         with:
-          node-version: lts/*
-          cache: pnpm
-
+          bun-version: "1.2.15"
+          
       - name: Install
-        run: pnpm install
+        run: bun install # Substitui pnpm install
 
       - name: Lint
-        run: pnpm run lint
+        run: bun run lint # Substitui pnpm run lint
 
   typecheck:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: pnpm/action-setup@v2
-      - uses: actions/setup-node@v4
+      - uses: oven-sh/setup-bun@v1
         with:
-          node-version: lts/*
-          cache: pnpm
+          bun-version: "1.2.15"
 
       - name: Install
-        run: pnpm install
+        run: bun install
 
       - name: Typecheck
-        run: pnpm run typecheck
+        run: bun run typecheck
