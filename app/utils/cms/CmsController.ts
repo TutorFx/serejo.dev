@@ -11,7 +11,6 @@ import 'dayjs/locale/pt'
 import 'dayjs/locale/fr'
 import 'dayjs/locale/es'
 
-
 function hasValueProperty(node: any): boolean {
   return typeof node === 'object' && node !== null && 'value' in node && typeof node.value === 'string'
 }

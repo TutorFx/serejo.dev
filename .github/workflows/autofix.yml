@@ -5,25 +5,22 @@ on:
   push:
     branches: [main]
 permissions:
-  contents: read
+  contents: write
 
 jobs:
   autofix:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: pnpm/action-setup@v2
-      - uses: actions/setup-node@v4
+      - uses: oven-sh/setup-bun@v1
         with:
-          node-version: lts/*
-          cache: pnpm
+          bun-version: 1.2.15
 
-      # TODO: add all code-fixing here.
       - name: Install
-        run: pnpm install
+        run: bun install
 
       - name: Lint
-        run: pnpm run lint --fix
+        run: bun run lint --fix
 
       - uses: autofix-ci/action@d3e591514b99d0fca6779455ff8338516663f7cc
         with:

@@ -2,7 +2,7 @@
 defineProps < {
   title: string
   description: string
-  readingTime: string
+  readingTime?: string
 } > ()
 </script>
 

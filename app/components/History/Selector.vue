@@ -25,10 +25,16 @@ const lineCompletionOutput = useTransition(lineCompletion, {
 
 const { stop } = useIntersectionObserver(
   lineRef,
-  ([{ isIntersecting }]) => {
-    isIntersecting
-      ? lineCompletion.value = 100
-      : lineCompletion.value = 0
+  (entries) => {
+    const entry = entries[0]
+    if (entry && entry.isIntersecting !== undefined) {
+      if (entry.isIntersecting) {
+        lineCompletion.value = 100
+      }
+      else {
+        lineCompletion.value = 0
+      }
+    }
   },
 )
 
