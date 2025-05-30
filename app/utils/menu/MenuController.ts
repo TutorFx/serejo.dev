@@ -1,7 +1,7 @@
+import type { RouteNamedMapI18n } from 'vue-router/auto-routes'
 import type { IMenu, IRouteLocationRawSchema } from '../menu'
 import { LinkType } from '../menu'
 import type { RouteLocationRaw } from '#vue-router'
-import type { RouteNamedMapI18n } from 'vue-router/auto-routes'
 
 interface ExternalBinding {
   href: string

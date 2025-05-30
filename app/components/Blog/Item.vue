@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import type BlogController from '~/utils/cms/blog/BlogController';
+import type BlogController from '~/utils/cms/blog/BlogController'
 
 defineProps<{
   value: BlogController

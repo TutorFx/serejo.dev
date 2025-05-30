@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { FeatureFlags } from '~/utils/flags/Flags';
+import type { FeatureFlags } from '~/utils/flags/Flags'
 
 const props = defineProps<{
   name: FeatureFlags

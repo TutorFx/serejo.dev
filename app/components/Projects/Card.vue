@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type ProjectController from '~/utils/cms/project/ProjectController';
+import type ProjectController from '~/utils/cms/project/ProjectController'
 
 defineProps<{
   item: ProjectController
