@@ -29,6 +29,7 @@
     "jspdf": "^2.5.2",
     "lint-staged": "^15.5.2",
     "nuxt-gtag": "^2.1.0",
+    "nuxt-og-image": "^5.1.4",
     "pdfkit": "^0.15.2",
     "reflect-metadata": "^0.2.2",
     "tailwind-merge": "^2.6.0",

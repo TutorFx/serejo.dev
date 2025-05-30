@@ -9,9 +9,9 @@ useHead({
   ],
 })
 
-/* defineOgImage({
+defineOgImage({
   component: 'default',
-}) */
+})
 </script>
 
 <template>

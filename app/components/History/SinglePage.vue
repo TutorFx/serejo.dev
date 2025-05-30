@@ -9,13 +9,13 @@ const localePath = useLocalePath()
 
 const { t } = useI18n()
 
-/* defineOgImage({
+defineOgImage({
   component: 'CmsPage',
   props: {
     description: value.getSafeTruncatedDescription(330),
     readingTime: t('time.reading_time', { time: value.getLocaleReadingTime() }),
   },
-}) */
+})
 </script>
 
 <template>

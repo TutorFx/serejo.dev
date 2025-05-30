@@ -5,9 +5,9 @@ useHead({
   title: t('menu.blog'),
 })
 
-/* defineOgImage({
+defineOgImage({
   component: 'default',
-}) */
+})
 </script>
 
 <template>
