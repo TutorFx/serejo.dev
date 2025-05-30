@@ -34,6 +34,130 @@ export default defineNuxtConfig({
     'nuxt-gtag',
   ],
 
+  // pwa,
+
+  devtools: {
+    enabled: true,
+  },
+
+  app: {
+    head: {
+      viewport: 'width=device-width,initial-scale=1',
+      titleTemplate: '%s %separator %siteName',
+      link: [
+        { rel: 'icon', href: '/favicon.ico', sizes: 'any' },
+        { rel: 'icon', type: 'image/svg+xml', href: '/nuxt.svg' },
+        { rel: 'apple-touch-icon', href: '/apple-touch-icon.png' },
+      ],
+      meta: [
+        { name: 'viewport', content: 'width=device-width, initial-scale=1' },
+        { name: 'apple-mobile-web-app-status-bar-style', content: 'black-translucent' },
+        { name: 'theme-color', media: '(prefers-color-scheme: light)', content: 'white' },
+        { name: 'theme-color', media: '(prefers-color-scheme: dark)', content: '#222222' },
+      ],
+    },
+  },
+
+  site: {
+    name: appName,
+    description: appDescription,
+    url: siteUrl,
+  },
+
+  colorMode: {
+    preference: 'light',
+    dataValue: 'theme',
+  },
+
+  content: {
+    api: {
+      baseURL: '/api/cms',
+    },
+  },
+
+  runtimeConfig: {
+    gemini_api_key: process.env.GEMINI_API_KEY,
+    public: {
+      version: pkg.version,
+      name: pkg.name,
+      dev: isDev,
+      url: siteUrl,
+      phoneNumber,
+      schedule,
+    },
+  },
+
+  routeRules: {
+    '/': { prerender: true },
+    '/pt-BR/inicio': { prerender: true },
+  },
+
+  future: {
+    compatibilityVersion: 4,
+  },
+
+  experimental: {
+    // when using generate, payload js assets included in sw precache manifest
+    // but missing on offline, disabling extraction it until fixed
+    payloadExtraction: false,
+    renderJsonPayloads: true,
+    typedPages: true,
+    // By default Nuxt overwrites generated route values
+    // at build time which breaks custom named routes
+    scanPageMeta: true,
+
+    viewTransition: true,
+  },
+
+  compatibilityDate: '2024-11-01',
+
+  nitro: {
+    esbuild: {
+      options: {
+        target: 'esnext',
+      },
+    },
+    prerender: {
+      autoSubfolderIndex: false,
+      crawlLinks: true,
+    },
+    vercel: {
+      functions: {
+        maxDuration: 300,
+      },
+    },
+  },
+
+  typescript: {
+    tsConfig: {
+      compilerOptions: {
+        esModuleInterop: true,
+        allowSyntheticDefaultImports: true,
+      },
+    },
+    strict: true,
+  },
+
+  eslint: {
+    config: {
+      standalone: false,
+      nuxt: {
+        sortConfigKeys: true,
+      },
+    },
+  },
+
+  googleFonts: {
+    families: {
+      'Space Grotesk': [300, 400, 700],
+      'Mochiy Pop One': true,
+    },
+  },
+
+  gtag: {
+    id: process.env.GTAG,
+  },
+
   i18n: {
     // TODO: Move to `prefix` when the nuxt team fix the issue
     // TODO: Move the app to customRoutes: 'config'
@@ -79,80 +203,11 @@ export default defineNuxtConfig({
       },
       '/sitemap.xml': {
         'en': '/sitemap.xml',
-        'pt-BR': '/sitemap.xml'
-      }
+        'pt-BR': '/sitemap.xml',
+      },
     },
     experimental: {
-      localeDetector: 'localeDetector.ts'
-    }
-  },
-
-  routeRules: {
-    '/': { prerender: true },
-    '/pt-BR/inicio': { prerender: true },
-  },
-
-  gtag: {
-    id: process.env.GTAG,
-  },
-
-  experimental: {
-    // when using generate, payload js assets included in sw precache manifest
-    // but missing on offline, disabling extraction it until fixed
-    payloadExtraction: false,
-    renderJsonPayloads: true,
-    typedPages: true,
-    // By default Nuxt overwrites generated route values
-    // at build time which breaks custom named routes
-    scanPageMeta: true,
-
-    viewTransition: true,
-  },
-
-  future: {
-    compatibilityVersion: 4,
-  },
-
-  compatibilityDate: '2024-11-01',
-
-  colorMode: {
-    preference: 'light',
-    dataValue: 'theme',
-  },
-
-  googleFonts: {
-    families: {
-      'Space Grotesk': [300, 400, 700],
-      'Mochiy Pop One': true,
-    },
-  },
-
-  runtimeConfig: {
-    gemini_api_key: process.env.GEMINI_API_KEY,
-    public: {
-      version: pkg.version,
-      name: pkg.name,
-      dev: isDev,
-      url: siteUrl,
-      phoneNumber,
-      schedule,
-    },
-  },
-
-  nitro: {
-    esbuild: {
-      options: {
-        target: 'esnext',
-      },
-    },
-    prerender: {
-      autoSubfolderIndex: false,
-      crawlLinks: true,
-    },
-    vercel: {
-      functions: {
-        maxDuration: 300,
-      },
+      localeDetector: 'localeDetector.ts',
     },
   },
 
@@ -166,63 +221,8 @@ export default defineNuxtConfig({
     ],
   },
 
-  app: {
-    head: {
-      viewport: 'width=device-width,initial-scale=1',
-      titleTemplate: '%s %separator %siteName',
-      link: [
-        { rel: 'icon', href: '/favicon.ico', sizes: 'any' },
-        { rel: 'icon', type: 'image/svg+xml', href: '/nuxt.svg' },
-        { rel: 'apple-touch-icon', href: '/apple-touch-icon.png' },
-      ],
-      meta: [
-        { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-        { name: 'apple-mobile-web-app-status-bar-style', content: 'black-translucent' },
-        { name: 'theme-color', media: '(prefers-color-scheme: light)', content: 'white' },
-        { name: 'theme-color', media: '(prefers-color-scheme: dark)', content: '#222222' },
-      ],
-    },
-  },
-
   pinia: {
     storesDirs: ['./stores/**'],
-  },
-
-  typescript: {
-    tsConfig: {
-      compilerOptions: {
-        esModuleInterop: true,
-        allowSyntheticDefaultImports: true,
-      },
-    },
-    strict: true,
-  },
-
-  site: {
-    name: appName,
-    description: appDescription,
-    url: siteUrl,
-  },
-
-  // pwa,
-
-  devtools: {
-    enabled: true,
-  },
-
-  eslint: {
-    config: {
-      standalone: false,
-      nuxt: {
-        sortConfigKeys: true,
-      },
-    },
-  },
-
-  content: {
-    api: {
-      baseURL: '/api/cms',
-    },
   },
 
   tailwindcss: {

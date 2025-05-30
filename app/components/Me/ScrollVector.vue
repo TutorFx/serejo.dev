@@ -10,9 +10,9 @@ const isMounted = ref(false)
 
 const applyRotation = computed(() => wheel.value
   ? $gsap.quickTo(wheel.value, 'rotation', {
-    duration: 0.6,
-    ease: 'power5',
-  })
+      duration: 0.6,
+      ease: 'power5',
+    })
   : () => null)
 
 function ticker(time: number, timeDelta: number) {

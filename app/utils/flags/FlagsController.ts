@@ -1,5 +1,4 @@
-import type { FeatureFlags } from "./Flags"
-
+import type { FeatureFlags } from './Flags'
 
 export default class {
   private _name

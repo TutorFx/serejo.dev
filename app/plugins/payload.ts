@@ -1,15 +1,13 @@
-
-
 // payload.js
 
-import BlogController from "~/utils/cms/blog/BlogController"
-import BlogRepository from "~/utils/cms/blog/BlogRepository"
-import HistoryController from "~/utils/cms/history/HistoryController"
-import HistoryRepository from "~/utils/cms/history/HistoryRepository"
-import ProjectController from "~/utils/cms/project/ProjectController"
-import ProjectRepository from "~/utils/cms/project/ProjectRepository"
-import FlagsController from "~/utils/flags/FlagsController"
-import FlagsRepository from "~/utils/flags/FlagsRepository"
+import BlogController from '~/utils/cms/blog/BlogController'
+import BlogRepository from '~/utils/cms/blog/BlogRepository'
+import HistoryController from '~/utils/cms/history/HistoryController'
+import HistoryRepository from '~/utils/cms/history/HistoryRepository'
+import ProjectController from '~/utils/cms/project/ProjectController'
+import ProjectRepository from '~/utils/cms/project/ProjectRepository'
+import FlagsController from '~/utils/flags/FlagsController'
+import FlagsRepository from '~/utils/flags/FlagsRepository'
 
 export default definePayloadPlugin(() => {
   definePayloadReducer('HistoryRepository', (data) => {

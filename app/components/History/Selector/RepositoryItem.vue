@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type HistoryController from '~/utils/cms/history/HistoryController';
+import type HistoryController from '~/utils/cms/history/HistoryController'
 
 defineProps<{
   item: HistoryController

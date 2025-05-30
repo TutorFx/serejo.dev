@@ -3,7 +3,6 @@ import { FeatureFlags } from '~/utils/flags/Flags'
 import FlagsController from '~/utils/flags/FlagsController'
 import FlagsRepository from '~/utils/flags/FlagsRepository'
 
-
 export default defineNuxtPlugin(() => {
   const device = useDevice()
 

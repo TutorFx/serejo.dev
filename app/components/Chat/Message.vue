@@ -2,11 +2,10 @@
 import Bot from '@/utils/chat/entities/Agent/Bot'
 import User from '@/utils/chat/entities/Agent/User'
 
-import type AbstractAgent from '~/utils/chat/entities/AbstractAgent';
-import type Message from '~/utils/chat/entities/Message';
+import type AbstractAgent from '~/utils/chat/entities/AbstractAgent'
+import type Message from '~/utils/chat/entities/Message'
 
 defineProps<{ value: Message<T> }>()
-
 </script>
 
 <template>

@@ -1,4 +1,4 @@
-import type BlogController from "./BlogController"
+import type BlogController from './BlogController'
 
 export default class {
   item: BlogController

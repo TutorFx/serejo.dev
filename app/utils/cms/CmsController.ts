@@ -1,4 +1,4 @@
-
+import type { MarkdownRoot } from '@nuxt/content'
 import dayjs from 'dayjs'
 import { visit } from 'unist-util-visit'
 import duration from 'dayjs/plugin/duration'
@@ -11,7 +11,6 @@ import 'dayjs/locale/pt'
 import 'dayjs/locale/fr'
 import 'dayjs/locale/es'
 
-import type { MarkdownRoot } from '@nuxt/content'
 
 function hasValueProperty(node: any): boolean {
   return typeof node === 'object' && node !== null && 'value' in node && typeof node.value === 'string'

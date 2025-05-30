@@ -1,5 +1,4 @@
-import { FeatureFlags } from "~/utils/flags/Flags"
-
+import { FeatureFlags } from '~/utils/flags/Flags'
 
 export default defineNuxtPlugin((nuxtApp) => {
   nuxtApp.vueApp.directive('hoverable', {

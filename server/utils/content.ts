@@ -7,7 +7,7 @@ import HistoryController from '~/utils/cms/history/HistoryController'
 import HistoryRepository from '~/utils/cms/history/HistoryRepository'
 import ProjectController from '~/utils/cms/project/ProjectController'
 import ProjectRepository from '~/utils/cms/project/ProjectRepository'
-import type { HistoryEntry, EducationEntry, ProjectEntry } from '~/utils/cms/types'
+import type { EducationEntry, HistoryEntry, ProjectEntry } from '~/utils/cms/types'
 import { processArray } from '~/utils/helpers'
 
 export async function queryProcessedContent(event: H3Event, lang: string = 'en') {

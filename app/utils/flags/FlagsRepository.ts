@@ -2,7 +2,6 @@ import 'reflect-metadata'
 import type { FeatureFlags } from './Flags'
 import type FlagsController from './FlagsController'
 
-
 export default class {
   private _flagsRepository: FlagsController[] = []
 
