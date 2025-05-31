@@ -38,7 +38,7 @@
     "zod-validation-error": "^3.4.1"
   },
   "devDependencies": {
-    "@antfu/eslint-config": "^2.27.3",
+    "@antfu/eslint-config": "^4.0.0",
     "@iconify-json/carbon": "^1.2.8",
     "@iconify-json/twemoji": "^1.2.2",
     "@nuxt/eslint": "^1.4.1",
