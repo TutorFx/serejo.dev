@@ -1,22 +1,20 @@
-/* eslint-disable unused-imports/no-unused-vars */
-
 import process from 'node:process'
-import tailwindTypography from '@tailwindcss/typography'
-import daisyui from 'daisyui'
-import { appDescription, appName, phoneNumber, schedule, siteUrl } from './constants/index'
+
+import {
+  APP_DESCRIPTION,
+  APP_NAME,
+  PHONE_NUMBER,
+  SCHEDULE,
+  SITE_URL,
+} from './shared/utils/constants'
+
 import * as pkg from './package.json'
 
 const isDev = Boolean(process.env.NODE_ENV !== 'production')
-const isProd = Boolean(process.env.NODE_ENV === 'production')
 
 export default defineNuxtConfig({
   modules: [
-    // 'nuxt-build-cache',
-    // 'nuxt-site-config',
-    // 'nuxt-booster',
-    // '@nuxtjs/sitemap',
     '@vueuse/nuxt',
-    '@pinia/nuxt',
     '@nuxtjs/device',
     '@nuxtjs/i18n',
     '@nuxtjs/seo',
@@ -26,15 +24,9 @@ export default defineNuxtConfig({
     '@nuxt/image',
     '@nuxt/content',
     '@nuxt/eslint',
-    // '@nuxthq/studio',
-    // PWA still redirecting the defaultLocale
-    // '@vite-pwa/nuxt',
-    // 'nuxt-module-eslint-config',
     'nuxt-icon',
     'nuxt-gtag',
   ],
-
-  // pwa,
 
   devtools: {
     enabled: true,
@@ -59,20 +51,14 @@ export default defineNuxtConfig({
   },
 
   site: {
-    name: appName,
-    description: appDescription,
-    url: siteUrl,
+    name: APP_NAME,
+    description: APP_DESCRIPTION,
+    url: SITE_URL,
   },
 
   colorMode: {
     preference: 'light',
     dataValue: 'theme',
-  },
-
-  content: {
-    api: {
-      baseURL: '/api/cms',
-    },
   },
 
   runtimeConfig: {
@@ -81,9 +67,9 @@ export default defineNuxtConfig({
       version: pkg.version,
       name: pkg.name,
       dev: isDev,
-      url: siteUrl,
-      phoneNumber,
-      schedule,
+      url: SITE_URL,
+      PHONE_NUMBER,
+      SCHEDULE,
     },
   },
 
@@ -97,26 +83,12 @@ export default defineNuxtConfig({
   },
 
   experimental: {
-    // when using generate, payload js assets included in sw precache manifest
-    // but missing on offline, disabling extraction it until fixed
     payloadExtraction: false,
     renderJsonPayloads: true,
     typedPages: true,
-    // By default Nuxt overwrites generated route values
-    // at build time which breaks custom named routes
-    scanPageMeta: true,
-
-    viewTransition: true,
   },
 
-  compatibilityDate: '2024-11-01',
-
   nitro: {
-    esbuild: {
-      options: {
-        target: 'esnext',
-      },
-    },
     prerender: {
       autoSubfolderIndex: false,
       crawlLinks: true,
@@ -126,16 +98,6 @@ export default defineNuxtConfig({
         maxDuration: 300,
       },
     },
-  },
-
-  typescript: {
-    tsConfig: {
-      compilerOptions: {
-        esModuleInterop: true,
-        allowSyntheticDefaultImports: true,
-      },
-    },
-    strict: true,
   },
 
   eslint: {
@@ -189,6 +151,10 @@ export default defineNuxtConfig({
         'en': '/blog',
         'pt-BR': '/blog',
       },
+      'post-item':{
+        'en': '/post/[item]',
+        'pt-BR': '/pt-BR/post/[item]',
+      },
       'history': {
         'en': '/my-trajectory',
         'pt-BR': '/minha-jornada',
@@ -219,15 +185,5 @@ export default defineNuxtConfig({
       'Space+Grotesk:400',
       'Space+Grotesk:700',
     ],
-  },
-
-  pinia: {
-    storesDirs: ['./stores/**'],
-  },
-
-  tailwindcss: {
-    config: {
-      plugins: [tailwindTypography, daisyui],
-    },
   },
 })

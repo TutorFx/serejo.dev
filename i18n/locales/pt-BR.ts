@@ -21,9 +21,9 @@ export default defineI18nLocale(async (/* locale */) => {
         keywords: 'Gabriel Serejo, Desenvolvedor Web, Desenvolvedor Front-end, Implementação de Recursos, Projetos Web, Trajetória Profissional, Experiência, Portfólio',
       },
     },
-    schedule_support_text: `Olá! Sou Gabriel Serejo, desenvovedor full stack. Ajudo empresas no desenvolvimento de 
+    SCHEDULE_support_text: `Olá! Sou Gabriel Serejo, desenvovedor full stack. Ajudo empresas no desenvolvimento de 
     software e aplicações web.`,
-    schedule_cta: 'Agende uma chamada',
+    SCHEDULE_cta: 'Agende uma chamada',
     description: 'Descrição',
     see_more: 'Ver mais',
     copyright: 'Todos os direitos reservados',

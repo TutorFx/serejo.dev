@@ -1,3 +1,0 @@
-<template>
-  <CurriculumMain />
-</template>

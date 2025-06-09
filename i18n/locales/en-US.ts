@@ -21,10 +21,10 @@ export default defineI18nLocale(async (/* locale */) => {
         keywords: 'Gabriel Serejo, Web Developer, Front-end Developer, Feature Implementation, Web Projects, Professional Journey, Experience, Portfolio',
       },
     },
-    schedule_support_text: `Hey! I am Gabriel, a web engineering consultant based in Brazil. 
+    SCHEDULE_support_text: `Hey! I am Gabriel, a web engineering consultant based in Brazil. 
         I help companies to build better web applications and to improve their knowledge, 
         workflows, and culture.`,
-    schedule_cta: 'Schedule a call',
+    SCHEDULE_cta: 'SCHEDULE a call',
     description: 'Description',
     see_more: 'See more',
     copyright: 'All rights reserved',

@@ -1,0 +1,9 @@
+export * from './chat/chat.constants'
+export * from './cms/cms.constants'
+export * from './menu/menu.constants'
+
+export const APP_NAME = 'Gabriel Serejo'
+export const APP_DESCRIPTION = ``
+export const PHONE_NUMBER = `5562994063442`
+export const SITE_URL = 'https://serejo.dev'
+export const SCHEDULE = 'https://calendar.app.google/Q8eyPqS7eAxeFdem6'
