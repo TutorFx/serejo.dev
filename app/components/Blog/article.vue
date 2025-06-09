@@ -19,7 +19,7 @@ defineOgImage({
 <template>
   <Container class="max-w-3xl">
     <div class="grid py-12 gap-1">
-      <div class="text-3xl max-w-3xl">
+      <div class="text-3xl">
         {{ value.title }}
       </div>
       <div class="grid grid-flow-col justify-start gap-2 text-accent">
