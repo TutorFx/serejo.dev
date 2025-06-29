@@ -42,7 +42,7 @@
     "@iconify-json/carbon": "^1.2.8",
     "@iconify-json/twemoji": "^1.2.2",
     "@nuxt/eslint": "^1.4.1",
-    "@nuxthq/studio": "^1.1.2",
+    "@nuxthq/studio": "^2.0.0",
     "@nuxtjs/color-mode": "^3.5.2",
     "@nuxtjs/i18n": "^9.5.5",
     "@nuxtjs/sitemap": "^5.3.5",
