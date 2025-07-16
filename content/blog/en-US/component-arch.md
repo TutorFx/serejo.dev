@@ -1,6 +1,7 @@
 ---
 title: 'The Component Architecture That Shadcn and Nuxt UI Popularized (And How to Use It Today)'
 createdAt: 2025-06-07T00:00:00.000Z
+slug: component-architecture-shadcn-nuxt-ui-tailwind-variants
 ---
 
 Creating reusable and highly customizable components is one of the pillars of a good Design System. However, as we add new variations (colors, sizes, styles), the code can become a complex web of conditional classes, making it difficult to read and maintain.
@@ -19,8 +20,7 @@ It all starts with standardization. Instead of scattering values like `'sm'`, `'
 
 Create a file to store all your Design System options.
 
-```typescript
-// app/utils/constants.ts
+```typescript [app/utils/constants.ts]
 
 export const COMPONENT_SIZE_KEY_XSMALL = 'xxs'
 export const COMPONENT_SIZE_KEY_SMALL = 'sm'
@@ -51,16 +51,14 @@ This step is important for standardizing properties that will be common to all t
 
 Below, we'll define the type that represents all available sizes for the button component. This will then allow us to declare the component's `size` property type.
 
-```typescript
-// app/utils/types.ts
+```typescript [app/utils/types.ts]
 
 export type ComponentSize = (typeof CORE_SIZE)[keyof typeof CORE_SIZE]
 ```
 
 The next step is to define the type for the default configuration that all design system components will inherit.
 
-```typescript
-// app/utils/types.ts
+```typescript [app/utils/types.ts]
 
 export type GenericVariantKeyDefinition<T extends string> = Record<T, string | undefined>
 export type BooleanKeyDefinition = Record<`${boolean}`, string | undefined>
@@ -73,8 +71,7 @@ export interface BaseVariant {
 
 From this, we'll define the interface that represents the properties of our base component.
 
-```typescript
-// app/utils/types.ts
+```typescript [app/utils/types.ts]
 
 export interface BaseProps {
   size?: ComponentSize
@@ -86,8 +83,7 @@ export interface BaseProps {
 
 Now that we have a solid foundation for our design system, we can think about our variants file.
 
-```typescript
-// app/utils/variants/button.variant.ts
+```typescript [app/utils/variants/button.variant.ts]
 
 import { tv } from 'tailwind-variants'
 
@@ -118,8 +114,7 @@ export const button = tv({
 
 To make the variants file available for automatic import, let's add an export to the `app/utils/variants.ts` file.
 
-```ts
-// app/utils/variants.ts
+```typescript [app/utils/variants.ts]
 
 export * from './variants/button.variant'
 ```
@@ -128,8 +123,7 @@ export * from './variants/button.variant'
 
 Now that we have the constants, types, and variations defined, we can create the button component. We'll use Tailwind Variants to apply the style variations dynamically.
 
-```vue
-// app/components/button.vue
+```vue [app/components/button.vue]
 
 <script lang="ts">
 import { tv } from 'tailwind-variants'
@@ -174,7 +168,7 @@ Usually, VS Code doesn't recognize these variable definitions outside of `.vue`,
 
 Create a file named `settings.json` in your project's `.vscode` folder and add the following content:
 
-```json
+```json [.vscode/settings.json]
 {
   "tailwindCSS.experimental.classRegex": [
     ["tv\\({([\\s\\S]*?)}\\)", "[\"'`]([^\"'`]*)[\"'`]"]
@@ -188,9 +182,7 @@ This tells VS Code how to interpret the classes defined inside the `tv()` functi
 
 Now that we have our button component set up, we can use it anywhere in our Nuxt 3 application. See how simple it is:
 
-```vue
-// app/pages/index.vue
-
+```vue [app/pages/index.vue]
 <template>
   <div class="p-4 flex gap-4">
     <Button size="sm" color="primary" variant="solid" rounded>
@@ -212,10 +204,10 @@ Now that we have our button component set up, we can use it anywhere in our Nuxt
 
 Throughout this guide, we've transformed what could be a chaos of conditional classes into a component-building paradigm that is simultaneously elegant, scalable, and easy to maintain. The true power of the **Tailwind Variants** approach lies in a fundamental architectural principle: decoupling the styling logic from the component's structure.
 
-The result is a cleaner, smarter workflow. Our Vue component now focuses exclusively on its function and structure, while a dedicated variants file becomes the single source of truth for its appearance. This separation of concerns is not just a matter of organization; it's what makes scalability a trivial task. [1, 3] Adding a new color or style comes down to a single line of code, without ever touching the component itself. Maintenance is also simplified, as any visual adjustment is made in a predictable location. When we add the type safety and autocompletion that TypeScript and the correct VS Code configuration provide, we elevate the development experience to a new level of productivity and confidence.
+The result is a cleaner, smarter workflow. Our Vue component now focuses exclusively on its function and structure, while a dedicated variants file becomes the single source of truth for its appearance. This separation of concerns is not just a matter of organization; it's what makes scalability a trivial task. Adding a new color or style comes down to a single line of code, without ever touching the component itself. Maintenance is also simplified, as any visual adjustment is made in a predictable location. When we add the type safety and autocompletion that TypeScript and the correct VS Code configuration provide, we elevate the development experience to a new level of productivity and confidence.
 
 This methodology isn't just about creating a button; it's about establishing a solid foundation for a **Design System** that can grow without friction. It's a philosophy that extends to any piece of your interface, from cards to modals, from inputs to badges.
 
-It's impossible to talk about this approach without giving credit where it's due. A special thanks to the **shadcn** team, who truly broke the mold by popularizing the idea that a Design System doesn't have to be a black-box library, but rather a set of adaptable recipes that live within our own code. [4, 9, 11] Similarly, the inspiration for this article came in large part from the exceptional work of the **nuxt-labs** team. Projects like [Nuxt UI](https://ui.nuxt.com/) are living proof of the powerful application of these concepts in the Nuxt ecosystem, serving as a beacon for creating modern and efficient interfaces.
+It's impossible to talk about this approach without giving credit where it's due. A special thanks to the **shadcn** team, who truly broke the mold by popularizing the idea that a Design System doesn't have to be a black-box library, but rather a set of adaptable recipes that live within our own code. Similarly, the inspiration for this article came in large part from the exceptional work of the **nuxt-labs** team. Projects like [Nuxt UI](https://ui.nuxt.com/) are living proof of the powerful application of these concepts in the Nuxt ecosystem, serving as a beacon for creating modern and efficient interfaces.
 
 I hope this guide has provided the clarity and tools for you to build your own component systems more intelligently. The complete code, with more variations, is available in the [project repository](https://github.com/TutorFx/article-how-to-use-tailwind-variants-with-nuxt3). Now, go ahead and build amazing interfaces.

@@ -6,12 +6,13 @@ export const cmsEntrySchema = {
 }
 
 export const dateObjectSchema = {
-  start: z.string().date(),
-  end: z.string().date().nullable(),
+  start: z.date(),
+  end: z.date().nullable(),
 }
 
 export const blogSchema = z.object({
-  createdAt: z.string().datetime(),
+  createdAt: z.date(),
+  slug: z.string().nullable(),
 }).extend(cmsEntrySchema)
 
 export const historySchema = z.object({
@@ -21,7 +22,7 @@ export const historySchema = z.object({
 
 export const projectSchema = z.object({
   url: z.string().url(),
-  github: z.string().url().optional(),
+  github: z.string().url(),
   scroller: z.string(),
 })
 

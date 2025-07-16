@@ -1,6 +1,7 @@
 ---
 title: Hello World
 createdAt: 2024-04-06
+slug: hello-world
 ---
 
 Hello, welcome 😊

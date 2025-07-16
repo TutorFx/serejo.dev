@@ -1,6 +1,7 @@
 ---
 title: 'A Arquitetura de Componentes que Shadcn e Nuxt UI Popularizaram (e Como Usá-la Hoje)'
 createdAt: 2025-06-07T00:00:00.000Z
+slug: arquitetura-de-componentes-shadcn-nuxt-ui-tailwind-variants
 ---
 
 Criar componentes reutilizáveis e altamente customizáveis é um dos pilares de um bom Design System. No entanto, à medida que adicionamos novas variações (cores, tamanhos, estilos), o código pode se tornar uma teia complexa de classes condicionais, difícil de ler e manter.
@@ -19,9 +20,7 @@ Tudo começa com a padronização. Em vez de espalhar valores como `'sm'`, `'md'
 
 Crie um arquivo para armazenar todas as opções do seu Design System.
 
-```typescript
-// app/utils/constants.ts
-
+```typescript [app/utils/constants.ts]
 export const COMPONENT_SIZE_KEY_XSMALL = 'xxs'
 export const COMPONENT_SIZE_KEY_SMALL = 'sm'
 export const COMPONENT_SIZE_KEY_MEDIUM = 'md'
@@ -51,16 +50,14 @@ Essa etapa é importante para padronizar algumas propriedades que serão comuns 
 
 Abaixo, vamos definir o tipo que representa todos os tamanhos disponíveis para o componente de botão. Isso nos permitirá declarar em seguida o tipo de propriedade `size` do componente.
 
-```typescript
-// app/utils/types.ts
+```typescript [app/utils/types.ts]
 
 export type ComponentSize = (typeof CORE_SIZE)[keyof typeof CORE_SIZE]
 ```
 
 O próximo passo é definir o tipo da configuração padrão que todos os componentes do design system herdarão.
 
-```typescript
-// app/utils/types.ts
+```typescript [app/utils/types.ts]
 
 export type GenericVariantKeyDefinition<T extends string> = Record<T, string | undefined>
 export type BooleanKeyDefinition = Record<`${boolean}`, string | undefined>
@@ -73,8 +70,7 @@ export interface BaseVariant {
 
 A partir disso, vamos definir a interface que representa as propriedades do nosso componente base.
 
-```typescript
-// app/utils/types.ts
+```typescript [app/utils/types.ts]
 
 export interface BaseProps {
   size?: ComponentSize
@@ -86,8 +82,7 @@ export interface BaseProps {
 
 Agora que já temos uma base sólida para nosso design system, podemos pensar em nosso arquivo de variações.
 
-```typescript
-// app/utils/variants/button.variant.ts
+```typescript [app/utils/variants/button.variant.ts]
 
 import { tv } from 'tailwind-variants'
 
@@ -118,8 +113,7 @@ export const button = tv({
 
 Para o arquivo de variações estar disponível para importação automática, vamos adicionar um export no arquivo `app/utils/variants.ts`.
 
-```ts
-// app/utils/variants.ts
+```typescript [app/utils/variants.ts]
 
 export * from './variants/button.variant'
 ```
@@ -128,8 +122,7 @@ export * from './variants/button.variant'
 
 Agora que já temos as constantes, tipos e variações definidas, podemos criar o componente de botão. Vamos utilizar o Tailwind Variants para aplicar as variações de estilo de forma dinâmica.
 
-```vue
-// app/components/button.vue
+```vue [app/components/button.vue]
 
 <script lang="ts">
 import { tv } from 'tailwind-variants'
@@ -174,7 +167,7 @@ Normalmente o VSCODE não reconhece essas definições de variáveis fora dos ar
 
 Crie um arquivo chamado `settings.json` na pasta `.vscode` do seu projeto e adicione o seguinte conteúdo:
 
-```json
+```json [.vscode/settings.json]
 {
   "tailwindCSS.experimental.classRegex": [
     ["tv\\({([\\s\\S]*?)}\\)", "[\"'`]([^\"'`]*)[\"'`]"]
@@ -188,9 +181,7 @@ Isso informa ao VSCODE como interpretar as classes definidas dentro da função 
 
 Agora que temos nosso componente de botão configurado, podemos utilizá-lo em qualquer parte do nosso aplicativo Nuxt3. Veja como é simples:
 
-```vue
-// app/pages/index.vue
-
+```vue [app/pages/index.vue]
 <template>
   <div class="p-4 flex gap-4">
     <Button size="sm" color="primary" variant="solid" rounded>

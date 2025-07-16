@@ -1,6 +1,7 @@
 ---
 title: The Evolution of Virtual DOMs in JavaScript Frameworks
 createdAt: 2024-04-18T00:00:00.000Z
+slug: evolution-virtual-dom-javascript-frameworks
 ---
 
 A few years ago, with the popularization of frontend frameworks, we saw a growing movement in the market towards choosing Virtual DOMs. So, that means it's the right way to go, right?...

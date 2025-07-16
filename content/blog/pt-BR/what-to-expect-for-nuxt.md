@@ -1,6 +1,7 @@
 ---
 title: O Nuxt 4 está vindo sem grandes mudanças. E isso é bom!
 createdAt: 2024-04-25T00:00:00.000Z
+slug: o-que-esperar-do-nuxt-4-sem-grandes-mudancas
 ---
 
 Nos últimos anos, vimos uma grande evolução por parte do Nuxt, e com evolução, temos também muitas _breaking changes_.
@@ -19,7 +20,7 @@ O objetivo do Nuxt 4 não é criar hype sobre essa versão. É se manter estáve
 
 ### Os deprecados
 
-Durante os últimos anos, a atualização `Nuxt 2 → Nuxt 3` fez com que o repositório do Nuxt fosse completamente re-escrito para apresentar as mudanças absurdas de desempenho recentes. Porém, esse ano a equipe do NuxtLabs pisou no freio. E isso mostra que o Nuxt já é um Framework Fullstack maduro e pronto para diversos cenários.
+Durante os últimos anos, a atualização `Nuxt 2 → Nuxt 3` fez com que o repositório do Nuxt fosse completamente re-escrito para apresentar as mudanças absurdas de desempenho recentes. Porém, esse ano a equipe do Nuxt pisou no freio. E isso mostra que o Nuxt já é um Framework Fullstack maduro e pronto para diversos cenários.
 
 - As propriedades `process.client` e `process.server` serão soft-deprecated, ou seja, o uso das mesmas irá emitir um warning. O correto a partir de agora, será usar `import.meta.client` or `import.meta.server`
 

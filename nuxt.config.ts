@@ -1,4 +1,5 @@
 import process from 'node:process'
+import tailwindcss from "@tailwindcss/vite";
 
 import {
   APP_DESCRIPTION,
@@ -14,23 +15,23 @@ const isDev = Boolean(process.env.NODE_ENV !== 'production')
 
 export default defineNuxtConfig({
   modules: [
-    '@vueuse/nuxt',
-    '@nuxtjs/device',
+    // '@nuxtjs/device',
     '@nuxtjs/i18n',
     '@nuxtjs/seo',
     '@nuxtjs/color-mode',
-    '@nuxtjs/tailwindcss',
     '@nuxtjs/google-fonts',
     '@nuxt/image',
     '@nuxt/content',
     '@nuxt/eslint',
-    'nuxt-icon',
+    '@nuxt/icon',
     'nuxt-gtag',
   ],
 
   devtools: {
     enabled: true,
   },
+
+  compatibilityDate: '2025-06-10',
 
   app: {
     head: {
@@ -50,6 +51,15 @@ export default defineNuxtConfig({
     },
   },
 
+  content: {
+    build: {
+      transformers: [
+        '~~/transformers/reading-time.ts',
+      ],
+      markdown: {}
+    },
+  },
+
   site: {
     name: APP_NAME,
     description: APP_DESCRIPTION,
@@ -57,8 +67,8 @@ export default defineNuxtConfig({
   },
 
   colorMode: {
-    preference: 'light',
-    dataValue: 'theme',
+    classSuffix: '',
+    storage: 'localStorage',
   },
 
   runtimeConfig: {
@@ -100,6 +110,20 @@ export default defineNuxtConfig({
     },
   },
 
+  css: [
+    './assets/css/tailwind.css',
+  ],
+
+  vite: {
+    plugins: [
+      tailwindcss(),
+    ],
+    optimizeDeps: {
+      // https://github.com/nuxt-modules/mdc/issues/394
+      include: ["debug"],
+    },
+  },
+
   eslint: {
     config: {
       standalone: false,
@@ -125,10 +149,10 @@ export default defineNuxtConfig({
     // TODO: Move the app to customRoutes: 'config'
     strategy: 'prefix_except_default',
 
-    defaultLocale: 'en',
+    defaultLocale: 'en-US',
     locales: [
       {
-        code: 'en',
+        code: 'en-US',
         name: 'English',
         language: 'en-US',
         file: 'en-US.ts',
@@ -140,38 +164,8 @@ export default defineNuxtConfig({
         file: 'pt-BR.ts',
       },
     ],
-    customRoutes: 'config',
+    customRoutes: 'page',
     langDir: 'locales/',
-    pages: {
-      'index': {
-        'en': '/',
-        'pt-BR': '/inicio',
-      },
-      'blog': {
-        'en': '/blog',
-        'pt-BR': '/blog',
-      },
-      'post-item':{
-        'en': '/post/[item]',
-        'pt-BR': '/pt-BR/post/[item]',
-      },
-      'history': {
-        'en': '/my-trajectory',
-        'pt-BR': '/minha-jornada',
-      },
-      'projects': {
-        'en': '/projects',
-        'pt-BR': '/projetos',
-      },
-      'experience-item': {
-        'en': '/i-worked-in/[item]',
-        'pt-BR': '/trabalhei-na/[item]',
-      },
-      '/sitemap.xml': {
-        'en': '/sitemap.xml',
-        'pt-BR': '/sitemap.xml',
-      },
-    },
     experimental: {
       localeDetector: 'localeDetector.ts',
     },
@@ -186,4 +180,11 @@ export default defineNuxtConfig({
       'Space+Grotesk:700',
     ],
   },
+
+  
+
+  icon: {
+    mode: 'css',
+    cssLayer: 'base',
+  }
 })

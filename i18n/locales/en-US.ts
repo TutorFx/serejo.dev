@@ -1,5 +1,6 @@
 export default defineI18nLocale(async (/* locale */) => {
   return {
+
     menu: {
       home: 'Home',
       about: 'About me',

@@ -1,6 +1,6 @@
 export * from './chat/chat.constants'
 export * from './cms/cms.constants'
-export * from './menu/menu.constants'
+
 
 export const APP_NAME = 'Gabriel Serejo'
 export const APP_DESCRIPTION = ``

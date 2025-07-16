@@ -1,5 +1,17 @@
+<script setup lang="ts">
+defineI18nRoute({
+  paths: {
+    'en-US': '/',
+    'pt-BR': '/inicio',
+  }
+})
+</script>
+
 <template>
   <div>
-    a
+    <Hero />
+    <HomeAbroad />
+    <HomeStack />
+    <HomeExperiences />
   </div>
 </template>

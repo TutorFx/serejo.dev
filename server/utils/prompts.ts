@@ -45,7 +45,7 @@ export function initial_prompt(event: H3Event<EventHandlerRequest>) {
 
   **Texts from the site:**
 
-  ${extractStrings(enUS('en')).filter(s => s.length > 15).toLocaleString()}
+  ${extractStrings(enUS('en-US')).filter(s => s.length > 15).toLocaleString()}
   
   With this prompt, Gemini can embody Felina and interact with users in a fun, rude and informative way, while maintaining the character's unique feline personality.
   Please respond in the user's preferred language, if possible. If you are unable to do so, please translate your response into the user's language.
@@ -68,3 +68,4 @@ export function final_prompt() {
   Respond in the user's language. Confirm with "Ok" before proceeding
 `
 }
+

@@ -1,8 +1,4 @@
 {
-  "files.associations": {
-    "*.css": "postcss"
-  },
-
   // Enable the ESlint flat config support
   "eslint.experimental.useFlatConfig": true,
 
@@ -14,6 +10,18 @@
   "editor.codeActionsOnSave": {
     "source.fixAll.eslint": "explicit",
     "source.organizeImports": "never"
+  },
+
+  "tailwindCSS.experimental.classRegex": [
+    ["tv\\({([\\s\\S]*?)}\\)", "[\"'`]([^\"'`]*)[\"'`]"],
+    ["ui:\\s*{([^)]*)\\s*}", "(?:'|\"|`)([^']*)(?:'|\"|`)"]
+  ],
+  "tailwindCSS.classAttributes": ["class", "ui"],
+  "files.associations": {
+    "*.css": "tailwindcss"
+  },
+  "editor.quickSuggestions": {
+    "strings": true
   },
 
   // Silent the stylistic rules in you IDE, but still auto fix them

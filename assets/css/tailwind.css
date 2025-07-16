@@ -1,0 +1,75 @@
+@import "tailwindcss";
+
+
+
+:root {
+  --primary: #FCA311;
+  --secondary: #f72585;
+  --secondary-content: oklch(98.71% 0.0106 342.55);
+  --accent: #a8a29e;
+  --neutral: #14213D;
+  --neutral-content: #818589;
+  --base-100: oklch(100% 0 0);
+  --base-200: #F2F2F2;
+  --base-300: #E5E6E6;
+  --base-content: #1f2937;
+  --border: var(--base-300);
+  
+  --brand-1: #f72585;
+  --brand-2: #b5179e;
+  --brand-3: #7209b7;
+  --brand-4: #560bad;
+  --brand-5: #480ca8;
+  --brand-6: #3a0ca3;
+  --brand-7: #3f37c9;
+  --brand-8: #4361ee;
+  --brand-9: #4895ef;
+  --brand-10: #4cc9f0;
+
+  --vue-1:#004b23;
+  --vue-2: #006400;
+  --vue-3: #007200;
+  --vue-4: #008000;
+  --vue-5: #38b000;
+  --vue-6: #70e000;
+  --vue-7: #9ef01a;
+  --vue-8: #ccff33;
+}
+
+html.dark {
+  --primary: #FCA311;
+  --secondary: #f72585;
+  --accent: #57534e;
+  --neutral: #E5E5E5;
+  --neutral-content: #FFFFFF;
+  --base-100: #0c0a09;
+  --base-200: #100F0F;
+  --base-300: #141414;
+  --base-content: #FFFFFF;
+  --border: var(--base-300);
+}
+
+@theme {
+  --color-primary: var(--primary);
+  --color-secondary: var(--secondary);
+  --color-accent: var(--accent);
+  --color-neutral: var(--neutral);
+  --color-neutral-content: var(--neutral-content);
+  --color-base-100: var(--base-100);
+  --color-base-200: var(--base-200);
+  --color-base-300: var(--base-300);
+  --color-base-content: var(--base-content);
+  --color-border: var(--border)
+
+  --font-sans: "Space Grotesk", "sans-serif";
+  --font-logo: "Mochiy Pop One", "sans-serif";
+}
+
+@layer components {
+  .bg-brand {
+    background: linear-gradient(45deg, var(--brand-1), var(--brand-2), var(--brand-3), var(--brand-4),var(--brand-5), var(--brand-6), var(--brand-7), var(--brand-8), var(--brand-9), var(--brand-10));
+  }
+  .bg-vue {
+    background: linear-gradient(45deg, var(--vue-1), var(--vue-2), var(--vue-3), var(--vue-4),var(--vue-5), var(--vue-6), var(--vue-7), var(--vue-8));
+  }
+}

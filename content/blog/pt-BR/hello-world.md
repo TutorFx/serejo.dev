@@ -1,6 +1,7 @@
 ---
 title: Olá Mundo
 createdAt: 2024-04-06T00:00:00.000Z
+slug: ola-mundo
 ---
 
 Olá, seja bem-vindo 😊
