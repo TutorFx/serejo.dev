@@ -65,7 +65,7 @@
     "nuxt": "^3.17.5",
     "nuxt-module-eslint-config": "^0.1.1",
     "nuxt-site-config": "^3.2.2",
-    "pinia": "^2.3.1",
+    "pinia": "^3.0.0",
     "reka-ui": "^2.3.1",
     "remark-frontmatter": "^5.0.0",
     "remark-mdc": "^3.6.0",
