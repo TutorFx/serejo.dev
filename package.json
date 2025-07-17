@@ -4,7 +4,7 @@
   "version": "4.0",
   "private": true,
   "scripts": {
-    "build": "bunx prisma generate && bun --bun nuxt build",
+    "build": "prisma generate && bun nuxt build",
     "dev": "bun nuxt dev",
     "preview": "nuxt preview",
     "lint-staged": "lint-staged",
