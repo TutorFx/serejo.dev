@@ -1,10 +1,17 @@
 import { PrismaClient } from '@prisma/client'
+import { withAccelerate } from '@prisma/extension-accelerate'
 
-let _prisma: PrismaClient
+const prismaClientSingleton = () => {
+  return new PrismaClient().$extends(withAccelerate())
+}
 
-export function usePrisma(): PrismaClient {
+type PrismaClientExtended = ReturnType<typeof prismaClientSingleton>
+
+let _prisma: PrismaClientExtended
+
+export function usePrisma(): PrismaClientExtended {
   if (!_prisma) {
-    _prisma = new PrismaClient()
+    _prisma = prismaClientSingleton()
   }
   return _prisma
 }

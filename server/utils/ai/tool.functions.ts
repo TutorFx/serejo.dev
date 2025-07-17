@@ -42,3 +42,75 @@ export const experienceSearchTool = (event: H3Event) => tool(
     description: "A tool to perform searches at gabriel's experiences",
   }
 );
+
+export const formFillingTool = (event: H3Event) => tool(
+  async function (input) {
+    console.log('form-filling')
+    const prisma = usePrisma()
+    const guest = await setupGuest(event)
+    console.log('guest', guest?.id)
+    if (!guest) return 'Error: invalid guest id (not your fault)'
+
+    console.log('input', input)
+    const partialUser = userPartialSchema.safeParse(input)
+    if (!partialUser.data || partialUser.error) return 'Error on parse query';
+
+    const res = await asyncEnvelope(async () => await prisma.user.upsert({
+      where: {
+        id: guest.id,
+      },
+      update: {
+        ...partialUser.data
+      },
+      create: {
+        id: guest.id,
+        ...partialUser.data
+      },
+      select: {
+        name: true,
+        description: true,
+        email: true,
+        phone: true,
+      }
+    }));
+
+    if (!res.data || res.error) return 'failed to insert data'
+
+    return JSON.stringify(res.data)
+  },
+  {
+    name: "form_filling_tool",
+    description: "A tool to perform the form filling for the user. It is necessary to fill in at least one field of the object.",
+    schema: userPartialSchema,
+  }
+)
+
+export const getUserDataTool = (event: H3Event) => tool(
+  async function () {
+    console.log('form-getter')
+    const prisma = usePrisma()
+    const guest = await setupGuest(event)
+
+    if (!guest) return 'Error: invalid guest id (not your fault)'
+
+    const res = await asyncEnvelope(async () => await prisma.user.findUnique({
+      where: {
+        id: guest.id,
+      },
+      select: {
+        name: true,
+        description: true,
+        email: true,
+        phone: true,
+      }
+    }));
+
+    if (!res.data || res.error) return 'not registered'
+
+    return JSON.stringify(res.data)
+  },
+  {
+    name: "get_userdata_tool",
+    description: "A tool to read users data",
+  }
+)

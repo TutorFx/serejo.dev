@@ -1,6 +1,11 @@
 export * from './chat/chat.constants'
 export * from './cms/cms.constants'
 
+const COOKIE_KEYS_GUEST = 'guestId'
+
+export const COOKIE_KEYS = {
+  GUEST: COOKIE_KEYS_GUEST,
+}
 
 export const APP_NAME = 'Gabriel Serejo'
 export const APP_DESCRIPTION = ``
