@@ -109,7 +109,7 @@ export interface ChatContainerEmits {
           v-model="model" autocomplete="off" name="ai-message" class="flex-1 text-sm flex items-center w-full px-3 bg-base-100 h-10 rounded outline-none"
           type="textarea" :placeholder="$t('chat.input_label')" @keydown.enter="sendMessage"
         >
-        <UIButton :loading="isBlocked" icon="material-symbols:send-rounded" />
+        <UIButton :loading="isBlocked" @click="sendMessage" icon="material-symbols:send-rounded" />
       </div>
     </div>
   </div>
