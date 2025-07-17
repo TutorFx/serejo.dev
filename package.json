@@ -62,7 +62,7 @@
     "dayjs": "2.0.0-alpha.4",
     "eslint": "^9.30.0",
     "eslint-ts-patch": "^9.8.0-1",
-    "nuxt": "^3.17.5",
+    "nuxt": "^4.0.0",
     "nuxt-module-eslint-config": "^0.1.1",
     "nuxt-site-config": "^3.2.2",
     "pinia": "^2.3.1",
