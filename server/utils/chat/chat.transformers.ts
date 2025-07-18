@@ -1,4 +1,4 @@
-import { Prisma, AgentType } from '@prisma/client'
+import { Prisma, AgentType, Message } from '@prisma/client'
 import { defu } from 'defu'
 
 
@@ -23,7 +23,7 @@ export function messageToDb(from: MessageType, id: string, many?: boolean): Pris
   }
 }
 
-export function dbToMessage(from: Prisma.MessageCreateInput): MessageType {
+export function dbToMessage(from: Message): MessageType {
   const shared = { message: from.message }
   if (from.agentType === AgentType.MODEL) {
     return defu({

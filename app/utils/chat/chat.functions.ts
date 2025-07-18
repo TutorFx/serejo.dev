@@ -1,4 +1,7 @@
+import { defu } from 'defu'
 export function useChat() {
+
+
   const messages = ref<MessageType[]>([])
   const agent = ref<AiAgentTypes>(AI_AGENT.FELINA)
   const status = ref<MessageStatus>(MESSAGE_STATUS.IDLE)
