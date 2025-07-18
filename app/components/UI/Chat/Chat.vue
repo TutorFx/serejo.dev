@@ -42,7 +42,7 @@ onClickOutside(target, () => chat.value ? chat.value = false : null, {
       </div>
       <div ref="button" class="grid justify-end">
         <div class="size-12 grid items-center justify-center pointer-events-auto rounded-full overflow-hidden bg-base-300 aspect-square cursor-pointer shadow-xl" @click="chat = !chat">
-          <Icon class="size-10" name="material-icon-theme:gemini-ai" />
+          <Icon class="size-10 animate-[spin_10s_linear_infinite]" name="material-icon-theme:gemini-ai" />
         </div>
       </div>
     </div>

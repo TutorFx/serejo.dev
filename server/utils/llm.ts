@@ -6,7 +6,7 @@ let _llm: ChatGoogleGenerativeAI;
 
 export function useLlm (llmSettings?: Partial<{ model: string, streaming: boolean }>){
 
-  const settings = defu({ model: "gemini-2.0-flash-lite", streaming: true }, llmSettings)
+  const settings = defu({ model: "gemini-2.0-flash-lite", streaming: false }, llmSettings)
   if (!_llm) {
     _llm = new ChatGoogleGenerativeAI({
       model: settings.model,
@@ -29,13 +29,6 @@ export function useLlm (llmSettings?: Partial<{ model: string, streaming: boolea
         {
           category: HarmCategory.HARM_CATEGORY_DANGEROUS_CONTENT,
           threshold: HarmBlockThreshold.BLOCK_NONE,
-        },
-      ],
-      callbacks: [
-        {
-          handleLLMNewToken(token: string) {
-            console.log('Token do LLM:', token);
-          },
         },
       ],
     });

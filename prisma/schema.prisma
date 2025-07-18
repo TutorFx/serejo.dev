@@ -10,15 +10,47 @@ generator client {
 model User {
   id String @id @default(cuid())
   name  String?
-  phone BigInt?
+  phone String?
   email String?
   description String?
+  business String?
+  agentNotes String?
 
   Guest Guest?
 }
 
 model Guest {
-  user   User?  @relation(fields: [userId], references: [id], onDelete: Cascade)
-  userId String? @unique
   id String @id @default(cuid())
+  
+  user    User?  @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId  String? @unique
+  chat    Chat?
+}
+
+model Chat {
+  id String @id @default(cuid())
+  messages Message[]
+
+  guest Guest? @relation(fields: [guestId], references: [id], onDelete: Cascade)
+  guestId String? @unique
+
+  lastProcessed   DateTime @default(now())  @db.Timestamp(0)
+  updatedAt       DateTime @updatedAt       @db.Timestamptz(0)
+}
+
+enum AgentType {
+  MODEL
+  USER
+}
+
+model Message {
+  id Int @id @default(autoincrement())
+  time DateTime @default(now())
+
+  message String
+  agent String?
+  agentType AgentType
+
+  chat Chat @relation(fields: [chatId], references: [id], onDelete: Cascade)
+  chatId String
 }

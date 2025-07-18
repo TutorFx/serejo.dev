@@ -5,11 +5,13 @@ export const searchQuerySchema = z.object({
 })
 
 export const userSchema = z.object({
-  name: z.string().describe('Users name'),
-  email: z.string().describe('Email contact of the user'),
-  phone: z.number().describe('Users phone number / whatsapp number'),
-  description: z.string().describe('Stores user last interaction info')
-});
+  name: z.string().describe('Nome completo do usuário'),
+  business: z.string().describe('Nome da empresa de quem entrou em contato'),
+  email: z.string().optional().describe('Email de contato'),
+  phone: z.string().describe('Número de telefone'),
+  description: z.string().describe('Descrição de toda a conversa'),
+  agentNotes: z.string().describe('O comentário do agente de IA sobre como foi essa conversa')
+}).describe('Extraia o máximo de informações do que foi dito na conversa');
 
 export const userPartialSchema = userSchema.partial().refine(
   (data) => {

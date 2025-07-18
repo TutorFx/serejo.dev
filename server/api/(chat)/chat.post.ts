@@ -5,6 +5,8 @@ import { HumanMessage, AIMessage, BaseMessage } from "@langchain/core/messages";
 export default defineEventHandler(async (event) => {
   const body = await readValidatedBody(event, (data) => ChatPostSchema.safeParse(data));
 
+  const AGENT_ID = AI_AGENT.FELINA
+
   if (!body.data && body.error) return sendError(
     event,
     createError({
@@ -25,7 +27,8 @@ export default defineEventHandler(async (event) => {
     throw new Error ('Unregistred AgentType')
   }) satisfies (HumanMessage | AIMessage)[]
 
-  const llm = useLlm();
+  const prisma = usePrisma();
+  const llm = useLlm({ streaming: true });
   const tools = [contentSearchTool, experienceSearchTool(event), formFillingTool(event), getUserDataTool(event)];
 
   const prompt = ChatPromptTemplate.fromMessages([
@@ -57,6 +60,8 @@ export default defineEventHandler(async (event) => {
     agent_name: 'Felina'
   });
 
+  const guest = await setupGuest(event, { chat: true })
+
   const readableStream = new ReadableStream({
     async start(controller) {
       try {
@@ -73,6 +78,35 @@ export default defineEventHandler(async (event) => {
                 controller.enqueue(token);
               }
             }
+            if (
+              op.op === "replace" &&
+              op.path === "/final_output"
+            ) {
+              const message = op.value.output;
+              if (typeof message === 'string' && message.length > 0) {
+                if (guest?.id) {
+                  let chatId: string | null = null;
+                  if (guest.chat?.id) {
+                    chatId = guest.chat?.id
+                  } 
+                  else {
+                    const chat = await asyncEnvelope(async () => await prisma.chat.create({ select: {id: true}, data: { guestId: guest?.id } }))
+                    if (chat.data) {
+                      chatId = chat.data.id
+                    }
+                  }
+                  
+                  if (chatId) {
+                    await prisma.message.createMany({ data: 
+                      [
+                        messageToDb({ agentType: AGENT_TYPE.USER, message: body.data.message }, chatId, true),
+                        messageToDb({ agentType: AGENT_TYPE.AI, agent: AGENT_ID, message }, chatId, true),
+                      ]
+                    })
+                  }
+                }
+              }
+            }
           }
         }
         controller.close();
@@ -82,5 +116,5 @@ export default defineEventHandler(async (event) => {
     },
   });
 
-  return sendStream(event, readableStream);
+  return await sendStream(event, readableStream);
 })

@@ -52,7 +52,7 @@ export const formFillingTool = (event: H3Event) => tool(
     if (!guest) return 'Error: invalid guest id (not your fault)'
 
     console.log('input', input)
-    const partialUser = userPartialSchema.safeParse(input)
+    const partialUser = userSchema.safeParse(input)
     if (!partialUser.data || partialUser.error) return 'Error on parse query';
 
     const res = await asyncEnvelope(async () => await prisma.user.upsert({
@@ -81,7 +81,7 @@ export const formFillingTool = (event: H3Event) => tool(
   {
     name: "form_filling_tool",
     description: "A tool to perform the form filling for the user. It is necessary to fill in at least one field of the object.",
-    schema: userPartialSchema,
+    schema: userSchema,
   }
 )
 

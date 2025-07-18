@@ -8,6 +8,7 @@
     "dev": "bun nuxt dev",
     "preview": "nuxt preview",
     "lint-staged": "lint-staged",
+    "setup:dev": "docker compose up && prisma generate",
     "start:generate": "npx serve .output/public",
     "lint": "eslint .",
     "typecheck": "vue-tsc --noEmit",

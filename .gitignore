@@ -8,3 +8,4 @@ dist
 .vercel
 .data
 .generated
+.local.env
