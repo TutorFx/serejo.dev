@@ -2,9 +2,9 @@
 const { locale } = useI18n()
 const localePath = useLocalePath()
 
-const { data: experiences } = useFetch('/api/experiences', {
+const { data: experiences } = useFetch<ExperiencesDto[]>('/api/experiences', {
   query: {
-    lang: locale.value
+    lang: locale.value,
   }
 })
 </script>

@@ -30,6 +30,7 @@ export const blogSchemaWithBody = blogSchema.extend(withBody)
 
 export const historySchema = z.object({
   org: z.string().min(1),
+  image: z.string(),
   location: z.string().min(1),
 }).extend(cmsEntrySchema).extend(dateObjectSchema)
 
@@ -44,3 +45,5 @@ export const projectSchema = z.object({
 export const educationSchema = z.object({
   org: z.string(),
 }).extend(cmsEntrySchema).extend(dateObjectSchema)
+
+export const educationWithBodySchema = educationSchema.extend(withBody)

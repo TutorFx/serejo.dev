@@ -1,6 +1,7 @@
 ---
 title: Software Engineer
 org: UniFAJ
+image: '/experience/experience-unifaj.webp'
 location: São Paulo, Brazil
 start: 2022-05-01
 end: 2023-01-01

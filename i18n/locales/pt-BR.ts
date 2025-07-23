@@ -30,8 +30,11 @@ export default defineI18nLocale(async (/* locale */) => {
     download_curriculum: 'Baixar Curriculum',
     curriculum: {
       summary: 'Sumário',
+      profession: 'Programador Fullstack',
       work_experience: 'Experiência de trabalho',
       education: 'Educação',
+      graduated_in: 'Formado em {date}',
+      in_progress: 'Em progresso'
     },
     active: 'Ativo',
     me: {
@@ -39,10 +42,10 @@ export default defineI18nLocale(async (/* locale */) => {
       abroad: `Em **7 anos** de trajetória, trabalhei com uma ampla variedade de produtos. Transformando 
       idéias em códigos e construído aplicações pixel perfect. Minha jornada é baseada em 
       estudos constantes, para não só me adaptar a tecnologia,
-       mas também para estabelecer padrões elevados no desenvolvimento das soluções.`,
+      mas também para estabelecer padrões elevados no desenvolvimento das soluções.`,
       passion: `Minha paixão é preencher a lacuna entre a imaginação e a realidade!
-       Respiro código e sonho em pixels. Sou um 
-          desenvolvedor web apaixonado por criar aplicações agradáveis e funcionais.`,
+      Respiro código e sonho em pixels. Sou um
+      desenvolvedor web apaixonado por criar aplicações agradáveis e funcionais.`,
       stack: `Adoro trabalhar com tantos frameworks e bibliotecas incríveis! E para 
           o meu projeto ideal, eu definitivamente escolheria usar...`,
       legacy: `Embora projetos no início sejam empolgantes, também me sinto 
@@ -67,6 +70,9 @@ export default defineI18nLocale(async (/* locale */) => {
       back: 'Voltar',
     },
     sections: {
+      statement: {
+        title: 'Declarações'
+      },
       about_me: {
         title: 'O Arquiteto de Pixels',
         accent: 'Sobre mim',

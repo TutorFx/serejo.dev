@@ -3,7 +3,7 @@ title: Postgraduate Lato Sensu - Specialization, Computer Networks and Programmi
 org: UniSenai PR
 location: Goiânia Goiás, Brazil
 start: 2018-01-01
-end: 2022-01-01
+end: null
 ---
 
 The Computer Networks I and II courses allowed me to delve into the infrastructure that connects the world. I learned about the protocols, architectures, and challenges involved in building and maintaining efficient and secure networks. Security, in fact, was also a central theme in Information Security, where I gained an understanding of cyber threats and strategies to protect data and systems.

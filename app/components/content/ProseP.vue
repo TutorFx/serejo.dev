@@ -1,3 +1,3 @@
 <template>
-  <p class="font-light"><slot /></p>
+  <p class=""><slot /></p>
 </template>

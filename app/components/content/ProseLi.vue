@@ -1,3 +1,3 @@
 <template>
-  <li class="list-decimal font-light"><slot /></li>
+  <li class="list-decimal"><slot /></li>
 </template>

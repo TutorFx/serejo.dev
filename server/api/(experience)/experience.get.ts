@@ -10,7 +10,7 @@ export default defineEventHandler(async (event) => {
   
   if (!data) return null
 
-  const { title, start, end, location, meta, org, stem, body } = data
+  const { title, start, end, location, meta, org, stem, body, image } = data
   const { locale, readingTimeInSeconds, reducedBody } = meta
 
   const readingTimeString = getExtenseShift(readingTimeInSeconds, locale)
@@ -18,6 +18,7 @@ export default defineEventHandler(async (event) => {
   
   return {
     title,
+    image,
     org,
     start: formatCardDate(start, locale),
     end: end ? formatCardDate(end, locale) : t('time.the_moment'),

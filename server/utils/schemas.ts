@@ -3,11 +3,14 @@ import z from "zod/v4";
 export * from './ai/tool.schemas'
 
 export const queryLanguage = {
-  lang: z.enum(LOCALE_KEYS)
+  lang: z.enum(LOCALE_KEYS).optional(),
 }
 
-export const postsQuerySchema = z.object(queryLanguage)
-export const experiencesQuerySchema = z.object(queryLanguage)
+export const postsQuerySchema = z.object({}).extend(queryLanguage)
+export const experiencesQuerySchema = z.object({
+  includeBody: z.preprocess((val) => val === 'true', z.boolean()).default(false),
+}).extend(queryLanguage)
+export const educationQuerySchema = z.object({}).extend(queryLanguage)
 
 export const postQuerySchema = z.object({
   path: z.string(),
