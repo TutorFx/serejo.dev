@@ -2,7 +2,7 @@
 const { locale } = useI18n()
 const localePath = useLocalePath()
 
-const { data: posts } = useFetch('/api/posts', {
+const { data: posts } = useFetch<BlogPostsDto[]>('/api/posts', {
   query: {
     lang: locale.value
   }

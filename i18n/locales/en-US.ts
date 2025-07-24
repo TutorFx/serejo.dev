@@ -30,9 +30,12 @@ export default defineI18nLocale(async (/* locale */) => {
     see_more: 'See more',
     copyright: 'All rights reserved',
     curriculum: {
+      profession: 'Software Engineer',
       summary: 'Summary',
       work_experience: 'Work Experience',
       education: 'Education',
+      graduated_in: 'Graduated in {date}',
+      in_progress: 'In progress'
     },
     active: 'Active',
     download_curriculum: 'Download Curriculum',
@@ -63,6 +66,9 @@ export default defineI18nLocale(async (/* locale */) => {
       back: 'Go back',
     },
     sections: {
+      statement: {
+        title: 'Statement'
+      },
       about_me: {
         title: 'The Pixel Architect',
         accent: 'About me',

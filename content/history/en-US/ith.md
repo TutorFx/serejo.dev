@@ -1,6 +1,7 @@
 ---
 title: Software Engineer
 org: ITH Pós Graduação
+image: '/experience/experience-ith.webp'
 location: Goiânia Goiás, Brazil
 start: 2019-07-01
 end: 2021-09-15

@@ -1,6 +1,7 @@
 ---
 title: Software Engineer
 org: Agência Industrial
+image: '/experience/experience-industrial-agency.webp'
 location: Goiânia Goiás, Brazil
 start: 2021-09-01
 end: 2022-10-31

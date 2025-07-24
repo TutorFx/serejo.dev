@@ -1,6 +1,7 @@
 ---
 title: Software Engineer
 org: Cliqx
+image: '/experience/experience-cliqx.webp'
 location: São Paulo, Brazil
 start: 2023-01-01
 end: 2023-08-01
