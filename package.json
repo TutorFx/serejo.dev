@@ -58,6 +58,7 @@
     "date-fns": "^4.1.0",
     "dayjs": "2.0.0-alpha.4",
     "eslint": "^9.31.0",
+    "eslint-plugin-format": "^1.0.1",
     "eslint-ts-patch": "^9.8.0-1",
     "nuxt": "^3.17.7",
     "nuxt-module-eslint-config": "^0.1.1",
