@@ -1,29 +1,21 @@
 <script setup lang="ts">
-const { locale } = useI18n()
-const { data: experiences, status: expStatus } = useFetch<ExperiencesDto[]>('/api/experiences', { 
-  query: {
-    lang: locale.value,
-    includeBody: true
-  }
-})
-const { data: education, status: eduStatus } = useFetch<EducationDto[]>('/api/education', { 
-  query: {
-    lang: locale.value,
-    includeBody: true
+const localePath = useLocalePath()
+const { visible } = useCurriculum()
+
+const cvBody = useTemplateRef('curriculum')
+
+watch(cvBody, () => {
+  if (cvBody.value instanceof HTMLIFrameElement) {
+    cvBody.value.onload = () => {
+      cvBody.value?.contentWindow?.print()
+    }
   }
 })
 
-const contact = [
-  { key: 'Email', value: 'gabrieltfserejo@gmail.com' },
-  { key: 'Phone', value: '+55 (62) 9 9406-3442' },
-  { key: 'Website', value: 'serejo.dev' },
-]
 </script>
 
 <template>
-  <div>
-    <CurriculumHeader title="Gabriel Serejo" :profession="$t('curriculum.profession')" :contact />
-    <CurriculumBody v-if="experiences && education" :experiences :education />
-    <CurriculumFooter />
-  </div>
+  <teleport to="body">
+    <iframe v-if="visible" :src="localePath({ name: 'curriculum' })" ref="curriculum" class="absolute top-0 left-0 w-[210mm] z-50 h-full hidden" />
+  </teleport>
 </template>

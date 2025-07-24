@@ -15,16 +15,15 @@ const isDev = Boolean(process.env.NODE_ENV !== 'production')
 
 export default defineNuxtConfig({
   modules: [
-    // '@nuxtjs/device',
-    '@nuxtjs/i18n',
-    '@nuxtjs/seo',
-    '@nuxtjs/color-mode',
-    '@nuxtjs/google-fonts',
-    '@nuxt/image',
-    '@nuxt/content',
-    '@nuxt/eslint',
-    '@nuxt/icon',
-    'nuxt-gtag',
+    '@nuxtjs/i18n', 
+    '@nuxtjs/seo', 
+    '@nuxtjs/color-mode', 
+    '@nuxtjs/google-fonts', 
+    '@nuxt/image', 
+    '@nuxt/content', 
+    '@nuxt/eslint', 
+    '@nuxt/icon', 
+    'nuxt-gtag'
   ],
 
   devtools: {

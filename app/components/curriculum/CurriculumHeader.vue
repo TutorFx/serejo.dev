@@ -7,9 +7,9 @@ defineProps<{
 </script>
 
 <template>
-  <div class="grid gap-3 grid-cols-[max-content_max-content] justify-between py-12 px-8 @container">
+  <div class="grid gap-3 grid-cols-[max-content_max-content] justify-between py-12 px-8 @container bg-base-100 text-base-content">
     <div class="grid">
-      <div class="text-2xl font-logo">
+      <div class="text-2xl font-black">
         {{ title }}
       </div>
       <div class="text-xl text-accent">

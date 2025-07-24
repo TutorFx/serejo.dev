@@ -1,6 +1,7 @@
 <script lang="ts" setup>
 definePageMeta({
-  layout: 'none'
+  layout: 'none',
+  colorMode: 'light',
 })
 </script>
 

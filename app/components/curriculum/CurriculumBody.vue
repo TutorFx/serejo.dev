@@ -12,7 +12,7 @@ defineProps<CurriculumBody>()
 </script>
 
 <template>
-  <div class="grid grid-cols-12 gap-1 items-start px-4 @container">
+  <div class="grid grid-cols-12 gap-1 items-start px-4 @container bg-base-100 text-base-content">
     <div class="col-span-5 @7xl:col-span-3 grid gap-6">
       <div class="grid gap-8 relative">
         <div class="absolute py-2 text-accent left-2 text-sm">

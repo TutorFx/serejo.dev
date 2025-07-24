@@ -1,12 +1,13 @@
 <script setup lang="ts">
 const { locale } = useI18n()
-const { data: experiences } = useFetch<ExperiencesDto[]>('/api/experiences', { 
+
+const { data: experiences } = await useFetch<ExperiencesDto[]>('/api/experiences', { 
   query: {
     lang: locale.value,
     includeBody: true
   }
 })
-const { data: education } = useFetch<EducationDto[]>('/api/education', { 
+const { data: education } = await useFetch<EducationDto[]>('/api/education', { 
   query: {
     lang: locale.value,
     includeBody: true
