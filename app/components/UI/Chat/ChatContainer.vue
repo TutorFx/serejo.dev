@@ -90,8 +90,6 @@ function sendMessage() {
 
       grid
       items-start
-      min-h-[400px]
-      md:min-h-[600px]
       "
     >
       <div class="grid p-4 gap-3 items-start">
