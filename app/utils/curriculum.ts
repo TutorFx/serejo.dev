@@ -1,7 +1,4 @@
-import { promiseTimeout, useTimeout } from '@vueuse/core'
-import { acceptHMRUpdate, defineStore } from 'pinia'
-
-let timeout: undefined | NodeJS.Timeout = undefined
+let timeout: undefined | NodeJS.Timeout
 const visible = shallowRef<boolean>(false)
 
 export function useCurriculum() {

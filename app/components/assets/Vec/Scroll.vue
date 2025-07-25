@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { useWindowScroll } from '@vueuse/core';
-import { gsap } from 'gsap';
+import { useWindowScroll } from '@vueuse/core'
+import { gsap } from 'gsap'
 
 const { y } = useWindowScroll()
 

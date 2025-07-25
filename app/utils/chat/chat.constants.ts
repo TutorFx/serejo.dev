@@ -1,11 +1,11 @@
-export const CHAT_DEFAULT_KEY = 'default';
+export const CHAT_DEFAULT_KEY = 'default'
 
 export const CHAT_VARIANTS = {
   DEFAULT: CHAT_DEFAULT_KEY,
-} as const;
+} as const
 
-export const DEFAULT_CHAT_VARIANT = CHAT_VARIANTS.DEFAULT;
-export const CHAT_VARIANTS_ARRAY = Object.values(CHAT_VARIANTS);
+export const DEFAULT_CHAT_VARIANT = CHAT_VARIANTS.DEFAULT
+export const CHAT_VARIANTS_ARRAY = Object.values(CHAT_VARIANTS)
 
 const MESSAGE_STATUS_IDLE = 'idle'
 const MESSAGE_STATUS_STREAMING = 'streaming'
@@ -19,9 +19,6 @@ export const MESSAGE_STATUS = {
   SUCCESS: MESSAGE_STATUS_SUCCESS,
   STREAMING: MESSAGE_STATUS_STREAMING,
   ERROR: MESSAGE_STATUS_ERROR,
-} as const;
+} as const
 
-
-
-
-//'idle' | 'pending' | 'success' | 'error'
+// 'idle' | 'pending' | 'success' | 'error'

@@ -5,7 +5,6 @@ export interface ExperienceCardProps extends ExperiencesDto {}
 </script>
 
 <script setup lang="ts">
-
 const props = defineProps<ExperienceCardProps>()
 const { t } = useI18n()
 </script>
@@ -32,7 +31,7 @@ const { t } = useI18n()
             </div>
           </div>
         </div>
-      </template> 
+      </template>
       <div>
         <div class="line-clamp-3 font-light text-balance">
           {{ props.reducedBody }}
@@ -44,10 +43,12 @@ const { t } = useI18n()
             {{ props.readingTimeString }}
           </div>
           <div>
-            <UIButton variant="link">{{ t('see_more') }}</UIButton>
+            <UIButton variant="link">
+              {{ t('see_more') }}
+            </UIButton>
           </div>
         </div>
-      </template> 
+      </template>
     </UICard>
   </div>
 </template>

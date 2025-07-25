@@ -1,5 +1,5 @@
 <script lang="ts">
-import type { CoreHeaderBaseProps } from './CoreHeader/CoreHeaderBase.vue';
+import type { CoreHeaderBaseProps } from './CoreHeader/CoreHeaderBase.vue'
 
 export interface CoreHeaderProps extends CoreHeaderBaseProps {
 
@@ -7,7 +7,7 @@ export interface CoreHeaderProps extends CoreHeaderBaseProps {
 </script>
 
 <script setup lang="ts">
-const props = defineProps<CoreHeaderProps>()
+defineProps<CoreHeaderProps>()
 const { t } = useI18n()
 
 const menuState = ref(false)
@@ -18,7 +18,7 @@ const menuState = ref(false)
     <UIContainer>
       <UIHeadersCoreHeaderBase v-model="menuState" :list />
       <teleport to="body">
-        <div class="bg-base-100 text-base-content absolute inset-0 z-50" v-if="menuState">
+        <div v-if="menuState" class="bg-base-100 text-base-content absolute inset-0 z-50">
           <UIContainer class="h-full grid grid-rows-[max-content_max-content_1fr]">
             <UIHeadersCoreHeaderBase v-model="menuState" :list />
             <div class="border-b border-base-300" />
@@ -27,7 +27,7 @@ const menuState = ref(false)
                 <div>
                   <div class="grid text-start">
                     <div>{{ t('navigation.menu') }}</div>
-                    <div><UINavigationMenu @click="menuState = false" class="gap-3 px-0" size="xl" direction="horizontal" :list /></div>
+                    <div><UINavigationMenu class="gap-3 px-0" size="xl" direction="horizontal" :list @click="menuState = false" /></div>
                   </div>
                 </div>
                 <div>

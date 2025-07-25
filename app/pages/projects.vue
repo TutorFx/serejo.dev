@@ -3,7 +3,7 @@ defineI18nRoute({
   paths: {
     'en-US': '/projects',
     'pt-BR': '/projetos',
-  }
+  },
 })
 </script>
 

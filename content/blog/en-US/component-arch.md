@@ -21,7 +21,6 @@ It all starts with standardization. Instead of scattering values like `'sm'`, `'
 Create a file to store all your Design System options.
 
 ```typescript [app/utils/constants.ts]
-
 export const COMPONENT_SIZE_KEY_XSMALL = 'xxs'
 export const COMPONENT_SIZE_KEY_SMALL = 'sm'
 export const COMPONENT_SIZE_KEY_MEDIUM = 'md'
@@ -52,14 +51,12 @@ This step is important for standardizing properties that will be common to all t
 Below, we'll define the type that represents all available sizes for the button component. This will then allow us to declare the component's `size` property type.
 
 ```typescript [app/utils/types.ts]
-
 export type ComponentSize = (typeof CORE_SIZE)[keyof typeof CORE_SIZE]
 ```
 
 The next step is to define the type for the default configuration that all design system components will inherit.
 
 ```typescript [app/utils/types.ts]
-
 export type GenericVariantKeyDefinition<T extends string> = Record<T, string | undefined>
 export type BooleanKeyDefinition = Record<`${boolean}`, string | undefined>
 
@@ -72,7 +69,6 @@ export interface BaseVariant {
 From this, we'll define the interface that represents the properties of our base component.
 
 ```typescript [app/utils/types.ts]
-
 export interface BaseProps {
   size?: ComponentSize
   // ... other properties can be added here
@@ -84,7 +80,6 @@ export interface BaseProps {
 Now that we have a solid foundation for our design system, we can think about our variants file.
 
 ```typescript [app/utils/variants/button.variant.ts]
-
 import { tv } from 'tailwind-variants'
 
 // remember that nuxt 3 has support for automatic
@@ -115,7 +110,6 @@ export const button = tv({
 To make the variants file available for automatic import, let's add an export to the `app/utils/variants.ts` file.
 
 ```typescript [app/utils/variants.ts]
-
 export * from './variants/button.variant'
 ```
 
@@ -124,7 +118,6 @@ export * from './variants/button.variant'
 Now that we have the constants, types, and variations defined, we can create the button component. We'll use Tailwind Variants to apply the style variations dynamically.
 
 ```vue [app/components/button.vue]
-
 <script lang="ts">
 import { tv } from 'tailwind-variants'
 import type { BaseProps } from '@/utils/types'

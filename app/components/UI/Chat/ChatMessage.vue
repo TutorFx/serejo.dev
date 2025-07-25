@@ -1,14 +1,14 @@
 <script lang="ts">
 export type ChatMessage = {
-  agentType: "model";
-  agent: AiAgentTypes;
-  message: string;
+  agentType: 'model'
+  agent: AiAgentTypes
+  message: string
 } | {
-  agentType: "user";
-  message: string;
-};
+  agentType: 'user'
+  message: string
+}
 
-export interface ChatMessageProps { 
+export interface ChatMessageProps {
   value: ChatMessage
   streaming?: boolean
 }

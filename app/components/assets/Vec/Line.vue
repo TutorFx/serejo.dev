@@ -10,7 +10,7 @@ const { stop } = useIntersectionObserver(
   ([entry]) => {
     isIntersecting.value = entry?.isIntersecting ?? false
   },
-  { threshold: 0.1 }, 
+  { threshold: 0.1 },
 )
 
 onBeforeUnmount(() => {
@@ -59,8 +59,8 @@ onBeforeUnmount(() => {
       <filter :id="`glow-${id}`" x="-50%" y="-50%" width="200%" height="200%">
         <feGaussianBlur stdDeviation="15" result="coloredBlur" />
         <feMerge>
-            <feMergeNode in="coloredBlur" />
-            <feMergeNode in="SourceGraphic" />
+          <feMergeNode in="coloredBlur" />
+          <feMergeNode in="SourceGraphic" />
         </feMerge>
       </filter>
     </defs>

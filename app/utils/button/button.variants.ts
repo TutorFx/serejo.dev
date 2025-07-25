@@ -1,4 +1,4 @@
-import { tv } from 'tailwind-variants';
+import { tv } from 'tailwind-variants'
 
 export const button = tv({
   slots: {
@@ -13,7 +13,7 @@ export const button = tv({
       [CORE_SIZE.SM]: 'text-sm py-1 px-3 font-light',
       [CORE_SIZE.MD]: 'text-base py-2 px-4 font-light',
       [CORE_SIZE.LG]: 'text-lg py-2 px-5 font-light',
-      [CORE_SIZE.XL]: 'text-3xl py-3 px-6 font-medium'
+      [CORE_SIZE.XL]: 'text-3xl py-3 px-6 font-medium',
     },
     color: {
       [CORE_COLORS.PRIMARY]: '[--color:theme(color.primary)]',
@@ -37,8 +37,8 @@ export const button = tv({
     },
     loading: {
       true: undefined,
-      false: undefined
-    }
+      false: undefined,
+    },
   } satisfies ButtonVariantContract,
   defaultVariants: {
     size: DEFAULT_SIZE,
@@ -49,7 +49,7 @@ export const button = tv({
     {
       variant: BUTTON_VARIANTS.LINK,
       isActive: true,
-      class: 'underline decoration-wavy'
+      class: 'underline decoration-wavy',
     },
-  ]
-});
+  ],
+})

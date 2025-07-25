@@ -34,7 +34,7 @@ export default defineI18nLocale(async (/* locale */) => {
       work_experience: 'Experiência de trabalho',
       education: 'Educação',
       graduated_in: 'Formado em {date}',
-      in_progress: 'Em progresso'
+      in_progress: 'Em progresso',
     },
     active: 'Ativo',
     me: {
@@ -71,7 +71,7 @@ export default defineI18nLocale(async (/* locale */) => {
     },
     sections: {
       statement: {
-        title: 'Declarações'
+        title: 'Declarações',
       },
       about_me: {
         title: 'O Arquiteto de Pixels',

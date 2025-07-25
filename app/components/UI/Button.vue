@@ -1,14 +1,17 @@
 <script lang="ts">
-import type { CoreProps } from '@/utils/_core/core.d';
-import type { RouteLocationRaw } from 'vue-router';
+import type { RouteLocationRaw } from 'vue-router'
+</script>
 
+<script setup lang="ts">
+/* eslint-disable ts/no-empty-object-type */
+import type { CoreProps } from '@/utils/_core/core.d'
 
 export type ButtonVariantProps = CoreProps & {
-  variant?: ButtonVariant;
-  rounded?: boolean;
-  block?: boolean;
-  class?: any;
-  href?: string;
+  variant?: ButtonVariant
+  rounded?: boolean
+  block?: boolean
+  class?: any
+  href?: string
   to?: RouteLocationRaw
   icon?: string
   trailingIcon?: string
@@ -17,17 +20,10 @@ export type ButtonVariantProps = CoreProps & {
 }
 
 export interface ButtonSlots {
-  leading(props?: {}): any
-  default(props?: {}): any
-  trailing(props?: {}): any
+  leading: (props?: {}) => any
+  default: (props?: {}) => any
+  trailing: (props?: {}) => any
 }
-
-</script>
-
-<script setup lang="ts">
-import { tv } from 'tailwind-variants';
-
-const NuxtLink = resolveComponent('NuxtLink')
 
 const props = withDefaults(defineProps<ButtonVariantProps>(), {
   size: DEFAULT_SIZE,
@@ -37,21 +33,24 @@ const props = withDefaults(defineProps<ButtonVariantProps>(), {
   block: false,
 })
 
+const slots = defineSlots<ButtonSlots>()
+
+const NuxtLink = resolveComponent('NuxtLink')
+
 const ui = button()
 
 const route = useRoute()
 const router = useRouter()
-const slots = defineSlots<ButtonSlots>()
-
 const isActive = computed(() => {
-  if (!props.to) return false
+  if (!props.to)
+    return false
 
   const resolvedRoute = router.resolve(props.to)
   return route.path === resolvedRoute.path
 })
 
 const loading = computed(() => {
-  if ('loading' in props && props.loading  === true) {
+  if ('loading' in props && props.loading === true) {
     return true
   }
 
@@ -62,17 +61,17 @@ const icon = computed(() => loading.value ? 'line-md:loading-twotone-loop' : pro
 </script>
 
 <template>
-  <component 
-    :is="to || href ? NuxtLink : 'button'" 
-    :class="ui.base({...props, isActive, loading })"
+  <component
+    :is="to || href ? NuxtLink : 'button'"
+    :class="ui.base({ ...props, isActive, loading })"
     :to
     :href
     :download
   >
     <div v-if="('leading' in slots) || icon" :class="ui.leading()">
       <slot name="leading">
-        <Icon 
-          v-if="icon" 
+        <Icon
+          v-if="icon"
           :name="icon"
         />
       </slot>
@@ -82,9 +81,9 @@ const icon = computed(() => loading.value ? 'line-md:loading-twotone-loop' : pro
     </div>
     <div v-if="'trailing' in slots" :class="ui.trailing()">
       <slot name="trailing">
-        <Icon 
-          v-if="trailingIcon" 
-          :name="trailingIcon" 
+        <Icon
+          v-if="trailingIcon"
+          :name="trailingIcon"
         />
       </slot>
     </div>

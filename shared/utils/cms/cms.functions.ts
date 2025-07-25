@@ -1,24 +1,24 @@
 import type { MinimarkNode, MinimarkTree } from '@nuxt/content'
 
 export function traverseNodes(nodes: MinimarkNode[]): string {
-  let text = "";
+  let text = ''
 
   for (const node of nodes) {
     if (typeof node === 'string') {
-      text += node + " ";
-    } 
+      text += `${node} `
+    }
     else if (Array.isArray(node)) {
-      const filhos = node.slice(2) as MinimarkNode[];
-      text += traverseNodes(filhos);
+      const filhos = node.slice(2) as MinimarkNode[]
+      text += traverseNodes(filhos)
     }
   }
 
-  return text;
+  return text
 }
 
 export function extractTreeText(tree: MinimarkTree): string {
-  const textoCompleto = traverseNodes(tree.value);
-  return textoCompleto.trim().replace(/\s+/g, ' ');
+  const textoCompleto = traverseNodes(tree.value)
+  return textoCompleto.trim().replace(/\s+/g, ' ')
 }
 
 export function textToSeconds(text: string): number {
@@ -27,9 +27,9 @@ export function textToSeconds(text: string): number {
 
 export function getLocaleFromPath<T extends Record<string, string>>(
   path: string,
-  localesObject: T
+  localesObject: T,
 ): T[keyof T] | null {
-  const availableLocales = Object.values(localesObject);
-  const foundLocale = availableLocales.find(locale => path.includes(locale));
-  return (foundLocale as T[keyof T]) || null;
+  const availableLocales = Object.values(localesObject)
+  const foundLocale = availableLocales.find(locale => path.includes(locale))
+  return (foundLocale as T[keyof T]) || null
 }

@@ -1,4 +1,4 @@
-import z from "zod/v4";
+import z from 'zod/v4'
 
 export * from './ai/tool.schemas'
 
@@ -8,7 +8,7 @@ export const queryLanguage = {
 
 export const postsQuerySchema = z.object({}).extend(queryLanguage)
 export const experiencesQuerySchema = z.object({
-  includeBody: z.preprocess((val) => val === 'true', z.boolean()).default(false),
+  includeBody: z.preprocess(val => val === 'true', z.boolean()).default(false),
 }).extend(queryLanguage)
 export const educationQuerySchema = z.object({}).extend(queryLanguage)
 

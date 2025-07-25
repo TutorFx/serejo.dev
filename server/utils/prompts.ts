@@ -68,4 +68,3 @@ export function final_prompt() {
   Respond in the user's language. Confirm with "Ok" before proceeding
 `
 }
-

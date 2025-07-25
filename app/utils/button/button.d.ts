@@ -1,4 +1,4 @@
-export type ButtonVariant = (typeof BUTTON_VARIANTS)[keyof typeof BUTTON_VARIANTS];
+export type ButtonVariant = (typeof BUTTON_VARIANTS)[keyof typeof BUTTON_VARIANTS]
 
 export interface ButtonVariantContract extends CoreVariant {
   rounded: BooleanKeyDefinition

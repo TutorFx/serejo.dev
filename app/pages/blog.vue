@@ -1,9 +1,9 @@
 <script setup lang="ts">
 defineI18nRoute({
-  paths: {    
+  paths: {
     'en-US': '/blog',
     'pt-BR': '/blog',
-  }
+  },
 })
 </script>
 

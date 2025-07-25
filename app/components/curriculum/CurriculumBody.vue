@@ -31,7 +31,7 @@ defineProps<CurriculumBody>()
           </div>
         </div>
         <div class="pl-8 grid gap-4">
-          <div v-for="graduation in education">
+          <div v-for="(graduation, key) in education" :key>
             <div class="grid">
               <div class="font-semibold text-lg">
                 {{ graduation.org }}
@@ -47,7 +47,7 @@ defineProps<CurriculumBody>()
         </div>
       </div>
       <div class="grid justify-center items-center aspect-square">
-        <qrcode data-allow-mismatch render-as="svg" background="var(--base-100)" foreground="var(--base-content)" :size="140" value="https://serejo.dev" level="L" />
+        <Qrcode data-allow-mismatch render-as="svg" background="var(--base-100)" foreground="var(--base-content)" :size="140" value="https://serejo.dev" level="L" />
       </div>
     </div>
     <div class="col-span-7 @7xl:col-span-9">
@@ -58,7 +58,7 @@ defineProps<CurriculumBody>()
           </div>
         </div>
         <div class="grid gap-8 pl-8 grid-cols-12 @container">
-          <div v-for="(experience, i) in experiences" class="grid gap-3 col-span-full @3xl:col-span-6 @6xl:col-span-4 items-start">
+          <div v-for="(experience, key) in experiences" :key class="grid gap-3 col-span-full @3xl:col-span-6 @6xl:col-span-4 items-start">
             <div class="grid gap-3 grid-flow-col justify-start items-start">
               <div class="size-14 grid justify-center items-center bg-black rounded-xl overflow-hidden">
                 <NuxtImg class="size-14" :src="experience.image" />

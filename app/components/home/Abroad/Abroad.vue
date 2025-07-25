@@ -11,7 +11,7 @@ const cv = useCurriculum()
             <MDC :value="$t('me.abroad')" />
           </div>
           <div class="mx-auto">
-            <UIButton @click="cv.download()" download="Gabriel Serejo Curriculum">
+            <UIButton download="Gabriel Serejo Curriculum" @click="cv.download()">
               {{ $t('download_curriculum') }}
             </UIButton>
           </div>

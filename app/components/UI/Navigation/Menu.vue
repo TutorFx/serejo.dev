@@ -3,7 +3,7 @@ export interface NavbarMenuProps {
   direction?: Direction
   size?: ComponentSize
   list: MenuList<FinalRoute>
-  class?: any;
+  class?: any
 }
 </script>
 
@@ -15,9 +15,9 @@ const ui = menu({ class: props.class })
 </script>
 
 <template>
-  <div :class="ui.base( props )">
+  <div :class="ui.base(props)">
     <UIButton
-      v-for="(item, key) in props.list" :key 
+      v-for="(item, key) in props.list" :key
       :to="'to' in item ? item.to : undefined"
       variant="link"
       :size

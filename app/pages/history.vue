@@ -3,7 +3,7 @@ defineI18nRoute({
   paths: {
     'en-US': '/my-trajectory',
     'pt-BR': '/minha-jornada',
-  }
+  },
 })
 </script>
 

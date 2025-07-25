@@ -13,7 +13,7 @@ export const NAVBAR_CONTENT: MenuList = [
     label: 'menu.history',
     to: { name: 'history' },
   },
-/*   {
+  /*   {
     label: 'menu.projects',
     to: { name: 'projects' },
   }, */

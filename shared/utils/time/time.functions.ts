@@ -1,5 +1,5 @@
-import { formatDuration, intervalToDuration, format } from 'date-fns'
-import { ptBR, enUS } from 'date-fns/locale'
+import { format, formatDuration, intervalToDuration } from 'date-fns'
+import { enUS, ptBR } from 'date-fns/locale'
 
 export function getDateLocale(locale: LocaleKey) {
   return {

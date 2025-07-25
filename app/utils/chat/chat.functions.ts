@@ -1,7 +1,4 @@
-import { defu } from 'defu'
 export function useChat() {
-
-
   const messages = ref<MessageType[]>([])
   const agent = ref<AiAgentTypes>(AI_AGENT.FELINA)
   const status = ref<MessageStatus>(MESSAGE_STATUS.IDLE)
@@ -11,17 +8,18 @@ export function useChat() {
 
   const { locale } = useI18n()
 
-  async function sendMessage(message: string | undefined){
-    if (!message) return;
+  async function sendMessage(message: string | undefined) {
+    if (!message)
+      return
     status.value = MESSAGE_STATUS.PENDING
 
-    const response = await asyncEnvelope( async () => await $fetch('/api/chat', {
+    const response = await asyncEnvelope(async () => await $fetch('/api/chat', {
       method: 'POST',
       body: {
         message: model.value,
         history: messages.value,
         agent: agent.value,
-        lang: locale.value
+        lang: locale.value,
       } satisfies ChatPostDto,
       responseType: 'stream',
     }) as ReadableStream)
@@ -39,12 +37,12 @@ export function useChat() {
       return status.value = MESSAGE_STATUS.ERROR
     }
 
-    const reader = response.data.getReader();
-    const decoder = new TextDecoder('utf-8');
+    const reader = response.data.getReader()
+    const decoder = new TextDecoder('utf-8')
 
     while (true) {
       status.value = MESSAGE_STATUS.STREAMING
-      const { done, value } = await reader.read();
+      const { done, value } = await reader.read()
 
       if (done) {
         messages.value.push({
@@ -56,10 +54,10 @@ export function useChat() {
         stream.value = ''
         status.value = MESSAGE_STATUS.IDLE
 
-        break;
+        break
       }
 
-      stream.value += decoder.decode(value, { stream: true });
+      stream.value += decoder.decode(value, { stream: true })
     }
   }
 

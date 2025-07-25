@@ -3,11 +3,12 @@ import DrawSVGPlugin from 'gsap/DrawSVGPlugin'
 
 export function useGsap(callback?: () => void, scope?: Element | string | object) {
   gsap.registerPlugin(DrawSVGPlugin)
-  
+
   const ctx = gsap.context(() => {}, scope)
 
   onMounted(() => {
-    callback && ctx.add(callback, scope)
+    if (callback)
+      ctx.add(callback, scope)
   })
 
   onUnmounted(() => {

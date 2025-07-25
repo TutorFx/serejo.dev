@@ -1,16 +1,19 @@
 export default defineEventHandler(async (event) => {
-  const requestQuery = await getValidatedQuery(event, (data) => postQuerySchema.safeParse(data));
+  const requestQuery = await getValidatedQuery(event, data => postQuerySchema.safeParse(data))
   const t = await useTranslation(event)
 
-  if (!requestQuery.data) throw new Error('400')
+  if (!requestQuery.data)
+    throw new Error('400')
 
-  const post = await queryCollection(event, 'blog').orWhere(query => query.where('id', "=", requestQuery.data.contentPath).where('slug', '=', requestQuery.data.path)).first()
+  const post = await queryCollection(event, 'blog').orWhere(query => query.where('id', '=', requestQuery.data.contentPath).where('slug', '=', requestQuery.data.path)).first()
 
-  if (!post) throw new Error('404')
+  if (!post)
+    throw new Error('404')
 
-  const { data, error } = blogSchemaWithBody.safeParse(post)
+  const { data } = blogSchemaWithBody.safeParse(post)
 
-  if (!data) return null
+  if (!data)
+    return null
 
   const { title, meta, stem, body, slug } = data
   const { locale, readingTimeInSeconds, reducedBody } = meta

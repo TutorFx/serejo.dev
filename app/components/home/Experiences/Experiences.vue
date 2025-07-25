@@ -6,10 +6,10 @@ const { t } = useI18n()
   <div class="relative py-24 rounded-3xl overflow-hidden">
     <div class="absolute inset-0 grid">
       <div class="relative">
-        <div ref="gradient-1" class="absolute top-[95%] left-[5%] rounded-full size-64 bg-[var(--brand-1)] -translate-[50%] blur-[200px]" />
-        <div ref="gradient-2" class="absolute top-[70%] left-[60%] rounded-full size-32 bg-[var(--brand-7)] -translate-[50%] blur-[100px]" />
-        <div ref="gradient-3" class="absolute top-[10%] left-[90%] rounded-full size-128 bg-[var(--brand-5)] -translate-[50%] blur-[200px]" />
-        <div ref="gradient-4" class="absolute top-[10%] left-[10%] rounded-full size-64 bg-[var(--brand-7)] -translate-[50%] blur-[100px]" />
+        <div class="absolute top-[95%] left-[5%] rounded-full size-64 bg-[var(--brand-1)] -translate-[50%] blur-[200px]" />
+        <div class="absolute top-[70%] left-[60%] rounded-full size-32 bg-[var(--brand-7)] -translate-[50%] blur-[100px]" />
+        <div class="absolute top-[10%] left-[90%] rounded-full size-128 bg-[var(--brand-5)] -translate-[50%] blur-[200px]" />
+        <div class="absolute top-[10%] left-[10%] rounded-full size-64 bg-[var(--brand-7)] -translate-[50%] blur-[100px]" />
       </div>
     </div>
 

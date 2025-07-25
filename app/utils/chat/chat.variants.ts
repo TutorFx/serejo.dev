@@ -1,4 +1,4 @@
-import { tv } from 'tailwind-variants';
+import { tv } from 'tailwind-variants'
 
 export const genericChat = tv({
   slots: {
@@ -18,19 +18,19 @@ export const genericChat = tv({
     border: {
       true: undefined,
       false: undefined,
-    }
+    },
   } satisfies ChatVariantContract,
   defaultVariants: {
     rounded: true,
     border: true,
     variant: CHAT_VARIANTS.DEFAULT,
   },
-});
+})
 
 export const genericChatMessage = tv({
   slots: {
     base: 'p-2 px-4 grid rounded-lg',
-    content: 'grid gap-4', 
+    content: 'grid gap-4',
   },
   variants: {
     variant: {
@@ -41,4 +41,4 @@ export const genericChatMessage = tv({
   defaultVariants: {
     variant: AGENT_TYPE.USER,
   },
-});
+})

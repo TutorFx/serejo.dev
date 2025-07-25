@@ -1,5 +1,3 @@
-import type { MinimarkTree } from "@nuxt/content";
-
 export interface ExperienceDto {
   title: string
   org: string
@@ -18,14 +16,14 @@ export interface ExperienceDto {
 export type ExperiencesDto = Omit<ExperienceDto, 'body'> & { body: object | null }
 
 export interface BlogPostDto {
-  title: string;
-  locale: LocaleKey;
-  readingTimeInSeconds: number;
-  readingTimeString: string;
-  reducedBody: string | undefined;
-  path: string;
-  slug: string | null;
-  body: object;
+  title: string
+  locale: LocaleKey
+  readingTimeInSeconds: number
+  readingTimeString: string
+  reducedBody: string | undefined
+  path: string
+  slug: string | null
+  body: object
 }
 
 export type BlogPostsDto = Omit<BlogPostDto, 'body'>
@@ -37,6 +35,6 @@ export interface EducationDto {
   end: string
   date: string
   path: string
-  locale: LocaleKey;
+  locale: LocaleKey
   body: object
 }

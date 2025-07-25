@@ -1,5 +1,5 @@
 import process from 'node:process'
-import tailwindcss from "@tailwindcss/vite";
+import tailwindcss from '@tailwindcss/vite'
 
 import {
   APP_DESCRIPTION,
@@ -15,22 +15,20 @@ const isDev = Boolean(process.env.NODE_ENV !== 'production')
 
 export default defineNuxtConfig({
   modules: [
-    '@nuxtjs/i18n', 
-    '@nuxtjs/seo', 
-    '@nuxtjs/color-mode', 
-    '@nuxtjs/google-fonts', 
-    '@nuxt/image', 
-    '@nuxt/content', 
-    '@nuxt/eslint', 
-    '@nuxt/icon', 
-    'nuxt-gtag'
+    '@nuxtjs/i18n',
+    '@nuxtjs/seo',
+    '@nuxtjs/color-mode',
+    '@nuxtjs/google-fonts',
+    '@nuxt/image',
+    '@nuxt/content',
+    '@nuxt/eslint',
+    '@nuxt/icon',
+    'nuxt-gtag',
   ],
 
   devtools: {
     enabled: true,
   },
-
-  compatibilityDate: '2025-06-10',
 
   app: {
     head: {
@@ -50,14 +48,9 @@ export default defineNuxtConfig({
     },
   },
 
-  content: {
-    build: {
-      transformers: [
-        '~~/transformers/reading-time.ts',
-      ],
-      markdown: {}
-    },
-  },
+  css: [
+    './assets/css/tailwind.css',
+  ],
 
   site: {
     name: APP_NAME,
@@ -68,6 +61,15 @@ export default defineNuxtConfig({
   colorMode: {
     classSuffix: '',
     storage: 'localStorage',
+  },
+
+  content: {
+    build: {
+      transformers: [
+        '~~/transformers/reading-time.ts',
+      ],
+      markdown: {},
+    },
   },
 
   runtimeConfig: {
@@ -97,6 +99,8 @@ export default defineNuxtConfig({
     typedPages: true,
   },
 
+  compatibilityDate: '2025-06-10',
+
   nitro: {
     prerender: {
       autoSubfolderIndex: false,
@@ -109,17 +113,13 @@ export default defineNuxtConfig({
     },
   },
 
-  css: [
-    './assets/css/tailwind.css',
-  ],
-
   vite: {
     plugins: [
       tailwindcss(),
     ],
     optimizeDeps: {
       // https://github.com/nuxt-modules/mdc/issues/394
-      include: ["debug"],
+      include: ['debug'],
     },
   },
 
@@ -170,6 +170,11 @@ export default defineNuxtConfig({
     },
   },
 
+  icon: {
+    mode: 'css',
+    cssLayer: 'base',
+  },
+
   ogImage: {
     defaults: {},
     fonts: [
@@ -179,11 +184,4 @@ export default defineNuxtConfig({
       'Space+Grotesk:700',
     ],
   },
-
-  
-
-  icon: {
-    mode: 'css',
-    cssLayer: 'base',
-  }
 })

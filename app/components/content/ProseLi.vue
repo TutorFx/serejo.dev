@@ -1,3 +1,5 @@
 <template>
-  <li class="list-decimal"><slot /></li>
+  <li class="list-decimal">
+    <slot />
+  </li>
 </template>

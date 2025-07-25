@@ -46,7 +46,7 @@ export default defineContentConfig({
     history: defineCollection({
       type: 'page',
       source: 'history/**/*.md',
-      schema: historySchema
+      schema: historySchema,
     }),
     projects: defineCollection({
       type: 'page',
