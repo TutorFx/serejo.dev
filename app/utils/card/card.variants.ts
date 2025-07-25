@@ -1,4 +1,4 @@
-import { tv } from 'tailwind-variants';
+import { tv } from 'tailwind-variants'
 
 export const genericCard = tv({
   slots: {
@@ -18,11 +18,11 @@ export const genericCard = tv({
     border: {
       true: 'border divide-y divide-[var(--border)] border-[var(--border)]',
       false: undefined,
-    }
+    },
   } satisfies CardVariantContract,
   defaultVariants: {
     rounded: true,
     border: true,
     variant: CARD_VARIANTS.DEFAULT,
   },
-});
+})

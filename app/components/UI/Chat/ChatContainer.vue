@@ -1,9 +1,8 @@
 <script lang="ts">
-
 export interface ChatContainerProps {
   messages: MessageType[]
   stream: string
-  class?: any;
+  class?: any
   agent?: AiAgentTypes
   status?: MessageStatus
 }
@@ -13,42 +12,45 @@ export interface ChatContainerEmits {
 </script>
 
 <script setup lang="ts">
-  const ui = genericChat()
+const props = withDefaults(defineProps<ChatContainerProps>(), { agent: AI_AGENT.FELINA })
 
-  const props = withDefaults(defineProps<ChatContainerProps>(), { agent:AI_AGENT.FELINA })
-  const emits = defineEmits<ChatContainerEmits>()
-  const model = defineModel<string>()
+const emits = defineEmits<ChatContainerEmits>()
 
-  const list = useTemplateRef('list')
-  const end = useTemplateRef('end')
+const ui = genericChat()
 
-  const isBlocked = computed(() => 
-    !([MESSAGE_STATUS.ERROR, MESSAGE_STATUS.IDLE] as (MessageStatus | undefined)[])
-      .includes(props.status)
-  )
-  
-  function scrollDown() {
-    if (end.value) {
-      end.value.scrollIntoView({ behavior: 'smooth' });
-    }
+const model = defineModel<string>()
+
+const list = useTemplateRef('list')
+const end = useTemplateRef('end')
+
+const isBlocked = computed(() =>
+  !([MESSAGE_STATUS.ERROR, MESSAGE_STATUS.IDLE] as (MessageStatus | undefined)[])
+    .includes(props.status),
+)
+
+function scrollDown() {
+  if (end.value) {
+    end.value.scrollIntoView({ behavior: 'smooth' })
   }
+}
 
-  watch(() => props.messages , () => {
-    nextTick(() => scrollDown())
-  })
+watch(() => props.messages, () => {
+  nextTick(() => scrollDown())
+})
 
-  watch(() => props.stream.length, () => {
-    setTimeout(() => {
-      scrollDown()
-    }, 100);
-  })
-
-  function sendMessage (){
-    if (isBlocked.value) return;
-
+watch(() => props.stream.length, () => {
+  setTimeout(() => {
     scrollDown()
-    emits("message", model.value)
-  }
+  }, 100)
+})
+
+function sendMessage() {
+  if (isBlocked.value)
+    return
+
+  scrollDown()
+  emits('message', model.value)
+}
 </script>
 
 <template>
@@ -69,8 +71,8 @@ export interface ChatContainerEmits {
         </div>
       </div>
     </div>
-    <div 
-      ref="list" 
+    <div
+      ref="list"
       :class="ui.content()"
       class="
       [&::-webkit-scrollbar]:size-6
@@ -80,7 +82,7 @@ export interface ChatContainerEmits {
 
       [&::-webkit-scrollbar-track]:bg-base-300
       [&::-webkit-scrollbar-track]:rounded-xl
-      
+
       [&::-webkit-scrollbar-thumb]:border-6
       [&::-webkit-scrollbar-thumb]:border-base-300
       [&::-webkit-scrollbar-thumb]:bg-base-100
@@ -92,7 +94,6 @@ export interface ChatContainerEmits {
       md:min-h-[600px]
       "
     >
-
       <div class="grid p-4 gap-3 items-start">
         <div class="bg-base-200 p-3 rounded-lg">
           {{ $t('chat.talk_to_cat') }}
@@ -109,7 +110,7 @@ export interface ChatContainerEmits {
           v-model="model" autocomplete="off" name="ai-message" class="flex-1 text-sm flex items-center w-full px-3 bg-base-100 h-10 rounded outline-none"
           type="textarea" :placeholder="$t('chat.input_label')" @keydown.enter="sendMessage"
         >
-        <UIButton :loading="isBlocked" @click="sendMessage" icon="material-symbols:send-rounded" />
+        <UIButton :loading="isBlocked" icon="material-symbols:send-rounded" @click="sendMessage" />
       </div>
     </div>
   </div>

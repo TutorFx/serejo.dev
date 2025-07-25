@@ -5,8 +5,7 @@ export interface CoreHeaderBaseProps {
 </script>
 
 <script setup lang="ts">
-
-const props = defineProps<CoreHeaderBaseProps>()
+defineProps<CoreHeaderBaseProps>()
 const model = defineModel<boolean>({ default: false })
 
 const { locale } = useI18n()

@@ -1,27 +1,24 @@
 <script lang="ts">
-import type { ChatContainerProps, ChatContainerEmits } from './ChatContainer.vue';
+import { onClickOutside, useScrollLock } from '@vueuse/core'
+import type { ChatContainerEmits, ChatContainerProps } from './ChatContainer.vue'
+</script>
 
+<script setup lang="ts">
+/* eslint-disable vue/require-explicit-emits */
 export interface ChatProps extends ChatContainerProps {
   agent?: never
 }
 
 export interface ChatEmits extends ChatContainerEmits {}
 
-</script>
-
-<script setup lang="ts">
-import { onClickOutside, useScrollLock } from '@vueuse/core'
-
-const props = defineProps<ChatProps>()
+defineProps<ChatProps>()
+const emits = defineEmits<ChatEmits>()
 const model = defineModel<string>()
 const agent = defineModel<AiAgentTypes>('agent')
-const emits = defineEmits<ChatEmits>()
-
 const chat = useScrollLock(document?.body ?? null)
 
 const target = ref()
 const button = ref()
-
 
 onClickOutside(target, () => chat.value ? chat.value = false : null, {
   ignore: [button],
@@ -37,7 +34,7 @@ onClickOutside(target, () => chat.value ? chat.value = false : null, {
           enter-active-class="transition duration-500"
           leave-active-class="translate-y-[200%] duration-500"
         >
-          <UIChatContainer v-show="chat" ref="target" :stream :messages :status :agent="agent" v-model="model" @message="(message) => emits('message', message)" />
+          <UIChatContainer v-show="chat" ref="target" v-model="model" :stream :messages :status :agent="agent" @message="(message) => emits('message', message)" />
         </Transition>
       </div>
       <div ref="button" class="grid justify-end">

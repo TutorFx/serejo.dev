@@ -9,6 +9,6 @@ defineProps<LocaleIconProps>()
 </script>
 
 <template>
-  <Icon size="32" v-if="countryCode === 'pt-BR'" name="circle-flags:br" />
-  <Icon size="32" v-else-if="countryCode === 'en-US'" name="circle-flags:en" />
+  <Icon v-if="countryCode === 'pt-BR'" size="32" name="circle-flags:br" />
+  <Icon v-else-if="countryCode === 'en-US'" size="32" name="circle-flags:en" />
 </template>

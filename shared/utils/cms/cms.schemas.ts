@@ -1,11 +1,11 @@
-import type { MarkdownRoot } from "@nuxt/content"
-import z from "zod/v4"
+import type { MarkdownRoot } from '@nuxt/content'
+import z from 'zod/v4'
 
 export const cmsEntrySchema = {
   meta: z.object({
     reducedBody: z.string().optional(),
     readingTimeInSeconds: z.number(),
-    locale: z.enum(LOCALE_KEYS)
+    locale: z.enum(LOCALE_KEYS),
   }),
   title: z.string().min(1),
   id: z.string(),
@@ -13,7 +13,7 @@ export const cmsEntrySchema = {
 }
 
 export const withBody = {
-  body: z.custom<MarkdownRoot>()
+  body: z.custom<MarkdownRoot>(),
 }
 
 export const dateObjectSchema = {

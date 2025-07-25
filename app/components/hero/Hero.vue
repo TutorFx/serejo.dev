@@ -1,30 +1,26 @@
 <script setup lang="ts">
-import { gsap } from 'gsap';
-import { TransitionPresets, useIntersectionObserver, useTransition } from '@vueuse/core'
+import { gsap } from 'gsap'
 
 const { t } = useI18n()
 
-const { ctx } = useGsap(() => {
+useGsap(() => {
   const tl = gsap.timeline()
 
   tl.restart()
 })
-
-
 </script>
 
 <template>
   <div>
     <div class="h-[550px] sm:h-[calc(100dvh-96px)] grid-rows-[1fr_max-content] grid items-center relative overflow-hidden rounded-3xl">
       <div class="relative h-full">
-        
         <div class="absolute inset-0 grid">
           <div class="relative">
-            <div ref="gradient-1" class="absolute top-[95%] left-[5%] rounded-full size-42 bg-[var(--brand-1)] -translate-[50%] blur-[100px]" />
+            <div class="absolute top-[95%] left-[5%] rounded-full size-42 bg-[var(--brand-1)] -translate-[50%] blur-[100px]" />
             <div class="absolute top-[70%] left-[60%] rounded-full size-32 bg-[var(--brand-7)] -translate-[50%] blur-[100px]" />
             <div class="absolute top-[80%] left-[90%] rounded-full size-42 bg-[var(--brand-10)] -translate-[50%] blur-[100px]" />
             <div class="absolute top-[10%] left-[10%] rounded-full size-64 bg-[var(--brand-7)] -translate-[50%] blur-[100px]" />
-  
+
             <div class="absolute top-[10%] left-[90%] rounded-full size-128 bg-[var(--brand-5)] -translate-[50%] blur-[100px]" />
           </div>
         </div>
@@ -46,11 +42,11 @@ const { ctx } = useGsap(() => {
         <div class="relative border-t border-base-300" />
         <UIContainer class="relative p-6 grid gap-3 md:grid-flow-col justify-between">
           <div>
-            {{ t('SCHEDULE_support_text')}}
+            {{ t('SCHEDULE_support_text') }}
           </div>
           <div class="grid justify-start items-center">
             <UIButton>
-              {{ t('SCHEDULE_cta')}}
+              {{ t('SCHEDULE_cta') }}
             </UIButton>
           </div>
         </UIContainer>

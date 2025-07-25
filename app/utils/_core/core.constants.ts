@@ -1,8 +1,8 @@
-export const COMPONENT_SIZE_KEY_XSMALL = 'xxs';
-export const COMPONENT_SIZE_KEY_SMALL = 'sm';
-export const COMPONENT_SIZE_KEY_MEDIUM = 'md';
-export const COMPONENT_SIZE_KEY_LARGE = 'lg';
-export const COMPONENT_SIZE_KEY_XLARGE = 'xl';
+export const COMPONENT_SIZE_KEY_XSMALL = 'xxs'
+export const COMPONENT_SIZE_KEY_SMALL = 'sm'
+export const COMPONENT_SIZE_KEY_MEDIUM = 'md'
+export const COMPONENT_SIZE_KEY_LARGE = 'lg'
+export const COMPONENT_SIZE_KEY_XLARGE = 'xl'
 
 export const CORE_SIZE = {
   XS: COMPONENT_SIZE_KEY_XSMALL,
@@ -10,18 +10,18 @@ export const CORE_SIZE = {
   MD: COMPONENT_SIZE_KEY_MEDIUM,
   LG: COMPONENT_SIZE_KEY_LARGE,
   XL: COMPONENT_SIZE_KEY_XLARGE,
-} as const;
+} as const
 
-export const DEFAULT_SIZE = CORE_SIZE.MD;
-export const COMPONENT_SIZES_ARRAY = Object.values(CORE_SIZE);
+export const DEFAULT_SIZE = CORE_SIZE.MD
+export const COMPONENT_SIZES_ARRAY = Object.values(CORE_SIZE)
 
-export const COLOR_PRIMARY_KEY = 'primary';
-export const COLOR_SECONDARY_KEY = 'secondary';
+export const COLOR_PRIMARY_KEY = 'primary'
+export const COLOR_SECONDARY_KEY = 'secondary'
 
 export const CORE_COLORS = {
   PRIMARY: COLOR_PRIMARY_KEY,
   SECONDARY: COLOR_SECONDARY_KEY,
-} as const;
+} as const
 
-export const DEFAULT_COLOR = CORE_COLORS.PRIMARY;
-export const COMPONENT_COLORS_ARRAY = Object.values(CORE_COLORS);
+export const DEFAULT_COLOR = CORE_COLORS.PRIMARY
+export const COMPONENT_COLORS_ARRAY = Object.values(CORE_COLORS)

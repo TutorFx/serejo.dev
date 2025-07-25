@@ -4,7 +4,7 @@ const defaultMessageSchema = {
   message: z.string(),
 }
 
-const AiMessageSchema = z.object({ 
+const AiMessageSchema = z.object({
   agentType: z.literal(AGENT_TYPE.AI),
   agent: z.enum(AI_AGENT),
 }).extend(defaultMessageSchema)
@@ -21,5 +21,5 @@ export const MessageSchema = z.discriminatedUnion('agentType', [
 export const ChatPostSchema = z.object({
   history: z.array(MessageSchema),
   agent: z.enum(AI_AGENT),
-  lang: z.enum(LOCALE_KEYS)
+  lang: z.enum(LOCALE_KEYS),
 }).extend(defaultMessageSchema)

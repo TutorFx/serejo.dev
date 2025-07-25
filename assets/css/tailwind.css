@@ -1,20 +1,18 @@
-@import "tailwindcss";
-
-
+@import 'tailwindcss';
 
 :root {
-  --primary: #FCA311;
+  --primary: #fca311;
   --secondary: #f72585;
   --secondary-content: oklch(98.71% 0.0106 342.55);
   --accent: #a8a29e;
-  --neutral: #14213D;
+  --neutral: #14213d;
   --neutral-content: #818589;
   --base-100: oklch(100% 0 0);
-  --base-200: #F2F2F2;
-  --base-300: #E5E6E6;
+  --base-200: #f2f2f2;
+  --base-300: #e5e6e6;
   --base-content: #1f2937;
   --border: var(--base-300);
-  
+
   --brand-1: #f72585;
   --brand-2: #b5179e;
   --brand-3: #7209b7;
@@ -26,7 +24,7 @@
   --brand-9: #4895ef;
   --brand-10: #4cc9f0;
 
-  --vue-1:#004b23;
+  --vue-1: #004b23;
   --vue-2: #006400;
   --vue-3: #007200;
   --vue-4: #008000;
@@ -37,15 +35,15 @@
 }
 
 html.dark {
-  --primary: #FCA311;
+  --primary: #fca311;
   --secondary: #f72585;
   --accent: #57534e;
-  --neutral: #E5E5E5;
-  --neutral-content: #FFFFFF;
+  --neutral: #e5e5e5;
+  --neutral-content: #ffffff;
   --base-100: #0c0a09;
-  --base-200: #100F0F;
+  --base-200: #100f0f;
   --base-300: #141414;
-  --base-content: #FFFFFF;
+  --base-content: #ffffff;
   --border: var(--base-300);
 }
 
@@ -59,17 +57,37 @@ html.dark {
   --color-base-200: var(--base-200);
   --color-base-300: var(--base-300);
   --color-base-content: var(--base-content);
-  --color-border: var(--border)
-
-  --font-sans: "Space Grotesk", "sans-serif";
-  --font-logo: "Mochiy Pop One", "sans-serif";
+  --color-border: var(--border) --font-sans: 'Space Grotesk', 'sans-serif';
+  --font-logo: 'Mochiy Pop One', 'sans-serif';
 }
 
 @layer components {
   .bg-brand {
-    background: linear-gradient(45deg, var(--brand-1), var(--brand-2), var(--brand-3), var(--brand-4),var(--brand-5), var(--brand-6), var(--brand-7), var(--brand-8), var(--brand-9), var(--brand-10));
+    background: linear-gradient(
+      45deg,
+      var(--brand-1),
+      var(--brand-2),
+      var(--brand-3),
+      var(--brand-4),
+      var(--brand-5),
+      var(--brand-6),
+      var(--brand-7),
+      var(--brand-8),
+      var(--brand-9),
+      var(--brand-10)
+    );
   }
   .bg-vue {
-    background: linear-gradient(45deg, var(--vue-1), var(--vue-2), var(--vue-3), var(--vue-4),var(--vue-5), var(--vue-6), var(--vue-7), var(--vue-8));
+    background: linear-gradient(
+      45deg,
+      var(--vue-1),
+      var(--vue-2),
+      var(--vue-3),
+      var(--vue-4),
+      var(--vue-5),
+      var(--vue-6),
+      var(--vue-7),
+      var(--vue-8)
+    );
   }
 }

@@ -8,7 +8,6 @@ export interface HeroCmsProps {
 <script setup lang="ts">
 const props = defineProps<HeroCmsProps>()
 const localePath = useLocalePath()
-const { t } = useI18n()
 </script>
 
 <template>
@@ -20,10 +19,14 @@ const { t } = useI18n()
         </template>{{ $t('navigation.back') }}
       </UIButton>
     </div>
-    <slot name="top"><div class="h-12" /></slot>
+    <slot name="top">
+      <div class="h-12" />
+    </slot>
     <div class="text-5xl font-bold grid items-center justify-center text-center text-balance">
       {{ props.title }}
     </div>
-    <slot class="info"><div class="h-12" /></slot>
+    <slot class="info">
+      <div class="h-12" />
+    </slot>
   </div>
 </template>

@@ -1,4 +1,4 @@
-import { Guest, Prisma } from '@prisma/client'
+import type { Prisma } from '@prisma/client'
 import type { H3Event } from 'h3'
 import { defu } from 'defu'
 
@@ -27,7 +27,7 @@ export async function setupGuest(event: H3Event, select: Prisma.GuestSelect | nu
       event,
       createError({
         statusCode: 400,
-        data: createdGuest.error?.message
+        data: createdGuest.error?.message,
       }),
     )
 

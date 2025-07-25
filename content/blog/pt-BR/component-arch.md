@@ -51,14 +51,12 @@ Essa etapa é importante para padronizar algumas propriedades que serão comuns 
 Abaixo, vamos definir o tipo que representa todos os tamanhos disponíveis para o componente de botão. Isso nos permitirá declarar em seguida o tipo de propriedade `size` do componente.
 
 ```typescript [app/utils/types.ts]
-
 export type ComponentSize = (typeof CORE_SIZE)[keyof typeof CORE_SIZE]
 ```
 
 O próximo passo é definir o tipo da configuração padrão que todos os componentes do design system herdarão.
 
 ```typescript [app/utils/types.ts]
-
 export type GenericVariantKeyDefinition<T extends string> = Record<T, string | undefined>
 export type BooleanKeyDefinition = Record<`${boolean}`, string | undefined>
 
@@ -71,7 +69,6 @@ export interface BaseVariant {
 A partir disso, vamos definir a interface que representa as propriedades do nosso componente base.
 
 ```typescript [app/utils/types.ts]
-
 export interface BaseProps {
   size?: ComponentSize
   // ... outras propriedades podem ser adicionadas aqui
@@ -83,7 +80,6 @@ export interface BaseProps {
 Agora que já temos uma base sólida para nosso design system, podemos pensar em nosso arquivo de variações.
 
 ```typescript [app/utils/variants/button.variant.ts]
-
 import { tv } from 'tailwind-variants'
 
 // lembrando que o nuxt3 tem suporte a importação
@@ -114,7 +110,6 @@ export const button = tv({
 Para o arquivo de variações estar disponível para importação automática, vamos adicionar um export no arquivo `app/utils/variants.ts`.
 
 ```typescript [app/utils/variants.ts]
-
 export * from './variants/button.variant'
 ```
 
@@ -123,7 +118,6 @@ export * from './variants/button.variant'
 Agora que já temos as constantes, tipos e variações definidas, podemos criar o componente de botão. Vamos utilizar o Tailwind Variants para aplicar as variações de estilo de forma dinâmica.
 
 ```vue [app/components/button.vue]
-
 <script lang="ts">
 import { tv } from 'tailwind-variants'
 import type { BaseProps } from '@/utils/types'

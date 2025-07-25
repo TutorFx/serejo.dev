@@ -26,10 +26,12 @@ const { t } = useI18n()
             {{ props.readingTimeString }}
           </div>
           <div>
-            <UIButton variant="link">{{ t('see_more') }}</UIButton>
+            <UIButton variant="link">
+              {{ t('see_more') }}
+            </UIButton>
           </div>
         </div>
-      </template> 
+      </template>
     </UICard>
   </div>
 </template>

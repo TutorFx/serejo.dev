@@ -10,7 +10,7 @@ export function useMenu(menuData: MenuList<InternalRoute>): MenuList<FinalRoute>
     }
 
     if ('children' in item && item.children) {
-      item.children = useMenu(item.children) 
+      item.children = useMenu(item.children)
     }
 
     return item as MenuItem<FinalRoute>
