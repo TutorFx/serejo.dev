@@ -32,6 +32,18 @@
   --vue-6: #70e000;
   --vue-7: #9ef01a;
   --vue-8: #ccff33;
+
+  --brand-gradient: 45deg,
+    var(--brand-1),
+    var(--brand-2),
+    var(--brand-3),
+    var(--brand-4),
+    var(--brand-5),
+    var(--brand-6),
+    var(--brand-7),
+    var(--brand-8),
+    var(--brand-9),
+    var(--brand-10)
 }
 
 html.dark {
