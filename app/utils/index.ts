@@ -1,4 +1,5 @@
-import type { RouteLocationAsRelativeI18n, RouteLocationRawI18n, RouteNamedMapI18n } from 'vue-router'
+import type { RouteLocationAsRelativeI18n, RouteLocationRawI18n } from 'vue-router'
+import type { RouteNamedMapI18n } from 'vue-router/auto-routes'
 
 export * from './_core/core.d'
 export * from './button/button.d'
