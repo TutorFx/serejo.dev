@@ -8,57 +8,78 @@ export function useChat() {
 
   const { locale } = useI18n()
 
-  async function sendMessage(message: string | undefined) {
-    if (!message)
-      return
-    status.value = MESSAGE_STATUS.PENDING
-
-    const response = await asyncEnvelope(async () => await $fetch('/api/chat', {
-      method: 'POST',
-      body: {
-        message: model.value,
-        history: messages.value,
-        agent: agent.value,
-        lang: locale.value,
-      } satisfies ChatPostDto,
-      responseType: 'stream',
-    }) as ReadableStream)
-
-    status.value = MESSAGE_STATUS.SUCCESS
-
-    messages.value.push({
-      agentType: AGENT_TYPE.USER,
-      message: model.value,
-    })
-
-    model.value = ''
-
-    if (!response.data) {
-      return status.value = MESSAGE_STATUS.ERROR
-    }
-
-    const reader = response.data.getReader()
+  /**
+   * Private helper function to process the readable stream from the API.
+   * This isolates the stream-reading logic from the main send function.
+   * @param dataStream The ReadableStream to process.
+   */
+  async function _processStream(dataStream: ReadableStream) {
+    const reader = dataStream.getReader()
     const decoder = new TextDecoder('utf-8')
+    let streamedMessage = ''
+
+    status.value = MESSAGE_STATUS.STREAMING
 
     while (true) {
-      status.value = MESSAGE_STATUS.STREAMING
       const { done, value } = await reader.read()
 
       if (done) {
         messages.value.push({
           agentType: AGENT_TYPE.AI,
           agent: agent.value,
-          message: stream.value,
+          message: streamedMessage,
         })
-
-        stream.value = ''
+        stream.value = '' // Clear the public stream ref
         status.value = MESSAGE_STATUS.IDLE
-
         break
       }
-
-      stream.value += decoder.decode(value, { stream: true })
+      
+      const decodedChunk = decoder.decode(value, { stream: true })
+      streamedMessage += decodedChunk
+      // Update the public stream ref for real-time UI updates
+      stream.value = streamedMessage
     }
+  }
+
+  /**
+   * Sends a message to the chat API and handles the streamed response.
+   * @param message The message content from the user input.
+   */
+  async function sendMessage(message: string | undefined) {
+    if (!message || status.value === MESSAGE_STATUS.PENDING) return
+
+    status.value = MESSAGE_STATUS.PENDING
+
+    messages.value.push({
+      agentType: AGENT_TYPE.USER,
+      message: model.value,
+    })
+
+    const messageToSend = model.value
+    model.value = ''
+
+    const response = await asyncEnvelope(async () => await $fetch('/api/chat', {
+      method: 'POST',
+      body: {
+        message: messageToSend,
+        history: messages.value.slice(0, -1),
+        agent: agent.value,
+        lang: locale.value,
+      } satisfies ChatPostDto,
+      responseType: 'stream',
+    }) as ReadableStream)
+
+    if (!response.data) {
+      status.value = MESSAGE_STATUS.ERROR
+      messages.value.push({
+        agentType: AGENT_TYPE.AI,
+        agent: agent.value,
+        message: 'Sorry, an error occurred while sending the message.',
+      })
+      return
+    }
+
+    await _processStream(response.data)
   }
 
   return {
