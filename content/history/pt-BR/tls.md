@@ -4,7 +4,7 @@ org: TLScontact
 image: '/experience/experience-tls.webp'
 location: Lisbon, Portugal
 start: 2023-06-01
-end:
+end: 2024-05-31
 ---
 
 Na TLScontact, executo uma variedade de tarefas que abrangem implementar novos recursos, mitigar vulnerabilidades e refatorar códigos. Trabalho diretamente com ferramentas institucionais para emissão de vistos. Os frameworks utilizados são Vue 2 e Vue 3.
