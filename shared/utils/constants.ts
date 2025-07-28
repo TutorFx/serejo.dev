@@ -1,5 +1,6 @@
 export * from './chat/chat.constants'
 export * from './cms/cms.constants'
+export * from './routes/routes.constants'
 
 const COOKIE_KEYS_GUEST = 'guestId'
 

@@ -1,7 +1,9 @@
 <script lang="ts">
 import type { BlogPostDto } from '~~/shared/utils/dto/cms.dto'
 
-export interface BlogPostProps extends BlogPostDto {}
+export interface BlogPostProps extends BlogPostDto {
+  createdAt: Date
+}
 </script>
 
 <script setup lang="ts">

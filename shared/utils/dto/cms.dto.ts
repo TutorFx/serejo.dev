@@ -24,6 +24,7 @@ export interface BlogPostDto {
   path: string
   slug: string | null
   body: object
+  createdAt: Date
 }
 
 export type BlogPostsDto = Omit<BlogPostDto, 'body'>

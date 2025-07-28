@@ -46,5 +46,5 @@ watch(data, (newValue) => {
 </script>
 
 <template>
-  <CmsBlogPost v-if="data" v-bind="data" />
+  <CmsBlogPost v-if="data" v-bind="{...data, createdAt: new Date(data.createdAt)}" />
 </template>

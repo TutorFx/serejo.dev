@@ -15,7 +15,7 @@ export default defineEventHandler(async (event) => {
   if (!data)
     return null
 
-  const { title, meta, stem, body, slug } = data
+  const { title, meta, stem, body, slug, createdAt } = data
   const { locale, readingTimeInSeconds, reducedBody } = meta
 
   const readingTimeString = getExtenseShift(readingTimeInSeconds, locale)
@@ -30,5 +30,6 @@ export default defineEventHandler(async (event) => {
     path,
     slug,
     body,
+    createdAt,
   } satisfies BlogPostDto
 })

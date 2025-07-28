@@ -28,6 +28,7 @@
       "devDependencies": {
         "@antfu/eslint-config": "^2.27.3",
         "@iconify-json/carbon": "^1.2.11",
+        "@iconify-json/gg": "^1.2.2",
         "@iconify-json/line-md": "^1.2.8",
         "@iconify-json/material-symbols": "^1.2.30",
         "@iconify-json/twemoji": "^1.2.2",
@@ -283,6 +284,8 @@
     "@ibm-cloud/watsonx-ai": ["@ibm-cloud/watsonx-ai@1.6.9", "", { "dependencies": { "@types/node": "^18.0.0", "extend": "3.0.2", "ibm-cloud-sdk-core": "^5.3.2" } }, "sha512-aW4jUVgxjdDa8IDSM+KPeR42pxeR5AUvSXxvj+iid1DdrmRd/SRR9o/FdWEjpZLgcs5RXQFIT56goWkJv7s8oQ=="],
 
     "@iconify-json/carbon": ["@iconify-json/carbon@1.2.11", "", { "dependencies": { "@iconify/types": "*" } }, "sha512-fWcoR0V4dLGLsgUvgjioBcTmj+l8NlMMEP/aMMUwR9PWAr5mCBg52rsTe/bvOnL1zj9PUCNxaj2M4H27GrnO3g=="],
+
+    "@iconify-json/gg": ["@iconify-json/gg@1.2.2", "", { "dependencies": { "@iconify/types": "*" } }, "sha512-8iQh8+Tdb/0jakNYy0+t2GVubjhbaJbuYoPsRhFw8IAs00IQV2BjE9GoB2kGF/UObaJCqvCelB3qRaUdizkrmg=="],
 
     "@iconify-json/line-md": ["@iconify-json/line-md@1.2.8", "", { "dependencies": { "@iconify/types": "*" } }, "sha512-jWFsu6OZ1xAd4U0MLc/dgawC8nCbSn+a+WjTv+luiihpb6rrGLMw+Vy3wQ01hGf77v+fwt8sTvwm6K9zN3r4vQ=="],
 

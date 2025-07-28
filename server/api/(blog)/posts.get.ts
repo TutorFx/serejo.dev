@@ -19,7 +19,7 @@ export default defineEventHandler(async (event) => {
     if (!data)
       return null
 
-    const { title, meta, stem, slug } = data
+    const { title, meta, stem, slug, createdAt } = data
     const { locale, readingTimeInSeconds, reducedBody } = meta
 
     const readingTimeString = getExtenseShift(readingTimeInSeconds, locale)
@@ -33,6 +33,7 @@ export default defineEventHandler(async (event) => {
       reducedBody: reducedBody ? truncateString(reducedBody, 200) : undefined,
       path,
       slug,
+      createdAt,
     }
   }).filter(item => item !== null) ?? [] satisfies BlogPostsDto[]
 })
