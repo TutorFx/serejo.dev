@@ -13,6 +13,16 @@ export default defineSitemapEventHandler(async (event) => {
           loc: `${localePath}${CMS_ROUTE_LIST[locale].post.replace('[item]', post.slug || post.path )}`,
           lastmod: post.createdAt,
 
+          news: {
+            title: post.title,
+            publication_date: post.createdAt,
+
+            publication: {
+              name: 'Serejo DEV',
+              language: locale,
+            },
+          },
+
           images: [
             {
               loc: `/__og-image__/image/${localePath}post/${post.slug || post.path}/og.png`,
