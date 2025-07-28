@@ -45,7 +45,7 @@ useGsap(() => {
             {{ t('SCHEDULE_support_text') }}
           </div>
           <div class="grid justify-start items-center">
-            <UIButton>
+            <UIButton :to="SCHEDULE">
               {{ t('SCHEDULE_cta') }}
             </UIButton>
           </div>
