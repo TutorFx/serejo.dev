@@ -70,6 +70,9 @@ export default defineNuxtConfig({
       ],
       markdown: {},
     },
+    preview: {
+      api: 'https://api.nuxt.studio'
+    }
   },
 
   runtimeConfig: {
