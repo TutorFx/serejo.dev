@@ -71,8 +71,8 @@ export default defineNuxtConfig({
       markdown: {},
     },
     preview: {
-      api: 'https://api.nuxt.studio'
-    }
+      api: 'https://api.nuxt.studio',
+    },
   },
 
   runtimeConfig: {
@@ -124,12 +124,6 @@ export default defineNuxtConfig({
       // https://github.com/nuxt-modules/mdc/issues/394
       include: ['debug'],
     },
-  },
-
-  sitemap: {
-    sources: [
-      '/api/__sitemap__/urls',
-    ]
   },
 
   eslint: {
@@ -191,6 +185,12 @@ export default defineNuxtConfig({
       'Space+Grotesk:300',
       'Space+Grotesk:400',
       'Space+Grotesk:700',
+    ],
+  },
+
+  sitemap: {
+    sources: [
+      '/api/__sitemap__/urls',
     ],
   },
 })

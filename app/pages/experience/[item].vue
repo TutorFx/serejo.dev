@@ -17,7 +17,7 @@ const { data } = await useFetch('/api/experience', {
 })
 
 useHead({
-  title: data.value?.org + ' — ' + data.value?.title,
+  title: `${data.value?.org} — ${data.value?.title}`,
   meta: [
     { name: 'description', content: data.value?.reducedBody?.substring(0, 300) },
   ],
@@ -26,7 +26,7 @@ useHead({
 defineOgImage({
   component: 'CmsThumbnail',
   props: {
-    description: data.value ? data.value.reducedBody?.substring(0, 362) + '...' : '',
+    description: data.value ? `${data.value.reducedBody?.substring(0, 362)}...` : '',
     readingTime: data.value ? data.value.readingTimeString : '',
   },
 })

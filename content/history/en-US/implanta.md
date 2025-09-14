@@ -6,6 +6,7 @@ location: Goiânia Goiás, Brazil
 start: 2024-06-01
 end:
 ---
+
 At Implanta, I was entrusted with one of the biggest challenges of my career. With 20 years in the market, the company is already well-established, and I accepted the mission, alongside my friends from the Sépia team, to rebuild the tool that is the central pillar of the Implanta business: Cockpit 2.0.
 
 This platform is the brain of distribution visibility. It is through it that the entire process of data extraction, integration, and processing for the analytics side takes place, including crucial functionalities such as stockout prediction, sellout forecasting, and the sales cube.

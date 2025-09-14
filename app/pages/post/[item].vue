@@ -6,7 +6,6 @@ defineI18nRoute({
   },
 })
 
-const { t } = useI18n()
 const route = useRoute()
 const router = useRouter()
 
@@ -30,7 +29,7 @@ useHead({
 defineOgImage({
   component: 'CmsThumbnail',
   props: {
-    description: data.value ? data.value.reducedBody?.substring(0, 362) + '...' : '',
+    description: data.value ? `${data.value.reducedBody?.substring(0, 362)}...` : '',
     readingTime: data.value ? data.value.readingTimeString : '',
   },
 })
@@ -46,5 +45,5 @@ watch(data, (newValue) => {
 </script>
 
 <template>
-  <CmsBlogPost v-if="data" v-bind="{...data, createdAt: new Date(data.createdAt)}" />
+  <CmsBlogPost v-if="data" v-bind="{ ...data, createdAt: new Date(data.createdAt) }" />
 </template>

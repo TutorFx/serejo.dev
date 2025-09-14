@@ -10,11 +10,11 @@ export const D_LOCALE = LOCALE_KEYS.EN_US
 
 export const LOCALES = Object.values(LOCALE_KEYS)
 
-type CmsRoute = `/${string}`;
+type CmsRoute = `/${string}`
 
-type CmsRouteList = {
-  experience: CmsRoute;
-  post: CmsRoute;
+interface CmsRouteList {
+  experience: CmsRoute
+  post: CmsRoute
 }
 
 export const CMS_ROUTE_LIST: Record<(typeof LOCALES)[number], CmsRouteList> = {

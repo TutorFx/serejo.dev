@@ -6,6 +6,7 @@ location: Goiânia Goiás, Brazil
 start: 2024-06-01
 end:
 ---
+
 Na Implanta, fui incumbido de um dos maiores desafios da minha carreira. Com 20 anos de mercado, a empresa já está consolidada, e eu aceitei a missão de, junto dos meus amigos do time Sépia, reconstruir a ferramenta que é o pilar central do negócio Implanta: o Cockpit 2.0.
 
 Essa plataforma é o cérebro da visibilidade da distribuição. É através dela que acontece todo o processo de extração, integração e tratamento de dados para a parte de analytics, incluindo funcionalidades cruciais como previsão de stockout, previsão de sellout e o cubo de vendas.

@@ -33,7 +33,7 @@ export function useChat() {
         status.value = MESSAGE_STATUS.IDLE
         break
       }
-      
+
       const decodedChunk = decoder.decode(value, { stream: true })
       streamedMessage += decodedChunk
       // Update the public stream ref for real-time UI updates
@@ -46,7 +46,8 @@ export function useChat() {
    * @param message The message content from the user input.
    */
   async function sendMessage(message: string | undefined) {
-    if (!message || status.value === MESSAGE_STATUS.PENDING) return
+    if (!message || status.value === MESSAGE_STATUS.PENDING)
+      return
 
     status.value = MESSAGE_STATUS.PENDING
 

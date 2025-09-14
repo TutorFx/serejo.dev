@@ -27,7 +27,7 @@ export default defineI18nLocale(async (/* locale */) => {
         title: 'Blog',
         description: '',
         keywords: 'Web Developer, Front-end, Vue, Nuxt, JavaScript, Hexagonal Architecture, Service Layers, Vuetify, WordPress, Legacy Projects, Website Development, Landing Pages, International, Portugal, Brazil',
-      }
+      },
     },
     SCHEDULE_support_text: `Hey! I am Gabriel, a web engineering consultant based in Brazil. 
         I help companies to build better web applications and to improve their knowledge, 

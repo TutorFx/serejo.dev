@@ -26,7 +26,7 @@ export default defineI18nLocale(async (/* locale */) => {
         title: 'Blog',
         description: '',
         keywords: 'Web Developer, Front-end, Vue, Nuxt, JavaScript, Hexagonal Architecture, Service Layers, Vuetify, WordPress, Legacy Projects, Website Development, Landing Pages, International, Portugal, Brazil',
-      }
+      },
     },
     SCHEDULE_support_text: `Olá! Sou Gabriel Serejo, desenvovedor full stack. Ajudo empresas no desenvolvimento de 
     software e aplicações web.`,
