@@ -77,6 +77,7 @@ export default defineNuxtConfig({
 
   runtimeConfig: {
     gemini_api_key: process.env.GEMINI_API_KEY,
+    cronSecret: process.env.CRON_SECRET,
     public: {
       version: pkg.version,
       name: pkg.name,
