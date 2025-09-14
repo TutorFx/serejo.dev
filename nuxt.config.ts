@@ -113,6 +113,19 @@ export default defineNuxtConfig({
       functions: {
         maxDuration: 300,
       },
+      config:{
+        crons: [{
+          "path": "/tasks/chat/process",
+          "schedule": "* * * * *"
+        }]
+      }
+    },
+    experimental: {
+      tasks: true
+    },
+    scheduledTasks: {
+      // Run `cms:update` task every minute
+      '* * * * *': ['chat:process']
     },
   },
 
