@@ -115,7 +115,7 @@ export default defineNuxtConfig({
       },
       config:{
         crons: [{
-          "path": "/tasks/chat/process",
+          "path": "/api/vercelCron/chat/process",
           "schedule": "* * * * *"
         }]
       }
