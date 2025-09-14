@@ -7,7 +7,11 @@ const cvBody = useTemplateRef('curriculum')
 watch(cvBody, () => {
   if (cvBody.value instanceof HTMLIFrameElement) {
     cvBody.value.onload = () => {
-      cvBody.value?.contentWindow?.print()
+      nextTick(() => {
+        setTimeout(() => {
+          cvBody.value?.contentWindow?.print()
+        }, 100)
+      })
     }
   }
 })
