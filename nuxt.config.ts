@@ -112,12 +112,12 @@ export default defineNuxtConfig({
     },
     vercel: {
       functions: {
-        maxDuration: 300,
+        maxDuration: 800,
       },
       config:{
         crons: [{
           "path": "/api/vercelCron/chat/process",
-          "schedule": "* * * * *"
+          "schedule": "*/30 * * * *"
         }]
       }
     },
@@ -126,7 +126,7 @@ export default defineNuxtConfig({
     },
     scheduledTasks: {
       // Run `cms:update` task every minute
-      '* * * * *': ['chat:process']
+      '*/30 * * * *': ['chat:process']
     },
   },
 

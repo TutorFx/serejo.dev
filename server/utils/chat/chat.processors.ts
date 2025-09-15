@@ -6,7 +6,7 @@ export async function extractUserDataFromChat(chatId: string) {
   const prisma = usePrisma()
   const llm = useLlm({ model: 'gemini-2.5-pro' })
 
-  const chat = await asyncEnvelope(async () => await prisma.chat.findUnique({ where: { id: chatId }, include: { messages: { take: 200 } } }))
+  const chat = await asyncEnvelope(async () => await prisma.chat.findUnique({ where: { id: chatId }, include: { messages: { take: 30 } } }))
 
   if (!chat.data)
     return null

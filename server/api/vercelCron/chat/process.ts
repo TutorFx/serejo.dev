@@ -1,5 +1,5 @@
-export default defineEventHandler(async (event) => {
-  const config = useRuntimeConfig();
+export default defineEventHandler(async () => {
+  //const config = useRuntimeConfig();
   
   // Vercel CRON_SECRET security check
 /*   if (getHeader(event, 'authorization') !== `Bearer ${config.cronSecret}`) {
