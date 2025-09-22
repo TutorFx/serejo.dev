@@ -6,7 +6,7 @@ import { defu } from 'defu'
 let _llm: ChatGoogleGenerativeAI
 
 export function useLlm(llmSettings?: Partial<{ model: string, streaming: boolean }>) {
-  const settings = defu({ model: 'gemini-2.0-flash-lite', streaming: false }, llmSettings)
+  const settings = defu({ model: 'gemini-2.5-flash-lite', streaming: false }, llmSettings)
   if (!_llm) {
     _llm = new ChatGoogleGenerativeAI({
       model: settings.model,
