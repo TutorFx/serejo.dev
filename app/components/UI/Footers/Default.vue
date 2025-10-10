@@ -37,6 +37,11 @@ const LocalePathFunction = useLocalePath()
             </UIPopover>
           </div>
         </div>
+        <div class="grid justify-start">
+          <UIButton variant="link" :to="{ name: 'pages-path___pt-BR', params: { path: 'politicas-de-privacidade' } }">
+            Políticas de privacidade
+          </UIButton>
+        </div>
       </div>
       <div />
     </UIContainer>
