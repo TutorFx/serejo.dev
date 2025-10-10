@@ -53,5 +53,9 @@ export default defineContentConfig({
       source: 'projects/**/*.md',
       schema: projectSchema,
     }),
+    pages: defineCollection({
+      type: 'page',
+      source: '**/*.md'
+    })
   },
 })
