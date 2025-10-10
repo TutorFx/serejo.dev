@@ -38,7 +38,7 @@ const LocalePathFunction = useLocalePath()
           </div>
         </div>
         <div class="grid justify-start">
-          <UIButton variant="link" :to="{ name: 'pages-path___pt-BR', params: { path: 'politicas-de-privacidade' } }">
+          <UIButton variant="link" :to="{ name: 'pages-path___en-US', params: { path: 'politicas-de-privacidade' } }">
             Políticas de privacidade
           </UIButton>
           <UIButton variant="link" href="mailto:gabrielserejo11@gmail.com">
