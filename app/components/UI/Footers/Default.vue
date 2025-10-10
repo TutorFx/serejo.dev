@@ -41,6 +41,9 @@ const LocalePathFunction = useLocalePath()
           <UIButton variant="link" :to="{ name: 'pages-path___pt-BR', params: { path: 'politicas-de-privacidade' } }">
             Políticas de privacidade
           </UIButton>
+          <UIButton href="mailto:gabrielserejo11@gmail.com">
+            Contato
+          </UIButton>
         </div>
       </div>
       <div />
