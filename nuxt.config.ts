@@ -164,7 +164,6 @@ export default defineNuxtConfig({
     // TODO: Move to `prefix` when the nuxt team fix the issue
     // TODO: Move the app to customRoutes: 'config'
     strategy: 'prefix_except_default',
-
     defaultLocale: 'en-US',
     locales: [
       {
@@ -182,6 +181,9 @@ export default defineNuxtConfig({
     ],
     customRoutes: 'page',
     langDir: 'locales/',
+    detectBrowserLanguage: {
+      alwaysRedirect: false,
+    },
     experimental: {
       localeDetector: 'localeDetector.ts',
     },
