@@ -1,7 +1,3 @@
-<script setup lang="ts">
-const cv = useCurriculum()
-</script>
-
 <template>
   <div class="bg-base-200">
     <UIContainer class="py-6">
@@ -11,7 +7,7 @@ const cv = useCurriculum()
             <MDC :value="$t('me.abroad')" />
           </div>
           <div class="mx-auto">
-            <UIButton download="Gabriel Serejo Curriculum" @click="cv.download()">
+            <UIButton target="_blank" :to="$localePath({ name: 'curriculum', query: { print: null } })">
               {{ $t('download_curriculum') }}
             </UIButton>
           </div>
