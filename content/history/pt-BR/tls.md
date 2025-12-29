@@ -6,9 +6,9 @@ location: Lisbon, Portugal
 start: 2023-05-02
 end: 2024-05-31
 delivered:
-  - I was a key contributor to the development and successful launch of the company's customer support chatbot, actively participating in all phases of its construction.,
-  - I led the architectural restructuring of the help module by migrating it from a hexagonal to a 'Feature Services' architecture, which significantly improved the project's value and sustainability.,
-  - I delivered critical new features, mitigated security vulnerabilities, and refactored code for institutional visa-issuing tools using technologies like Vue 2/3, Nuxt3, Node, and Spring Boot.
+  - Eu fui o desenvolvedor principal do chatbot oficial de suporte ao cliente, supervisionando a integração de fluxos conversacionais e garantindo uma experiência de usuário fluida.
+  - Eu liderei a migração do módulo de ajuda para uma arquitetura de 'Feature Services', provendo a escalabilidade necessária para futuras integrações de ferramentas de IA.
+  - Eu entreguei funcionalidades críticas e mitiguei vulnerabilidades para ferramentas institucionais de visto utilizando Vue 3 e Node.js.
 ---
 
 Em uma experiência internacional na TLScontact, em Portugal, abracei o desafio de transformar uma Prova de Conceito (PoC) em uma plataforma de larga escala. O objetivo era criar uma aplicação robusta para o registro de imigrantes e a oferta de serviços para múltiplos países, como Reino Unido, França e Alemanha, lidando com um ecossistema complexo e regulamentações diversas.

@@ -6,9 +6,9 @@ location: Goiânia, Brazil
 start: 2024-06-01
 end:
 delivered:
-  - I also created the Atlas chatbot to unify documentation and accelerate onboarding.
-  - I created a cross-reference software using embedding models to perform semantic distinction between product names.
-  - Responsible for the Cockpit 2.0 architecture, I designed a dynamic UI that enabled the backend team to build screens via API.
+  - I engineered 'Atlas', a production-grade RAG chatbot that unified company documentation, significantly accelerating internal onboarding and knowledge retrieval.
+  - I developed a high-precision semantic cross-reference system using Embedding models, enabling automated product normalization through NLP.
+  - I architected 'Cockpit 2.0', implementing a dynamic UI-from-API rendering engine that decoupled frontend deployments from feature launches.
 ---
 
 At Implanta, I was entrusted with one of the biggest challenges of my career. With 20 years in the market, the company is already well-established, and I accepted the mission, alongside my friends from the Sépia team, to rebuild the tool that is the central pillar of the Implanta business: Cockpit 2.0.

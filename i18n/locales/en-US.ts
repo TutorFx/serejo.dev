@@ -47,7 +47,7 @@ export default defineI18nLocale(async (/* locale */) => {
     active: 'Active',
     download_curriculum: 'Download Curriculum',
     me: {
-      summary: 'Experienced Software Engineer evolving into Generative AI. Proven track record in architecting robust web solutions (Vue/Nuxt) for international projects, now focused on building intelligent systems. Spearheaded AI initiatives including semantic analysis tools and chatbots. Currently specializing in Artificial and Computational Intelligence, seeking to merge solid engineering principles with cutting-edge AI to solve complex challenges.',
+      summary: 'Senior Software Engineer with 8+ years of experience, specializing in shipping production-grade Generative AI and RAG applications. I combine robust engineering (Vue/Nuxt, Node.js) with cutting-edge AI (LLMs, Vector DBs, LangChain) to built scalable, intelligent systems. Proven track record of leading architectural migrations and delivering high-value AI solutions for international markets.',
       abroad: `During my career, I have worked on international projects, 
             collaborating daily with people from all over the world and aligning strategies 
             with backend and frontend teams. After **8 years** of experience, I offer expertise 

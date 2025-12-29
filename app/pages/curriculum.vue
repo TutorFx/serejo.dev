@@ -15,6 +15,15 @@ onMounted(()=> {
     })
   }
 })
+
+const { t } = useI18n()
+
+useSeoMeta({
+  title: 'Curriculum Vitae',
+  description: () => t('me.summary'),
+  ogTitle: 'Curriculum Vitae',
+  ogDescription: () => t('me.summary'),
+})
 </script>
 
 <template>

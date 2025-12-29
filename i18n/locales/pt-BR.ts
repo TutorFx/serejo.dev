@@ -37,7 +37,7 @@ export default defineI18nLocale(async (/* locale */) => {
     download_curriculum: 'Baixar Curriculum',
     curriculum: {
       summary: 'Sumário',
-      profession: 'Programador Fullstack',
+      profession: 'Engenheiro de IA Generativa',
       work_experience: 'Experiência de trabalho',
       education: 'Educação',
       graduated_in: 'Formado em {date}',
@@ -45,8 +45,8 @@ export default defineI18nLocale(async (/* locale */) => {
     },
     active: 'Ativo',
     me: {
-      summary: 'Engenheiro de Software experiente em transição para IA Generativa. Histórico comprovado em arquitetura web (Vue/Nuxt) para projetos internacionais, agora focado em sistemas inteligentes. Liderei iniciativas de IA, incluindo ferramentas de análise semântica e chatbots. Pós-graduando em Inteligência Artificial e Computacional, busco unir engenharia sólida com IA de ponta para solucionar desafios complexos.',
-      abroad: `Em **7 anos** de trajetória, trabalhei com uma ampla variedade de produtos. Transformando 
+      summary: 'Engenheiro de Software Sênior com 8+ anos de experiência, especializado na entrega de aplicações de IA Generativa e RAG em produção. Combino engenharia robusta (Vue/Nuxt, Node.js) com IA de ponta (LLMs, Bancos Vetoriais, LangChain) para construir sistemas inteligentes e escaláveis. Histórico comprovado de liderança em migrações arquiteturais e entrega de soluções de IA de alto valor para o mercado internacional.',
+      abroad: `Em **8 anos** de trajetória, trabalhei com uma ampla variedade de produtos. Transformando 
       idéias em códigos e construído aplicações pixel perfect. Minha jornada é baseada em 
       estudos constantes, para não só me adaptar a tecnologia,
       mas também para estabelecer padrões elevados no desenvolvimento das soluções.`,

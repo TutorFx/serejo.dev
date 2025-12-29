@@ -43,56 +43,60 @@ const skills = [
   'C++',
 ]
 
+const certifications = [
+  'Oracle AI Vector Search Certified Professional (2025)',
+]
+
 const projects: ProjectDto[] = [
   {
-    title: 'Atlas Chatbot & Cockpit 2.0 Architecture',
+    title: 'Atlas Chatbot & Cockpit 2.0 (RAG & Semantic Search)',
     org: 'Implanta IT Solutions',
     delivered: [
-      'Created the Atlas chatbot to unify documentation and accelerate onboarding.',
-      'Created a cross-reference software using embedding models to perform semantic distinction between product names.',
-      'Responsible for the Cockpit 2.0 architecture, designing a dynamic UI that enabled the backend team to build screens via API.',
+      'I engineered "Atlas", a production-grade RAG chatbot that unified documentation and accelerated onboarding.',
+      'I developed a semantic cross-reference system using embedding models for automated product normalization via NLP.',
+      'I architected "Cockpit 2.0", designing a dynamic UI-from-API engine that decoupled frontend from feature launches.',
     ],
   },
   {
-    title: 'Customer Support Chatbot & Feature Services Migration',
+    title: 'Customer Support Chatbot & Scalable Micro-Frontend Migration',
     org: 'TLScontact',
     delivered: [
-      'Key contributor to the development and successful launch of the company\'s customer support chatbot, actively participating in all phases of its construction.',
-      'Led the architectural restructuring of the help module by migrating it from a hexagonal to a Feature Services architecture, which significantly improved the project\'s value and sustainability.',
-      'Delivered critical new features, mitigated security vulnerabilities, and refactored code for institutional visa-issuing tools using technologies like Vue 2/3, Nuxt3, Node, and Spring Boot.',
+      'I was the lead developer for the official customer support chatbot, managing end-to-end integration of conversational AI flows.',
+      'I championed the migration to a "Feature Services" architecture, establishing the scalability required for real-time AI toolsets.',
+      'I oversaw security and feature delivery for institutional visa tools using Vue 3 and Node.js.',
     ],
   },
   {
-    title: 'Retail Application Architecture (Pernambucanas)',
+    title: 'Retail Application Architecture (High-Concurrency Patterns)',
     org: 'Cliqx',
     delivered: [
-      'Architected and led the front-end development of a major retail application for Pernambucanas, establishing a scalable hexagonal architecture with service layers.',
-      'Successfully advocated for and implemented Nuxt3 as the core framework, setting the technical foundation for the project\'s success.',
-      'Engineered a high-performance caching strategy using Redis and SWR, significantly reducing server workload and enhancing the application\'s overall scalability and responsiveness.',
+      'I scaled the front-end architecture for a major retail application (Pernambucanas) using a service-oriented hexagonal pattern.',
+      'I engineered a high-performance Redis/SWR caching layer, providing the low-latency foundation necessary for AI-driven data apps.',
+      'I migrated legacy workflows to Nuxt 3, improving system throughput and team development velocity.',
     ],
   },
   {
     title: 'Student Admission Application',
     org: 'UniFAJ',
     delivered: [
-      'Developed the end-to-end user interface for the student admission application, covering all critical stages from initial registration to the completion of exams and essays.',
-      'Implemented key new features while simultaneously restructuring legacy code, applying clean code principles to enhance the application\'s maintainability and overall quality.',
+      'I developed the end-to-end user interface for the student admission application, covering all critical stages from initial registration to the completion of exams and essays.',
+      'I implemented key new features while simultaneously restructuring legacy code, applying clean code principles to enhance the application\'s maintainability and overall quality.',
     ],
   },
   {
     title: 'Web Solutions & AI Integration',
     org: 'Agência Industrial',
     delivered: [
-      'Delivered complete, end-to-end web solutions for multiple clients, managing the entire project lifecycle from UI/UX design to full-stack implementation and deployment.',
-      'Enhanced client projects by developing and integrating small-scale AI solutions using the GPT-3 API with Python and Node.js.',
+      'I delivered complete, end-to-end web solutions for multiple clients, managing the entire project lifecycle from UI/UX design to full-stack implementation and deployment.',
+      'I enhanced client projects by developing and integrating small-scale AI solutions using the GPT-3 API with Python and Node.js.',
     ],
   },
   {
     title: 'Legacy Application Refactoring & CMS Integration',
     org: 'ITH Pós Graduação',
     delivered: [
-      'Led a complete refactoring of the legacy application, a project that directly improved Google Speed Insight scores and significantly reduced advertising expenses.',
-      'Developed and launched a new front-end application using Nuxt2, which integrated with the company\'s WordPress CMS to modernize the user experience and content delivery.',
+      'I led a complete refactoring of the legacy application, a project that directly improved Google Speed Insight scores and significantly reduced advertising expenses.',
+      'I developed and launched a new front-end application using Nuxt2, which integrated with the company\'s WordPress CMS to modernize the user experience and content delivery.',
     ],
   },
 ]
@@ -107,6 +111,7 @@ const projects: ProjectDto[] = [
       :education="education"
       :skills="skills"
       :projects="projects"
+      :certifications="certifications"
     />
     <CurriculumFooter />
   </div>

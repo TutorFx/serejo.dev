@@ -6,6 +6,7 @@ export interface CurriculumBody {
   education: EducationDto[]
   skills?: string[]
   projects?: ProjectDto[]
+  certifications?: string[] // Simple string array for now as minimal view
 }
 </script>
 
@@ -31,6 +32,19 @@ defineProps<CurriculumBody>()
         <div v-for="skill in skills" :key="skill" class="flex items-center">
           <span class="mr-2">•</span>
           {{ skill }}
+        </div>
+      </div>
+    </section>
+
+    <!-- Certifications -->
+    <section v-if="certifications && certifications.length" class="mt-4">
+      <h2 class="text-lg font-bold uppercase border-b-2 border-black mb-2">
+        Certifications
+      </h2>
+      <div class="flex flex-col gap-1 text-sm">
+        <div v-for="cert in certifications" :key="cert" class="flex items-center">
+          <span class="mr-2">•</span>
+          {{ cert }}
         </div>
       </div>
     </section>

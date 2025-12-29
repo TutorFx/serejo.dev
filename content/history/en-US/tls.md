@@ -6,9 +6,9 @@ location: Lisbon, Portugal
 start: 2023-05-02
 end: 2024-05-31
 delivered:
-  - I was a key contributor to the development and successful launch of the company's customer support chatbot, actively participating in all phases of its construction.,
-  - I led the architectural restructuring of the help module by migrating it from a hexagonal to a 'Feature Services' architecture, which significantly improved the project's value and sustainability.,
-  - I delivered critical new features, mitigated security vulnerabilities, and refactored code for institutional visa-issuing tools using technologies like Vue 2/3, Nuxt3, Node, and Spring Boot.
+  - I was the lead developer for the official customer support chatbot, overseeing the integration of conversational flows and ensuring a seamless user experience.
+  - I championed the migration of the help module to a 'Feature Services' architecture, providing the scalability required for future AI tool integration.
+  - I delivered critical features and mitigated vulnerabilities for institutional visa tools using Vue 3 and Node.js.
 
 ---
 

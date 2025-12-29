@@ -7,13 +7,13 @@ defineProps<{
 </script>
 
 <template>
-  <div class="flex justify-between items-start pt-12 px-8 pb-4 bg-white text-black max-w-[21cm] mx-auto border-b-2 border-black mb-2">
+  <div class="flex justify-between items-start pt-6 px-4 pb-2 bg-white text-black max-w-[21cm] mx-auto border-b-2 border-black mb-1">
     <!-- Left: Name and Title -->
     <div class="flex flex-col">
-      <h1 class="text-4xl font-extrabold uppercase tracking-wide leading-none">
+      <h1 class="text-2xl font-extrabold uppercase tracking-wide leading-none">
         {{ title }}
       </h1>
-      <h2 class="text-lg font-medium text-gray-600 tracking-wider">
+      <h2 class="text-sm font-medium text-gray-600 tracking-wider">
         {{ profession }}
       </h2>
     </div>

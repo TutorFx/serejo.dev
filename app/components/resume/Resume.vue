@@ -36,9 +36,22 @@ const skills = [
   'PyTorch',
   'Prompt Engineering',
   'Vector Databases',
+  'NLP',
+  'Hugging Face',
   'Model APIs (OpenAI, Gemini, Anthropic)',
   'Self-hosted Models (Ollama, Hugging Face)',
   'Cloud Platforms (Azure, AWS, GCP)',
+  'TensorFlow',
+  'Deep Learning',
+  'Spacy',
+  'Pandas',
+  'OpenCV',
+  'R',
+  'C++',
+]
+
+const certifications = [
+  'Oracle AI Vector Search Certified Professional (2025)',
 ]
 </script>
 
@@ -50,6 +63,7 @@ const skills = [
       :experiences="experiences"
       :education="education"
       :skills="skills"
+      :certifications="certifications"
     />
     <CurriculumFooter />
   </div>
