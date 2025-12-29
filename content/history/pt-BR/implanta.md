@@ -1,10 +1,14 @@
 ---
-title: Software Engineer
+title: Generative AI Engineer
 org: Implanta IT Solutions
 image: '/experience/experience-implanta.webp'
-location: Goiânia Goiás, Brazil
+location: Goiânia, Brazil
 start: 2024-06-01
 end:
+delivered:
+  - I also created the Atlas chatbot to unify documentation and accelerate onboarding.
+  - I created a cross-reference software using embedding models to perform semantic distinction between product names.
+  - Responsible for the Cockpit 2.0 architecture, I designed a dynamic UI that enabled the backend team to build screens via API.
 ---
 
 Na Implanta, fui incumbido de um dos maiores desafios da minha carreira. Com 20 anos de mercado, a empresa já está consolidada, e eu aceitei a missão de, junto dos meus amigos do time Sépia, reconstruir a ferramenta que é o pilar central do negócio Implanta: o Cockpit 2.0.

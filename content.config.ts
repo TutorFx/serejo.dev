@@ -17,6 +17,7 @@ export const blogSchema = z.object({
 
 export const historySchema = z.object({
   image: z.string(),
+  delivered: z.array(z.string().min(1)).optional(),
   org: z.string().min(1),
   location: z.string().min(1),
 }).extend(cmsEntrySchema).extend(dateObjectSchema)

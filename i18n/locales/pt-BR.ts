@@ -45,7 +45,7 @@ export default defineI18nLocale(async (/* locale */) => {
     },
     active: 'Ativo',
     me: {
-      summary: 'Gabriel Serejo é um desenvolvedor web altamente experiente com paixão por transformar ideias em realidade. Sua expertise abrange desenvolvimento front-end e back-end, modernização de sistemas legados e contribuição para projetos de código aberto. Com um histórico comprovado em projetos internacionais, Gabriel se destaca em colaborar com equipes diversas e alavancar tecnologias como Vue, Nuxt e JavaScript para entregar aplicações web de alta qualidade.',
+      summary: 'Engenheiro de Software experiente em transição para IA Generativa. Histórico comprovado em arquitetura web (Vue/Nuxt) para projetos internacionais, agora focado em sistemas inteligentes. Liderei iniciativas de IA, incluindo ferramentas de análise semântica e chatbots. Pós-graduando em Inteligência Artificial e Computacional, busco unir engenharia sólida com IA de ponta para solucionar desafios complexos.',
       abroad: `Em **7 anos** de trajetória, trabalhei com uma ampla variedade de produtos. Transformando 
       idéias em códigos e construído aplicações pixel perfect. Minha jornada é baseada em 
       estudos constantes, para não só me adaptar a tecnologia,

@@ -1,8 +1,8 @@
 ---
 title: Postgraduate Lato Sensu - Specialization, Artificial and Computational Intelligence
 org: Universidade Federal de Viçosa
-location: Goiânia Goiás, Brazil
-start: 2025-06-01
+location: Goiânia, Brazil
+start: 2024-03-02
 end: null
 ---
 

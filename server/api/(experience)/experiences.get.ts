@@ -21,7 +21,7 @@ export default defineEventHandler(async (event) => {
     if (!data)
       return null
 
-    const { title, start, end, location, meta, org, stem, body, image } = data
+    const { title, start, end, location, meta, org, stem, body, image, delivered } = data
     const { locale, readingTimeInSeconds, reducedBody } = meta
 
     const readingTimeString = getExtenseShift(readingTimeInSeconds, locale)
@@ -40,6 +40,7 @@ export default defineEventHandler(async (event) => {
       reducedBody,
       path,
       body: hasBody ? body : null,
+      delivered,
     }
   }).filter(item => item !== null) satisfies ExperiencesDto[] ?? []
 })

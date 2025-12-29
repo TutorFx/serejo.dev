@@ -11,6 +11,7 @@ export interface ExperienceDto {
   reducedBody: string | undefined
   path: string
   body: object
+  delivered?: string[]
 }
 
 export type ExperiencesDto = Omit<ExperienceDto, 'body'> & { body: object | null }
@@ -38,4 +39,13 @@ export interface EducationDto {
   path: string
   locale: LocaleKey
   body: object
+}
+
+export interface ProjectDto {
+  title: string
+  org: string
+  reducedBody?: string
+  delivered?: string[]
+  start?: string
+  end?: string
 }

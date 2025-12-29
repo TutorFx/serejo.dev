@@ -37,7 +37,7 @@ export default defineI18nLocale(async (/* locale */) => {
     see_more: 'See more',
     copyright: 'All rights reserved',
     curriculum: {
-      profession: 'Software Engineer',
+      profession: 'Generative AI Engineer',
       summary: 'Summary',
       work_experience: 'Work Experience',
       education: 'Education',
@@ -47,10 +47,10 @@ export default defineI18nLocale(async (/* locale */) => {
     active: 'Active',
     download_curriculum: 'Download Curriculum',
     me: {
-      summary: 'Gabriel Serejo is a highly experienced web developer with a passion for turning ideas into reality. His expertise spans front-end and back-end development, legacy system modernization, and open-source contribution. With a proven track record in international projects, Gabriel excels in collaborating with diverse teams and leveraging technologies like Vue, Nuxt, and JavaScript to deliver high-quality web applications.',
+      summary: 'Experienced Software Engineer evolving into Generative AI. Proven track record in architecting robust web solutions (Vue/Nuxt) for international projects, now focused on building intelligent systems. Spearheaded AI initiatives including semantic analysis tools and chatbots. Currently specializing in Artificial and Computational Intelligence, seeking to merge solid engineering principles with cutting-edge AI to solve complex challenges.',
       abroad: `During my career, I have worked on international projects, 
             collaborating daily with people from all over the world and aligning strategies 
-            with backend and frontend teams. After **7 years** of experience, I offer expertise 
+            with backend and frontend teams. After **8 years** of experience, I offer expertise 
             based on concrete cases.`,
       passion: `My passion is to bridge the gap between imagination and reality. I breathe code and dream in pixels. I'm a web developer with a passion for crafting beautiful 
             and functional web applications.`,

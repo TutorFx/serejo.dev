@@ -12,7 +12,7 @@ export default defineEventHandler(async (event) => {
   if (!data)
     return null
 
-  const { title, start, end, location, meta, org, stem, body, image } = data
+  const { title, start, end, location, meta, org, stem, body, image, delivered } = data
   const { locale, readingTimeInSeconds, reducedBody } = meta
 
   const readingTimeString = getExtenseShift(readingTimeInSeconds, locale)
@@ -30,6 +30,7 @@ export default defineEventHandler(async (event) => {
     readingTimeString: t('time.reading_time', { time: readingTimeString }),
     reducedBody: reducedBody ? truncateString(reducedBody, 200) : '',
     path,
+    delivered,
     body,
   } satisfies ExperienceDto
 })

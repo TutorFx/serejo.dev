@@ -83,9 +83,14 @@ defineProps<CurriculumBody>()
                 </div>
               </div>
             </div>
-            <div v-if="experience.body">
-              <ContentRenderer :value="experience.body" class="grid gap-3 px-2" />
+            <div>
+              <ul v-if="experience.delivered" class="list-disc list-inside grid gap-1 px-4">
+                <li v-for="(item, index) in experience.delivered" :key="index">
+                  {{ item }}
+                </li>
+              </ul>
             </div>
+
           </div>
         </div>
       </div>
