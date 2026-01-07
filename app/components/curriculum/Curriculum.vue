@@ -25,6 +25,7 @@ const skills = [
   'RAG',
   'LLMs',
   'LangChain',
+  'TypeScript',
   'Python',
   'PyTorch',
   'Prompt Engineering',
@@ -52,9 +53,9 @@ const projects: ProjectDto[] = [
     title: 'Atlas Chatbot & Cockpit 2.0 (RAG & Semantic Search)',
     org: 'Implanta IT Solutions',
     delivered: [
-      'I engineered "Atlas", a production-grade RAG chatbot that unified documentation and accelerated onboarding.',
+      'I engineered "Atlas", a production-grade RAG chatbot using LangChain, Vercel AI SDK, and pg-vector that unified documentation and accelerated onboarding.',
       'I developed a semantic cross-reference system using embedding models for automated product normalization via NLP.',
-      'I architected "Cockpit 2.0", designing a dynamic UI-from-API engine that decoupled frontend from feature launches.',
+      'I architected "Cockpit 2.0", designing a dynamic UI-from-API engine using advanced TypeScript that decoupled frontend from feature launches.',
     ],
   },
   {
@@ -70,6 +71,7 @@ const projects: ProjectDto[] = [
     title: 'Retail Application Architecture (High-Concurrency Patterns)',
     org: 'Cliqx',
     delivered: [
+      'I managed cloud infrastructure on Azure, provisioning and configuring server instances to support high-concurrency retail applications.',
       'I scaled the front-end architecture for a major retail application (Pernambucanas) using a service-oriented hexagonal pattern.',
       'I engineered a high-performance Redis/SWR caching layer, providing the low-latency foundation necessary for AI-driven data apps.',
       'I migrated legacy workflows to Nuxt 3, improving system throughput and team development velocity.',

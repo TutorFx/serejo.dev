@@ -32,6 +32,7 @@ const skills = [
   'RAG',
   'LLMs',
   'LangChain',
+  'TypeScript',
   'Python',
   'PyTorch',
   'Prompt Engineering',

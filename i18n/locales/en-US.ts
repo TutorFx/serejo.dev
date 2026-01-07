@@ -47,7 +47,7 @@ export default defineI18nLocale(async (/* locale */) => {
     active: 'Active',
     download_curriculum: 'Download Curriculum',
     me: {
-      summary: 'Senior Software Engineer with 8+ years of experience, specializing in shipping production-grade Generative AI and RAG applications. I combine robust engineering (Vue/Nuxt, Node.js) with cutting-edge AI (LLMs, Vector DBs, LangChain) to built scalable, intelligent systems. Proven track record of leading architectural migrations and delivering high-value AI solutions for international markets.',
+      summary: 'Senior Software Engineer with 8+ years of experience, specializing in shipping production-grade Generative AI and RAG applications. I combine robust engineering (Vue/Nuxt, Node.js) with cutting-edge AI (LLMs, Vector DBs, LangChain) to build scalable, intelligent systems. Proven track record of leading architectural migrations and delivering high-value AI solutions for international markets.',
       abroad: `During my career, I have worked on international projects, 
             collaborating daily with people from all over the world and aligning strategies 
             with backend and frontend teams. After **8 years** of experience, I offer expertise 
@@ -96,7 +96,7 @@ export default defineI18nLocale(async (/* locale */) => {
       },
     },
     time: {
-      the_moment: 'the moment',
+      the_moment: 'Present',
       until_the: 'until',
       reading_time: '{time} reading',
     },

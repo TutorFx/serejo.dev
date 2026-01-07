@@ -6,9 +6,9 @@ location: Goiânia, Brazil
 start: 2024-06-01
 end:
 delivered:
-  - Eu implementei o 'Atlas', um chatbot de RAG para produção que unificou a documentação da empresa, acelerando significativamente o onboarding interno e a recuperação de conhecimento.
+  - Eu implementei o 'Atlas', um chatbot de RAG para produção utilizando LangChain, Vercel AI SDK e pg-vector que unificou a documentação da empresa, acelerando significativamente o onboarding interno.
   - Eu desenvolvi um sistema de busca semântica de alta precisão utilizando modelos de Embedding, permitindo a normalização automatizada de produtos via NLP.
-  - Eu arquitetei o 'Cockpit 2.0', implementando um motor de renderização dinâmica de UI-via-API que removeu a dependência de deploys de frontend para novas funcionalidades.
+  - Eu arquitetei o 'Cockpit 2.0', implementando um motor de renderização dinâmica de UI-via-API com TypeScript avançado que removeu a dependência de deploys de frontend.
 ---
 
 Na Implanta, fui incumbido de um dos maiores desafios da minha carreira. Com 20 anos de mercado, a empresa já está consolidada, e eu aceitei a missão de, junto dos meus amigos do time Sépia, reconstruir a ferramenta que é o pilar central do negócio Implanta: o Cockpit 2.0.

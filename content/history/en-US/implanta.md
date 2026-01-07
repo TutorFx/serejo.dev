@@ -6,9 +6,9 @@ location: Goiânia, Brazil
 start: 2024-06-01
 end:
 delivered:
-  - I engineered 'Atlas', a production-grade RAG chatbot that unified company documentation, significantly accelerating internal onboarding and knowledge retrieval.
+  - I engineered 'Atlas', a production-grade RAG chatbot using LangChain, Vercel AI SDK, and pg-vector that unified company documentation, significantly accelerating internal onboarding.
   - I developed a high-precision semantic cross-reference system using Embedding models, enabling automated product normalization through NLP.
-  - I architected 'Cockpit 2.0', implementing a dynamic UI-from-API rendering engine that decoupled frontend deployments from feature launches.
+  - I architected 'Cockpit 2.0', implementing a dynamic UI-from-API rendering engine using advanced TypeScript patterns that decoupled frontend deployments.
 ---
 
 At Implanta, I was entrusted with one of the biggest challenges of my career. With 20 years in the market, the company is already well-established, and I accepted the mission, alongside my friends from the Sépia team, to rebuild the tool that is the central pillar of the Implanta business: Cockpit 2.0.

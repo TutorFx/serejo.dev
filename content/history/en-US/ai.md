@@ -12,6 +12,7 @@ delivered:
   establishing their digital presence in the market.
 - I enhanced client projects by developing and integrating small-scale AI solutions
   using the GPT-3 API with Python and Node.js.
+- I started using OpenAI's API to automate tedious processes. As specialized frameworks weren't available at the time, I developed custom wrapping strategies using Regex and Zod.
 
 ---
 
