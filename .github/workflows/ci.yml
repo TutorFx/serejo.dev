@@ -14,7 +14,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: oven-sh/setup-bun@v1 # Substitui pnpm/action-setup e actions/setup-node
+      - uses: oven-sh/setup-bun@v2 # Substitui pnpm/action-setup e actions/setup-node
         with:
           bun-version: 1.2.15
 
@@ -28,7 +28,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: oven-sh/setup-bun@v1
+      - uses: oven-sh/setup-bun@v2
         with:
           bun-version: 1.2.15
 
