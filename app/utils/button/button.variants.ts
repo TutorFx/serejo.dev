@@ -16,8 +16,8 @@ export const button = tv({
       [CORE_SIZE.XL]: 'text-3xl py-3 px-6 font-medium',
     },
     color: {
-      [CORE_COLORS.PRIMARY]: '[--color:theme(color.primary)]',
-      [CORE_COLORS.SECONDARY]: '[--color:theme(color.secondary)]',
+      [CORE_COLORS.PRIMARY]: '[--color:var(--primary)]',
+      [CORE_COLORS.SECONDARY]: '[--color:var(--secondary)]',
     },
     variant: {
       [BUTTON_VARIANTS.LINK]: 'px-1 py-1 [&_.wrapper]:text-start decoration-[var(--color)] hover:underline hover:decoration-wavy group-hover:underline group-hover:decoration-wavy',
