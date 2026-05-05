@@ -19,7 +19,7 @@
     "@langchain/community": "^0.3.55",
     "@langchain/core": "^0.3.75",
     "@nuxt/content": "^3.7.0",
-    "@nuxt/image": "^1.11.0",
+    "@nuxt/image": "^2.0.0",
     "@nuxt/ui": "^4.7.1",
     "@nuxtjs/device": "^3.2.4",
     "@nuxtjs/google-fonts": "^3.2.0",
