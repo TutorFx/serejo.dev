@@ -35,7 +35,7 @@
     "pdfkit": "^0.15.2",
     "prisma": "^6.16.1",
     "reflect-metadata": "^0.2.2",
-    "zod-validation-error": "^3.5.3"
+    "zod-validation-error": "^5.0.0"
   },
   "devDependencies": {
     "@antfu/eslint-config": "^2.27.3",
