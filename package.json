@@ -45,7 +45,7 @@
     "@iconify-json/material-symbols": "^1.2.34",
     "@iconify-json/twemoji": "^1.2.4",
     "@langchain/google-genai": "^0.2.17",
-    "@langchain/ollama": "^0.2.4",
+    "@langchain/ollama": "^1.0.0",
     "@nuxt/eslint": "^1.9.0",
     "@nuxt/icon": "^1.15.0",
     "@nuxtjs/color-mode": "^3.5.2",
