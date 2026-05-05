@@ -30,7 +30,7 @@
     "@upstash/vector": "^1.2.2",
     "better-sqlite3": "^12.2.0",
     "gsap": "^3.13.0",
-    "nuxt-gtag": "^2.1.0",
+    "nuxt-gtag": "^4.0.0",
     "nuxt-og-image": "^5.1.9",
     "pdfkit": "^0.15.2",
     "prisma": "^6.16.1",
