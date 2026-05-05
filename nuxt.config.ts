@@ -24,6 +24,7 @@ export default defineNuxtConfig({
     '@nuxt/eslint',
     '@nuxt/icon',
     'nuxt-gtag',
+    '@nuxt/ui'
   ],
 
   devtools: {
