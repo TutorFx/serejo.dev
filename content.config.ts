@@ -56,7 +56,7 @@ export default defineContentConfig({
     }),
     pages: defineCollection({
       type: 'page',
-      source: '**/*.md'
-    })
+      source: '**/*.md',
+    }),
   },
 })

@@ -1,6 +1,4 @@
 <script lang="ts">
-import Qrcode from 'qrcode.vue'
-
 export interface CurriculumBody {
   experiences: ExperiencesDto[]
   education: EducationDto[]

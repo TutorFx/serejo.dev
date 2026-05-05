@@ -90,7 +90,6 @@ defineProps<CurriculumBody>()
                 </li>
               </ul>
             </div>
-
           </div>
         </div>
       </div>
