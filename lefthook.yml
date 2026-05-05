@@ -20,7 +20,7 @@
 
 pre-commit:
   parallel: true
-  jobs:
+  commands:
     eslint:
       glob: '*.{js,ts,vue}'
       run: bunx eslint --fix {staged_files}
