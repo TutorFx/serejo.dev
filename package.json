@@ -71,7 +71,7 @@
     "reka-ui": "^2.5.0",
     "remark-frontmatter": "^5.0.0",
     "remark-mdc": "^3.6.0",
-    "shiki": "^3.12.2",
+    "shiki": "^4.0.0",
     "swiper": "^11.2.10",
     "tailwind-variants": "^1.0.0",
     "tailwindcss": "^4.1.13",
