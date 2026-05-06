@@ -1,7 +1,5 @@
 import z from 'zod/v4'
 
-export * from './ai/tool.schemas'
-
 export const queryLanguage = {
   lang: z.enum(LOCALE_KEYS).optional(),
 }

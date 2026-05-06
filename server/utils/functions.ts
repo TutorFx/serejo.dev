@@ -1,5 +1,3 @@
-export * from './ai/tool.functions'
-
 export function processCmsPath(locale: LocaleKey, stem: string) {
   const splittedStem = stem.split('/')
   const index = splittedStem.findIndex(item => item === locale)

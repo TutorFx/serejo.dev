@@ -2,7 +2,6 @@ export * from './_core/core.constants'
 export * from './menu/menu.constants'
 export * from './button/button.constants'
 export * from './card/card.constants'
-export * from './chat/chat.constants'
 
 export const NAVBAR_CONTENT: MenuList = [
   {
