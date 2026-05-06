@@ -1,11 +1,7 @@
 import process from 'node:process'
 import { defineNuxtModule, useLogger } from '@nuxt/kit'
-import type { Document } from '@langchain/core/documents'
 import { parseFrontMatter } from 'remark-mdc'
 
-import { UpstashVectorStore } from '@langchain/community/vectorstores/upstash'
-import { RecursiveCharacterTextSplitter } from '@langchain/textsplitters'
-import { FakeEmbeddings } from '@langchain/core/utils/testing'
 import { Index } from '@upstash/vector'
 
 export default defineNuxtModule({
@@ -20,21 +16,13 @@ export default defineNuxtModule({
     } })
 
     if (process.env.UPSTASH_VECTOR_REST_URL && process.env.UPSTASH_VECTOR_REST_TOKEN) {
-      const indexWithEmbeddings = new Index({
+      const index = new Index({
         url: process.env.UPSTASH_VECTOR_REST_URL,
         token: process.env.UPSTASH_VECTOR_REST_TOKEN,
       })
 
-      const vectorStore = new UpstashVectorStore(new FakeEmbeddings(), {
-        index: indexWithEmbeddings,
-      })
-
-      const textSplitter = new RecursiveCharacterTextSplitter({
-        chunkSize: 500,
-        chunkOverlap: 50,
-      })
-
-      let documents: Document[] = []
+      // We'll store simple document chunks mapped to their sources
+      let documents: { id: string, data: string, metadata: any }[] = []
 
       nuxt.hooks.hook('content:file:afterParse', async (ctx) => {
         const { file } = ctx
@@ -45,23 +33,34 @@ export default defineNuxtModule({
         if (!body)
           return
 
-        const texts = await textSplitter.splitText(body)
+        // Simple text splitting by double line breaks (paragraphs)
+        const texts = body.split('\n\n').map(t => t.trim()).filter(t => t.length > 0)
 
         documents = documents.concat(texts.map((text, index) => {
           return {
-            pageContent: text,
+            id: `${file.id}:${index}`,
+            data: text, // upstash accepts raw text and embeds it automatically if configured
             metadata: {
               ...headerData,
               source: file.id,
             },
-            id: `${file.id}:${index}`,
-          } satisfies Document
+          }
         }))
       })
 
       nuxt.hooks.hook('ready', async (_ctx) => {
         logger.log('🦜 Documentos a serem analizados:', documents.length)
-        await vectorStore.addDocuments(documents)
+
+        // Batch upload to upstash
+        if (documents.length > 0) {
+          try {
+            await index.upsert(documents)
+            logger.log('✅ Documentos inseridos no Upstash Vector')
+          }
+          catch (e) {
+            logger.error('❌ Falha ao inserir no Upstash Vector', e)
+          }
+        }
       })
     }
   },
