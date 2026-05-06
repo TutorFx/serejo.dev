@@ -1,4 +1,5 @@
 import { tool } from '@langchain/core/tools'
+import { queryCollection } from '@nuxt/content/server'
 import type { H3Event } from 'h3'
 
 async function contentSearchFunction(query: string) {

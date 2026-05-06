@@ -1,3 +1,5 @@
+import { queryCollection } from '@nuxt/content/server'
+
 export default defineEventHandler(async (event) => {
   const query = await getValidatedQuery(event, data => postsQuerySchema.safeParse(data))
   const t = await useTranslation(event)

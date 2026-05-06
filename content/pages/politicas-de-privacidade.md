@@ -18,20 +18,20 @@ Caso você nos envie Dados Pessoais referentes a outras pessoas físicas, você 
 
 Para os fins desta Política de Privacidade:
 
-*   **“Dados Pessoais”**: significa qualquer informação que, direta ou indiretamente, identifique ou possa identificar uma pessoa natural, como por exemplo, nome, CPF, data de nascimento, endereço IP, dentre outros.
-*   **“Dados Pessoais Sensíveis”**: significa qualquer informação que revele, em relação a uma pessoa natural, origem racial ou étnica, convicção religiosa, opinião política, filiação a sindicato ou a organização de caráter religioso, filosófico ou político, dado referente à saúde ou à vida sexual, dado genético ou biométrico.
-*   **“Tratamento de Dados Pessoais”**: significa qualquer operação efetuada no âmbito dos Dados Pessoais, por meio de meios automáticos ou não, tal como a recolha, gravação, organização, estruturação, armazenamento, adaptação ou alteração, recuperação, consulta, utilização, divulgação por transmissão, disseminação ou, alternativamente, disponibilização, harmonização ou associação, restrição, eliminação ou destruição. Também é considerado Tratamento de Dados Pessoais qualquer outra operação prevista nos termos da legislação aplicável.
-*   **“Leis de Proteção de Dados”**: significa todas as disposições legais que regulem o Tratamento de Dados Pessoais, incluindo, porém sem se limitar, a Lei nº 13.709/18, Lei Geral de Proteção de Dados Pessoais (“LGPD”).
+- **“Dados Pessoais”**: significa qualquer informação que, direta ou indiretamente, identifique ou possa identificar uma pessoa natural, como por exemplo, nome, CPF, data de nascimento, endereço IP, dentre outros.
+- **“Dados Pessoais Sensíveis”**: significa qualquer informação que revele, em relação a uma pessoa natural, origem racial ou étnica, convicção religiosa, opinião política, filiação a sindicato ou a organização de caráter religioso, filosófico ou político, dado referente à saúde ou à vida sexual, dado genético ou biométrico.
+- **“Tratamento de Dados Pessoais”**: significa qualquer operação efetuada no âmbito dos Dados Pessoais, por meio de meios automáticos ou não, tal como a recolha, gravação, organização, estruturação, armazenamento, adaptação ou alteração, recuperação, consulta, utilização, divulgação por transmissão, disseminação ou, alternativamente, disponibilização, harmonização ou associação, restrição, eliminação ou destruição. Também é considerado Tratamento de Dados Pessoais qualquer outra operação prevista nos termos da legislação aplicável.
+- **“Leis de Proteção de Dados”**: significa todas as disposições legais que regulem o Tratamento de Dados Pessoais, incluindo, porém sem se limitar, a Lei nº 13.709/18, Lei Geral de Proteção de Dados Pessoais (“LGPD”).
 
 #### Uso de Dados Pessoais
 
 Coletamos e usamos Dados Pessoais para gerenciar seu relacionamento conosco e melhor atendê-lo ao navegar pelo Site, personalizando e melhorando sua experiência. Exemplos de como usamos os dados incluem:
 
-*   Para confirmar ou corrigir as informações que temos sobre você;
-*   Para enviar informações que acreditamos ser do seu interesse;
-*   Para personalizar sua experiência de uso do Site;
-*   Para personalizar o envio de publicidade para você, baseada em seu interesse em nosso Site; e
-*   Para entrarmos em contato por um número de telefone e/ou endereço de e-mail fornecido. Podemos entrar em contato com você pessoalmente, por mensagem de voz, através de equipamentos de discagem automática, por mensagens de texto (SMS), por e-mail, ou por qualquer outro meio de comunicação que seu dispositivo seja capaz de receber, nos termos da lei e para fins comerciais razoáveis.
+- Para confirmar ou corrigir as informações que temos sobre você;
+- Para enviar informações que acreditamos ser do seu interesse;
+- Para personalizar sua experiência de uso do Site;
+- Para personalizar o envio de publicidade para você, baseada em seu interesse em nosso Site; e
+- Para entrarmos em contato por um número de telefone e/ou endereço de e-mail fornecido. Podemos entrar em contato com você pessoalmente, por mensagem de voz, através de equipamentos de discagem automática, por mensagens de texto (SMS), por e-mail, ou por qualquer outro meio de comunicação que seu dispositivo seja capaz de receber, nos termos da lei e para fins comerciais razoáveis.
 
 Além disso, os Dados Pessoais fornecidos também podem ser utilizados na forma que julgarmos necessária ou adequada: (a) nos termos das Leis de Proteção de Dados; (b) para atender exigências de processo judicial; (c) para cumprir decisão judicial, decisão regulatória ou decisão de autoridades competentes, incluindo autoridades fora do país de residência; (d) para proteger nossas operações; (e) para proteger direitos, privacidade, segurança nossos, seus ou de terceiros; (f) para detectar e prevenir fraude; (g) permitir-nos usar as ações disponíveis ou limitar danos que venhamos a sofrer; (h) de outros modos permitidos por lei.
 
@@ -47,16 +47,16 @@ O público em geral poderá navegar no Site sem necessidade de qualquer cadastro
 
 Ao entrar em contato conosco, podemos coletar:
 
-*   **Dados de contato:** Nome, sobrenome, número de telefone, cidade, Estado e endereço de e-mail.
-*   **Informações que você envia:** Informações que você envia via formulário (dúvidas, reclamações, sugestões, críticas, elogios etc.).
+- **Dados de contato:** Nome, sobrenome, número de telefone, cidade, Estado e endereço de e-mail.
+- **Informações que você envia:** Informações que você envia via formulário (dúvidas, reclamações, sugestões, críticas, elogios etc.).
 
 Na navegação geral no Site, poderemos coletar:
 
-*   **Dados de localização:** Dados de geolocalização quando você acessa o Site.
-*   **Preferências:** Informações sobre suas preferências e interesses.
-*   **Dados de navegação no Site:** Informações sobre suas visitas e atividades, incluindo o conteúdo com o qual você visualiza e interage, informações sobre o navegador e o dispositivo que você está usando, seu endereço IP, sua localização e o endereço do site a partir do qual você chegou.
-*   **Dados anônimos ou agregados:** Respostas anônimas para pesquisas ou informações anônimas e agregadas sobre como o Site é utilizado.
-*   **Outras informações que podemos coletar:** Informações que não revelem especificamente a sua identidade ou que não são diretamente relacionadas a um indivíduo, tais como informações sobre navegador e dispositivo, e dados de uso do Site.
+- **Dados de localização:** Dados de geolocalização quando você acessa o Site.
+- **Preferências:** Informações sobre suas preferências e interesses.
+- **Dados de navegação no Site:** Informações sobre suas visitas e atividades, incluindo o conteúdo com o qual você visualiza e interage, informações sobre o navegador e o dispositivo que você está usando, seu endereço IP, sua localização e o endereço do site a partir do qual você chegou.
+- **Dados anônimos ou agregados:** Respostas anônimas para pesquisas ou informações anônimas e agregadas sobre como o Site é utilizado.
+- **Outras informações que podemos coletar:** Informações que não revelem especificamente a sua identidade ou que não são diretamente relacionadas a um indivíduo, tais como informações sobre navegador e dispositivo, e dados de uso do Site.
 
 A menos que você informe em algum formulário livre preenchido por você, nós não coletamos Dados Pessoais Sensíveis.
 
@@ -64,9 +64,9 @@ A menos que você informe em algum formulário livre preenchido por você, nós 
 
 Nós poderemos compartilhar seus Dados Pessoais:
 
-*   Com empresas parceiras, provedores de serviços ou parceiros para gerenciar ou suportar certos aspectos de nossas operações comerciais em nosso nome.
-*   Com terceiros, com o objetivo de nos ajudar a gerenciar o Site.
-*   Com terceiros, caso ocorra qualquer reorganização, fusão, venda, joint venture, cessão, transmissão ou transferência de toda ou parte da nossa empresa, ativo ou capital.
+- Com empresas parceiras, provedores de serviços ou parceiros para gerenciar ou suportar certos aspectos de nossas operações comerciais em nosso nome.
+- Com terceiros, com o objetivo de nos ajudar a gerenciar o Site.
+- Com terceiros, caso ocorra qualquer reorganização, fusão, venda, joint venture, cessão, transmissão ou transferência de toda ou parte da nossa empresa, ativo ou capital.
 
 #### Transferências internacionais de Dados
 
@@ -78,9 +78,9 @@ Quando você visita o Site, ele pode armazenar ou recuperar informações em seu
 
 De acordo com esta Política de Privacidade, nós e nossos prestadores de serviços terceirizados podemos coletar seus Dados Pessoais de diversas formas, incluindo, entre outros:
 
-*   **Por meio do navegador ou do dispositivo:** Algumas informações são coletadas pela maior parte dos navegadores ou automaticamente por meio de dispositivos de acesso à internet.
-*   **Uso de cookies:** Os cookies permitem a coleta de informações que nos ajudam a personalizar sua experiência e direcionar publicidade de acordo com seus interesses.
-*   **Uso de pixel tags e outras tecnologias similares:** Podem ser utilizados para rastrear ações de usuários e medir o sucesso de campanhas de marketing.
+- **Por meio do navegador ou do dispositivo:** Algumas informações são coletadas pela maior parte dos navegadores ou automaticamente por meio de dispositivos de acesso à internet.
+- **Uso de cookies:** Os cookies permitem a coleta de informações que nos ajudam a personalizar sua experiência e direcionar publicidade de acordo com seus interesses.
+- **Uso de pixel tags e outras tecnologias similares:** Podem ser utilizados para rastrear ações de usuários e medir o sucesso de campanhas de marketing.
 
 #### Direitos do Usuário
 

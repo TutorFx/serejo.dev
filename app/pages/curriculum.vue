@@ -6,7 +6,7 @@ definePageMeta({
 
 const route = useRoute()
 
-onMounted(()=> {
+onMounted(() => {
   if ('print' in route.query) {
     nextTick(() => {
       setTimeout(() => {

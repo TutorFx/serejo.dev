@@ -1,4 +1,4 @@
-import type { RouteLocationAsRelativeI18n, RouteLocationRawI18n, RouteNamedMapI18n } from 'vue-router'
+import type { RouteLocationAsRelativeI18n, RouteLocationRawI18n, RouteMapI18n } from 'vue-router'
 
 export * from './_core/core.d'
 export * from './button/button.d'
@@ -10,7 +10,7 @@ export type GenericVariantKeyDefinition<T extends string> = Record<T, string | u
 export type BooleanKeyDefinition = Record<`${boolean}`, string | undefined>
 
 export type InternalRoute = RouteLocationRawI18n
-export type FinalRoute = keyof RouteNamedMapI18n
+export type FinalRoute = keyof RouteMapI18n
 
 export type RouteLocationI18nGenericPath = Omit<RouteLocationAsRelativeI18n, 'path'> & {
   path?: string

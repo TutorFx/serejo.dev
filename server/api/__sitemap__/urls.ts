@@ -1,4 +1,3 @@
-import { defineSitemapEventHandler } from '#imports'
 import type { SitemapUrl } from '#sitemap/types'
 
 export default defineSitemapEventHandler(async () => {
