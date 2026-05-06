@@ -52,6 +52,8 @@
     "consola": "^3.4.2",
     "date-fns": "^4.1.0",
     "dayjs": "2.0.0-alpha.4",
+    "drizzle-kit": "^0.31.10",
+    "drizzle-orm": "^0.45.2",
     "eslint": "9.32.0",
     "eslint-plugin-format": "^1.0.1",
     "eslint-ts-patch": "^9.8.0-1",
