@@ -11,8 +11,8 @@ const {
 
 export default defineConfig({
   dialect: 'postgresql',
-  schema: './server/database/schema.ts',
-  out: './server/database/migrations',
+  schema: './server/db/schema.ts',
+  out: './server/db/migrations',
   dbCredentials: {
     url: `postgresql://${POSTGRES_USER}:${POSTGRES_PASSWORD}@${POSTGRES_HOSTNAME}:${POSTGRES_PORT}/${POSTGRES_DB}`,
   },

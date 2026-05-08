@@ -23,6 +23,9 @@ export default defineNuxtConfig({
     '@nuxt/content',
     '@nuxt/eslint',
     '@nuxt/icon',
+    '@comark/nuxt',
+    // 'nuxt-csurf',
+    'nuxt-auth-utils',
     'nuxt-gtag',
     '@nuxt/ui',
   ],
@@ -77,7 +80,7 @@ export default defineNuxtConfig({
   },
 
   runtimeConfig: {
-    gemini_api_key: process.env.GEMINI_API_KEY,
+    geminiApiKey: process.env.GEMINI_API_KEY,
     cronSecret: process.env.CRON_SECRET,
     public: {
       version: pkg.version,
