@@ -1,5 +1,5 @@
 /* eslint-disable ts/no-use-before-define */
-import { index, json, pgTable, text, timestamp } from 'drizzle-orm/pg-core'
+import { boolean, index, json, pgTable, primaryKey, text, timestamp, uniqueIndex } from 'drizzle-orm/pg-core'
 import { relations } from 'drizzle-orm'
 
 const timestamps = {
@@ -15,8 +15,13 @@ export const users = pgTable('users', {
   email: text('email'),
   name: text('name'),
   username: text('username'),
+
+  provider: text('provider', { enum: ['github'] }).notNull(),
+  providerId: text('provider_id').notNull(),
   ...timestamps,
-})
+}, table => [
+  uniqueIndex('users_provider_id_idx').on(table.provider, table.providerId),
+])
 
 export const usersRelations = relations(users, ({ many }) => ({
   chats: many(chats),
@@ -26,6 +31,7 @@ export const chats = pgTable('chats', {
   id: text('id').primaryKey().$defaultFn(() => crypto.randomUUID()),
   title: text('title'),
   userId: text('user_id').notNull(),
+  visibility: text('visibility', { enum: ['public', 'private'] }).notNull().default('private'),
   ...timestamps,
 }, table => [
   index('chats_user_id_idx').on(table.userId),
@@ -53,5 +59,24 @@ export const messagesRelations = relations(messages, ({ one }) => ({
   chat: one(chats, {
     fields: [messages.chatId],
     references: [chats.id],
+  }),
+}))
+
+export const votes = pgTable('votes', {
+  chatId: text('chat_id').notNull().references(() => chats.id, { onDelete: 'cascade' }),
+  messageId: text('message_id').notNull().references(() => messages.id, { onDelete: 'cascade' }),
+  isUpvoted: boolean().notNull(),
+}, table => [
+  primaryKey({ columns: [table.chatId, table.messageId] }),
+])
+
+export const votesRelations = relations(votes, ({ one }) => ({
+  chat: one(chats, {
+    fields: [votes.chatId],
+    references: [chats.id],
+  }),
+  message: one(messages, {
+    fields: [votes.messageId],
+    references: [messages.id],
   }),
 }))

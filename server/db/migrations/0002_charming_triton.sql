@@ -1,0 +1,1 @@
+ALTER TABLE "chats" ADD COLUMN "visibility" text DEFAULT 'private' NOT NULL;
