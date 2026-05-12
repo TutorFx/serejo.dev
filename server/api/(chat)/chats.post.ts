@@ -4,7 +4,7 @@ import { z } from 'zod'
 export default defineEventHandler(async (event) => {
   const session = await getUserSession(event)
   const db = useDrizzle()
-  
+
   const { id, message } = await readValidatedBody(event, z.object({
     id: z.string(),
     message: z.custom<UIMessage>()

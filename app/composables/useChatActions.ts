@@ -12,7 +12,6 @@ export function useChatActions() {
   const route = useRoute()
   const toast = useToast()
   const overlay = useOverlay()
-  const { csrf, headerName } = useCsrf()
 
   const renameModal = overlay.create(LazyModalRename)
   const deleteModal = overlay.create(LazyModalConfirm, {
@@ -31,8 +30,7 @@ export function useChatActions() {
 
     try {
       await $fetch(`/api/chats/${id}/title`, {
-        method: 'PATCH',
-        headers: { [headerName]: csrf },
+        method: 'PATCH' as any,
         body: { title: result }
       })
 
@@ -68,8 +66,7 @@ export function useChatActions() {
 
     try {
       await $fetch(`/api/chats/${id}`, {
-        method: 'DELETE',
-        headers: { [headerName]: csrf }
+        method: 'DELETE' as any,
       })
 
       toast.add({
@@ -83,7 +80,7 @@ export function useChatActions() {
         chatsCache.data.value = chatsCache.data.value.filter(c => c.id !== id)
       }
 
-      if (route.params.id === id) {
+      if ('id' in route.params && route.params.id === id) {
         navigateTo('/')
       }
 

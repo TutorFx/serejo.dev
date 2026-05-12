@@ -5,7 +5,7 @@ const localePath = useLocalePath()
 const { data: experiences } = useFetch<ExperiencesDto[]>('/api/experiences', {
   query: {
     lang: locale.value,
-  },
+  }
 })
 </script>
 

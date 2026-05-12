@@ -10,7 +10,7 @@ export type ButtonVariantProps = CoreProps & {
   variant?: ButtonVariant
   rounded?: boolean
   block?: boolean
-  class?: any
+  class?: string
   href?: string
   to?: RouteLocationRaw
   icon?: string
@@ -20,9 +20,9 @@ export type ButtonVariantProps = CoreProps & {
 }
 
 export interface ButtonSlots {
-  leading: (props?: {}) => any
-  default: (props?: {}) => any
-  trailing: (props?: {}) => any
+  leading: (props?: object) => void
+  default: (props?: object) => void
+  trailing: (props?: object) => void
 }
 
 const props = withDefaults(defineProps<ButtonVariantProps>(), {

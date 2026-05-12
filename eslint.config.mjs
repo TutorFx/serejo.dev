@@ -1,12 +1,12 @@
 // @ts-check
-import antfu from '@antfu/eslint-config'
-import nuxt from './.nuxt/eslint.config.mjs'
+import withNuxt from './.nuxt/eslint.config.mjs'
 
-export default nuxt(
-  await antfu(
-    {
-      unocss: false,
-      formatters: true,
-    },
-  ),
-)
+export default withNuxt({
+  rules: {
+    'vue/multi-word-component-names': 'off',
+    // 'vue/max-attributes-per-line': ['error', { singleline: 3 }],
+    'vue/max-attributes-per-line': 'off',
+    '@stylistic/comma-dangle': 'off',
+
+  }
+})

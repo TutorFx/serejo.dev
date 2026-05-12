@@ -5,7 +5,7 @@ export interface CardVariantProps {
   rounded?: boolean
   variant?: CardVariant
   border?: boolean
-  class?: any
+  class?: string
   ui?: Partial<{
     header: string
     content: string
@@ -14,9 +14,9 @@ export interface CardVariantProps {
 }
 
 export interface CardSlots {
-  header: (props?: {}) => any
-  default: (props?: {}) => any
-  footer: (props?: {}) => any
+  header: (props?: object) => void
+  default: (props?: object) => void
+  footer: (props?: object) => void
 }
 </script>
 

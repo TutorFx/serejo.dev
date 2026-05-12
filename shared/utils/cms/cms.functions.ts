@@ -6,8 +6,7 @@ export function traverseNodes(nodes: MinimarkNode[]): string {
   for (const node of nodes) {
     if (typeof node === 'string') {
       text += `${node} `
-    }
-    else if (Array.isArray(node)) {
+    } else if (Array.isArray(node)) {
       const filhos = node.slice(2) as MinimarkNode[]
       text += traverseNodes(filhos)
     }

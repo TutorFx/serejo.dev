@@ -11,7 +11,6 @@ const emit = defineEmits<{
 }>()
 
 const toast = useToast()
-// const { csrf, headerName } = useCsrf()
 const clipboard = useClipboard()
 
 const loading = ref(false)
@@ -43,8 +42,7 @@ async function updateVisibility(value: 'public' | 'private') {
 
   try {
     await $fetch(`/api/chats/${props.chatId}/visibility`, {
-      // method: 'PATCH',
-      // headers: { [headerName]: csrf },
+      method: 'PATCH',
       body: { visibility: value }
     })
   } catch {

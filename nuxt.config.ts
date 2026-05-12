@@ -24,7 +24,6 @@ export default defineNuxtConfig({
     '@nuxt/eslint',
     '@nuxt/icon',
     '@comark/nuxt',
-    // 'nuxt-csurf',
     'nuxt-auth-utils',
     'nuxt-gtag',
     '@nuxt/ui',
@@ -107,7 +106,7 @@ export default defineNuxtConfig({
     typedPages: true,
   },
 
-  compatibilityDate: '2025-06-10',
+  compatibilityDate: '2026-05-08',
 
   nitro: {
     prerender: {
@@ -146,11 +145,11 @@ export default defineNuxtConfig({
 
   eslint: {
     config: {
-      standalone: false,
-      nuxt: {
-        sortConfigKeys: true,
-      },
-    },
+      stylistic: {
+        commaDangle: 'never',
+        braceStyle: '1tbs'
+      }
+    }
   },
 
   googleFonts: {
@@ -200,12 +199,6 @@ export default defineNuxtConfig({
 
   ogImage: {
     defaults: {},
-    fonts: [
-      // will load the Noto Sans font from Google fonts
-      'Space+Grotesk:300',
-      'Space+Grotesk:400',
-      'Space+Grotesk:700',
-    ],
   },
 
   sitemap: {

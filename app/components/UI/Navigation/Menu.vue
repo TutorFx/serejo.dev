@@ -3,7 +3,7 @@ export interface NavbarMenuProps {
   direction?: Direction
   size?: ComponentSize
   list: MenuList<FinalRoute>
-  class?: any
+  class?: string
 }
 </script>
 

@@ -56,8 +56,7 @@ export default defineNuxtModule({
           try {
             await index.upsert(documents)
             logger.log('✅ Documentos inseridos no Upstash Vector')
-          }
-          catch (e) {
+          } catch (e) {
             logger.error('❌ Falha ao inserir no Upstash Vector', e)
           }
         }
