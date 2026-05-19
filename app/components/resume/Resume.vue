@@ -31,6 +31,7 @@ const skills = [
   'Generative AI',
   'RAG',
   'LLMs',
+  'AI agents',
   'LangChain',
   'TypeScript',
   'Python',
@@ -38,20 +39,23 @@ const skills = [
   'Prompt Engineering',
   'Vector Databases',
   'NLP',
+  'vLLM',
   'Hugging Face',
+  'LangSmith',
+  'LangFuse',
+  'OTel',
+  'ADK',
+  'Bedrock',
+  'DeepEval',
   'Model APIs (OpenAI, Gemini, Anthropic)',
   'Self-hosted Models (Ollama, Hugging Face)',
   'Cloud Platforms (Azure, AWS, GCP)',
   'TensorFlow',
   'Deep Learning',
-  'Spacy',
-  'Pandas',
-  'OpenCV',
-  'R',
-  'C++',
 ]
 
 const certifications = [
+  'Google AI Professional Certificate (2026)',
   'Oracle AI Vector Search Certified Professional (2025)',
 ]
 </script>
