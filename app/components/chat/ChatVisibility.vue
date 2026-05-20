@@ -42,7 +42,7 @@ async function updateVisibility(value: 'public' | 'private') {
 
   try {
     await $fetch(`/api/chats/${props.chatId}/visibility`, {
-      method: 'PATCH',
+      method: 'PATCH' as never,
       body: { visibility: value }
     })
   } catch {

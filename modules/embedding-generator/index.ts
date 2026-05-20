@@ -22,7 +22,7 @@ export default defineNuxtModule({
       })
 
       // We'll store simple document chunks mapped to their sources
-      let documents: { id: string, data: string, metadata: any }[] = []
+      let documents: { id: string, data: string, metadata: Record<string, unknown> }[] = []
 
       nuxt.hooks.hook('content:file:afterParse', async (ctx) => {
         const { file } = ctx

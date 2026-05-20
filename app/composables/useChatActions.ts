@@ -30,7 +30,7 @@ export function useChatActions() {
 
     try {
       await $fetch(`/api/chats/${id}/title`, {
-        method: 'PATCH' as any,
+        method: 'PATCH' as never,
         body: { title: result }
       })
 
@@ -66,7 +66,7 @@ export function useChatActions() {
 
     try {
       await $fetch(`/api/chats/${id}`, {
-        method: 'DELETE' as any,
+        method: 'DELETE' as never,
       })
 
       toast.add({
