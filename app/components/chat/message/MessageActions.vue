@@ -7,8 +7,6 @@ import { getTextFromMessage } from '@nuxt/ui/utils/ai'
 const props = defineProps<{
   message: UIMessage & { createdAt?: string | Date }
   streaming: boolean
-  editing: boolean
-  vote: boolean | null
 }>()
 
 const formattedDate = computed(() => {
@@ -25,8 +23,6 @@ const formattedDate = computed(() => {
 
 const emit = defineEmits<{
   edit: [message: UIMessage]
-  regenerate: [message: UIMessage]
-  vote: [message: UIMessage, isUpvoted: boolean]
 }>()
 
 const hasFiles = computed(() => props.message.parts.some(isFileUIPart))
@@ -58,42 +54,9 @@ function copy() {
         @click="copy"
       />
     </UTooltip>
-
-    <UTooltip text="Good response">
-      <UButton
-        size="sm"
-        :color="vote === true ? 'success' : 'neutral'"
-        variant="ghost"
-        icon="i-lucide-thumbs-up"
-        aria-label="Good response"
-        @click="emit('vote', message, true)"
-      />
-    </UTooltip>
-
-    <UTooltip text="Bad response">
-      <UButton
-        size="sm"
-        :color="vote === false ? 'error' : 'neutral'"
-        variant="ghost"
-        icon="i-lucide-thumbs-down"
-        aria-label="Bad response"
-        @click="emit('vote', message, false)"
-      />
-    </UTooltip>
-
-    <UTooltip text="Regenerate response">
-      <UButton
-        size="sm"
-        color="neutral"
-        variant="ghost"
-        icon="i-lucide-rotate-cw"
-        aria-label="Regenerate response"
-        @click="emit('regenerate', message)"
-      />
-    </UTooltip>
   </template>
 
-  <template v-if="message.role === 'user' && !streaming && !editing">
+  <template v-if="message.role === 'user' && !streaming">
     <UTooltip v-if="formattedDate" :text="formattedDate.full">
       <time :datetime="formattedDate.iso" class="text-xs text-muted mr-1.5">
         {{ formattedDate.time }}

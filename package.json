@@ -35,6 +35,7 @@
   },
   "devDependencies": {
     "@ai-sdk/google": "^3.0.70",
+    "@ai-sdk/vue": "^3.0.185",
     "@antfu/eslint-config": "^8.2.0",
     "@comark/nuxt": "^0.3.1",
     "@iconify-json/carbon": "^1.2.20",
