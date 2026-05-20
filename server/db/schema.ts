@@ -1,4 +1,3 @@
-/* eslint-disable ts/no-use-before-define */
 import { boolean, index, json, pgTable, primaryKey, text, timestamp, uniqueIndex } from 'drizzle-orm/pg-core'
 import { relations } from 'drizzle-orm'
 
