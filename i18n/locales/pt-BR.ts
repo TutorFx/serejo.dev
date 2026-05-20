@@ -1,4 +1,4 @@
-export default defineI18nLocale(async (/* locale */) => {
+export default defineI18nLocale(() => {
   return {
     menu: {
       home: 'Início',
