@@ -14,6 +14,6 @@ export default defineConfig({
   schema: './server/db/schema.ts',
   out: './server/db/migrations',
   dbCredentials: {
-    url: `postgresql://${POSTGRES_USER}:${POSTGRES_PASSWORD}@${POSTGRES_HOSTNAME}:${POSTGRES_PORT}/${POSTGRES_DB}`,
+    url: `postgresql://${POSTGRES_USER}:${POSTGRES_PASSWORD}@${POSTGRES_HOSTNAME}:${POSTGRES_PORT}/${POSTGRES_DB}?sslmode=require`,
   },
 })
