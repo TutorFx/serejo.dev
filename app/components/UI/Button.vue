@@ -3,7 +3,6 @@ import type { RouteLocationRaw } from 'vue-router'
 </script>
 
 <script setup lang="ts">
-/* eslint-disable ts/no-empty-object-type */
 import type { CoreProps } from '@/utils/_core/core.d'
 
 export type ButtonVariantProps = CoreProps & {

@@ -1,7 +1,7 @@
 <script lang="ts">
 import type { ExperiencesDto } from '~~/shared/utils/dto/cms.dto'
 
-export interface ExperienceCardProps extends ExperiencesDto {}
+export type ExperienceCardProps = ExperiencesDto
 </script>
 
 <script setup lang="ts">

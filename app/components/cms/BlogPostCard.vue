@@ -1,7 +1,7 @@
 <script lang="ts">
 import type { BlogPostsDto } from '~~/shared/utils/dto/cms.dto'
 
-export interface BlogPostCardProps extends BlogPostsDto {}
+export type BlogPostCardProps = BlogPostsDto
 </script>
 
 <script setup lang="ts">

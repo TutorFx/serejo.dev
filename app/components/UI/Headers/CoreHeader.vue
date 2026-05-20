@@ -1,9 +1,7 @@
 <script lang="ts">
 import type { CoreHeaderBaseProps } from './CoreHeader/CoreHeaderBase.vue'
 
-export interface CoreHeaderProps extends CoreHeaderBaseProps {
-
-}
+export type CoreHeaderProps = CoreHeaderBaseProps
 </script>
 
 <script setup lang="ts">
