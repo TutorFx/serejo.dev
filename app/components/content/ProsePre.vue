@@ -2,31 +2,20 @@
 import { pascalCase } from 'scule'
 import { useClipboard } from '@vueuse/core'
 
-const props = defineProps({
-  code: {
-    type: String,
-    default: '',
-  },
-  language: {
-    type: String,
-    default: null,
-  },
-  filename: {
-    type: String,
-    default: null,
-  },
-  highlights: {
-    type: Array as () => number[],
-    default: () => [],
-  },
-  meta: {
-    type: String,
-    default: null,
-  },
-  class: {
-    type: String,
-    default: null,
-  },
+const props = withDefaults(defineProps<{
+  code?: string
+  language?: string | null
+  filename?: string | null
+  highlights?: number[]
+  meta?: string | null
+  class?: string | null
+}>(), {
+  code: '',
+  language: null,
+  filename: null,
+  highlights: () => [],
+  meta: null,
+  class: null,
 })
 
 function getLanguageIcon(path: string | null): string | null {

@@ -6,8 +6,8 @@ let _index: Index
 export function useUpstashIndex() {
   if (!_index) {
     _index = new Index({
-      url: process.env.UPSTASH_VECTOR_REST_URL!,
-      token: process.env.UPSTASH_VECTOR_REST_TOKEN!,
+      url: process.env.UPSTASH_VECTOR_REST_URL,
+      token: process.env.UPSTASH_VECTOR_REST_TOKEN,
     })
   }
 

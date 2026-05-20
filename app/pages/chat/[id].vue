@@ -30,7 +30,7 @@ const chat = new Chat({
     if (dataPart.type === 'data-chat-title') {
       await refreshNuxtData('chats')
       const chatsCache = useNuxtData<{ id: string, label: string }[]>('chats')
-      const updated = chatsCache.data.value?.find(c => c.id === data.value!.id)
+      const updated = chatsCache.data.value?.find(c => c.id === data.value?.id)
       if (updated && updated.label !== 'Untitled') {
         title.value = updated.label
       }

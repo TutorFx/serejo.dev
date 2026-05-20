@@ -8,7 +8,7 @@ export default defineNuxtModule({
   meta: {
     name: 'embedding-generator',
   },
-  async setup(options, nuxt) {
+  async setup(_options, nuxt) {
     const frontMatterWithDividersRegex = /---.*?---/gs
 
     const logger = useLogger('embedding-generator', { formatOptions: {

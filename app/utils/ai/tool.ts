@@ -40,7 +40,7 @@ export function getSources(part: ToolPart): Source[] {
   // Google: grounding chunks with { web: { uri, title } }
   const chunks = typed.groundingChunks ?? typed.groundingMetadata?.groundingChunks
   if (chunks) {
-    return chunks.filter(c => c.web?.uri).map(c => ({ url: c.web!.uri!, title: c.web!.title }))
+    return chunks.filter(c => c.web?.uri).map(c => ({ url: c.web?.uri as string, title: c.web?.title }))
   }
 
   return []
