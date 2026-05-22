@@ -10,7 +10,7 @@ const { data: posts } = useFetch<BlogPostsDto[]>('/api/posts', {
 </script>
 
 <template>
-  <div v-if="posts" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-3 py-12">
+  <div v-if="posts" class="grid gap-3 py-12 sm:grid-cols-2 lg:grid-cols-3">
     <NuxtLink v-for="(post, key) in posts" :key :to="localePath({ name: 'post-item', params: { item: post.slug || post.path } })">
       <CmsBlogPostCard v-if="post" v-bind="post" />
     </NuxtLink>

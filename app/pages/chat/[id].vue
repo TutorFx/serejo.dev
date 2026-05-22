@@ -103,7 +103,7 @@ onMounted(() => {
 
     <template #body>
       <div ref="dropzoneRef" class="flex flex-1">
-        <UContainer class="flex-1 flex flex-col gap-4 sm:gap-6">
+        <UContainer class="flex flex-1 flex-col gap-4 sm:gap-6">
           <UChatMessages
             should-auto-scroll
             :messages="chat.messages"
@@ -138,7 +138,7 @@ onMounted(() => {
             v-model="input"
             :error="chat.error"
             variant="subtle"
-            class="sticky bottom-0 [view-transition-name:chat-prompt] rounded-b-none z-10"
+            class="sticky bottom-0 z-10 rounded-b-none [view-transition-name:chat-prompt]"
             :ui="{ base: 'px-1.5' }"
             @submit="handleSubmit"
           >
@@ -158,7 +158,7 @@ onMounted(() => {
     </template>
   </UDashboardPanel>
 
-  <UContainer v-else class="flex-1 flex flex-col gap-4 sm:gap-6">
+  <UContainer v-else class="flex flex-1 flex-col gap-4 sm:gap-6">
     <UError :error="{ statusMessage: 'Chat not found', statusCode: 404 }" class="min-h-full" />
   </UContainer>
 </template>

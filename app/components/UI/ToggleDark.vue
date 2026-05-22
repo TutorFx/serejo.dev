@@ -15,7 +15,7 @@ function toggleDark() {
 </script>
 
 <template>
-  <button class="!outline-none grid items-center justify-center" @click="toggleDark">
+  <button class="grid items-center justify-center !outline-none" @click="toggleDark">
     <ClientOnly>
       <Icon v-if="color.preference === 'dark'" size="32" name="line-md:sunny-outline-to-moon-alt-loop-transition" />
       <Icon v-else size="32" name="line-md:moon-alt-to-sunny-outline-loop-transition" />

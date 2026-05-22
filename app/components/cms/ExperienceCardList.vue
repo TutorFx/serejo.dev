@@ -10,7 +10,7 @@ const { data: experiences } = useFetch<ExperiencesDto[]>('/api/experiences', {
 </script>
 
 <template>
-  <div v-if="experiences" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-3 py-12">
+  <div v-if="experiences" class="grid gap-3 py-12 sm:grid-cols-2 lg:grid-cols-3">
     <NuxtLink v-for="(experience, key) in experiences" :key :to="localePath({ name: 'experience-item', params: { item: experience.path } })">
       <CmsExperienceCard v-bind="experience" />
     </NuxtLink>

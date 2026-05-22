@@ -13,17 +13,17 @@ defineProps<CurriculumBody>()
 </script>
 
 <template>
-  <div class="flex flex-col gap-3 px-4 py-4 bg-white text-black max-w-[21cm] mx-auto">
+  <div class="mx-auto flex max-w-[21cm] flex-col gap-3 bg-white px-4 py-4 text-black">
     <!-- Statement / Summary -->
     <section class="mb-2">
-      <p class="text-sm text-justify leading-relaxed">
+      <p class="text-justify text-sm leading-relaxed">
         {{ $t('me.summary') }}
       </p>
     </section>
 
     <!-- Technical Proficiencies -->
     <section v-if="skills && skills.length">
-      <h2 class="text-sm font-bold uppercase border-b border-black mb-1">
+      <h2 class="mb-1 border-b border-black text-sm font-bold uppercase">
         Technical Proficiencies
       </h2>
       <div class="flex flex-wrap gap-x-6 gap-y-1 text-sm">
@@ -36,7 +36,7 @@ defineProps<CurriculumBody>()
 
     <!-- Certifications -->
     <section v-if="certifications && certifications.length" class="mt-2">
-      <h2 class="text-sm font-bold uppercase border-b border-black mb-1">
+      <h2 class="mb-1 border-b border-black text-sm font-bold uppercase">
         Certifications
       </h2>
       <div class="flex flex-col gap-0.5 text-xs">
@@ -49,16 +49,16 @@ defineProps<CurriculumBody>()
 
     <!-- Professional Experience (One-Line / Compact) -->
     <section v-if="experiences && experiences.length">
-      <h2 class="text-sm font-bold uppercase border-b border-black mb-2">
+      <h2 class="mb-2 border-b border-black text-sm font-bold uppercase">
         Professional Experience
       </h2>
       <div class="flex flex-col gap-1.5">
         <div v-for="(experience, key) in experiences" :key="key" class="flex flex-col">
-          <div class="flex justify-between items-baseline">
-            <h3 class="font-bold text-sm uppercase">
+          <div class="flex items-baseline justify-between">
+            <h3 class="text-sm font-bold uppercase">
               {{ experience.title }}
             </h3>
-            <span class="text-xs italic font-medium whitespace-nowrap">
+            <span class="text-xs font-medium whitespace-nowrap italic">
               {{ experience.start }} - {{ experience.end }}
             </span>
           </div>
@@ -72,17 +72,17 @@ defineProps<CurriculumBody>()
 
     <!-- Projects (Compact) -->
     <section v-if="projects && projects.length">
-      <h2 class="text-sm font-bold uppercase border-b border-black mb-2">
+      <h2 class="mb-2 border-b border-black text-sm font-bold uppercase">
         Projects
       </h2>
       <div class="flex flex-col gap-1.5">
         <div v-for="(project, key) in projects" :key="key" class="flex flex-col">
-          <div class="flex justify-between items-baseline">
-            <div class="flex gap-2 items-baseline">
-              <h3 class="font-bold text-base">
+          <div class="flex items-baseline justify-between">
+            <div class="flex items-baseline gap-2">
+              <h3 class="text-base font-bold">
                 {{ project.title }}
               </h3>
-              <span class="text-sm italic text-gray-700">– {{ project.org }}</span>
+              <span class="text-sm text-gray-700 italic">– {{ project.org }}</span>
             </div>
           </div>
           <!-- No deliverables list -->
@@ -92,16 +92,16 @@ defineProps<CurriculumBody>()
 
     <!-- Education -->
     <section v-if="education && education.length">
-      <h2 class="text-sm font-bold uppercase border-b border-black mb-2">
+      <h2 class="mb-2 border-b border-black text-sm font-bold uppercase">
         Education
       </h2>
       <div class="flex flex-col gap-2">
         <div v-for="(edu, key) in education" :key="key" class="flex flex-col">
-          <div class="flex justify-between items-baseline">
-            <h3 class="font-bold text-sm">
+          <div class="flex items-baseline justify-between">
+            <h3 class="text-sm font-bold">
               {{ edu.org }}
             </h3>
-            <span class="text-sm font-bold text-right">
+            <span class="text-right text-sm font-bold">
               {{ edu.date || edu.end }}
             </span>
           </div>

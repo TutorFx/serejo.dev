@@ -1,7 +1,7 @@
 <template>
   <div class="bg-base-200">
     <UIContainer class="py-6">
-      <div class="min-h-82 grid items-center">
+      <div class="grid min-h-82 items-center">
         <div class="grid gap-6">
           <div class="text-lg md:text-xl">
             <MDC :value="$t('me.abroad')" />

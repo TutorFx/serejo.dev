@@ -11,7 +11,7 @@ const { t } = useI18n()
 
 <template>
   <div>
-    <UICard :border="false" class="aspect-[4/2.5] group h-full" :ui="{ content: 'grid items-center', header: 'text-lg' }">
+    <UICard :border="false" class="group aspect-4/2.5 h-full" :ui="{ content: 'grid items-center', header: 'text-lg' }">
       <template #header>
         {{ title }}
       </template>

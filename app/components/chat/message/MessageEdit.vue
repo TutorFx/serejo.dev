@@ -15,7 +15,7 @@ const editingText = ref(props.text)
 </script>
 
 <template>
-  <div class="flex flex-col gap-2 w-full">
+  <div class="flex w-full flex-col gap-2">
     <UTextarea
       v-model="editingText"
       autofocus
@@ -26,7 +26,7 @@ const editingText = ref(props.text)
       :ui="{ base: 'p-0' }"
     />
 
-    <div class="flex gap-1.5 justify-end">
+    <div class="flex justify-end gap-1.5">
       <UButton
         size="sm"
         variant="soft"

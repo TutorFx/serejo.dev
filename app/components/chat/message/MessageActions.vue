@@ -58,7 +58,7 @@ function copy() {
 
   <template v-if="message.role === 'user' && !streaming">
     <UTooltip v-if="formattedDate" :text="formattedDate.full">
-      <time :datetime="formattedDate.iso" class="text-xs text-muted mr-1.5">
+      <time :datetime="formattedDate.iso" class="text-muted mr-1.5 text-xs">
         {{ formattedDate.time }}
       </time>
     </UTooltip>

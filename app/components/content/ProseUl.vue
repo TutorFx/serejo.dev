@@ -1,5 +1,5 @@
 <template>
-  <ul class="list-disc list-inside marker:text-accent">
+  <ul class="marker:text-accent list-inside list-disc">
     <slot />
   </ul>
 </template>

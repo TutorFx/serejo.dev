@@ -45,35 +45,35 @@ const { copy, copied } = useClipboard({ source: props.code })
 </script>
 
 <template>
-  <div class="grid relative bg-base-200 rounded-xl">
+  <div class="bg-base-200 relative grid rounded-xl">
     <pre
       class="
-      pt-6
-      px-4
       bg-base-300
-      rounded-t-xl
-      grid
-      overflow-x-scroll
-      relative
-
-      [&::-webkit-scrollbar]:size-6
       [&::-webkit-scrollbar]:bg-base-300
-      [&::-webkit-scrollbar]:border-b-10
       [&::-webkit-scrollbar]:border-base-300
-
       [&::-webkit-scrollbar-track]:bg-base-300
-      [&::-webkit-scrollbar-track]:rounded-xl
-
-      [&::-webkit-scrollbar-thumb]:border-6
       [&::-webkit-scrollbar-thumb]:border-base-300
       [&::-webkit-scrollbar-thumb]:bg-base-100
+      relative
+
+      grid
+      overflow-x-scroll
+      rounded-t-xl
+      px-4
+
+      pt-6
+      [&::-webkit-scrollbar]:size-6
+
+      [&::-webkit-scrollbar]:border-b-10
       [&::-webkit-scrollbar-thumb]:rounded-xl
+      [&::-webkit-scrollbar-thumb]:border-6
+      [&::-webkit-scrollbar-track]:rounded-xl
       "
       :class="$props.class"
     >
       <slot />
     </pre>
-    <div class="rounded-b-xl px-3 py-1 grid grid-flow-col items-center justify-between border-t-2 border-base-100">
+    <div class="border-base-100 grid grid-flow-col items-center justify-between rounded-b-xl border-t-2 px-3 py-1">
       <div class="grid grid-flow-col items-center gap-3">
         <div v-if="icon" class="grid items-center">
           <Icon :name="icon" />
@@ -82,7 +82,7 @@ const { copy, copied } = useClipboard({ source: props.code })
           {{ props.filename ?? pascalCase(props.language || 'plaintext') }}
         </div>
       </div>
-      <div class="h-11 w-11 grid justify-center items-center p-3 bg-base-300 rounded-lg border-2 border-base-100 cursor-pointer" @click="() => copy()">
+      <div class="bg-base-300 border-base-100 grid h-11 w-11 cursor-pointer items-center justify-center rounded-lg border-2 p-3" @click="() => copy()">
         <Icon v-if="!copied" name="line-md:clipboard" />
         <Icon v-else name="line-md:clipboard-check" />
       </div>

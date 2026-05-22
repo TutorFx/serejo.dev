@@ -41,7 +41,7 @@ onUnmounted(() => {
 
 <template>
   <div
-    class="shrink-0 grid size-4"
+    class="grid size-4 shrink-0"
     :style="{
       gridTemplateColumns: `repeat(${size}, 1fr)`,
       gap: `${gap}px`

@@ -84,22 +84,22 @@ function copyLink() {
     </UTooltip>
 
     <template #body>
-      <div class="flex flex-col gap-0.5 rounded-lg ring ring-default p-1">
+      <div class="ring-default flex flex-col gap-0.5 rounded-lg p-1 ring">
         <button
           v-for="option in options"
           :key="option.value"
           :disabled="loading"
           :data-selected="option.value === visibility"
-          class="flex items-center gap-3 rounded-md px-3 py-2.5 text-left transition-colors hover:bg-elevated/50 disabled:opacity-50 data-[selected=true]:bg-elevated/50"
+          class="hover:bg-elevated/50 data-[selected=true]:bg-elevated/50 flex items-center gap-3 rounded-md px-3 py-2.5 text-left transition-colors disabled:opacity-50"
           @click="updateVisibility(option.value)"
         >
-          <UIcon :name="option.icon" class="size-5 text-muted shrink-0" />
+          <UIcon :name="option.icon" class="text-muted size-5 shrink-0" />
 
-          <div class="flex-1 min-w-0">
-            <p class="text-sm font-medium text-highlighted">
+          <div class="min-w-0 flex-1">
+            <p class="text-highlighted text-sm font-medium">
               {{ option.label }}
             </p>
-            <p class="text-sm text-muted">
+            <p class="text-muted text-sm">
               {{ option.description }}
             </p>
           </div>
@@ -107,13 +107,13 @@ function copyLink() {
           <UIcon
             v-if="visibility === option.value"
             name="i-lucide-circle-check"
-            class="size-5 text-primary shrink-0"
+            class="text-primary size-5 shrink-0"
           />
         </button>
       </div>
 
-      <div v-if="isShared" class="flex items-center gap-2 rounded-lg ring ring-default px-2 py-1.5 mt-4">
-        <a :href="shareUrl" target="_blank" class="flex-1 truncate text-sm text-muted pl-1">
+      <div v-if="isShared" class="ring-default mt-4 flex items-center gap-2 rounded-lg px-2 py-1.5 ring">
+        <a :href="shareUrl" target="_blank" class="text-muted flex-1 truncate pl-1 text-sm">
           {{ shareUrl }}
         </a>
 

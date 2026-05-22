@@ -13,17 +13,17 @@ defineProps<CurriculumBody>()
 </script>
 
 <template>
-  <div class="flex flex-col gap-6 px-4 py-6 bg-white text-black max-w-[21cm] mx-auto">
+  <div class="mx-auto flex max-w-[21cm] flex-col gap-6 bg-white px-4 py-6 text-black">
     <!-- Statement / Summary -->
     <section class="mb-2">
-      <p class="text-sm text-justify leading-relaxed">
+      <p class="text-justify text-sm leading-relaxed">
         {{ $t('me.summary') }}
       </p>
     </section>
 
     <!-- Technical Proficiencies -->
     <section v-if="skills && skills.length">
-      <h2 class="text-lg font-bold uppercase border-b-2 border-black mb-2">
+      <h2 class="mb-2 border-b-2 border-black text-lg font-bold uppercase">
         Technical Proficiencies
       </h2>
       <div class="flex flex-wrap gap-x-6 gap-y-1 text-sm">
@@ -36,7 +36,7 @@ defineProps<CurriculumBody>()
 
     <!-- Certifications -->
     <section v-if="certifications && certifications.length" class="mt-4">
-      <h2 class="text-lg font-bold uppercase border-b-2 border-black mb-2">
+      <h2 class="mb-2 border-b-2 border-black text-lg font-bold uppercase">
         Certifications
       </h2>
       <div class="flex flex-col gap-1 text-sm">
@@ -49,25 +49,25 @@ defineProps<CurriculumBody>()
 
     <!-- Professional Experience -->
     <section v-if="experiences && experiences.length">
-      <h2 class="text-lg font-bold uppercase border-b-2 border-black mb-3">
+      <h2 class="mb-3 border-b-2 border-black text-lg font-bold uppercase">
         Professional Experience
       </h2>
       <div class="flex flex-col gap-4">
         <div v-for="(experience, key) in experiences" :key="key" class="flex flex-col">
-          <div class="flex justify-between items-baseline">
-            <h3 class="font-bold text-base uppercase">
+          <div class="flex items-baseline justify-between">
+            <h3 class="text-base font-bold uppercase">
               {{ experience.title }}
             </h3>
-            <span class="text-sm italic font-medium whitespace-nowrap">
+            <span class="text-sm font-medium whitespace-nowrap italic">
               {{ experience.start }} - {{ experience.end }}
             </span>
           </div>
           <!-- Optional: Organization if needed, though image focuses on Role -->
-          <div v-if="experience.org" class="text-sm font-semibold italic mb-1">
+          <div v-if="experience.org" class="mb-1 text-sm font-semibold italic">
             {{ experience.org }}
           </div>
 
-          <ul v-if="experience.delivered" class="list-disc list-outside ml-4 text-sm space-y-0.5">
+          <ul v-if="experience.delivered" class="ml-4 list-outside list-disc space-y-0.5 text-sm">
             <li v-for="(item, index) in experience.delivered" :key="index" class="pl-1">
               {{ item }}
             </li>
@@ -78,29 +78,29 @@ defineProps<CurriculumBody>()
 
     <!-- Projects -->
     <section v-if="projects && projects.length">
-      <h2 class="text-lg font-bold uppercase border-b-2 border-black mb-3">
+      <h2 class="mb-3 border-b-2 border-black text-lg font-bold uppercase">
         Projects
       </h2>
       <div class="flex flex-col gap-4">
         <div v-for="(project, key) in projects" :key="key" class="flex flex-col">
-          <div class="flex justify-between items-baseline border-b border-gray-200 pb-0.5 mb-1">
-            <div class="flex gap-2 items-baseline">
-              <h3 class="font-bold text-base">
+          <div class="mb-1 flex items-baseline justify-between border-b border-gray-200 pb-0.5">
+            <div class="flex items-baseline gap-2">
+              <h3 class="text-base font-bold">
                 {{ project.title }}
               </h3>
-              <span class="text-sm italic text-gray-700">– {{ project.org }}</span>
+              <span class="text-sm text-gray-700 italic">– {{ project.org }}</span>
             </div>
             <!-- Date for projects if available, otherwise hide -->
-            <span v-if="project.start" class="text-sm italic font-medium whitespace-nowrap">
+            <span v-if="project.start" class="text-sm font-medium whitespace-nowrap italic">
               {{ project.start }} - {{ project.end }}
             </span>
           </div>
 
-          <p v-if="project.reducedBody" class="text-sm mb-1">
+          <p v-if="project.reducedBody" class="mb-1 text-sm">
             {{ project.reducedBody }}
           </p>
 
-          <ul v-if="project.delivered" class="list-disc list-outside ml-4 text-sm space-y-0.5">
+          <ul v-if="project.delivered" class="ml-4 list-outside list-disc space-y-0.5 text-sm">
             <li v-for="(item, index) in project.delivered" :key="index" class="pl-1">
               {{ item }}
             </li>
@@ -111,16 +111,16 @@ defineProps<CurriculumBody>()
 
     <!-- Education -->
     <section v-if="education && education.length">
-      <h2 class="text-lg font-bold uppercase border-b-2 border-black mb-3">
+      <h2 class="mb-3 border-b-2 border-black text-lg font-bold uppercase">
         Education
       </h2>
       <div class="flex flex-col gap-2">
         <div v-for="(edu, key) in education" :key="key" class="flex flex-col">
-          <div class="flex justify-between items-baseline">
-            <h3 class="font-bold text-base">
+          <div class="flex items-baseline justify-between">
+            <h3 class="text-base font-bold">
               {{ edu.org }}
             </h3>
-            <span class="text-sm font-bold text-right">
+            <span class="text-right text-sm font-bold">
               {{ edu.date || edu.end }}
             </span>
           </div>

@@ -12,8 +12,16 @@ withDefaults(
 
 <template>
   <svg
-    class="wheel" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
-    x="0px" y="0px" :width="`${a * 2}px`" :height="`${a * 2}px`" :viewBox="`0 0 ${a * 2} ${a * 2}`" :enable-background="`new 0 0 ${a * 2} ${a * 2}`"
+    class="wheel"
+    version="1.1"
+    xmlns="http://www.w3.org/2000/svg"
+    xmlns:xlink="http://www.w3.org/1999/xlink"
+    x="0px"
+    y="0px"
+    :width="`${a * 2}px`"
+    :height="`${a * 2}px`"
+    :viewBox="`0 0 ${a * 2} ${a * 2}`"
+    :enable-background="`new 0 0 ${a * 2} ${a * 2}`"
     xml:space="preserve"
   >
     <defs>
@@ -23,7 +31,7 @@ withDefaults(
     <g>
       <use xlink:href="#criclePath" fill="none" />
       <text class="fill-current">
-        <textPath xlink:href="#criclePath" class="font-bold text-[42px]">
+        <textPath xlink:href="#criclePath" class="text-[42px] font-bold">
           {{ value }}
         </textPath>
       </text>

@@ -9,7 +9,7 @@ const props = defineProps<{
   <NuxtLink
     :href="props.href"
     :target="props.target"
-    class="relative inline-block before:content-[''] before:absolute before:top-full before:w-full before:left-0 before:h-1 before:rounded-xs before:bg-linear-(--brand-gradient)"
+    class="relative inline-block before:absolute before:top-full before:left-0 before:h-1 before:w-full before:rounded-xs before:bg-linear-(--brand-gradient) before:content-['']"
   >
     <slot />
   </NuxtLink>
