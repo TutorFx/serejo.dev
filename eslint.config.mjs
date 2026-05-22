@@ -27,7 +27,6 @@ export default withNuxt(
     },
     rules: {
       'tailwindcss/classnames-order': 'warn',
-      'tailwindcss/enforces-negative-arbitrary-values': 'warn',
       'tailwindcss/enforces-shorthand': 'warn',
       'tailwindcss/no-contradicting-classname': 'error',
     },
