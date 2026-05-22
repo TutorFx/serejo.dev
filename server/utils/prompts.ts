@@ -54,7 +54,7 @@ export function initial_prompt(event: H3Event<EventHandlerRequest>) {
 
 export function final_prompt() {
   return `Use this information to personalize your responses and make them more engaging.
-  * the response must to be in the MDC syntax, You could use the components but wait for :
+  * the response must to be in the Comark/Markdown syntax, You could use the components but wait for :
   ** Remember, if you scape using '\\"', the component will not work, so take care of it.
 
   ** Whatsapp Button

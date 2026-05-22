@@ -1,6 +1,6 @@
 import process from 'node:process'
 import { defineNuxtModule, useLogger } from '@nuxt/kit'
-import { parseFrontMatter } from 'remark-mdc'
+import yamlFront from 'yaml-front-matter'
 
 import { Index } from '@upstash/vector'
 
@@ -9,8 +9,6 @@ export default defineNuxtModule({
     name: 'embedding-generator',
   },
   async setup(_options, nuxt) {
-    const frontMatterWithDividersRegex = /---.*?---/gs
-
     const logger = useLogger('embedding-generator', { formatOptions: {
       date: true,
     } })
@@ -27,8 +25,8 @@ export default defineNuxtModule({
       nuxt.hooks.hook('content:file:afterParse', async (ctx) => {
         const { file } = ctx
 
-        const { data: headerData } = parseFrontMatter(frontMatterWithDividersRegex.exec(file.body)?.at(0) ?? '')
-        const body = file.body.replace(frontMatterWithDividersRegex, '')
+        const parsed = yamlFront.loadFront(file.body)
+        const { __content: body, ...headerData } = parsed
 
         if (!body)
           return

@@ -46,7 +46,7 @@ export function getSources(part: ToolPart): Source[] {
   return []
 }
 
-export function sourceToInlineMdc(url: string): string {
+export function sourceToInlineComark(url: string): string {
   const domain = getDomain(url)
   const favicon = getFaviconUrl(url)
   const safeUrl = url.replace(/"/g, '&quot;')

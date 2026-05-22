@@ -4,7 +4,7 @@
       <div class="grid min-h-82 items-center">
         <div class="grid gap-6">
           <div class="text-lg md:text-xl">
-            <MDC :value="$t('me.abroad')" />
+            <Comark :markdown="$t('me.abroad')" />
           </div>
           <div class="mx-auto">
             <UIButton target="_blank" :to="$localePath({ name: 'curriculum', query: { print: null } })">
