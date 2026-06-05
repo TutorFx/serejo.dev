@@ -9,3 +9,4 @@ dist
 .data
 .generated
 .local.env
+.agents

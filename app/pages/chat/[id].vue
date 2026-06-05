@@ -11,7 +11,6 @@ const { data } = await useFetch(`/api/chats/${route.params.id}`, {
 })
 
 const isOwner = computed(() => data.value?.isOwner ?? false)
-const visibility = ref<'public' | 'private'>(data.value?.visibility ?? 'private')
 const title = ref<string | null>(data.value?.title ?? null)
 
 watch(() => data.value?.title, (next) => {
@@ -73,36 +72,36 @@ onMounted(() => {
 </script>
 
 <template>
-  <UDashboardPanel
-    v-if="data?.id"
-    id="chat"
-    class="relative min-h-0"
-    :ui="{ body: 'p-0 sm:p-0 overscroll-none' }"
-  >
-    <template #header>
-      <UDashboardNavbar>
-        <template #title>
-          <ChatTitle
-            :chat-id="data!.id"
-            :title="title"
-            :is-owner="isOwner"
-            @update:title="title = $event"
-          />
-        </template>
+  <div>
+    <div
+      v-if="data?.id"
+      id="chat"
+      class="relative min-h-0"
+      :ui="{ body: 'p-0 sm:p-0' }"
+    >
+      <!-- <template #header>
+        <UDashboardNavbar>
+          <template #title>
+            <ChatTitle
+              :chat-id="data!.id"
+              :title="title"
+              :is-owner="isOwner"
+              @update:title="title = $event"
+            />
+          </template>
 
-        <template #right>
-          <ChatVisibility
-            v-if="isOwner"
-            :chat-id="data!.id"
-            :visibility="visibility"
-            @update:visibility="visibility = $event"
-          />
-        </template>
-      </UDashboardNavbar>
-    </template>
+          <template #right>
+            <ChatVisibility
+              v-if="isOwner"
+              :chat-id="data!.id"
+              :visibility="visibility"
+              @update:visibility="visibility = $event"
+            />
+          </template>
+        </UDashboardNavbar>
+      </template> -->
 
-    <template #body>
-      <div ref="dropzoneRef" class="flex flex-1">
+      <div class="flex flex-1">
         <UContainer class="flex flex-1 flex-col gap-4 sm:gap-6">
           <UChatMessages
             should-auto-scroll
@@ -155,10 +154,10 @@ onMounted(() => {
           </UChatPrompt>
         </UContainer>
       </div>
-    </template>
-  </UDashboardPanel>
+    </div>
 
-  <UContainer v-else class="flex flex-1 flex-col gap-4 sm:gap-6">
-    <UError :error="{ statusMessage: 'Chat not found', statusCode: 404 }" class="min-h-full" />
-  </UContainer>
+    <UContainer v-else class="flex flex-1 flex-col gap-4 sm:gap-6">
+      <UError :error="{ statusMessage: 'Chat not found', statusCode: 404 }" class="min-h-full" />
+    </UContainer>
+  </div>
 </template>

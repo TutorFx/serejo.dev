@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import type { UIMessage } from 'ai'
-import { isFileUIPart } from 'ai'
 import { useClipboard } from '@vueuse/core'
 import { getTextFromMessage } from '@nuxt/ui/utils/ai'
 
@@ -20,12 +19,6 @@ const formattedDate = computed(() => {
     iso: date.toISOString()
   }
 })
-
-const emit = defineEmits<{
-  edit: [message: UIMessage]
-}>()
-
-const hasFiles = computed(() => props.message.parts.some(isFileUIPart))
 
 const clipboard = useClipboard()
 
@@ -61,17 +54,6 @@ function copy() {
       <time :datetime="formattedDate.iso" class="text-muted mr-1.5 text-xs">
         {{ formattedDate.time }}
       </time>
-    </UTooltip>
-
-    <UTooltip v-if="!hasFiles" text="Edit message">
-      <UButton
-        size="sm"
-        color="neutral"
-        variant="ghost"
-        icon="i-lucide-pencil"
-        aria-label="Edit message"
-        @click="emit('edit', message)"
-      />
     </UTooltip>
   </template>
 </template>

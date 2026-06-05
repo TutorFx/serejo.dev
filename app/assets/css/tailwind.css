@@ -8,6 +8,7 @@
   --accent: #a8a29e;
   --neutral: #14213d;
   --neutral-content: #818589;
+  --base-inverted: oklch(14.1% 0.005 285.823);
   --base-100: oklch(100% 0 0);
   --base-200: #f2f2f2;
   --base-300: #e5e6e6;
@@ -37,6 +38,24 @@
   --brand-gradient:
     45deg, var(--brand-1), var(--brand-2), var(--brand-3), var(--brand-4), var(--brand-5), var(--brand-6),
     var(--brand-7), var(--brand-8), var(--brand-9), var(--brand-10);
+
+  --ui-text-dimmed: color-mix(in srgb, var(--base-content) 50%, transparent);
+  --ui-text-muted: color-mix(in srgb, var(--base-content) 70%, transparent);
+  --ui-text-toned: color-mix(in srgb, var(--base-content) 85%, transparent);
+  --ui-text: var(--base-content);
+  --ui-text-highlighted: #000000;
+  --ui-text-inverted: var(--base-100);
+
+  --ui-bg: var(--base-100);
+  --ui-bg-muted: var(--base-200);
+  --ui-bg-elevated: var(--base-100);
+  --ui-bg-accented: var(--base-300);
+  --ui-bg-inverted: var(--base-inverted);
+
+  --ui-border: var(--border);
+  --ui-border-muted: var(--base-200);
+  --ui-border-accented: var(--base-300);
+  --ui-border-inverted: var(--base-inverted);
 }
 
 html.dark {
@@ -45,11 +64,30 @@ html.dark {
   --accent: #57534e;
   --neutral: #e5e5e5;
   --neutral-content: #ffffff;
+  --base-inverted: #fff;
   --base-100: #0c0a09;
   --base-200: #100f0f;
   --base-300: #141414;
   --base-content: #ffffff;
   --border: var(--base-300);
+
+  --ui-text-dimmed: color-mix(in srgb, var(--base-content) 50%, transparent);
+  --ui-text-muted: color-mix(in srgb, var(--base-content) 70%, transparent);
+  --ui-text-toned: color-mix(in srgb, var(--base-content) 85%, transparent);
+  --ui-text: var(--base-content);
+  --ui-text-highlighted: #ffffff;
+  --ui-text-inverted: #000000;
+
+  --ui-bg: var(--base-100);
+  --ui-bg-muted: var(--base-200);
+  --ui-bg-elevated: var(--base-200);
+  --ui-bg-accented: var(--base-300);
+  --ui-bg-inverted: var(--base-inverted);
+
+  --ui-border: var(--border);
+  --ui-border-muted: var(--base-200);
+  --ui-border-accented: var(--base-300);
+  --ui-border-inverted: var(--base-inverted);
 }
 
 @theme {
@@ -62,6 +100,7 @@ html.dark {
   --color-base-200: var(--base-200);
   --color-base-300: var(--base-300);
   --color-base-content: var(--base-content);
+  --color-base-inverted: var(--base-inverted);
   --color-border: var(--border) --font-sans: 'Space Grotesk', 'sans-serif';
   --font-logo: 'Mochiy Pop One', 'sans-serif';
 }
