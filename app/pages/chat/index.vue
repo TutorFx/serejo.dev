@@ -1,7 +1,6 @@
 <script setup lang="ts">
 const input = ref('')
 const loading = ref(false)
-const chatId = crypto.randomUUID()
 
 const { user } = useUserSession()
 
@@ -25,7 +24,6 @@ async function createChat(prompt: string) {
   const chat = await $fetch('/api/chats', {
     method: 'POST',
     body: {
-      id: chatId,
       message: {
         role: 'user',
         parts

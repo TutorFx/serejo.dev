@@ -113,6 +113,32 @@ export default defineI18nLocale(() => {
       input_label: 'Digite sua mensagem...',
       reply_in_second: 'Típicamente responde em 1s',
       talk_to_cat: 'Oi, sou Felina. A assistente virtual do Serejo. Me mande um oi, te responderei caso você seja digno.',
+      tool_calendar: {
+        availability: 'Disponibilidade',
+        loading: 'Consultando agenda...',
+        error: 'Erro ao consultar a agenda, tente novamente.',
+        free_slots: 'Horários Livres',
+        busy_slots: 'Compromissos Agendados',
+        no_slots: 'Nenhum horário livre encontrado para o horário comercial deste dia.',
+        timezone_difference: 'Fuso horário diferente:'
+      },
+      tool_meet: {
+        confirm: 'Confirmar Agendamento',
+        description: 'Deseja agendar a seguinte reunião?',
+        summary: 'Título:',
+        start: 'Início:',
+        end: 'Fim:',
+        attendees: 'Convidados:',
+        approve: 'Agendar Reunião',
+        deny: 'Cancelar',
+        scheduled: 'Solicitação Enviada!',
+        next_step: 'Aguardando Confirmação',
+        next_step_desc: 'Gabriel avaliará a disponibilidade. Você receberá a confirmação oficial e o link da reunião no e-mail informado.',
+        open_calendar: 'Abrir Agenda',
+        loading: 'Agendando evento na agenda...',
+        error: 'Erro ao agendar reunião, tente novamente.',
+        denied_alert: 'Agendamento cancelado.'
+      }
     },
   }
 })

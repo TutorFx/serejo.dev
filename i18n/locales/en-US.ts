@@ -111,6 +111,32 @@ export default defineI18nLocale(() => {
       input_label: 'Type your message...',
       reply_in_second: 'I typically reply in a second',
       talk_to_cat: 'She can be sarcastic, but she\'s also incredibly smart and funny. 😹 Who knows, if you catch her in a good mood, she might even tell you some feline secrets!',
+      tool_calendar: {
+        availability: 'Availability',
+        loading: 'Checking calendar...',
+        error: 'Error checking calendar, try again.',
+        free_slots: 'Free Slots',
+        busy_slots: 'Scheduled Appointments',
+        no_slots: 'No free slots found during business hours for this day.',
+        timezone_difference: 'Different time zone:'
+      },
+      tool_meet: {
+        confirm: 'Confirm Appointment',
+        description: 'Do you want to schedule the following meeting?',
+        summary: 'Title:',
+        start: 'Start:',
+        end: 'End:',
+        attendees: 'Guests:',
+        approve: 'Schedule Meeting',
+        deny: 'Cancel',
+        scheduled: 'Request Sent!',
+        next_step: 'Awaiting Confirmation',
+        next_step_desc: 'Gabriel will evaluate his availability. You will receive the official confirmation and meeting link at the provided email.',
+        open_calendar: 'Open Calendar',
+        loading: 'Scheduling event in calendar...',
+        error: 'Error scheduling meeting, please try again.',
+        denied_alert: 'Meeting request canceled.'
+      }
     },
   }
 })

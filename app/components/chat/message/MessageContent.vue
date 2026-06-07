@@ -6,6 +6,11 @@ import { isPartStreaming, isToolStreaming } from '@nuxt/ui/utils/ai'
 defineProps<{
   message: UIMessage
 }>()
+
+const emit = defineEmits<{
+  approve: [id: string]
+  deny: [id: string]
+}>()
 </script>
 
 <template>
@@ -32,6 +37,18 @@ defineProps<{
       >
         <ChatToolSources :sources="getSources(part)" />
       </UChatTool>
+
+      <ChatToolCalendar
+        v-else-if="getToolName(part) === 'calendar'"
+        :invocation="{ ...(part as CalendarUIToolInvocation) }"
+      />
+
+      <ChatToolMeet
+        v-else-if="getToolName(part) === 'createMeeting'"
+        :invocation="{ ...(part as CreateMeetingUIToolInvocation) }"
+        @approve="emit('approve', (part as CreateMeetingUIToolInvocation).approval?.id ?? part.toolCallId)"
+        @deny="emit('deny', (part as CreateMeetingUIToolInvocation).approval?.id ?? part.toolCallId)"
+      />
     </template>
 
     <template v-else-if="isTextUIPart(part)">

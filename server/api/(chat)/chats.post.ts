@@ -5,13 +5,11 @@ export default defineEventHandler(async (event) => {
   const session = await getUserSession(event)
   const db = useDrizzle()
 
-  const { id, message } = await readValidatedBody(event, z.object({
-    id: z.string(),
+  const { message } = await readValidatedBody(event, z.object({
     message: z.custom<UIMessage>()
   }).parse)
 
   const [chat] = await db.insert(schema.chats).values({
-    id,
     title: '',
     userId: session.user?.id || session.id
   }).returning()

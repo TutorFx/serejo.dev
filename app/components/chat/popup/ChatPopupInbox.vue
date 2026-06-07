@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { Chat } from '@ai-sdk/vue'
-import { DefaultChatTransport } from 'ai'
+import { DefaultChatTransport, lastAssistantMessageIsCompleteWithApprovalResponses } from 'ai'
 
 const props = defineProps<{ id: string }>()
 const toast = useToast()
@@ -22,8 +22,14 @@ const input = ref('')
 const chat = new Chat({
   id: data.value?.id,
   messages: data.value?.messages,
+  sendAutomaticallyWhen: lastAssistantMessageIsCompleteWithApprovalResponses,
   transport: new DefaultChatTransport({
-    api: `/api/chats/${data.value?.id}`
+    api: `/api/chats/${data.value?.id}`,
+    body: () => {
+      return {
+        timeZone: Intl.DateTimeFormat().resolvedOptions().timeZone
+      }
+    }
   }),
   onData: async (dataPart) => {
     if (dataPart.type === 'data-chat-title') {
@@ -138,6 +144,8 @@ onMounted(() => {
                 <template #content="{ message }">
                   <ChatMessageContent
                     :message="message"
+                    @approve="chat.addToolApprovalResponse({ id: $event, approved: true })"
+                    @deny="chat.addToolApprovalResponse({ id: $event, approved: false })"
                   />
                 </template>
 
