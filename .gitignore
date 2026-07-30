@@ -10,3 +10,4 @@ dist
 .generated
 .local.env
 .agents
+graphify-out

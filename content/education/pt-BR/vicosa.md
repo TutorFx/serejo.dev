@@ -1,5 +1,5 @@
 ---
-title: Postgraduate Lato Sensu - Specialization, Artificial and Computational Intelligence
+title: Pós-Graduação - Especialização em Inteligência Artificial e Computacional
 org: Universidade Federal de Viçosa
 location: Viçosa Minas Gerais, Brazil
 start: 2024-03-02

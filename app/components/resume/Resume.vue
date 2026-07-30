@@ -3,7 +3,7 @@ import CurriculumHeaderMinimal from '../curriculum/CurriculumHeaderMinimal.vue'
 import CurriculumFooter from '../curriculum/CurriculumFooter.vue'
 import ResumeBodyMinimal from './ResumeBodyMinimal.vue'
 
-const { locale } = useI18n()
+const { locale, tm, rt } = useI18n()
 
 const { data: experiences } = await useFetch<ExperiencesDto[]>('/api/experiences', {
   query: {
@@ -26,38 +26,19 @@ const contact = [
   { key: 'Website', value: 'serejo.dev' },
 ]
 
-// Reduced skills list for One Page Resume
-const skills = [
-  'Generative AI',
-  'RAG',
-  'LLMs',
-  'AI agents',
-  'LangChain',
-  'TypeScript',
-  'Python',
-  'PyTorch',
-  'Prompt Engineering',
-  'Vector Databases',
-  'NLP',
-  'vLLM',
-  'Hugging Face',
-  'LangSmith',
-  'LangFuse',
-  'OTel',
-  'ADK',
-  'Bedrock',
-  'DeepEval',
-  'Model APIs (OpenAI, Gemini, Anthropic)',
-  'Self-hosted Models (Ollama, Hugging Face)',
-  'Cloud Platforms (Azure, AWS, GCP)',
-  'TensorFlow',
-  'Deep Learning',
-]
+const skills = computed<string[]>(() => {
+  const items = tm('curriculum.skills') as unknown as unknown[]
+  return Array.isArray(items)
+    ? items.map((item: unknown) => (typeof item === 'string' ? item : rt(item as never)))
+    : []
+})
 
-const certifications = [
-  'Google AI Professional Certificate (2026)',
-  'Oracle AI Vector Search Certified Professional (2025)',
-]
+const certifications = computed<string[]>(() => {
+  const items = tm('curriculum.certifications') as unknown as unknown[]
+  return Array.isArray(items)
+    ? items.map((item: unknown) => (typeof item === 'string' ? item : rt(item as never)))
+    : []
+})
 </script>
 
 <template>
