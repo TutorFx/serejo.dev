@@ -52,13 +52,21 @@ export default defineNitroPlugin(async (nitro) => {
           : currentChunk.content
 
         const prompt = `<document>
-${wholeDocument}
+ ${wholeDocument}
 </document>
-Here is the chunk we want to situate within the whole document
+
+Here is the chunk we want to situate within the whole document:
 <chunk>
-${currentChunk.content}
+ ${currentChunk.content}
 </chunk>
-Please give a short succinct context to situate this chunk within the overall document for the purposes of improving search retrieval of the chunk. Answer only with the succinct context and nothing else.`
+
+Please provide a short, succinct context to situate this chunk within the overall document for the purposes of improving search retrieval of the chunk.
+
+CRITICAL RULES:
+- Focus ONLY on describing where this chunk fits in the broader document (e.g., its topic, section, or relation to the overall narrative).
+- DO NOT explain, expand, or guess the meaning of acronyms, abbreviations, or technical terms. If an acronym is not expanded in the text, leave it as is.
+- Base your context STRICTLY on the provided document. Do not introduce outside knowledge.
+- Answer only with the succinct context and nothing else.`
 
         const { text: context } = await generateText({
           model: ai.llm,

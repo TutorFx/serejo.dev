@@ -1,11 +1,12 @@
 import type { MarkdownRoot } from '@nuxt/content'
 import z from 'zod/v4'
+import { LOCALES } from './cms.constants'
 
 export const cmsEntrySchema = {
   meta: z.object({
     reducedBody: z.string().optional(),
     readingTimeInSeconds: z.number(),
-    locale: z.enum(LOCALE_KEYS),
+    locale: z.enum(LOCALES),
   }),
   title: z.string().min(1),
   id: z.string(),

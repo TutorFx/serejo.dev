@@ -1,5 +1,11 @@
 import type { MinimarkNode, MinimarkTree, PageCollections } from '@nuxt/content'
 import { CMS_ROUTE_LIST, LOCALE_KEYS } from './cms.constants'
+import {
+  blogSchemaWithBody,
+  educationWithBodySchema,
+  historyWithBodySchema,
+  projectSchema,
+} from './cms.schemas'
 
 export type ContentDocument = PageCollections[keyof PageCollections]
 
@@ -81,4 +87,143 @@ export function extractDocumentRoute(
   }
 
   return null
+}
+
+export function extractDocumentContent(
+  collectionName: keyof PageCollections | string,
+  doc: ContentDocument,
+): string {
+  if (collectionName === 'history') {
+    const parsed = historyWithBodySchema.safeParse(doc)
+    if (parsed.success) {
+      const { title, org, location, start, end, delivered, body } = parsed.data
+      const isCurrent = !end
+      const status = isCurrent
+        ? 'CURRENT ROLE / ACTIVE POSITION (Present)'
+        : 'Past Experience / Completed'
+
+      const startStr = start ? new Date(start).toISOString().split('T')[0] : ''
+      const endStr = end ? new Date(end).toISOString().split('T')[0] : 'Present'
+
+      const parts: string[] = [
+        `# [Professional Experience] ${title} at ${org}`,
+        `- Company/Organization: ${org}`,
+        `- Role/Position: ${title}`,
+        `- Location: ${location}`,
+        `- Period: ${startStr} to ${endStr}`,
+        `- Status: ${status}`,
+      ]
+
+      if (delivered && delivered.length > 0) {
+        parts.push(`- Key Deliverables & Achievements:\n${delivered.map(d => `  * ${d}`).join('\n')}`)
+      }
+
+      if (body) {
+        const bodyText = typeof body === 'string' ? body : extractTreeText(body as MinimarkTree)
+        if (bodyText) {
+          parts.push(`\n## Experience Details\n${bodyText}`)
+        }
+      }
+
+      return parts.join('\n')
+    }
+  }
+
+  if (collectionName === 'education') {
+    const parsed = educationWithBodySchema.safeParse(doc)
+    if (parsed.success) {
+      const { title, org, start, end, body } = parsed.data
+      const isCurrent = end ? new Date(end).getTime() > Date.now() : true
+      const status = isCurrent ? 'In Progress' : 'Completed'
+      const startStr = start ? new Date(start).toISOString().split('T')[0] : ''
+      const endStr = end ? new Date(end).toISOString().split('T')[0] : 'Present'
+
+      const parts: string[] = [
+        `# [Academic Education] ${title} - ${org}`,
+        `- Institution: ${org}`,
+        `- Degree / Program: ${title}`,
+        `- Period: ${startStr} to ${endStr}`,
+        `- Status: ${status}`,
+      ]
+
+      if (body) {
+        const bodyText = typeof body === 'string' ? body : extractTreeText(body as MinimarkTree)
+        if (bodyText) {
+          parts.push(`\n## Description\n${bodyText}`)
+        }
+      }
+
+      return parts.join('\n')
+    }
+  }
+
+  if (collectionName === 'blog') {
+    const parsed = blogSchemaWithBody.safeParse(doc)
+    if (parsed.success) {
+      const { title, createdAt, body } = parsed.data
+      const createdStr = createdAt ? new Date(createdAt).toISOString().split('T')[0] : ''
+      const parts: string[] = [
+        `# [Blog Post] ${title}`,
+        `- Publication Date: ${createdStr}`,
+      ]
+
+      if ('description' in doc && typeof doc.description === 'string' && doc.description) {
+        parts.push(`- Summary: ${doc.description}`)
+      }
+
+      if (body) {
+        const bodyText = typeof body === 'string' ? body : extractTreeText(body as MinimarkTree)
+        if (bodyText) {
+          parts.push(`\n${bodyText}`)
+        }
+      }
+
+      return parts.join('\n')
+    }
+  }
+
+  if (collectionName === 'projects') {
+    const parsed = projectSchema.safeParse(doc)
+    const title = ('title' in doc && typeof doc.title === 'string' && doc.title) || 'Project'
+    const parts: string[] = [`# [Project] ${title}`]
+
+    if (parsed.success) {
+      if (parsed.data.url) parts.push(`- Project URL: ${parsed.data.url}`)
+      if (parsed.data.github) parts.push(`- GitHub Repository: ${parsed.data.github}`)
+    }
+
+    if ('description' in doc && typeof doc.description === 'string' && doc.description) {
+      parts.push(doc.description)
+    }
+
+    if ('body' in doc && doc.body) {
+      const bodyText = typeof doc.body === 'string' ? doc.body : extractTreeText(doc.body as MinimarkTree)
+      if (bodyText) {
+        parts.push(`\n${bodyText}`)
+      }
+    }
+
+    return parts.join('\n')
+  }
+
+  // Fallback genérico para pages ou documentos não mapeados
+  const parts: string[] = []
+
+  if ('title' in doc && typeof doc.title === 'string' && doc.title) {
+    parts.push(`# ${doc.title}`)
+  }
+
+  if ('description' in doc && typeof doc.description === 'string' && doc.description) {
+    parts.push(doc.description)
+  }
+
+  if ('body' in doc && doc.body) {
+    if (typeof doc.body === 'string') {
+      parts.push(doc.body)
+    } else if (typeof doc.body === 'object' && doc.body !== null && 'value' in doc.body) {
+      parts.push(extractTreeText(doc.body as MinimarkTree))
+    }
+  }
+
+  return parts.filter(Boolean).join('\n\n')
 }

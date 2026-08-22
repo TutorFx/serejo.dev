@@ -1,0 +1,2 @@
+CREATE INDEX "document_chunks_document_id_idx" ON "document_chunks" USING btree ("document_id");--> statement-breakpoint
+CREATE INDEX "document_chunks_doc_index_idx" ON "document_chunks" USING btree ("document_id","index");

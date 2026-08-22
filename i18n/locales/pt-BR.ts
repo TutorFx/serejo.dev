@@ -229,6 +229,21 @@ export default defineI18nLocale(() => {
         loading: 'Agendando evento na agenda...',
         error: 'Erro ao agendar reunião, tente novamente.',
         denied_alert: 'Agendamento cancelado.'
+      },
+      tool_search: {
+        loading: 'Consultando acervo...',
+        completed: 'Consultou o acervo',
+        error: 'Erro ao consultar acervo',
+        no_results: 'Nenhum trecho correspondente encontrado',
+        results_count: '{count} resultado | {count} resultados',
+        view_page: 'Abrir página',
+        collections: {
+          blog: 'Blog',
+          education: 'Educação',
+          history: 'Carreira',
+          projects: 'Projetos',
+          pages: 'Páginas'
+        }
       }
     },
   }

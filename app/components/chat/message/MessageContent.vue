@@ -5,6 +5,7 @@ import { isPartStreaming, isToolStreaming } from '@nuxt/ui/utils/ai'
 import { getMergedParts } from '~/utils/ai'
 import { getSearchQuery, getSources } from '~/utils/ai/tool'
 import type { CalendarUIToolInvocation, CreateMeetingUIToolInvocation } from '../../../../shared/utils/tools/calendar'
+import type { HybridSearchUIToolInvocation } from '../../../../shared/utils/tools/search'
 
 defineProps<{
   message: UIMessage
@@ -40,6 +41,12 @@ const emit = defineEmits<{
       >
         <ChatToolSources :sources="getSources(part)" />
       </UChatTool>
+
+      <ChatToolSearch
+        v-else-if="getToolName(part) === 'searchContent'"
+        :invocation="{ ...(part as HybridSearchUIToolInvocation) }"
+        :streaming="isToolStreaming(part)"
+      />
 
       <ChatToolCalendar
         v-else-if="getToolName(part) === 'calendar'"

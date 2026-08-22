@@ -1,5 +1,9 @@
 import { z } from 'zod/v4'
 
+export const cohereEnvSchema = z.object({
+  apiKey: z.string().optional(),
+})
+
 export const geminiEnvSchema = z.object({
   apiKey: z.string().min(1, 'NUXT_GEMINI_API_KEY / runtimeConfig.gemini.apiKey is required'),
 })

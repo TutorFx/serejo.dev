@@ -1,5 +1,5 @@
 <template>
-  <li class="list-decimal">
+  <li class="my-0.5 leading-relaxed">
     <slot />
   </li>
 </template>

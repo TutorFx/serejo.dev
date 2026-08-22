@@ -78,6 +78,9 @@ export default defineNuxtConfig({
   },
 
   runtimeConfig: {
+    cohere: {
+      apiKey: '',
+    },
     gemini: {
       apiKey: '',
     },

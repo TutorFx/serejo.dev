@@ -227,6 +227,21 @@ export default defineI18nLocale(() => {
         loading: 'Scheduling event in calendar...',
         error: 'Error scheduling meeting, please try again.',
         denied_alert: 'Meeting request canceled.'
+      },
+      tool_search: {
+        loading: 'Searching knowledge base...',
+        completed: 'Searched knowledge base',
+        error: 'Error querying knowledge base',
+        no_results: 'No matching content found',
+        results_count: '{count} result | {count} results',
+        view_page: 'Open page',
+        collections: {
+          blog: 'Blog',
+          education: 'Education',
+          history: 'Career',
+          projects: 'Projects',
+          pages: 'Pages'
+        }
       }
     },
   }

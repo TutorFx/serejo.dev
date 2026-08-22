@@ -8,7 +8,7 @@ export const LOCALE_KEYS = {
 
 export const D_LOCALE = LOCALE_KEYS.EN_US
 
-export const LOCALES = Object.values(LOCALE_KEYS)
+export const LOCALES = [LOCALE_KEYS.EN_US, LOCALE_KEYS.PT_BR] as const
 
 type CmsRoute = `/${string}`
 

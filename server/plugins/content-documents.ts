@@ -1,4 +1,4 @@
-import type { MinimarkTree, PageCollections } from '@nuxt/content'
+import type { PageCollections } from '@nuxt/content'
 import type { H3Event } from 'h3'
 import { tables } from '#content/manifest'
 import { RecursiveCharacterTextSplitter } from '@langchain/textsplitters'
@@ -6,34 +6,12 @@ import { queryCollection } from '@nuxt/content/server'
 import { consola } from 'consola'
 import { inArray, sql } from 'drizzle-orm'
 import { hash } from 'ohash'
-import { extractDocumentRoute, extractTreeText, type ContentDocument } from '~~/shared/utils/functions'
+import { extractDocumentContent, extractDocumentRoute } from '~~/shared/utils/functions'
 
 const splitter = new RecursiveCharacterTextSplitter({
   chunkSize: 1000,
   chunkOverlap: 200,
 })
-
-function extractDocumentContent(doc: ContentDocument): string {
-  const parts: string[] = []
-
-  if ('title' in doc && typeof doc.title === 'string' && doc.title) {
-    parts.push(`# ${doc.title}`)
-  }
-
-  if ('description' in doc && typeof doc.description === 'string' && doc.description) {
-    parts.push(doc.description)
-  }
-
-  if ('body' in doc && doc.body) {
-    if (typeof doc.body === 'string') {
-      parts.push(doc.body)
-    } else if (typeof doc.body === 'object' && doc.body !== null && 'value' in doc.body) {
-      parts.push(extractTreeText(doc.body as MinimarkTree))
-    }
-  }
-
-  return parts.filter(Boolean).join('\n\n')
-}
 
 export default defineNitroPlugin(async (_nitro) => {
   const logger = consola.withTag('ai-ingestion')
@@ -59,6 +37,7 @@ export default defineNitroPlugin(async (_nitro) => {
     if (allDocuments.length > 0) {
       const rows = allDocuments.map(({ doc, collection }) => ({
         id: doc.id,
+        collection,
         route: extractDocumentRoute(collection, doc),
         hashMd5: hash(doc),
       }))
@@ -69,10 +48,11 @@ export default defineNitroPlugin(async (_nitro) => {
         .onConflictDoUpdate({
           target: schema.document.id,
           set: {
+            collection: sql`excluded.collection`,
             route: sql`excluded.route`,
             hashMd5: sql`excluded.hash_md5`,
           },
-          setWhere: sql`${schema.document.hashMd5} is distinct from excluded.hash_md5 or ${schema.document.route} is distinct from excluded.route`,
+          setWhere: sql`${schema.document.hashMd5} is distinct from excluded.hash_md5 or ${schema.document.route} is distinct from excluded.route or ${schema.document.collection} is distinct from excluded.collection`,
         })
         .returning()
 
@@ -95,7 +75,7 @@ export default defineNitroPlugin(async (_nitro) => {
             continue
           }
 
-          const rawText = extractDocumentContent(fullDoc)
+          const rawText = extractDocumentContent(modDoc.collection, fullDoc)
           if (!rawText.trim()) {
             continue
           }

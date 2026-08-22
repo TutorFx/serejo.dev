@@ -82,9 +82,12 @@ export const votesRelations = relations(votes, ({ one }) => ({
 
 export const document = pgTable('documents', {
   id: text('id').primaryKey(),
+  collection: text('collection').notNull(),
   route: text('route'),
   hashMd5: text('hash_md5').notNull(),
-})
+}, table => [
+  index('documents_collection_idx').on(table.collection),
+])
 
 export const documentChunks = pgTable('document_chunks', {
   id: text('id').primaryKey(),
@@ -93,7 +96,10 @@ export const documentChunks = pgTable('document_chunks', {
   content: text('content').notNull(),
   context: text('context'),
   embedding: vector('embedding', { dimensions: 2000 }),
-})
+}, table => [
+  index('document_chunks_document_id_idx').on(table.documentId),
+  index('document_chunks_doc_index_idx').on(table.documentId, table.index),
+])
 
 export const documentChunkRelations = relations(documentChunks, ({ one }) => ({
   document: one(document, {
