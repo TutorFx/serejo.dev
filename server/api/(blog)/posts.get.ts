@@ -31,7 +31,7 @@ export default defineEventHandler(async (event) => {
       title,
       locale,
       readingTimeInSeconds,
-      readingTimeString: t('time.reading_time', { time: readingTimeString }),
+      readingTimeString: t('time.reading_time', { time: readingTimeString }, { locale }),
       reducedBody: reducedBody ? truncateString(reducedBody, 200) : undefined,
       path,
       slug,

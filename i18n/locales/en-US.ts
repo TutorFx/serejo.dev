@@ -39,9 +39,11 @@ export default defineI18nLocale(() => {
     curriculum: {
       profession: 'Generative AI Engineer',
       summary: 'Summary',
+      objective_title: 'Objective',
+      objective: 'Generative AI Engineer',
       work_experience: 'Work Experience',
       education: 'Education',
-      graduated_in: 'Graduated in {date}',
+      graduated_in: 'Completed in {date}',
       in_progress: 'In Progress',
       technical_proficiencies: 'Technical Proficiencies',
       certifications_title: 'Certifications',
@@ -60,10 +62,10 @@ export default defineI18nLocale(() => {
         'Prompt Engineering',
         'Vector Databases',
         'NLP',
-        'vLLM',
+        'PII',
         'Hugging Face',
         'Model APIs (OpenAI, Gemini, Anthropic)',
-        'Self-hosted Models (Ollama, Hugging Face)',
+        'Self-hosted Models (Ollama, vLLM, Hugging Face)',
         'Cloud Platforms (Azure, AWS, GCP)',
         'TensorFlow',
         'Deep Learning',
@@ -76,7 +78,7 @@ export default defineI18nLocale(() => {
       certifications: [
         'Oracle Agentic AI Certified Foundations Associate (2026)',
         'Google AI Professional Certificate (2026)',
-        'Oracle AI Vector Search Certified Professional (2025)',
+        'Oracle AI Vector Search Certified Professional (2026)',
       ],
       projects: [
         {

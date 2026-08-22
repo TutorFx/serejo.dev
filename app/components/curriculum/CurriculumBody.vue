@@ -8,6 +8,7 @@ export interface CurriculumBody {
 </script>
 
 <script setup lang="ts">
+const { t } = useI18n()
 defineProps<CurriculumBody>()
 </script>
 
@@ -17,17 +18,17 @@ defineProps<CurriculumBody>()
       <div class="relative grid gap-8">
         <div class="text-accent absolute left-2 py-2 text-sm">
           <div class="aspect-square rotate-270 transform text-end uppercase">
-            {{ $t('sections.statement.title') }}
+            {{ t('sections.statement.title') }}
           </div>
         </div>
         <div class="pl-8 text-balance">
-          {{ $t('me.summary') }}
+          {{ t('me.summary') }}
         </div>
       </div>
       <div class="relative grid gap-8">
         <div class="text-accent absolute left-2 py-2 text-sm">
           <div class="aspect-square rotate-270 transform text-end uppercase">
-            {{ $t('curriculum.education') }}
+            {{ t('curriculum.education') }}
           </div>
         </div>
         <div class="grid gap-4 pl-8">
@@ -62,7 +63,7 @@ defineProps<CurriculumBody>()
       <div class="relative">
         <div class="text-accent absolute left-2 py-2 text-sm">
           <div class="aspect-square rotate-270 transform text-end uppercase">
-            {{ $t('sections.experiences.title') }}
+            {{ t('sections.experiences.title') }}
           </div>
         </div>
         <div class="@container grid grid-cols-12 gap-8 pl-8">

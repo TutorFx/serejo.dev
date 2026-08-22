@@ -1,4 +1,3 @@
-import process from 'node:process'
 import tailwindcss from '@tailwindcss/vite'
 
 import {
@@ -11,7 +10,7 @@ import {
 
 import * as pkg from './package.json'
 
-const isDev = Boolean(process.env.NODE_ENV !== 'production')
+const isDev = Boolean(import.meta.dev)
 
 export default defineNuxtConfig({
   modules: [
@@ -52,7 +51,7 @@ export default defineNuxtConfig({
   },
 
   css: [
-    './assets/css/tailwind.css',
+    '~/assets/css/tailwind.css',
   ],
 
   site: {
@@ -79,8 +78,17 @@ export default defineNuxtConfig({
   },
 
   runtimeConfig: {
-    geminiApiKey: process.env.GEMINI_API_KEY,
-    cronSecret: process.env.CRON_SECRET,
+    gemini: {
+      apiKey: '',
+    },
+    google: {
+      calendarId: '',
+      clientEmail: '',
+      privateKey: '',
+    },
+    redisUrl: '',
+    databaseUrl: '',
+    cronSecret: '',
     public: {
       version: pkg.version,
       name: pkg.name,
@@ -88,6 +96,9 @@ export default defineNuxtConfig({
       url: SITE_URL,
       PHONE_NUMBER,
       SCHEDULE,
+      gtag: {
+        id: '',
+      },
     },
   },
 
@@ -128,8 +139,10 @@ export default defineNuxtConfig({
       tasks: true,
     },
     scheduledTasks: {
-      // Run `cms:update` task every minute
-      // '*/30 * * * *': ['chat:process'],
+      '* * * * *': [
+        'db:feed-contextual-chunks',
+        'db:feed-embedding-chunks',
+      ],
     },
   },
 
@@ -157,10 +170,6 @@ export default defineNuxtConfig({
       'Space Grotesk': [300, 400, 700],
       'Mochiy Pop One': true,
     },
-  },
-
-  gtag: {
-    id: process.env.GTAG,
   },
 
   i18n: {

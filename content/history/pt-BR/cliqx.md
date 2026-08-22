@@ -3,8 +3,8 @@ title: Software Engineer
 org: Cliqx
 image: '/experience/experience-cliqx.webp'
 location: São Paulo, Brazil
-start: 2022-12-02
-end: 2023-07-31
+start: 2023-01-02
+end: 2023-08-31
 delivered:
   - Eu escalonei a arquitetura front-end de uma grande aplicação de varejo (Pernambucanas) utilizando o padrão hexagonal orientado a serviços no Nuxt 3.
   - Eu projeta uma camada de cache de alta concorrência usando Redis e SWR, estabelecendo a base de performance necessária para aplicações intensivas em dados.
@@ -14,10 +14,12 @@ delivered:
 
 Na Cliqx, fui desenvolvedor Front-End e trabalhei em diversos projetos. Em sua maioria, os projetos eram de softwares para o mercado de varejo. Minha entrega principal foi a estruturação de um aplicativo para a Pernambucanas, no qual idealizei para o projeto o uso do Framework Nuxt3, e colaborei com o desenvolvimento do aplicativo usando uma arquitetura hexagonal com camadas de serviço. No geral, o projeto foi elaborado a partir de uma estratégia escalável usando Redis, SWR e Nuxt3 para reduzir a carga de trabalho do servidor.
 
-- Linguagens: Typescript, Javascript, C#
+- Linguagens: Typescript, Javascript, Node.js, C#
 
-- Databases: Redis, PostgreSQL
+- Banco de Dados: Redis, PostgreSQL
 
-- Frameworks: Tailwind, Nuxt3, .Net
+- Frameworks e Arquitetura: Tailwind, Nuxt (2/3), Vue.js (Vue 2/3), .Net, Micro-Frontends, Clean Architecture, SWR, Hexagonal Architecture, Event-Driven Architecture, REST API Development
 
-- Metodologias: Scrum
+- Nuvem e DevOps: Azure Cloud, Terraform, Bicep, CloudFormation, Git
+
+- Metodologias: Scrum / Agile

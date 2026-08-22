@@ -26,7 +26,8 @@ export function getExtenseShift(seconds: number, localeKey: LocaleKey): string {
 }
 
 export function formatCardDate(date: Date, localeKey: LocaleKey) {
-  return format(date, 'MMM, yyyy', {
+  const pattern = localeKey === LOCALE_KEYS.EN_US ? 'MMM yyyy' : 'MMM, yyyy'
+  return format(date, pattern, {
     locale: getDateLocale(localeKey),
   })
 }

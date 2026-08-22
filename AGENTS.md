@@ -31,3 +31,5 @@ Sempre que houver necessidade de utilizar componentes, ícones ou composables do
 ## Base Referencial: Tailwind CSS (via MCP)
 Sempre que o trabalho envolver classes complexas, configuração do `tailwind.config`, ou dúvidas sobre espaçamentos e cores oficiais do **Tailwind CSS**.
 - **Ação Obrigatória**: Utilize o servidor MCP `tailwind-mcp` para gerar paletas, visualizar os utilitários exatos ou consultar variáveis de design.
+
+CRITIC: Sempre use bun como runtime. Use `bunx` em vez de `npx`.

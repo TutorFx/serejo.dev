@@ -36,8 +36,10 @@ export default defineI18nLocale(() => {
     copyright: 'Todos os direitos reservados',
     download_curriculum: 'Baixar Curriculum',
     curriculum: {
-      summary: 'Sumário',
+      summary: 'Resumo',
       profession: 'Engenheiro de IA Generativa',
+      objective_title: 'Objetivo',
+      objective: 'Engenheiro de IA Generativa',
       work_experience: 'Experiência Profissional',
       education: 'Educação',
       graduated_in: 'Formado em {date}',
@@ -59,10 +61,10 @@ export default defineI18nLocale(() => {
         'Engenharia de Prompt',
         'Bancos de Dados Vetoriais',
         'PLN (Processamento de Linguagem Natural)',
-        'vLLM',
+        'PII',
         'Hugging Face',
         'APIs de Modelos (OpenAI, Gemini, Anthropic)',
-        'Modelos Auto-hospedados (Ollama, Hugging Face)',
+        'Modelos Auto-hospedados (Ollama, vLLM, Hugging Face)',
         'Plataformas em Nuvem (Azure, AWS, GCP)',
         'TensorFlow',
         'Deep Learning',
@@ -75,7 +77,7 @@ export default defineI18nLocale(() => {
       certifications: [
         'Oracle Agentic AI Certified Foundations Associate (2026)',
         'Google AI Professional Certificate (2026)',
-        'Oracle AI Vector Search Certified Professional (2025)',
+        'Oracle AI Vector Search Certified Professional (2026)',
       ],
       projects: [
         {
@@ -134,7 +136,7 @@ export default defineI18nLocale(() => {
     },
     active: 'Ativo',
     me: {
-      summary: 'Engenheiro de Software Sênior com 8+ anos de experiência, especializado na entrega de aplicações de IA Generativa e RAG em produção. Combino engenharia robusta (Vue/Nuxt, Node.js e Python) com IA de ponta (LLMs, Bancos Vetoriais, LangChain) para construir sistemas inteligentes e escaláveis. Histórico comprovado de liderança em migrações arquiteturais e entrega de soluções de IA de alto valor para o mercado internacional.',
+      summary: 'Engenheiro de IA Generativa com 2 anos de experiência especializada na construção de aplicações de LLM e RAG em produção, respaldado por 8+ anos em engenharia de software full-stack. Combino profunda expertise em sistemas backend, bancos de dados e frontend (Python, Node.js, Vue/Nuxt) com frameworks modernos de IA (LangChain, Bancos Vetoriais) para projetar e entregar sistemas inteligentes e escaláveis. Histórico comprovado de liderança em migrações arquiteturais e entrega de soluções de IA de alto impacto para o mercado internacional.',
       abroad: `Em **8 anos** de trajetória, trabalhei com uma ampla variedade de produtos. Transformando 
       idéias em códigos e construído aplicações pixel perfect. Minha jornada é baseada em 
       estudos constantes, para não só me adaptar a tecnologia,

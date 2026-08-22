@@ -10,8 +10,12 @@ export default defineEventHandler(async (event) => {
   const config = useRuntimeConfig()
   const session = await getUserSession(event)
 
+  const { apiKey } = geminiEnvSchema.parse({
+    apiKey: config.gemini.apiKey,
+  })
+
   const llm = createGoogleGenerativeAI({
-    apiKey: config.geminiApiKey,
+    apiKey,
   })
 
   const { id } = await getValidatedRouterParams(event, z.object({

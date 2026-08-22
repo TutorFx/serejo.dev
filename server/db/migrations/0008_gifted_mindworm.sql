@@ -1,0 +1,1 @@
+ALTER TABLE "document_chunks" ADD COLUMN "index" text NOT NULL;

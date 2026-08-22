@@ -8,6 +8,7 @@ export interface HeroCmsProps {
 <script setup lang="ts">
 const props = defineProps<HeroCmsProps>()
 const localePath = useLocalePath()
+const { t } = useI18n()
 </script>
 
 <template>
@@ -16,7 +17,7 @@ const localePath = useLocalePath()
       <UIButton :to="localePath(props.backTo)" class="-translate-x-[calc(100%+theme(space.4))] duration-300 group-hover:translate-x-0">
         <template #leading>
           <Icon name="material-symbols:arrow-back" />
-        </template>{{ $t('navigation.back') }}
+        </template>{{ t('navigation.back') }}
       </UIButton>
     </div>
     <slot name="top">

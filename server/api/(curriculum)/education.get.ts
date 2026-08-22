@@ -13,7 +13,7 @@ export default defineEventHandler(async (event) => {
     })
   }
 
-  const experiences = await queryCollection(event, 'education').where('id', 'LIKE', `%/${query.data.lang || LOCALE_KEYS.EN_US}/%`).order('end', 'ASC').all()
+  const experiences = await queryCollection(event, 'education').where('id', 'LIKE', `%/${query.data.lang || LOCALE_KEYS.EN_US}/%`).order('end', 'DESC').all()
 
   return experiences?.map((item) => {
     const { data } = educationWithBodySchema.safeParse(item)
@@ -29,11 +29,11 @@ export default defineEventHandler(async (event) => {
       title,
       org,
       start: formatCardDate(start, locale),
-      end: end ? formatCardDate(end, locale) : t('time.the_moment'),
+      end: end ? formatCardDate(end, locale) : t('time.the_moment', { locale }),
       locale,
       path,
       body,
-      date: end ? t('curriculum.graduated_in', { date: formatCardDate(end, locale) }) : t('curriculum.in_progress'),
+      date: end ? t('curriculum.graduated_in', { date: formatCardDate(end, locale) }, { locale }) : t('curriculum.in_progress', { locale }),
     }
   }).filter(item => item !== null) satisfies EducationDto[] ?? []
 })

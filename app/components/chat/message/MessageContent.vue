@@ -2,6 +2,9 @@
 import { isReasoningUIPart, isTextUIPart, isToolUIPart, getToolName } from 'ai'
 import type { UIMessage } from 'ai'
 import { isPartStreaming, isToolStreaming } from '@nuxt/ui/utils/ai'
+import { getMergedParts } from '~/utils/ai'
+import { getSearchQuery, getSources } from '~/utils/ai/tool'
+import type { CalendarUIToolInvocation, CreateMeetingUIToolInvocation } from '../../../../shared/utils/tools/calendar'
 
 defineProps<{
   message: UIMessage

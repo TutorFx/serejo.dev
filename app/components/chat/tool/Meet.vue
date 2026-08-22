@@ -1,5 +1,8 @@
 <script setup lang="ts">
 import { format, parseISO } from 'date-fns'
+import type { CreateMeetingUIToolInvocation } from '../../../../shared/utils/tools/calendar'
+
+const { t } = useI18n()
 
 defineProps<{
   invocation: CreateMeetingUIToolInvocation
@@ -31,10 +34,10 @@ const formatDateTime = (isoString?: string) => {
         <UIcon name="i-lucide-calendar-plus" class="text-primary size-6" />
         <div>
           <h3 class="text-primary text-base leading-tight font-semibold">
-            {{ $t('chat.tool_meet.confirm') }}
+            {{ t('chat.tool_meet.confirm') }}
           </h3>
           <p class="text-muted text-sm">
-            {{ $t('chat.tool_meet.description') }}
+            {{ t('chat.tool_meet.description') }}
           </p>
         </div>
       </div>
@@ -42,19 +45,19 @@ const formatDateTime = (isoString?: string) => {
 
     <div class="flex flex-col gap-4 text-sm">
       <div v-if="invocation.input.summary" class="flex gap-2">
-        <span class="text-foreground w-20 shrink-0 font-medium">{{ $t('chat.tool_meet.summary') }}</span>
+        <span class="text-foreground w-20 shrink-0 font-medium">{{ t('chat.tool_meet.summary') }}</span>
         <span class="text-muted">{{ invocation.input.summary }}</span>
       </div>
       <div v-if="invocation.input.startTime" class="flex gap-2">
-        <span class="text-foreground w-20 shrink-0 font-medium">{{ $t('chat.tool_meet.start') }}</span>
+        <span class="text-foreground w-20 shrink-0 font-medium">{{ t('chat.tool_meet.start') }}</span>
         <span class="text-muted">{{ formatDateTime(invocation.input.startTime) }}</span>
       </div>
       <div v-if="invocation.input.endTime" class="flex gap-2">
-        <span class="text-foreground w-20 shrink-0 font-medium">{{ $t('chat.tool_meet.end') }}</span>
+        <span class="text-foreground w-20 shrink-0 font-medium">{{ t('chat.tool_meet.end') }}</span>
         <span class="text-muted">{{ formatDateTime(invocation.input.endTime) }}</span>
       </div>
       <div v-if="invocation.input.attendees && invocation.input.attendees.length > 0" class="flex flex-col gap-2">
-        <span class="text-foreground font-medium">{{ $t('chat.tool_meet.attendees') }}</span>
+        <span class="text-foreground font-medium">{{ t('chat.tool_meet.attendees') }}</span>
         <div class="flex flex-wrap gap-2">
           <UBadge
             v-for="email in invocation.input.attendees"
@@ -72,10 +75,10 @@ const formatDateTime = (isoString?: string) => {
     <template #footer>
       <div class="flex gap-3">
         <UButton color="primary" @click="emit('approve')">
-          {{ $t('chat.tool_meet.approve') }}
+          {{ t('chat.tool_meet.approve') }}
         </UButton>
         <UButton color="neutral" variant="ghost" @click="emit('deny')">
-          {{ $t('chat.tool_meet.deny') }}
+          {{ t('chat.tool_meet.deny') }}
         </UButton>
       </div>
     </template>
@@ -87,7 +90,7 @@ const formatDateTime = (isoString?: string) => {
         <UIcon name="i-lucide-check-circle-2" class="text-success size-6" />
         <div>
           <h3 class="text-foreground text-base leading-tight font-semibold">
-            {{ $t('chat.tool_meet.scheduled') }}
+            {{ t('chat.tool_meet.scheduled') }}
           </h3>
           <p class="text-muted text-sm">
             {{ invocation.output?.summary }}
@@ -101,8 +104,8 @@ const formatDateTime = (isoString?: string) => {
       icon="i-lucide-mail-check"
       color="primary"
       variant="soft"
-      :title="$t('chat.tool_meet.next_step')"
-      :description="$t('chat.tool_meet.next_step_desc')"
+      :title="t('chat.tool_meet.next_step')"
+      :description="t('chat.tool_meet.next_step_desc')"
     />
   </UCard>
 
@@ -112,7 +115,7 @@ const formatDateTime = (isoString?: string) => {
     icon="i-lucide-triangle-alert"
     color="error"
     variant="subtle"
-    :title="$t('chat.tool_meet.error')"
+    :title="t('chat.tool_meet.error')"
   />
 
   <UAlert
@@ -121,7 +124,7 @@ const formatDateTime = (isoString?: string) => {
     icon="i-lucide-x-circle"
     color="neutral"
     variant="subtle"
-    :title="$t('chat.tool_meet.denied_alert')"
+    :title="t('chat.tool_meet.denied_alert')"
   />
 
   <UCard v-else class="my-5">
@@ -131,7 +134,7 @@ const formatDateTime = (isoString?: string) => {
         class="text-primary mb-3 size-8 animate-spin"
       />
       <div class="text-muted text-sm font-medium">
-        {{ $t('chat.tool_meet.loading') }}
+        {{ t('chat.tool_meet.loading') }}
       </div>
     </div>
   </UCard>

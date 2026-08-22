@@ -1,5 +1,8 @@
 <script setup lang="ts">
 import { format, parseISO } from 'date-fns'
+import type { CalendarUIToolInvocation } from '../../../../shared/utils/tools/calendar'
+
+const { t } = useI18n()
 
 defineProps<{
   invocation: CalendarUIToolInvocation
@@ -23,7 +26,7 @@ const formatDate = (isoString: string) => {
         <UIcon name="i-lucide-calendar-days" class="text-primary size-6" />
         <div>
           <h3 class="text-foreground text-base leading-tight font-semibold">
-            {{ $t('chat.tool_calendar.availability') }}
+            {{ t('chat.tool_calendar.availability') }}
           </h3>
           <p class="text-muted text-sm">
             {{ formatDate(invocation.input.date) }}
@@ -37,7 +40,7 @@ const formatDate = (isoString: string) => {
       <div v-if="invocation.output?.free?.length" class="flex flex-col gap-3">
         <div class="text-foreground flex items-center gap-2 text-sm font-medium">
           <UIcon name="i-lucide-check-circle-2" class="text-success size-5" />
-          {{ $t('chat.tool_calendar.free_slots') }}
+          {{ t('chat.tool_calendar.free_slots') }}
         </div>
         <div class="flex flex-wrap gap-2">
           <UBadge
@@ -58,14 +61,14 @@ const formatDate = (isoString: string) => {
         icon="i-lucide-calendar-x"
         color="neutral"
         variant="soft"
-        :title="$t('chat.tool_calendar.no_slots')"
+        :title="t('chat.tool_calendar.no_slots')"
       />
 
       <!-- Horários Ocupados -->
       <div v-if="invocation.output?.busy?.length" class="flex flex-col gap-3">
         <div class="text-foreground flex items-center gap-2 text-sm font-medium">
           <UIcon name="i-lucide-x-circle" class="text-error size-5" />
-          {{ $t('chat.tool_calendar.busy_slots') }}
+          {{ t('chat.tool_calendar.busy_slots') }}
         </div>
         <div class="flex flex-wrap gap-2">
           <UBadge
@@ -86,7 +89,7 @@ const formatDate = (isoString: string) => {
       <div class="text-muted flex items-center gap-2 text-sm">
         <UIcon name="i-lucide-globe" class="size-5 shrink-0" />
         <div>
-          <span class="font-medium">{{ $t('chat.tool_calendar.timezone_difference') }}</span>
+          <span class="font-medium">{{ t('chat.tool_calendar.timezone_difference') }}</span>
           {{ Math.abs(invocation.output.overlap) }}h {{ invocation.output.overlap > 0 ? '+' : '-' }}
         </div>
       </div>
@@ -99,7 +102,7 @@ const formatDate = (isoString: string) => {
     icon="i-lucide-triangle-alert"
     color="error"
     variant="subtle"
-    :title="$t('chat.tool_calendar.error')"
+    :title="t('chat.tool_calendar.error')"
   />
 
   <UCard v-else class="my-5">
@@ -109,7 +112,7 @@ const formatDate = (isoString: string) => {
         class="text-primary mb-3 size-8 animate-spin"
       />
       <div class="text-muted text-sm font-medium">
-        {{ $t('chat.tool_calendar.loading') }}
+        {{ t('chat.tool_calendar.loading') }}
       </div>
     </div>
   </UCard>

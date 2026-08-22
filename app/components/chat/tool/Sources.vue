@@ -1,4 +1,7 @@
 <script setup lang="ts">
+import { getFaviconUrl, getDomain } from '~/utils/ai/url'
+import type { Source } from '~/utils/ai/tool'
+
 defineProps<{
   sources: Source[]
 }>()

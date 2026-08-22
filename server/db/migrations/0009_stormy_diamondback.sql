@@ -1,0 +1,1 @@
+ALTER TABLE "document_chunks" ALTER COLUMN "index" SET DATA TYPE integer USING ("index"::integer);

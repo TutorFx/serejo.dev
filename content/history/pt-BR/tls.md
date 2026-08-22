@@ -3,7 +3,7 @@ title: Software Engineer
 org: TLScontact
 image: '/experience/experience-tls.webp'
 location: Lisbon, Portugal
-start: 2023-05-02
+start: 2023-07-02
 end: 2024-05-31
 delivered:
   - Eu fui o desenvolvedor principal do chatbot oficial de suporte ao cliente, supervisionando a integração de fluxos conversacionais e garantindo uma experiência de usuário fluida.
@@ -18,3 +18,15 @@ Desde o início, a segurança era um pilar inegociável. Lidar com dados sensív
 Sob a liderança estratégica de nosso Product Manager, Diogo Simões, o projeto tinha uma direção clara. Nesse contexto, uma das minhas contribuições técnicas mais impactantes foi executar a reestruturação de um módulo crítico, migrando-o de uma arquitetura hexagonal para uma abordagem baseada em Feature Services. Essa mudança não foi apenas técnica; ela trouxe mais clareza, facilitou a manutenção e permitiu que nossa equipe de aproximadamente 15 desenvolvedores pudesse evoluir o produto de forma mais ágil e coesa.
 
 O resultado foi uma base de código tão sólida e escalável que, mesmo após minha saída, a plataforma se manteve estável e funcional. Esse é um dos cases de sucesso que eu mais tenho orgulho de ter contribuído e de ter entregado contribuições tão valorosas, que até hoje estão lá, funcionando a todo vapor, anos após minha saída.
+
+- Linguagens: Typescript, Java, Javascript, Node.js
+
+- CMS: Directus
+
+- Banco de Dados: Redis, MongoDB
+
+- Frameworks e Arquitetura: Tailwind, Vue (2/3), Nuxt (2/3), Spring Boot, Micro-Frontends, Clean Architecture, SWR, Hexagonal Architecture, REST API Development
+
+- Nuvem e DevOps: Docker, GitHub Actions, GitLab CI, Azure DevOps, Git
+
+- Metodologias: Agile / Scrum

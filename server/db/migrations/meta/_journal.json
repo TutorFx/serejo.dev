@@ -22,6 +22,62 @@
       "when": 1778176013891,
       "tag": "0002_charming_triton",
       "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "7",
+      "when": 1787329019548,
+      "tag": "0003_handy_post",
+      "breakpoints": true
+    },
+    {
+      "idx": 4,
+      "version": "7",
+      "when": 1787343159482,
+      "tag": "0004_gifted_changeling",
+      "breakpoints": true
+    },
+    {
+      "idx": 5,
+      "version": "7",
+      "when": 1787346946445,
+      "tag": "0005_even_stick",
+      "breakpoints": true
+    },
+    {
+      "idx": 6,
+      "version": "7",
+      "when": 1787359577711,
+      "tag": "0006_aromatic_lyja",
+      "breakpoints": true
+    },
+    {
+      "idx": 7,
+      "version": "7",
+      "when": 1787359700297,
+      "tag": "0007_skinny_moon_knight",
+      "breakpoints": true
+    },
+    {
+      "idx": 8,
+      "version": "7",
+      "when": 1787402315510,
+      "tag": "0008_gifted_mindworm",
+      "breakpoints": true
+    },
+    {
+      "idx": 9,
+      "version": "7",
+      "when": 1787402726664,
+      "tag": "0009_stormy_diamondback",
+      "breakpoints": true
+    },
+    {
+      "idx": 10,
+      "version": "7",
+      "when": 1787410694417,
+      "tag": "0010_same_fat_cobra",
+      "breakpoints": true
     }
   ]
 }

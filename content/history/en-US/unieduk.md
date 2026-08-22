@@ -3,8 +3,8 @@ title: Software Engineer
 org: UniFAJ
 image: '/experience/experience-unifaj.webp'
 location: São Paulo, Brazil
-start: 2022-04-02
-end: 2022-12-01
+start: 2022-05-02
+end: 2023-01-31
 delivered:
 - I developed the end-to-end user interface for the student admission application,
   covering all critical stages from initial registration to the completion of exams

@@ -35,9 +35,10 @@ export default defineEventHandler(async (event) => {
 
   if (!chat) throw createError({ statusCode: 404, statusMessage: 'Chat not found' })
 
-  const calendarId = process.env.GOOGLE_CALENDAR_ID
-
-  if (!calendarId) throw createError({ statusCode: 500, statusMessage: 'GOOGLE_CALENDAR_ID não configurado' })
+  const config = useRuntimeConfig()
+  const { calendarId } = googleCalendarEnvSchema.parse({
+    calendarId: config.google.calendarId,
+  })
 
   // Checar disponibilidade exata com o getBusyFree antes de agendar
   const dateStr = format(start, 'yyyy-MM-dd')

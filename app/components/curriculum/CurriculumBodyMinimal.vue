@@ -9,22 +9,36 @@ export interface CurriculumBody {
 </script>
 
 <script setup lang="ts">
+const { t } = useI18n()
 defineProps<CurriculumBody>()
 </script>
 
 <template>
   <div class="mx-auto flex max-w-[21cm] flex-col gap-6 bg-white px-4 py-6 text-black">
+    <!-- Objective -->
+    <section>
+      <h2 class="mb-2 border-b-2 border-black text-lg font-bold uppercase">
+        {{ t('curriculum.objective_title') }}
+      </h2>
+      <p class="text-sm font-medium">
+        {{ t('curriculum.objective') }}
+      </p>
+    </section>
+
     <!-- Statement / Summary -->
     <section class="mb-2">
+      <h2 class="mb-2 border-b-2 border-black text-lg font-bold uppercase">
+        {{ t('curriculum.summary') }}
+      </h2>
       <p class="text-justify text-sm leading-relaxed">
-        {{ $t('me.summary') }}
+        {{ t('me.summary') }}
       </p>
     </section>
 
     <!-- Technical Proficiencies -->
     <section v-if="skills && skills.length">
       <h2 class="mb-2 border-b-2 border-black text-lg font-bold uppercase">
-        {{ $t('curriculum.technical_proficiencies') }}
+        {{ t('curriculum.technical_proficiencies') }}
       </h2>
       <div class="flex flex-wrap gap-x-6 gap-y-1 text-sm">
         <div v-for="skill in skills" :key="skill" class="flex items-center">
@@ -37,7 +51,7 @@ defineProps<CurriculumBody>()
     <!-- Certifications -->
     <section v-if="certifications && certifications.length" class="mt-4">
       <h2 class="mb-2 border-b-2 border-black text-lg font-bold uppercase">
-        {{ $t('curriculum.certifications_title') }}
+        {{ t('curriculum.certifications_title') }}
       </h2>
       <div class="flex flex-col gap-1 text-sm">
         <div v-for="cert in certifications" :key="cert" class="flex items-center">
@@ -50,7 +64,7 @@ defineProps<CurriculumBody>()
     <!-- Professional Experience -->
     <section v-if="experiences && experiences.length">
       <h2 class="mb-3 border-b-2 border-black text-lg font-bold uppercase">
-        {{ $t('curriculum.professional_experience') }}
+        {{ t('curriculum.professional_experience') }}
       </h2>
       <div class="flex flex-col gap-4">
         <div v-for="(experience, key) in experiences" :key="key" class="flex flex-col">
@@ -79,7 +93,7 @@ defineProps<CurriculumBody>()
     <!-- Projects -->
     <section v-if="projects && projects.length">
       <h2 class="mb-3 border-b-2 border-black text-lg font-bold uppercase">
-        {{ $t('curriculum.projects_title') }}
+        {{ t('curriculum.projects_title') }}
       </h2>
       <div class="flex flex-col gap-4">
         <div v-for="(project, key) in projects" :key="key" class="flex flex-col">
@@ -112,7 +126,7 @@ defineProps<CurriculumBody>()
     <!-- Education -->
     <section v-if="education && education.length">
       <h2 class="mb-3 border-b-2 border-black text-lg font-bold uppercase">
-        {{ $t('curriculum.education') }}
+        {{ t('curriculum.education') }}
       </h2>
       <div class="flex flex-col gap-2">
         <div v-for="(edu, key) in education" :key="key" class="flex flex-col">

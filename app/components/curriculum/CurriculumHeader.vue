@@ -1,7 +1,7 @@
 <script setup lang="ts">
 defineProps<{
   title: string
-  profession: string
+  profession?: string
   contact: { key: string, value: string }[]
 }>()
 </script>
@@ -12,7 +12,7 @@ defineProps<{
       <div class="text-2xl font-black">
         {{ title }}
       </div>
-      <div class="text-accent text-xl">
+      <div v-if="profession" class="text-accent text-xl">
         {{ profession }}
       </div>
     </div>

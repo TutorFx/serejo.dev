@@ -1,4 +1,4 @@
-import { boolean, index, json, pgTable, primaryKey, text, timestamp, uniqueIndex } from 'drizzle-orm/pg-core'
+import { boolean, index, json, pgTable, primaryKey, text, timestamp, uniqueIndex, vector, integer } from 'drizzle-orm/pg-core'
 import { relations } from 'drizzle-orm'
 
 const timestamps = {
@@ -77,5 +77,27 @@ export const votesRelations = relations(votes, ({ one }) => ({
   message: one(messages, {
     fields: [votes.messageId],
     references: [messages.id],
+  }),
+}))
+
+export const document = pgTable('documents', {
+  id: text('id').primaryKey(),
+  route: text('route'),
+  hashMd5: text('hash_md5').notNull(),
+})
+
+export const documentChunks = pgTable('document_chunks', {
+  id: text('id').primaryKey(),
+  index: integer('index').notNull(),
+  documentId: text('document_id').notNull().references(() => document.id, { onDelete: 'cascade' }),
+  content: text('content').notNull(),
+  context: text('context'),
+  embedding: vector('embedding', { dimensions: 2000 }),
+})
+
+export const documentChunkRelations = relations(documentChunks, ({ one }) => ({
+  document: one(document, {
+    fields: [documentChunks.documentId],
+    references: [document.id],
   }),
 }))

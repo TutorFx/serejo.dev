@@ -2,20 +2,20 @@
 const { locale, tm, rt } = useI18n()
 
 const { data: experiences } = await useFetch<ExperiencesDto[]>('/api/experiences', {
-  query: {
+  query: () => ({
     lang: locale.value,
     includeBody: true,
-  },
+  }),
 })
 const { data: education } = await useFetch<EducationDto[]>('/api/education', {
-  query: {
+  query: () => ({
     lang: locale.value,
     includeBody: true,
-  },
+  }),
 })
 
 const contact = [
-  { key: 'Email', value: 'gabrieltfserejo@gmail.com' },
+  { key: 'Email', value: 'gabrielserejo11@gmail.com' },
   { key: 'Phone', value: '+55 (62) 9 9406-3442' },
   { key: 'Website', value: 'serejo.dev' },
 ]
@@ -49,7 +49,7 @@ const projects = computed<ProjectDto[]>(() => {
 
 <template>
   <div>
-    <CurriculumHeaderMinimal title="Gabriel Serejo" :profession="$t('curriculum.profession')" :contact />
+    <CurriculumHeaderMinimal title="Gabriel Serejo" :contact />
     <CurriculumBodyMinimal
       v-if="experiences && education"
       :experiences="experiences"
