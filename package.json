@@ -52,7 +52,7 @@
     "consola": "^3.4.2",
     "date-fns": "^4.1.0",
     "dayjs": "2.0.0-alpha.4",
-    "eslint": "9.32.0",
+    "eslint": "10.9.1",
     "eslint-plugin-format": "^1.0.1",
     "eslint-ts-patch": "^9.8.0-1",
     "lefthook": "^2.1.6",
