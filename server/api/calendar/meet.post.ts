@@ -4,13 +4,16 @@ import { TZDate } from '@date-fns/tz'
 import { isBefore, addMinutes, format } from 'date-fns'
 
 const bodySchema = z.object({
-  startTime: z.string(),
-  endTime: z.string(),
-  summary: z.string(),
-  description: z.string(),
+  startTime: z.iso.datetime({ local: true, offset: true }),
+  endTime: z.iso.datetime({ local: true, offset: true }),
+  summary: z.string().trim().min(3).max(120),
+  description: z.string().trim().min(5),
   timeZone: z.enum(Intl.supportedValuesOf('timeZone')),
-  chatId: z.string(),
-  attendees: z.array(z.email())
+  chatId: z.string().min(1),
+  attendees: z.array(z.email()).min(1),
+}).refine(data => data.endTime > data.startTime, {
+  message: 'O horário de término (endTime) deve ser posterior ao horário de início (startTime).',
+  path: ['endTime'],
 })
 
 export default defineEventHandler(async (event) => {
@@ -19,10 +22,10 @@ export default defineEventHandler(async (event) => {
   const start = new TZDate(startTime, timeZone)
   const end = new TZDate(endTime, timeZone)
   const now = new TZDate(new Date(), timeZone)
-  const minimumStartTime = addMinutes(now, 45)
+  const minimumStartTime = addMinutes(now, CALENDAR_CONFIG.minAdvanceMinutes)
 
   if (isBefore(start, minimumStartTime)) {
-    throw createError({ statusCode: 400, statusMessage: 'Não é possível agendar reuniões no passado ou com menos de 45 minutos de antecedência.' })
+    throw createError({ statusCode: 400, statusMessage: `Não é possível agendar reuniões no passado ou com menos de ${CALENDAR_CONFIG.minAdvanceMinutes} minutos de antecedência.` })
   }
 
   const db = useDrizzle()

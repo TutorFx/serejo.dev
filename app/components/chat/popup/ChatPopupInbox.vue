@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import type { UIMessage } from 'ai'
 import { Chat } from '@ai-sdk/vue'
 import { DefaultChatTransport, lastAssistantMessageIsCompleteWithApprovalResponses } from 'ai'
 
@@ -9,6 +10,44 @@ const { data } = await useFetch(`/api/chats/${props.id}`, {
   key: `chat-${props.id}`,
   cache: 'force-cache'
 })
+
+const { data: votes } = await useLazyFetch<Array<{ chatId: string, messageId: string, isUpvoted: boolean }>>(`/api/chats/${props.id}/votes`, {
+  key: `chat-${props.id}-votes`,
+  default: () => []
+})
+
+function getVote(messageId: string) {
+  const vote = votes.value?.find(v => v.messageId === messageId)
+  if (!vote) return null
+  return !!vote.isUpvoted
+}
+
+async function vote(message: UIMessage, isUpvoted: boolean) {
+  const snapshot = (votes.value ?? []).map(v => ({ ...v }))
+  const toggling = getVote(message.id) === isUpvoted
+  const next = toggling ? null : isUpvoted
+
+  votes.value = next === null
+    ? (votes.value ?? []).filter(v => v.messageId !== message.id)
+    : [
+      ...(votes.value ?? []).filter(v => v.messageId !== message.id),
+      { chatId: props.id, messageId: message.id, isUpvoted: next }
+    ]
+
+  try {
+    await $fetch(`/api/chats/${props.id}/votes`, {
+      method: 'POST',
+      body: next === null ? { messageId: message.id } : { messageId: message.id, isUpvoted: next }
+    })
+  } catch {
+    votes.value = snapshot
+    toast.add({
+      description: 'Failed to save vote',
+      icon: 'i-lucide-alert-circle',
+      color: 'error'
+    })
+  }
+}
 
 const isOwner = computed(() => data.value?.isOwner ?? false)
 const title = ref<string | null>(data.value?.title ?? null)
@@ -108,20 +147,21 @@ onMounted(() => {
       <div class="relative grid min-h-0">
         <div
           class="
-          [&::-webkit-scrollbar]:bg-base-200/0
-          [&::-webkit-scrollbar]:border-base-200/0
-          [&::-webkit-scrollbar-track]:bg-base-200/0
-          [&::-webkit-scrollbar-thumb]:border-base-200
-          [&::-webkit-scrollbar-thumb]:bg-accent
-          absolute
-          inset-0
-          overflow-y-auto
-          [&::-webkit-scrollbar]:size-6
-          [&::-webkit-scrollbar]:border-b-10
-          [&::-webkit-scrollbar-thumb]:rounded-xl
-          [&::-webkit-scrollbar-thumb]:border-6
-          [&::-webkit-scrollbar-track]:rounded-xl
-        "
+            [&::-webkit-scrollbar]:bg-base-200/0
+            [&::-webkit-scrollbar]:border-base-200/0
+            [&::-webkit-scrollbar-track]:bg-base-200/0
+            [&::-webkit-scrollbar-thumb]:border-accent
+            [&::-webkit-scrollbar-thumb]:bg-accent
+            absolute
+            inset-0
+            overflow-y-auto
+            p-4
+            [&::-webkit-scrollbar]:size-3
+            [&::-webkit-scrollbar]:border-b-10
+            [&::-webkit-scrollbar-thumb]:rounded-xl
+            [&::-webkit-scrollbar-thumb]:border-6
+            [&::-webkit-scrollbar-track]:rounded-xl
+          "
         >
           <div class="flex flex-1">
             <div class="flex flex-1 flex-col gap-4 sm:gap-6">
@@ -153,6 +193,8 @@ onMounted(() => {
                   <ChatMessageActions
                     :message="message"
                     :streaming="chat.status === 'streaming' && message.id === chat.messages[chat.messages.length - 1]?.id"
+                    :vote="getVote(message.id)"
+                    @vote="(_message, isUpvoted) => vote(_message, isUpvoted)"
                   />
                 </template>
               </UChatMessages>

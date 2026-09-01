@@ -40,15 +40,6 @@ export default defineTask<FeedTaskResult>({
             data: {
               chunkId: chunk.id,
             },
-            opts: {
-              attempts: 3,
-              backoff: {
-                type: 'exponential',
-                delay: 3000,
-              },
-              removeOnComplete: true,
-              removeOnFail: true,
-            },
           })),
         )
         logger.info(`Enqueued ${pendingEmbeddingChunks.length} chunk(s) for embeddings`)

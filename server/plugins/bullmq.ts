@@ -2,7 +2,9 @@ import { embed, generateText } from 'ai'
 import { consola } from 'consola'
 import { asc, eq } from 'drizzle-orm'
 import {
+  closeQueues,
   createQueueWorker,
+  getEmbeddingsQueue,
   QUEUE_NAMES,
   type ContextualChunkJobData,
   type EmbeddingJobData,
@@ -83,7 +85,8 @@ CRITICAL RULES:
         contextualChunkLogger.log(`Processed chunk ${chunkId}`)
 
         if (!import.meta.prerender) {
-          await runTask('db:feed-embedding-chunks')
+          const embeddingsQueue = getEmbeddingsQueue()
+          await embeddingsQueue.add('process-embedding', { chunkId })
         }
       },
       { concurrency: 3 },
@@ -146,12 +149,13 @@ CRITICAL RULES:
 
   // Graceful shutdown
   nitro.hooks.hook('close', async () => {
-    logger.info('Shutting down BullMQ workers...')
+    logger.info('Shutting down BullMQ workers and queues...')
     if (contextualWorker) {
       await contextualWorker.close()
     }
     if (embeddingsWorker) {
       await embeddingsWorker.close()
     }
+    await closeQueues()
   })
 })

@@ -50,72 +50,87 @@ function getCollectionColor(col?: string): 'primary' | 'neutral' | 'success' | '
 </script>
 
 <template>
-  <UChatTool
-    v-if="invocation.state === 'output-available'"
-    icon="i-lucide-library"
-    :text="t('chat.tool_search.completed')"
-    :suffix="query ? `“${query}”` : undefined"
-    chevron="leading"
-    class="my-2"
-  >
-    <div class="border-default bg-elevated/30 max-h-56 overflow-y-auto rounded-md border p-1.5 text-xs">
-      <div v-if="results.length" class="flex flex-col gap-1.5">
+  <div class="@container w-full">
+    <UChatTool
+      v-if="invocation.state === 'output-available'"
+      icon="i-lucide-library"
+      :text="t('chat.tool_search.completed')"
+      :suffix="query ? `“${query}”` : undefined"
+      chevron="leading"
+      class="my-2"
+    >
+      <div class="border-default bg-elevated/30 @container max-h-64 overflow-y-auto rounded-md border p-1.5 text-xs">
         <div
-          v-for="(item, idx) in results"
-          :key="`${item.documentId}-${item.index}-${idx}`"
-          class="hover:bg-elevated/60 flex flex-col gap-1 rounded-md p-2 transition-colors"
+          v-if="results.length"
+          class="grid grid-cols-1 gap-1.5 @lg:grid-cols-2"
         >
-          <div class="flex items-center justify-between gap-2">
-            <div class="flex min-w-0 items-center gap-2">
-              <UBadge
-                v-if="item.collection"
+          <div
+            v-for="(item, idx) in results"
+            :key="`${item.documentId}-${item.index}-${idx}`"
+            class="hover:bg-elevated/60 flex flex-col justify-between gap-1.5 rounded-md p-2 transition-colors @xs:p-2.5"
+          >
+            <div class="flex items-center justify-between gap-2">
+              <div class="flex min-w-0 items-center gap-1.5 @xs:gap-2">
+                <UBadge
+                  v-if="item.collection"
+                  size="xs"
+                  variant="subtle"
+                  :color="getCollectionColor(item.collection)"
+                  class="shrink-0"
+                >
+                  <UIcon :name="getCollectionIcon(item.collection)" class="size-3 @xs:mr-1" />
+                  <span class="hidden @2xs:inline">
+                    {{ t(`chat.tool_search.collections.${item.collection}`) || item.collection }}
+                  </span>
+                </UBadge>
+                <span class="text-muted truncate font-mono text-[11px] @xs:text-xs">
+                  {{ formatDocumentTitle(item.documentId) }}
+                </span>
+              </div>
+
+              <UButton
+                v-if="item.route"
+                :to="item.route"
                 size="xs"
-                variant="subtle"
-                :color="getCollectionColor(item.collection)"
+                color="neutral"
+                variant="ghost"
+                trailing-icon="i-lucide-arrow-up-right"
+                class="h-5 shrink-0 px-1.5 text-[10px]"
+                :aria-label="t('chat.tool_search.view_page')"
               >
-                <UIcon :name="getCollectionIcon(item.collection)" class="mr-1 size-3" />
-                {{ t(`chat.tool_search.collections.${item.collection}`) || item.collection }}
-              </UBadge>
-              <span class="text-muted truncate font-mono text-[11px]">
-                {{ formatDocumentTitle(item.documentId) }}
-              </span>
+                <span class="hidden @xs:inline">{{ t('chat.tool_search.view_page') }}</span>
+              </UButton>
             </div>
 
-            <UButton
-              v-if="item.route"
-              :to="item.route"
-              size="xs"
-              color="neutral"
-              variant="ghost"
-              trailing-icon="i-lucide-arrow-up-right"
-              class="h-5 px-1.5 text-[10px]"
-            >
-              {{ t('chat.tool_search.view_page') }}
-            </UButton>
+            <p class="text-dimmed line-clamp-2 text-[11px] leading-relaxed @xs:text-xs @sm:line-clamp-3">
+              {{ item.content }}
+            </p>
           </div>
+        </div>
 
-          <p class="text-dimmed line-clamp-2 text-[11px] leading-relaxed">
-            {{ item.content }}
-          </p>
+        <div v-else class="text-muted p-2 text-center text-xs">
+          {{ t('chat.tool_search.no_results') }}
         </div>
       </div>
+    </UChatTool>
 
-      <div v-else class="text-muted p-2 text-center text-xs">
-        {{ t('chat.tool_search.no_results') }}
-      </div>
+    <div
+      v-else-if="invocation.state === 'output-error'"
+      class="text-error my-2 flex items-center gap-2 text-xs"
+    >
+      <UIcon name="i-lucide-alert-circle" class="size-4 shrink-0" />
+      <span>{{ t('chat.tool_search.error') }}</span>
     </div>
-  </UChatTool>
 
-  <div v-else-if="invocation.state === 'output-error'" class="text-error my-2 flex items-center gap-2 text-xs">
-    <UIcon name="i-lucide-alert-circle" class="size-4 shrink-0" />
-    <span>{{ t('chat.tool_search.error') }}</span>
-  </div>
-
-  <div v-else class="text-muted my-2 flex items-center gap-2 text-xs">
-    <ChatIndicator class="text-primary" />
-    <UChatShimmer :text="t('chat.tool_search.loading')" class="text-xs font-medium" />
-    <span v-if="query" class="truncate font-mono opacity-70">
-      “{{ query }}”
-    </span>
+    <div
+      v-else
+      class="text-muted my-2 flex min-w-0 items-center gap-2 text-xs"
+    >
+      <ChatIndicator class="text-primary shrink-0" />
+      <UChatShimmer :text="t('chat.tool_search.loading')" class="shrink-0 text-xs font-medium" />
+      <span v-if="query" class="min-w-0 truncate font-mono opacity-70">
+        “{{ query }}”
+      </span>
+    </div>
   </div>
 </template>

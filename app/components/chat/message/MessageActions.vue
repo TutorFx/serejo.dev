@@ -6,6 +6,11 @@ import { getTextFromMessage } from '@nuxt/ui/utils/ai'
 const props = defineProps<{
   message: UIMessage & { createdAt?: string | Date }
   streaming: boolean
+  vote?: boolean | null
+}>()
+
+const emit = defineEmits<{
+  vote: [message: UIMessage, isUpvoted: boolean]
 }>()
 
 const formattedDate = computed(() => {
@@ -45,6 +50,28 @@ function copy() {
         :icon="copied ? 'i-lucide-copy-check' : 'i-lucide-copy'"
         aria-label="Copy response"
         @click="copy"
+      />
+    </UTooltip>
+
+    <UTooltip text="Good response">
+      <UButton
+        size="sm"
+        :color="vote === true ? 'success' : 'neutral'"
+        variant="ghost"
+        icon="i-lucide-thumbs-up"
+        aria-label="Good response"
+        @click="emit('vote', message, true)"
+      />
+    </UTooltip>
+
+    <UTooltip text="Bad response">
+      <UButton
+        size="sm"
+        :color="vote === false ? 'error' : 'neutral'"
+        variant="ghost"
+        icon="i-lucide-thumbs-down"
+        aria-label="Bad response"
+        @click="emit('vote', message, false)"
       />
     </UTooltip>
   </template>

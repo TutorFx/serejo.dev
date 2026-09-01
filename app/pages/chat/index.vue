@@ -2,7 +2,11 @@
 const input = ref('')
 const loading = ref(false)
 
-const { user } = useUserSession()
+const { user, loggedIn, openInPopup } = useUserSession()
+
+function login() {
+  openInPopup('/sso/github')
+}
 
 const greeting = computed(() => {
   const hour = new Date().getHours()
@@ -21,7 +25,7 @@ async function createChat(prompt: string) {
 
   const parts: Array<{ type: string, text?: string, mediaType?: string, url?: string }> = [{ type: 'text', text: prompt }]
 
-  const chat = await $fetch('/api/chats', {
+  const chat = await $fetch<{ id: string }>('/api/chats', {
     method: 'POST',
     body: {
       message: {
@@ -61,12 +65,8 @@ const quickChats = [
     icon: 'i-logos-tailwindcss-icon'
   },
   {
-    label: 'What is the weather in Bordeaux?',
-    icon: 'i-lucide-sun'
-  },
-  {
-    label: 'Show me a chart of sales data',
-    icon: 'i-lucide-line-chart'
+    label: 'Schedule a meeting with Gabriel',
+    icon: 'i-lucide-calendar'
   }
 ]
 </script>
@@ -74,11 +74,23 @@ const quickChats = [
 <template>
   <UDashboardPanel
     id="home"
-    class="min-h-0"
+    class="min-h-0 flex-1"
     :ui="{ body: 'p-0 sm:p-0' }"
   >
     <template #header>
-      <Navbar />
+      <Navbar>
+        <UserMenu v-if="loggedIn" />
+        <UButton
+          v-else
+          label="Login with GitHub"
+          icon="i-simple-icons-github"
+          size="xs"
+          variant="soft"
+          color="neutral"
+          class="cursor-pointer"
+          @click="login"
+        />
+      </Navbar>
     </template>
 
     <template #body>
@@ -112,7 +124,7 @@ const quickChats = [
               size="sm"
               color="neutral"
               variant="outline"
-              class="rounded-full"
+              class="hover:bg-accented/50 cursor-pointer rounded-full"
               @click="createChat(quickChat.label)"
             />
           </div>

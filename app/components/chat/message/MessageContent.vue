@@ -4,8 +4,9 @@ import type { UIMessage } from 'ai'
 import { isPartStreaming, isToolStreaming } from '@nuxt/ui/utils/ai'
 import { getMergedParts } from '~/utils/ai'
 import { getSearchQuery, getSources } from '~/utils/ai/tool'
-import type { CalendarUIToolInvocation, CreateMeetingUIToolInvocation } from '../../../../shared/utils/tools/calendar'
-import type { HybridSearchUIToolInvocation } from '../../../../shared/utils/tools/search'
+import type { CalendarUIToolInvocation, CreateMeetingUIToolInvocation } from '#shared/utils/tools/calendar'
+import type { HybridSearchUIToolInvocation } from '#shared/utils/tools/search'
+import { CHAT_TOOL } from '#shared/utils/constants'
 
 defineProps<{
   message: UIMessage
@@ -43,18 +44,18 @@ const emit = defineEmits<{
       </UChatTool>
 
       <ChatToolSearch
-        v-else-if="getToolName(part) === 'searchContent'"
+        v-else-if="getToolName(part) === CHAT_TOOL.searchContent"
         :invocation="{ ...(part as HybridSearchUIToolInvocation) }"
         :streaming="isToolStreaming(part)"
       />
 
       <ChatToolCalendar
-        v-else-if="getToolName(part) === 'calendar'"
+        v-else-if="getToolName(part) === CHAT_TOOL.calendar"
         :invocation="{ ...(part as CalendarUIToolInvocation) }"
       />
 
       <ChatToolMeet
-        v-else-if="getToolName(part) === 'createMeeting'"
+        v-else-if="getToolName(part) === CHAT_TOOL.createMeeting"
         :invocation="{ ...(part as CreateMeetingUIToolInvocation) }"
         @approve="emit('approve', (part as CreateMeetingUIToolInvocation).approval?.id ?? part.toolCallId)"
         @deny="emit('deny', (part as CreateMeetingUIToolInvocation).approval?.id ?? part.toolCallId)"
