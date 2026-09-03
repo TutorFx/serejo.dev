@@ -123,10 +123,6 @@ export default defineNuxtConfig({
   compatibilityDate: '2026-05-08',
 
   nitro: {
-    prerender: {
-      autoSubfolderIndex: false,
-      crawlLinks: true,
-    },
     vercel: {
       functions: {
         maxDuration: 800,

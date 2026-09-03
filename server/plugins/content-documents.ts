@@ -19,6 +19,15 @@ const splitter = new RecursiveCharacterTextSplitter({
 })
 
 export default defineNitroPlugin(async (_nitro) => {
+  if (import.meta.prerender) {
+    return
+  }
+
+  const config = useRuntimeConfig()
+  if (!config.databaseUrl) {
+    return
+  }
+
   const logger = consola.withTag('ai-ingestion')
   const db = useDrizzle()
 
