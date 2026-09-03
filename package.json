@@ -78,7 +78,7 @@
     "nuxt-csurf": "^1.6.5",
     "nuxt-module-eslint-config": "^0.1.1",
     "nuxt-site-config": "^4.0.8",
-    "oxfmt": "^0.51.0",
+    "oxfmt": "^0.66.0",
     "pg": "^8.20.0",
     "pinia": "^3.0.4",
     "qrcode.vue": "^3.9.0",
