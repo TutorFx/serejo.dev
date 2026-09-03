@@ -4,7 +4,7 @@
   "version": "4.0",
   "private": true,
   "scripts": {
-    "build": "bun --bun nuxt build",
+    "build": "nuxt build",
     "dev": "bun --bun nuxt dev",
     "preview": "bun --bun nuxt preview",
     "lint-staged": "lint-staged",
