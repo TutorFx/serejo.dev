@@ -24,9 +24,14 @@ const style = computed(() => {
   <div ref="popover">
     <slot />
     <teleport to="body">
-      <div v-if="isHovered || isContentHovered" ref="popover-content" :style="style" class="fixed z-50">
+      <div
+        v-if="isHovered || isContentHovered"
+        ref="popover-content"
+        :style="style"
+        class="fixed z-50"
+      >
         <div class="h-2" />
-        <div class="p-3 bg-base-300 text-base-content rounded-md">
+        <div class="bg-base-300 text-base-content rounded-md p-3">
           <slot name="content" />
         </div>
       </div>

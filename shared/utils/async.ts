@@ -12,8 +12,7 @@ export async function asyncEnvelope<TData>(
   try {
     const data = await asyncFunction()
     return { data, error: null }
-  }
-  catch (error) {
+  } catch (error) {
     const typedError = error instanceof Error ? error : new Error(String(error))
     console.error('Ocorreu um erro na execução:', typedError.message)
     return { data: null, error: typedError }

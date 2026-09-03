@@ -1,4 +1,3 @@
-import process from 'node:process'
 import tailwindcss from '@tailwindcss/vite'
 
 import {
@@ -11,7 +10,7 @@ import {
 
 import * as pkg from './package.json'
 
-const isDev = Boolean(process.env.NODE_ENV !== 'production')
+const isDev = Boolean(import.meta.dev)
 
 export default defineNuxtConfig({
   modules: [
@@ -23,6 +22,8 @@ export default defineNuxtConfig({
     '@nuxt/content',
     '@nuxt/eslint',
     '@nuxt/icon',
+    '@comark/nuxt',
+    'nuxt-auth-utils',
     'nuxt-gtag',
     '@nuxt/ui',
   ],
@@ -50,7 +51,7 @@ export default defineNuxtConfig({
   },
 
   css: [
-    './assets/css/tailwind.css',
+    '~/assets/css/tailwind.css',
   ],
 
   site: {
@@ -77,8 +78,20 @@ export default defineNuxtConfig({
   },
 
   runtimeConfig: {
-    gemini_api_key: process.env.GEMINI_API_KEY,
-    cronSecret: process.env.CRON_SECRET,
+    cohere: {
+      apiKey: '',
+    },
+    gemini: {
+      apiKey: '',
+    },
+    google: {
+      calendarId: '',
+      clientEmail: '',
+      privateKey: '',
+    },
+    redisUrl: '',
+    databaseUrl: '',
+    cronSecret: '',
     public: {
       version: pkg.version,
       name: pkg.name,
@@ -86,6 +99,9 @@ export default defineNuxtConfig({
       url: SITE_URL,
       PHONE_NUMBER,
       SCHEDULE,
+      gtag: {
+        id: '',
+      },
     },
   },
 
@@ -104,13 +120,9 @@ export default defineNuxtConfig({
     typedPages: true,
   },
 
-  compatibilityDate: '2025-06-10',
+  compatibilityDate: '2026-05-08',
 
   nitro: {
-    prerender: {
-      autoSubfolderIndex: false,
-      crawlLinks: true,
-    },
     vercel: {
       functions: {
         maxDuration: 800,
@@ -126,8 +138,10 @@ export default defineNuxtConfig({
       tasks: true,
     },
     scheduledTasks: {
-      // Run `cms:update` task every minute
-      // '*/30 * * * *': ['chat:process'],
+      '* * * * *': [
+        'db:feed-contextual-chunks',
+        'db:feed-embedding-chunks',
+      ],
     },
   },
 
@@ -143,11 +157,11 @@ export default defineNuxtConfig({
 
   eslint: {
     config: {
-      standalone: false,
-      nuxt: {
-        sortConfigKeys: true,
-      },
-    },
+      stylistic: {
+        commaDangle: 'never',
+        braceStyle: '1tbs'
+      }
+    }
   },
 
   googleFonts: {
@@ -155,10 +169,6 @@ export default defineNuxtConfig({
       'Space Grotesk': [300, 400, 700],
       'Mochiy Pop One': true,
     },
-  },
-
-  gtag: {
-    id: process.env.GTAG,
   },
 
   i18n: {
@@ -197,12 +207,6 @@ export default defineNuxtConfig({
 
   ogImage: {
     defaults: {},
-    fonts: [
-      // will load the Noto Sans font from Google fonts
-      'Space+Grotesk:300',
-      'Space+Grotesk:400',
-      'Space+Grotesk:700',
-    ],
   },
 
   sitemap: {

@@ -1,12 +1,13 @@
-export function extractStrings(obj: { [key: string]: any }): string[] {
+export function extractStrings(obj: unknown): string[] {
   const strings: string[] = []
 
-  function traverse(obj: { [key: string]: any }): void {
-    for (const key in obj) {
-      if (typeof obj[key] === 'string')
-        strings.push(obj[key])
-      else if (typeof obj[key] === 'object' && obj[key] !== null)
-        traverse(obj[key])
+  function traverse(value: unknown): void {
+    if (typeof value === 'string') {
+      strings.push(value)
+    } else if (typeof value === 'object' && value !== null) {
+      for (const key in value) {
+        traverse((value as Record<string, unknown>)[key])
+      }
     }
   }
 

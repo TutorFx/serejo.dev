@@ -21,7 +21,7 @@ onBeforeUnmount(() => {
 <template>
   <svg
     ref="lineRef"
-    class="overflow-visible line-drawing"
+    class="line-drawing overflow-visible"
     :class="{ 'is-drawing': isIntersecting }"
     viewBox="0 0 1365 672"
     fill="none"
@@ -56,7 +56,13 @@ onBeforeUnmount(() => {
         <stop offset="90%" stop-color="var(--brand-10)" />
       </linearGradient>
 
-      <filter :id="`glow-${id}`" x="-50%" y="-50%" width="200%" height="200%">
+      <filter
+        :id="`glow-${id}`"
+        x="-50%"
+        y="-50%"
+        width="200%"
+        height="200%"
+      >
         <feGaussianBlur stdDeviation="15" result="coloredBlur" />
         <feMerge>
           <feMergeNode in="coloredBlur" />

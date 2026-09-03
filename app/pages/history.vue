@@ -18,7 +18,7 @@ useHead({
 </script>
 
 <template>
-  <div class="grid items-center bg-base-200">
+  <div class="bg-base-200 grid items-center">
     <UIContainer>
       <CmsExperienceCardList />
     </UIContainer>

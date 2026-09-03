@@ -3,7 +3,7 @@ title: Software Engineer
 org: Agência Industrial
 image: '/experience/experience-industrial-agency.webp'
 location: Goiânia, Brazil
-start: 2021-08-02
+start: 2020-01-02
 end: 2022-10-31
 delivered:
 - I delivered complete, end-to-end web solutions for multiple clients, managing the
@@ -20,12 +20,14 @@ dos clientes da agência. Meu papel abrangia
 todo o processo desde a criação do design de UI/UX até o
 desenvolvimento front-end e back-end.
 
-- Languages: Typescript, Javascript e Python
+- Linguagens: Typescript, Javascript, Python
 
-- Databases: MongoDB, mySQL
+- Banco de Dados: MongoDB, mySQL
 
-- CMS: Contentful e Wordpress
+- CMS: Contentful, Wordpress
 
-- Frameworks: Nuxt2, Nuxt3 e Nextjs
+- Frameworks: Nuxt (2/3), Nextjs
 
-- Methodology: Kanban
+- Conceitos Principais: Structured Outputs / JSON Schema
+
+- Metodologias: Kanban

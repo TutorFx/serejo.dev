@@ -3,7 +3,7 @@ title: Generative AI Engineer
 org: Implanta IT Solutions
 image: '/experience/experience-implanta.webp'
 location: Goiânia, Brazil
-start: 2024-06-01
+start: 2024-06-02
 end:
 delivered:
   - Eu implementei o 'Atlas', um chatbot de RAG para produção utilizando LangChain, Vercel AI SDK e pg-vector que unificou a documentação da empresa, acelerando significativamente o onboarding interno.
@@ -20,3 +20,13 @@ O grande ponto de virada foi a arquitetura que desenhei para as interfaces. Em v
 Essa abordagem foi estratégica por um motivo crucial: nosso time era majoritariamente composto por especialistas em backend. Com essa arquitetura, eles ganharam autonomia para construir e modificar as telas diretamente via API, sem depender de um ciclo de desenvolvimento frontend para cada ajuste.
 
 Atuando como o principal arquiteto dessa frente, a ferramenta conseguiu destravar a produtividade da equipe e garantir que o projeto avançasse em um ritmo acelerado, mesmo com um time enxuto. O resultado foi um produto robusto, escalável e altamente personalizável, entregue com uma velocidade que só foi possível graças a essa sinergia. Nada disso seria possível, sem a confiança de nosso CTO, Allan Menezes e sua determinação em oferecer a melhor ferramenta que um cliente pode receber.
+
+- Idiomas: Python, JavaScript, TypeScript, Node.js
+
+- Banco de Dados: PostgreSQL, pgvector, Pinecone, Weaviate, Chroma
+
+- Frameworks e Arquitetura: FastAPI, Flask, Django, Vue.js (Vue 2/3), Nuxt (2/3), Micro-Frontends, Clean Architecture, SWR, Hexagonal Architecture
+
+- Nuvem e DevOps: GCP, Azure AI Services, Docker, Kubernetes, Terraform, Bicep, CloudFormation, GitHub Actions, GitLab CI, Azure DevOps
+
+- Metodologias: Agile / Scrum

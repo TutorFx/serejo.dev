@@ -1,9 +1,9 @@
 ---
-title: Postgraduate Lato Sensu - Specialization, Artificial and Computational Intelligence
+title: Postgraduate Specialization in Artificial & Computational Intelligence
 org: Universidade Federal de Viçosa
 location: Goiânia, Brazil
 start: 2024-03-02
-end: null
+end: 2026-08-01
 ---
 
 In this course, I am specializing in the development of practical artificial intelligence projects to become an autonomous and qualified professional for the market. The goal is for me to be able to not only apply AI tools to solve real-world problems but also to have the foundation to innovate and be an entrepreneur in the field, developing my own solutions.

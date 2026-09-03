@@ -1,8 +1,8 @@
-export * from './chat/chat.constants'
 export * from './cms/cms.constants'
+export * from './constants/chat.constants'
 export * from './routes/routes.constants'
 
-const COOKIE_KEYS_GUEST = 'guestId'
+const COOKIE_KEYS_GUEST = 'GUEST_ID'
 
 export const COOKIE_KEYS = {
   GUEST: COOKIE_KEYS_GUEST,

@@ -11,9 +11,9 @@ const isMounted = ref(false)
 
 const applyRotation = computed(() => wheel.value
   ? gsap.quickTo(wheel.value, 'rotation', {
-      duration: 0.6,
-      ease: 'power5',
-    })
+    duration: 0.6,
+    ease: 'power5',
+  })
   : () => null)
 
 function ticker(time: number, timeDelta: number) {
@@ -37,7 +37,7 @@ useGsap(() => {
 <template>
   <div ref="wheel" class="relative" :class="{ 'animate-[spin_10s_linear_infinite]': !isMounted }">
     <div class="absolute">
-      <AssetsVecCircularText class="text-primary translate-y-[-50%] translate-x-[-50%] scale-125" />
+      <AssetsVecCircularText class="text-primary translate-x-[-50%] translate-y-[-50%] scale-125" />
     </div>
   </div>
 </template>

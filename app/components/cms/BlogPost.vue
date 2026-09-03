@@ -14,12 +14,12 @@ const props = defineProps<BlogPostProps>()
   <div class="grid grid-rows-[max-content_1fr] gap-6">
     <UIContainer class="grid">
       <UIHeroCms :title="props.title" :back-to="{ name: 'blog' }">
-        <div class="p-4 grid grid-flow-col justify-start items-center gap-3 font-light">
+        <div class="grid grid-flow-col items-center justify-start gap-3 p-4 font-light">
           <Icon class="text-accent" size="24" name="material-symbols:alarm-outline-rounded" /> {{ props.readingTimeString }}
         </div>
       </UIHeroCms>
     </UIContainer>
-    <div class="gap-4 grid grid-rows-[max-content_1fr]">
+    <div class="grid grid-rows-[max-content_1fr] gap-4">
       <UIContainer class="grid items-start gap-3 [&_>_div]:grid [&_>_div]:gap-3">
         <ContentRenderer :value="props.body" />
       </UIContainer>

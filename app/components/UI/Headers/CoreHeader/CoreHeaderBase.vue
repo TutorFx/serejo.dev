@@ -14,16 +14,16 @@ const LocalePathFunction = useLocalePath()
 </script>
 
 <template>
-  <div class="grid grid-flow-col justify-between items-center min-h-24">
-    <NuxtLink :to="LocalePathFunction({ name: 'index' })" class="text-2xl font-logo">
+  <div class="grid min-h-24 grid-flow-col items-center justify-between">
+    <NuxtLink :to="LocalePathFunction({ name: 'index' })" class="font-logo text-2xl">
       Gabriel S.
     </NuxtLink>
-    <div class="grid grid-flow-col gap-3 justify-center items-center">
-      <div class="hover:bg-base-300 p-0.5 rounded-full">
+    <div class="grid grid-flow-col items-center justify-center gap-3">
+      <div class="hover:bg-base-300 rounded-full p-0.5">
         <UIToggleDark />
       </div>
       <UIPopover class="max-md:hidden">
-        <div class="grid items-center hover:bg-base-300 p-1 rounded-full">
+        <div class="hover:bg-base-300 grid items-center rounded-full p-1">
           <UILocaleIcon size="28" :country-code="locale" />
         </div>
         <template #content>

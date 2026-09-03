@@ -1,11 +1,9 @@
 <script lang="ts">
-/* eslint-disable ts/no-empty-object-type */
-
 export interface CardVariantProps {
   rounded?: boolean
   variant?: CardVariant
   border?: boolean
-  class?: any
+  class?: string
   ui?: Partial<{
     header: string
     content: string
@@ -14,16 +12,16 @@ export interface CardVariantProps {
 }
 
 export interface CardSlots {
-  header: (props?: {}) => any
-  default: (props?: {}) => any
-  footer: (props?: {}) => any
+  header: (props?: object) => void
+  default: (props?: object) => void
+  footer: (props?: object) => void
 }
 </script>
 
 <script setup lang="ts">
 const props = withDefaults(defineProps<CardVariantProps>(), { rounded: true, border: true, variant: CARD_DEFAULT_KEY })
 const slots = defineSlots<CardSlots>()
-const ui = genericCard()
+const uiStyles = genericCard()
 const gridTemplateAreas = computed(() => {
   const area = []
   if ('header' in slots) {
@@ -54,24 +52,24 @@ const gridTemplateRows = computed(() => {
 </script>
 
 <template>
-  <div :class="ui.base({ ...props, class: props.class })" :style="{ gridTemplateAreas, gridTemplateRows }">
+  <div :class="uiStyles.base({ ...props, class: props.class })" :style="{ gridTemplateAreas, gridTemplateRows }">
     <div
       v-if="'header' in slots"
-      :class="ui.header({ class: props.ui?.header })"
+      :class="uiStyles.header({ class: props.ui?.header })"
       :style="{ gridArea: 'header' }"
     >
       <slot name="header" />
     </div>
     <div
       v-if="'default' in slots"
-      :class="ui.content({ class: props.ui?.content })"
+      :class="uiStyles.content({ class: props.ui?.content })"
       :style="{ gridArea: 'content' }"
     >
       <slot />
     </div>
     <div
       v-if="'footer' in slots"
-      :class="ui.footer({ class: props.ui?.footer })"
+      :class="uiStyles.footer({ class: props.ui?.footer })"
       :style="{ gridArea: 'footer' }"
     >
       <slot name="footer" />

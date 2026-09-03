@@ -3,7 +3,7 @@ title: Software Engineer
 org: TLScontact
 image: '/experience/experience-tls.webp'
 location: Lisbon, Portugal
-start: 2023-05-02
+start: 2023-07-02
 end: 2024-05-31
 delivered:
   - I was the lead developer for the official customer support chatbot, overseeing the integration of conversational flows and ensuring a seamless user experience.
@@ -16,12 +16,14 @@ At TLScontact, I perform a variety of tasks including implementing new features,
 
 One of my main contributions within the project was the restructuring of the help module to a new architecture. Specifically, I extracted the module from the hexagonal architecture and migrated it to a "Feature Services" architecture. This change brought value and sustainability to the project.
 
-- Languages: Typescript, Java, Javascript
+- Languages: Typescript, Java, Javascript, Node.js
 
 - CMS: Directus
 
-- Databases: Redis
+- Databases: Redis, MongoDB
 
-- Frameworks: Tailwind, Vue2, Vue3, Nuxt3, Spring Boot
+- Frameworks & Architecture: Tailwind, Vue (2/3), Nuxt (2/3), Spring Boot, Micro-Frontends, Clean Architecture, SWR, Hexagonal Architecture, REST API Development
 
-- Methodology: Agile
+- Cloud & DevOps: Docker, GitHub Actions, GitLab CI, Azure DevOps, Git
+
+- Methodology: Agile / Scrum

@@ -1,3 +1,3 @@
 <template>
-  <div class="py-12 bg-base-100 text-base-content" />
+  <div class="bg-base-100 text-base-content py-12" />
 </template>

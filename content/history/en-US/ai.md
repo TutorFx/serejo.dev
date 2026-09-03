@@ -3,7 +3,7 @@ title: Software Engineer
 org: Agência Industrial
 image: '/experience/experience-industrial-agency.webp'
 location: Goiânia, Brazil
-start: 2021-08-02
+start: 2020-01-02
 end: 2022-10-31
 delivered:
 - I delivered complete, end-to-end web solutions for multiple clients, managing the
@@ -24,6 +24,8 @@ At Agência Industrial, I was responsible for developing client websites. My rol
 
 - CMS: Contentful, Wordpress
 
-- Frameworks: Nuxt2, Nuxt3, Nextjs
+- Frameworks: Nuxt (2/3), Nextjs
+
+- Core Concepts: Structured Outputs / JSON Schema
 
 - Methodology: Kanban

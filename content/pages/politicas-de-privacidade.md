@@ -1,6 +1,6 @@
 Esta política de privacidade é válida a partir de outubro de 2025.
 
-### POLÍTICA DE PRIVACIDADE — GABRIEL SEREJO SORRENTINO 06540311184
+### POLÍTICA DE PRIVACIDADE — GABRIEL SEREJO SORRENTINO
 
 GABRIEL SEREJO SORRENTINO 06540311184, pessoa jurídica de direito privado, com sede em Goiânia - GO, inscrita no CNPJ/MF sob o nº 35644072000156 (“Proprietário do Site” ou “nós”), leva a sua privacidade a sério e zela pela segurança e proteção de dados de todos os seus usuários (“Usuários” ou “você”) do site https://serejo.dev/ e qualquer outro site ou aplicativo operado pelo Proprietário do Site (aqui designados, simplesmente, “Site”).
 
