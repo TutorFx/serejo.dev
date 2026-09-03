@@ -5,11 +5,6 @@ import { DefaultChatTransport } from 'ai'
 
 const route = useRoute()
 const toast = useToast()
-const { loggedIn, openInPopup } = useUserSession()
-
-function login() {
-  openInPopup('/sso/github')
-}
 
 const { data } = await useFetch(`/api/chats/${route.params.id}`, {
   key: `chat-${route.params.id}`,
@@ -141,18 +136,6 @@ onMounted(() => {
               :chat-id="data.id"
               :visibility="visibility"
               @update:visibility="visibility = $event"
-            />
-
-            <UserMenu v-if="loggedIn" />
-            <UButton
-              v-else
-              label="Login with GitHub"
-              icon="i-simple-icons-github"
-              size="xs"
-              variant="soft"
-              color="neutral"
-              class="cursor-pointer"
-              @click="login"
             />
           </template>
         </Navbar>

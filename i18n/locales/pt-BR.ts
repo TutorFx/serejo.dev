@@ -9,23 +9,53 @@ export default defineI18nLocale(() => {
     },
     meta: {
       home: {
+        path: '/inicio',
         title: 'Início',
-        description: 'Desenvolvimento web de alta qualidade para projetos novos e legados. Entre em contato com Gabriel Serejo. hoje mesmo!',
-        keywords: 'Desenvolvimento web, projetos novos, projetos legados, soluções personalizadas, alta qualidade, Gabriel Serejo',
+        description: 'Desenvolvimento web de alta qualidade para projetos novos e legados. Entre em contato com Gabriel Serejo hoje mesmo!',
+        keywords: 'Desenvolvimento web, projetos novos, projetos legados, soluções personalizadas, alta qualidade, Gabriel Serejo, Engenheiro de IA, Full Stack',
+        summary: 'Portfólio pessoal de Gabriel Serejo, Engenheiro de IA Generativa & Full Stack com 8+ anos de experiência. Apresentação inicial (Hero), atuação internacional, arsenal de tecnologias (stack) e destaques de experiências profissionais.',
       },
       history: {
+        path: '/minha-jornada',
         title: 'Histórico de trabalhos',
         description: 'Desenvolvedor web experiente com histórico comprovado em projetos internacionais e paixão por transformar ideias em realidade. Habilidade em diversas tecnologias, incluindo Vue, Nuxt e JavaScript. Entusiasta de código aberto e pronto para novos desafios.',
-        keywords: 'Desenvolvedor Web, Front-end, Vue, Nuxt, JavaScript, Arquitetura Hexagonal, Camadas de Serviço, Vuetify, WordPress, Projetos Legados, Desenvolvimento de Sites, Landing Pages, Internacional, Portugal, Brasil',
+        keywords: 'Desenvolvedor Web, Front-end, Vue, Nuxt, JavaScript, Arquitetura Hexagonal, Camadas de Serviço, Vuetify, WordPress, Projetos Legados, Desenvolvimento de Sites, Landing Pages, Internacional, Portugal, Brasil, Histórico Profissional',
+        summary: 'Trajetória profissional completa e linha do tempo de carreira de Gabriel Serejo. Histórico detalhado de empresas (Implanta IT Solutions, TLScontact, Cliqx, UniFAJ, Agência Industrial, ITH Pós Graduação), cargos, entregas e migrações arquiteturais.',
       },
       projects: {
+        path: '/projetos',
+        title: 'Projetos',
         description: 'Gabriel Serejo Dev: Trajetória profissional e projetos. Experiências em desenvolvimento front-end e implementação de recursos.',
-        keywords: 'Gabriel Serejo, Desenvolvedor Web, Desenvolvedor Front-end, Implementação de Recursos, Projetos Web, Trajetória Profissional, Experiência, Portfólio',
+        keywords: 'Gabriel Serejo, Desenvolvedor Web, Desenvolvedor Front-end, Implementação de Recursos, Projetos Web, Trajetória Profissional, Experiência, Portfólio, Código Aberto, Projetos de IA',
+        summary: 'Vitrine de projetos de engenharia de software e inteligência artificial desenvolvidos por Gabriel Serejo, incluindo aplicações web, bibliotecas open source, ferramentas e demonstrações técnicas.',
       },
       blog: {
+        path: '/blog',
         title: 'Blog',
-        description: '',
-        keywords: 'Web Developer, Front-end, Vue, Nuxt, JavaScript, Hexagonal Architecture, Service Layers, Vuetify, WordPress, Legacy Projects, Website Development, Landing Pages, International, Portugal, Brazil',
+        description: 'Artigos técnicos, tutoriais e reflexões sobre Desenvolvimento Web, IA Generativa, Nuxt, Vue, TypeScript, Agentes de IA e Arquitetura de Software por Gabriel Serejo.',
+        keywords: 'Blog, Desenvolvedor Web, Front-end, Vue, Nuxt, JavaScript, TypeScript, IA Generativa, LLMs, Agentes de IA, RAG, Arquitetura, Artigos, Tutoriais',
+        summary: 'Blog técnico com listagem de artigos, tutoriais e análises de Gabriel Serejo sobre engenharia web moderna, integrações com IA, performance e boas práticas.',
+      },
+      resume: {
+        path: '/resume',
+        title: 'Currículo (Resume)',
+        description: 'Gabriel Serejo - Currículo de Engenheiro de IA Generativa e Full Stack. Resumo, competências técnicas, certificações e experiência de trabalho.',
+        keywords: 'Currículo, Resume, CV, Gabriel Serejo, Engenheiro de IA Generativa, Desenvolvedor Full Stack, Habilidades, Certificações, Histórico Profissional',
+        summary: 'Currículo digital e para impressão de Gabriel Serejo. Apresenta resumo do perfil, competências técnicas (Python, TypeScript, Vue/Nuxt, LangChain, RAG, pgvector), certificações em IA e principais projetos da carreira.',
+      },
+      curriculum: {
+        path: '/curriculum',
+        title: 'Curriculum Vitae',
+        description: 'Gabriel Serejo - Curriculum Vitae. Visão abrangente de experiência profissional, formação acadêmica, certificações e competências.',
+        keywords: 'Curriculum Vitae, CV, Gabriel Serejo, Engenheiro de IA, Desenvolvedor Full Stack, Educação, Experiência, Certificações',
+        summary: 'Curriculum Vitae (CV) completo de Gabriel Serejo detalhando histórico profissional integral, formação acadêmica, certificações e competências técnicas em engenharia de software e IA.',
+      },
+      chat: {
+        path: '/chat',
+        title: 'Assistente de IA & Chat',
+        description: 'Assistente interativo de IA no site de Gabriel Serejo. Tire dúvidas sobre a carreira de Gabriel, projetos, artigos, habilidades técnicas ou agende uma reunião.',
+        keywords: 'Chat de IA, Assistente de IA, Gabriel Serejo, RAG, Chatbot, Agendamento de Reuniões, Portfólio Interativo',
+        summary: 'Assistente conversacional com IA permitindo aos visitantes explorar o portfólio de Gabriel Serejo com busca híbrida (RAG), consultar disponibilidade de agenda e agendar reuniões.',
       },
     },
     SCHEDULE_support_text: `Olá! Sou Gabriel Serejo, desenvovedor full stack. Ajudo empresas no desenvolvimento de 
@@ -104,6 +134,7 @@ export default defineI18nLocale(() => {
           delivered: [
             'Gerenciei a infraestrutura em nuvem no Azure, provisionando e configurando instâncias de servidores para suportar aplicações de varejo de alta concorrência.',
             'Escalei a arquitetura front-end de uma grande aplicação de varejo (Pernambucanas) utilizando o padrão hexagonal orientado a serviços.',
+            'Implementei a funcionalidade de escaneamento e triagem de currículos via IA no projeto Pernambucanas, automatizando a extração estruturada de dados de candidatos.',
             'Engenheirei uma camada de cache Redis/SWR de alto desempenho, fornecendo a base de baixa latência necessária para aplicações orientadas a dados de IA.',
             'Migrei fluxos legados para Nuxt 3, aumentando a capacidade de processamento do sistema e a velocidade de desenvolvimento da equipe.',
           ],
@@ -242,9 +273,10 @@ export default defineI18nLocale(() => {
           education: 'Educação',
           history: 'Carreira',
           projects: 'Projetos',
-          pages: 'Páginas'
-        }
-      }
+          pages: 'Páginas',
+          routes: 'Páginas & Rotas',
+        },
+      },
     },
   }
 })

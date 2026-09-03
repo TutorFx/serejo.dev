@@ -1,7 +1,7 @@
 import { defineTransformer } from '@nuxt/content'
 import type { MinimarkTree } from '@nuxt/content'
+import { extractTreeText, getLocaleFromPath, textToSeconds } from '../shared/utils/cms/cms.functions'
 import { LOCALE_KEYS } from '../shared/utils/constants'
-import { extractTreeText, getLocaleFromPath, textToSeconds } from '../shared/utils/functions'
 
 export default defineTransformer({
   name: 'reading-time',

@@ -6,7 +6,12 @@ import { queryCollection } from '@nuxt/content/server'
 import { consola } from 'consola'
 import { inArray, sql } from 'drizzle-orm'
 import { hash } from 'ohash'
-import { extractDocumentContent, extractDocumentRoute } from '~~/shared/utils/functions'
+import {
+  extractDocumentContent,
+  extractDocumentRoute,
+  getStaticRouteDocuments,
+} from '#shared/utils/functions'
+import type { ContentDocument } from '#shared/utils/types'
 
 const splitter = new RecursiveCharacterTextSplitter({
   chunkSize: 1000,
@@ -26,20 +31,26 @@ export default defineNitroPlugin(async (_nitro) => {
       collectionNames.map(async (collection) => {
         const documents = await queryCollection(undefined as unknown as H3Event, collection).all()
         return documents.map(doc => ({
-          doc,
-          collection,
+          doc: doc as ContentDocument,
+          collection: collection as string,
         }))
       })
     )
 
-    const allDocuments = collectionsData.flat()
+    const staticRouteDocs = await getStaticRouteDocuments()
+    const staticDocs = staticRouteDocs.map(doc => ({
+      doc: doc as ContentDocument,
+      collection: 'routes',
+    }))
+
+    const allDocuments = [...collectionsData.flat(), ...staticDocs]
 
     if (allDocuments.length > 0) {
       const rows = allDocuments.map(({ doc, collection }) => ({
         id: doc.id,
         collection,
         route: extractDocumentRoute(collection, doc),
-        hashMd5: hash(doc),
+        hashMd5: 'hashMd5' in doc && typeof doc.hashMd5 === 'string' ? doc.hashMd5 : hash(doc),
       }))
 
       const modifiedDocuments = await db

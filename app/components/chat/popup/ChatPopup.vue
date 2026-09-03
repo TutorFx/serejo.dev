@@ -5,12 +5,6 @@ const isOpen = ref(false)
 const currentChatId = ref<string | null>(null)
 const popup = useTemplateRef<HTMLElement>('popup')
 
-const { loggedIn, openInPopup } = useUserSession()
-
-function login() {
-  openInPopup('/sso/github')
-}
-
 function toggle() {
   if (!document.startViewTransition) {
     isOpen.value = !isOpen.value
@@ -78,17 +72,6 @@ onClickOutside(popup, () => {
               <span>Serejo Chat</span>
             </div>
             <div class="flex items-center gap-2">
-              <UserMenu v-if="loggedIn" />
-              <UButton
-                v-else
-                label="Login"
-                icon="i-simple-icons-github"
-                size="xs"
-                variant="soft"
-                color="neutral"
-                class="cursor-pointer"
-                @click="login"
-              />
               <div
                 class="grid aspect-square size-8 cursor-pointer items-center justify-center rounded-full p-2 hover:bg-neutral-500/10"
                 @click="toggle()"

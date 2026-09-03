@@ -2,11 +2,7 @@
 const input = ref('')
 const loading = ref(false)
 
-const { user, loggedIn, openInPopup } = useUserSession()
-
-function login() {
-  openInPopup('/sso/github')
-}
+const { user } = useUserSession()
 
 const greeting = computed(() => {
   const hour = new Date().getHours()
@@ -78,19 +74,7 @@ const quickChats = [
     :ui="{ body: 'p-0 sm:p-0' }"
   >
     <template #header>
-      <Navbar>
-        <UserMenu v-if="loggedIn" />
-        <UButton
-          v-else
-          label="Login with GitHub"
-          icon="i-simple-icons-github"
-          size="xs"
-          variant="soft"
-          color="neutral"
-          class="cursor-pointer"
-          @click="login"
-        />
-      </Navbar>
+      <Navbar />
     </template>
 
     <template #body>

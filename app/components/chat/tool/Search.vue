@@ -28,6 +28,8 @@ function getCollectionIcon(col?: string): string {
       return 'i-lucide-graduation-cap'
     case 'pages':
       return 'i-lucide-file-text'
+    case 'routes':
+      return 'i-lucide-compass'
     default:
       return 'i-lucide-file'
   }
@@ -43,6 +45,8 @@ function getCollectionColor(col?: string): 'primary' | 'neutral' | 'success' | '
       return 'warning'
     case 'history':
       return 'success'
+    case 'routes':
+      return 'primary'
     default:
       return 'neutral'
   }

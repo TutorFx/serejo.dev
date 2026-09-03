@@ -13,7 +13,7 @@ import {
   SEARCH_CONFIG,
 } from '../constants/chat.constants'
 
-export type SearchCollectionName = keyof PageCollections
+export type SearchCollectionName = keyof PageCollections | 'routes'
 
 // ============================================================================
 // 1. SCHEMAS DE BUSCA HÍBRIDA (HYBRID SEARCH)
@@ -28,8 +28,8 @@ export const searchDirectionSchema = z.enum(SEARCH_DIRECTIONS_ARRAY)
  * Schema de um item individual de resultado da busca híbrida.
  */
 export const hybridSearchResultItemSchema = z.object({
-  documentId: z.string().describe('Identificador do documento no Nuxt Content.'),
-  collection: z.custom<SearchCollectionName>().describe('Nome da coleção do Nuxt Content.'),
+  documentId: z.string().describe('Identificador do documento no Nuxt Content ou rotas estáticas.'),
+  collection: z.custom<SearchCollectionName>().describe('Nome da coleção do Nuxt Content ou rotas.'),
   index: z.number().int().describe('Índice posicional do chunk dentro do documento.'),
   route: z.string().nullable().describe('Rota pública da página associada ao documento, se houver.'),
   content: z.string().describe('Conteúdo textual relevante extraído do chunk.'),
@@ -55,8 +55,8 @@ export type HybridSearchOutput = z.infer<typeof hybridSearchOutputSchema>
  * Schema de entrada da ferramenta `searchContent`.
  */
 export const hybridSearchInputSchema = z.object({
-  query: z.string().min(1).describe('Termo ou pergunta a ser pesquisada no acervo de conhecimento (ex: "experiência com LLMs", "artigos sobre agentes", "projetos em Nuxt").'),
-  collection: z.enum(['blog', 'education', 'history', 'projects', 'pages']).optional().describe('Filtro opcional para limitar a busca a uma coleção específica do Nuxt Content.'),
+  query: z.string().min(1).describe('Termo ou pergunta a ser pesquisada no acervo de conhecimento (ex: "experiência com LLMs", "artigos sobre agentes", "projetos em Nuxt", "páginas do site").'),
+  collection: z.enum(['blog', 'education', 'history', 'projects', 'pages', 'routes']).optional().describe('Filtro opcional para limitar a busca a uma coleção específica do Nuxt Content ou rotas estáticas.'),
   limit: z.number().int().min(1).max(SEARCH_CONFIG.maxLimit).optional().default(SEARCH_CONFIG.defaultLimit).describe('Quantidade máxima de resultados relevantes a retornar (padrão: 5).'),
   includeAdjacent: z.boolean().optional().default(false).describe('Se true, anexa os chunks adjacentes (imediatamente anterior e posterior) a cada resultado para contexto enriquecido.'),
   distinctByDocument: z.boolean().optional().default(true).describe('Se true (padrão), deduplica e seleciona no máximo 1 chunk por documento para garantir diversidade nos resultados.'),

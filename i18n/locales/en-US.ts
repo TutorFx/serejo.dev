@@ -1,6 +1,5 @@
 export default defineI18nLocale(() => {
   return {
-
     menu: {
       home: 'Home',
       about: 'About me',
@@ -10,23 +9,53 @@ export default defineI18nLocale(() => {
     },
     meta: {
       home: {
+        path: '/',
         title: 'Home',
         description: 'High-quality web development for new and legacy projects. Contact Gabriel Serejo today!',
-        keywords: 'Web development, new projects, legacy projects, custom solutions, high quality, Gabriel Serejo',
+        keywords: 'Web development, new projects, legacy projects, custom solutions, high quality, Gabriel Serejo, AI Engineer, Full Stack',
+        summary: 'Personal portfolio of Gabriel Serejo, Generative AI & Full Stack Engineer with 8+ years of experience. Features introduction (Hero), international experience overview, technical stack arsenal, and highlighted professional experience.',
       },
       history: {
+        path: '/my-trajectory',
         title: 'Job history',
         description: 'Experienced web developer with a proven track record in international projects and a passion for turning ideas into reality. Skilled in various technologies including Vue, Nuxt and JavaScript. Open-source enthusiast and ready for new challenges.',
-        keywords: 'Web Developer, Front-end, Vue, Nuxt, JavaScript, Hexagonal Architecture, Service Layers, Vuetify, WordPress, Legacy Projects, Website Development, Landing Pages, International, Portugal, Brazil',
+        keywords: 'Web Developer, Front-end, Vue, Nuxt, JavaScript, Hexagonal Architecture, Service Layers, Vuetify, WordPress, Legacy Projects, Website Development, Landing Pages, International, Portugal, Brazil, Career History',
+        summary: 'Complete professional trajectory and career timeline of Gabriel Serejo. Detailed records of companies (Implanta IT Solutions, TLScontact, Cliqx, UniFAJ, Agência Industrial, ITH Pós Graduação), delivered roles, achievements, and architectural migrations.',
       },
       projects: {
+        path: '/projects',
+        title: 'Projects',
         description: 'Gabriel Serejo Dev: Professional journey and projects. Experiences in front-end development and feature implementation.',
-        keywords: 'Gabriel Serejo, Web Developer, Front-end Developer, Feature Implementation, Web Projects, Professional Journey, Experience, Portfolio',
+        keywords: 'Gabriel Serejo, Web Developer, Front-end Developer, Feature Implementation, Web Projects, Professional Journey, Experience, Portfolio, Open Source, AI Projects',
+        summary: 'Showcase of software engineering and AI projects built by Gabriel Serejo, including web applications, open source libraries, tools, and technical demonstrations.',
       },
       blog: {
+        path: '/blog',
         title: 'Blog',
-        description: '',
-        keywords: 'Web Developer, Front-end, Vue, Nuxt, JavaScript, Hexagonal Architecture, Service Layers, Vuetify, WordPress, Legacy Projects, Website Development, Landing Pages, International, Portugal, Brazil',
+        description: 'Technical articles, tutorials, and insights on Web Development, Generative AI, Nuxt, Vue, TypeScript, AI Agents, and Software Architecture by Gabriel Serejo.',
+        keywords: 'Blog, Web Developer, Front-end, Vue, Nuxt, JavaScript, TypeScript, Generative AI, LLMs, AI Agents, RAG, Architecture, Articles, Tutorials',
+        summary: 'Technical blog listing articles, tutorials, and thought pieces by Gabriel Serejo on modern web engineering, AI integrations, performance, and best practices.',
+      },
+      resume: {
+        path: '/resume',
+        title: 'Resume',
+        description: 'Gabriel Serejo - Generative AI & Full Stack Engineer Resume. Summary, technical proficiencies, certifications, and work experience.',
+        keywords: 'Resume, CV, Gabriel Serejo, Generative AI Engineer, Full Stack Developer, Skills, Certifications, Career History',
+        summary: 'Printable and digital Resume of Gabriel Serejo. Displays profile summary, technical skills (Python, TypeScript, Vue/Nuxt, LangChain, RAG, pgvector), AI certifications, and major career projects.',
+      },
+      curriculum: {
+        path: '/curriculum',
+        title: 'Curriculum Vitae',
+        description: 'Gabriel Serejo - Curriculum Vitae. Comprehensive overview of professional experience, academic education, certifications, and competencies.',
+        keywords: 'Curriculum Vitae, CV, Gabriel Serejo, AI Engineer, Full Stack Developer, Education, Experience, Certifications',
+        summary: 'Comprehensive Curriculum Vitae (CV) of Gabriel Serejo detailing full work history, academic education, certifications, and technical proficiencies in software engineering and AI.',
+      },
+      chat: {
+        path: '/chat',
+        title: 'AI Assistant & Chat',
+        description: 'Interactive AI assistant on Gabriel Serejo\'s website. Ask questions about Gabriel\'s background, projects, articles, technical skills, or schedule a meeting.',
+        keywords: 'AI Chat, AI Assistant, Gabriel Serejo, RAG, Chatbot, Meeting Scheduler, Interactive Portfolio',
+        summary: 'AI conversational assistant allowing visitors to explore Gabriel Serejo\'s portfolio with hybrid search (RAG), check calendar availability, and schedule meetings.',
       },
     },
     SCHEDULE_support_text: `Hey! I am Gabriel, a web engineering consultant based in Brazil. 
@@ -105,6 +134,7 @@ export default defineI18nLocale(() => {
           delivered: [
             'I managed cloud infrastructure on Azure, provisioning and configuring server instances to support high-concurrency retail applications.',
             'I scaled the front-end architecture for a major retail application (Pernambucanas) using a service-oriented hexagonal pattern.',
+            'I implemented an AI-powered resume scanning and parsing feature for the Pernambucanas project, automating structured candidate data extraction.',
             'I engineered a high-performance Redis/SWR caching layer, providing the low-latency foundation necessary for AI-driven data apps.',
             'I migrated legacy workflows to Nuxt 3, improving system throughput and team development velocity.',
           ],
@@ -240,9 +270,10 @@ export default defineI18nLocale(() => {
           education: 'Education',
           history: 'Career',
           projects: 'Projects',
-          pages: 'Pages'
-        }
-      }
+          pages: 'Pages',
+          routes: 'Pages & Routes',
+        },
+      },
     },
   }
 })

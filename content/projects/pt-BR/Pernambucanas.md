@@ -4,4 +4,4 @@ url: https://vemprafamilia-pernambucanas.cliqx.com.br/
 scroller: pernambucanas.png
 ---
 
-Projeto desenvolvido para a grande varejista brasileira Pernambucanas, com o foco de recrutar novos talentos. Nuxt3, Vue.js, Typescript e Tailwind
+Projeto desenvolvido para a grande varejista brasileira Pernambucanas, com o foco de recrutar novos talentos e implementação de escaneamento de currículos via IA. Nuxt3, Vue.js, Typescript e Tailwind

@@ -92,7 +92,7 @@ export default defineEventHandler(async (event) => {
       const currentDateFormatted = `${format(sessionTimeZone, 'EEEE, yyyy-MM-dd HH:mm:ss', { locale: enUS })} (${format(sessionTimeZone, 'EEEE, dd \'de\' MMMM \'de\' yyyy', { locale: ptBR })})`
 
       const result = streamText({
-        model: llm('gemini-2.5-flash'),
+        model: llm('gemini-3.1-pro-preview-customtools'),
         system: `
 You are the virtual assistant for Gabriel Serejo's portfolio (AI Specialist & Engineer).
 Mission: Help visitors learn about Gabriel's projects, career trajectory, and ideas, discuss technology/AI, and facilitate scheduling meetings. Always respond in the visitor's language.
@@ -107,7 +107,7 @@ ${resumeContext}
 - **Conciseness**: Keep responses clear, objective, and formatted with Markdown.
 
 **Search & Knowledge Retrieval:**
-- Always call 'searchContent' first when asked about projects, blog articles, career background, or technical concepts.
+- Always call 'searchContent' first when asked about projects, blog articles, career background, website pages/routes, or technical concepts.
 - Use 'adjacentContent' to expand surrounding document context when needed.
 
 **Scheduling & Calendar Flow:**

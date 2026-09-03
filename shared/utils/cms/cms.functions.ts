@@ -1,4 +1,5 @@
 import type { MinimarkNode, MinimarkTree, PageCollections } from '@nuxt/content'
+import type { ContentDocument } from './cms'
 import { CMS_ROUTE_LIST, LOCALE_KEYS } from './cms.constants'
 import {
   blogSchemaWithBody,
@@ -6,8 +7,6 @@ import {
   historyWithBodySchema,
   projectSchema,
 } from './cms.schemas'
-
-export type ContentDocument = PageCollections[keyof PageCollections]
 
 export function traverseNodes(nodes: MinimarkNode[]): string {
   let text = ''
@@ -52,9 +51,13 @@ export function processCmsPath(locale: string, stem: string): string {
 }
 
 export function extractDocumentRoute(
-  collectionName: keyof PageCollections | string,
+  collectionName: keyof PageCollections | 'routes' | string,
   doc: ContentDocument,
 ): string | null {
+  if (collectionName === 'routes' || ('route' in doc && typeof doc.route === 'string')) {
+    return 'route' in doc && typeof doc.route === 'string' ? doc.route : null
+  }
+
   // Apenas as coleções 'blog', 'history' e 'pages' possuem páginas dinâmicas individuais no app.
   // 'projects', 'education' e outras coleções não possuem rotas próprias individuais (retornam null).
   const locale = getLocaleFromPath(doc.id, LOCALE_KEYS) || LOCALE_KEYS.EN_US
@@ -90,9 +93,13 @@ export function extractDocumentRoute(
 }
 
 export function extractDocumentContent(
-  collectionName: keyof PageCollections | string,
+  collectionName: keyof PageCollections | 'routes' | string,
   doc: ContentDocument,
 ): string {
+  if (collectionName === 'routes' || ('content' in doc && typeof doc.content === 'string' && !('body' in doc))) {
+    return 'content' in doc && typeof doc.content === 'string' ? doc.content : ''
+  }
+
   if (collectionName === 'history') {
     const parsed = historyWithBodySchema.safeParse(doc)
     if (parsed.success) {
