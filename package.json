@@ -67,7 +67,7 @@
     "dayjs": "2.0.0-alpha.4",
     "drizzle-kit": "^0.31.10",
     "drizzle-orm": "^0.45.2",
-    "eslint": "10.3.0",
+    "eslint": "10.10.0",
     "eslint-plugin-format": "^2.0.1",
     "eslint-plugin-tailwindcss": "^3.18.3",
     "eslint-ts-patch": "^9.8.0-1",
