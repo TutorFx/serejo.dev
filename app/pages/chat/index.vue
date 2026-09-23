@@ -39,32 +39,7 @@ async function onSubmit() {
   await createChat(input.value)
 }
 
-const quickChats = [
-  {
-    label: 'Why use Nuxt UI?',
-    icon: 'i-logos-nuxt-icon'
-  },
-  {
-    label: 'Help me create a Vue composable',
-    icon: 'i-logos-vue'
-  },
-  {
-    label: 'Tell me more about UnJS',
-    icon: 'i-logos-unjs'
-  },
-  {
-    label: 'Why should I consider VueUse?',
-    icon: 'i-logos-vueuse'
-  },
-  {
-    label: 'Tailwind CSS best practices',
-    icon: 'i-logos-tailwindcss-icon'
-  },
-  {
-    label: 'Schedule a meeting with Gabriel',
-    icon: 'i-lucide-calendar'
-  }
-]
+const quickChats = QUICK_CHATS
 </script>
 
 <template>

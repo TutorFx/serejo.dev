@@ -158,3 +158,14 @@ export const DAYS_OF_WEEK_ARRAY = Object.values(DAY_OF_WEEK)
 
 /** Tipo inferido dos dias da semana. */
 export type DayOfWeek = (typeof DAY_OF_WEEK)[keyof typeof DAY_OF_WEEK]
+
+// ============================================================================
+// 5. QUICK CHAT PROMPTS
+// ============================================================================
+
+export const QUICK_CHATS = [
+  {
+    label: 'Schedule a meeting with Gabriel',
+    icon: 'i-lucide-calendar'
+  }
+] as const
