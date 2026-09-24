@@ -30,7 +30,7 @@
     "gsap": "^3.15.0",
     "nuxt-gtag": "^4.1.0",
     "nuxt-og-image": "^6.5.0",
-    "pdfkit": "^0.18.0",
+    "pdfkit": "^0.20.0",
     "reflect-metadata": "^0.2.2",
     "zod-validation-error": "^5.0.0"
   },
