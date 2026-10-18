@@ -106,7 +106,8 @@ export default defineNuxtConfig({
   },
 
   routeRules: {
-    '/': { prerender: true },
+    // Keep `/` server-rendered (no prerender/ISR/SWR): the root locale redirect runs on the server,
+    // and a cached English `/` would be switched to pt-BR on the client, breaking hydration
     '/pt-BR/inicio': { prerender: true },
   },
 
@@ -192,11 +193,17 @@ export default defineNuxtConfig({
     ],
     customRoutes: 'page',
     langDir: 'locales/',
+    // The root redirect relies on server-side detection (`nitroContextDetection`); prerendering `/`
+    // or changing `redirectOn` reintroduces the hydration mismatch
     detectBrowserLanguage: {
+      useCookie: true,
+      cookieKey: 'i18n_redirected',
+      redirectOn: 'root',
       alwaysRedirect: false,
     },
     experimental: {
       localeDetector: 'localeDetector.ts',
+      nitroContextDetection: true,
     },
   },
 
