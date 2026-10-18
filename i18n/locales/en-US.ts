@@ -65,6 +65,10 @@ export default defineI18nLocale(() => {
     description: 'Description',
     see_more: 'See more',
     copyright: 'All rights reserved',
+    footer: {
+      privacy_policy: 'Privacy policy',
+      contact: 'Contact',
+    },
     curriculum: {
       profession: 'Generative AI Engineer',
       summary: 'Summary',
@@ -281,6 +285,12 @@ export default defineI18nLocale(() => {
           pages: 'Pages',
           routes: 'Pages & Routes',
         },
+      },
+      history: {
+        today: 'Today',
+        yesterday: 'Yesterday',
+        last_week: 'Last week',
+        last_month: 'Last month',
       },
     },
   }

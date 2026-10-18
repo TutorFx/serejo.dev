@@ -2,6 +2,8 @@
 const { t } = useI18n()
 const runtimeConfig = useRuntimeConfig()
 const LocalePathFunction = useLocalePath()
+// Kept in the payload so prerendered pages hydrate with the year they were rendered with
+const copyrightYear = useState('copyright-year', () => new Date().getFullYear())
 </script>
 
 <template>
@@ -53,11 +55,11 @@ const LocalePathFunction = useLocalePath()
           </div>
         </div>
         <div class="grid justify-start">
-          <UIButton variant="link" :to="{ name: 'pages-path___en-US', params: { path: 'politicas-de-privacidade' } }">
-            Políticas de privacidade
+          <UIButton variant="link" :to="LocalePathFunction({ name: 'pages-path', params: { path: 'politicas-de-privacidade' } })">
+            {{ t('footer.privacy_policy') }}
           </UIButton>
           <UIButton variant="link" href="mailto:gabrielserejo11@gmail.com">
-            Contato
+            {{ t('footer.contact') }}
           </UIButton>
         </div>
       </div>
@@ -66,7 +68,7 @@ const LocalePathFunction = useLocalePath()
     <div class="text-base-content py-8 text-center text-lg font-bold">
       <div class="grid gap-3">
         <div>
-          {{ t('copyright') }} ©2024 — {{ (new Date()).getFullYear() }}
+          {{ t('copyright') }} ©2024 — {{ copyrightYear }}
         </div>
       </div>
       <div>

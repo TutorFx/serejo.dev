@@ -64,6 +64,10 @@ export default defineI18nLocale(() => {
     description: 'Descrição',
     see_more: 'Ver mais',
     copyright: 'Todos os direitos reservados',
+    footer: {
+      privacy_policy: 'Políticas de privacidade',
+      contact: 'Contato',
+    },
     download_curriculum: 'Baixar Curriculum',
     curriculum: {
       summary: 'Resumo',
@@ -284,6 +288,12 @@ export default defineI18nLocale(() => {
           pages: 'Páginas',
           routes: 'Páginas & Rotas',
         },
+      },
+      history: {
+        today: 'Hoje',
+        yesterday: 'Ontem',
+        last_week: 'Última semana',
+        last_month: 'Último mês',
       },
     },
   }

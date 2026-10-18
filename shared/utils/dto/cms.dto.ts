@@ -26,9 +26,11 @@ export interface BlogPostDto {
   slug: string | null
   body: object
   createdAt: Date
+  // Route param (slug || path) of the same post in each locale it exists in
+  alternates: Partial<Record<LocaleKey, string>>
 }
 
-export type BlogPostsDto = Omit<BlogPostDto, 'body'>
+export type BlogPostsDto = Omit<BlogPostDto, 'body' | 'alternates'>
 
 export interface EducationDto {
   title: string

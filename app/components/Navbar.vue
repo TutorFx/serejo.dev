@@ -1,3 +1,7 @@
+<script setup lang="ts">
+const localePath = useLocalePath()
+</script>
+
 <template>
   <UDashboardNavbar
     class="absolute inset-x-0 top-0 z-10 border-b-0 backdrop-blur-sm sm:px-4"
@@ -14,7 +18,7 @@
         color="neutral"
         variant="ghost"
         icon="i-lucide-circle-plus"
-        to="/chat"
+        :to="localePath({ name: 'chat' })"
         class="lg:hidden"
         aria-label="New chat"
       />

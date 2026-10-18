@@ -7,9 +7,9 @@ defineI18nRoute({
 })
 
 const route = useRoute()
-const router = useRouter()
 
 const localePath = useLocalePath()
+const setI18nParams = useSetI18nParams()
 const { locale } = useI18n()
 
 const { data } = await useFetch('/api/post', {
@@ -18,6 +18,24 @@ const { data } = await useFetch('/api/post', {
     path: 'item' in route.params ? route.params.item : '',
   },
 })
+
+if (data.value) {
+  const { alternates, slug, path } = data.value
+
+  // Lets switchLocalePath (language switcher) use the slug of each locale
+  setI18nParams(Object.fromEntries(
+    Object.entries(alternates).map(([alternateLocale, item]) => [alternateLocale, { item }]),
+  ))
+
+  if (data.value.locale !== locale.value) {
+    const alternate = alternates[locale.value]
+    const redirectPath = alternate
+      ? localePath({ name: 'post-item', params: { item: alternate } })
+      : localePath({ name: 'post-item', params: { item: slug || path } }, data.value.locale)
+
+    await navigateTo(redirectPath, { redirectCode: 301, replace: true })
+  }
+}
 
 useHead({
   title: data.value?.title,
@@ -31,15 +49,6 @@ defineOgImage('CmsThumbnail.takumi', {
   description: data.value ? `${data.value.reducedBody?.substring(0, 362)}...` : '',
   readingTime: data.value ? data.value.readingTimeString : '',
 })
-
-watch(data, (newValue) => {
-  if (!newValue)
-    return
-  if (newValue.locale === locale.value)
-    return
-
-  router.push(localePath({ name: 'post-item', params: { item: newValue.path } }))
-}, { immediate: true })
 </script>
 
 <template>

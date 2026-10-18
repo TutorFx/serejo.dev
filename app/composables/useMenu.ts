@@ -1,18 +1,25 @@
-export function useMenu(menuData: MenuList<InternalRoute>): MenuList<FinalRoute> {
+export function useMenu(menuData: MenuList<InternalRoute>): ComputedRef<MenuList<FinalRoute>> {
   const localePath = useLocalePath()
+  const { locale } = useI18n()
 
-  return menuData.map((item) => {
-    if ('to' in item && item.to) {
-      const parsedRoute = localePath(item.to as FinalRoute)
-      if (parsedRoute) {
-        item.to = parsedRoute
+  function localizeMenu(list: MenuList<InternalRoute>): MenuList<FinalRoute> {
+    return list.map((item) => {
+      const localizedItem = { ...item }
+
+      if ('to' in localizedItem && localizedItem.to) {
+        const parsedRoute = localePath(localizedItem.to as FinalRoute, locale.value)
+        if (parsedRoute) {
+          localizedItem.to = parsedRoute
+        }
       }
-    }
 
-    if ('children' in item && item.children) {
-      item.children = useMenu(item.children)
-    }
+      if (localizedItem.children) {
+        localizedItem.children = localizeMenu(localizedItem.children)
+      }
 
-    return item as MenuItem<FinalRoute>
-  })
+      return localizedItem as MenuItem<FinalRoute>
+    })
+  }
+
+  return computed(() => localizeMenu(menuData))
 }

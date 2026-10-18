@@ -1,7 +1,8 @@
 <script setup lang="ts">
 const route = useRoute()
-const { data: page } = await useAsyncData(route.path, () => {
-  return queryCollection('pages').path(route.path).first()
+// Content paths have no locale prefix (route.path is /pt-BR/pages/... in pt-BR)
+const { data: page } = await useAsyncData(`pages-${route.params.path}`, () => {
+  return queryCollection('pages').path(`/pages/${route.params.path}`).first()
 })
 </script>
 
