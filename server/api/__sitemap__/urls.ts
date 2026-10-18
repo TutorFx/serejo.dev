@@ -1,53 +1,75 @@
-import type { SitemapUrl } from '#sitemap/types'
+import type { AlternativeEntry, SitemapUrl } from '#sitemap/types'
 
+interface LocalizedRoute {
+  locale: LocaleKey
+  /** File stem shared by the translations of the same document */
+  path: string
+  loc: string
+}
+
+function toRoute(locale: LocaleKey, pattern: string, item: string) {
+  return getStaticRouteUrl(pattern.replace('[item]', item), locale)
+}
+
+function toAlternatives(routes: LocalizedRoute[]) {
+  const alternatives: AlternativeEntry[] = routes.map(route => ({ hreflang: route.locale, href: route.loc }))
+  const defaultRoute = routes.find(route => route.locale === D_LOCALE)
+
+  if (defaultRoute) {
+    alternatives.push({ hreflang: 'x-default', href: defaultRoute.loc })
+  }
+
+  return alternatives
+}
+
+// OG images are generated from encoded page props (`/_og/d/...`), so they cannot be listed here
 export default defineSitemapEventHandler(async () => {
-  const sitemaps = LOCALES.map(async (locale) => {
-    const localePath = LOCALE_KEYS.EN_US === locale ? '' : `/${locale}`
+  const [posts, experiences] = await Promise.all([
+    Promise.all(LOCALES.map(async locale => ({
+      locale,
+      items: await $fetch<BlogPostsDto[]>('/api/posts', { query: { lang: locale } }),
+    }))),
+    Promise.all(LOCALES.map(async locale => ({
+      locale,
+      items: await $fetch<ExperiencesDto[]>('/api/experiences', { query: { lang: locale } }),
+    }))),
+  ])
 
-    const localeRequests = await Promise.all([
-      $fetch<BlogPostDto[]>('/api/posts').then((item) => {
-        return item.map(post => ({
-          _sitemap: locale,
-          loc: `${localePath}${CMS_ROUTE_LIST[locale].post.replace('[item]', post.slug || post.path)}`,
-          lastmod: post.createdAt,
+  const postRoutes = posts.flatMap(({ locale, items }) => items.map(post => ({
+    locale,
+    path: post.path,
+    loc: toRoute(locale, CMS_ROUTE_LIST[locale].post, post.slug || post.path),
+    post,
+  })))
 
-          news: {
-            title: post.title,
-            publication_date: post.createdAt,
+  const experienceRoutes = experiences.flatMap(({ locale, items }) => items.map(experience => ({
+    locale,
+    path: experience.path,
+    loc: toRoute(locale, CMS_ROUTE_LIST[locale].experience, experience.path),
+  })))
 
-            publication: {
-              name: 'Serejo DEV',
-              language: locale,
-            },
-          },
+  const postUrls = postRoutes.map(({ locale, path, loc, post }) => ({
+    _sitemap: locale,
+    loc,
+    lastmod: post.createdAt,
+    alternatives: toAlternatives(postRoutes.filter(route => route.path === path)),
 
-          images: [
-            {
-              loc: `/__og-image__/image/${localePath}post/${post.slug || post.path}/og.png`,
-              title: post.title,
-            },
-          ],
-        }) satisfies SitemapUrl)
-      }),
-      $fetch<BlogPostDto[]>('/api/experiences').then((item) => {
-        return item.map(experience => ({
-          _sitemap: locale,
-          loc: `${localePath}${CMS_ROUTE_LIST[locale].experience.replace('[item]', experience.slug || experience.path)}`,
-          lastmod: experience.createdAt,
+    news: {
+      title: post.title,
+      publication_date: post.createdAt,
 
-          images: [
-            {
-              loc: `/__og-image__/image/${localePath}experience/${experience.slug || experience.path}/og.png`,
-              title: experience.title,
-            },
-          ],
-        }
-      ) satisfies SitemapUrl)
-      }),
-    ])
+      publication: {
+        name: 'Serejo DEV',
+        language: locale.slice(0, 2),
+      },
+    },
+  }) satisfies SitemapUrl)
 
-    return localeRequests
-  })
+  const experienceUrls = experienceRoutes.map(({ locale, path, loc }) => ({
+    _sitemap: locale,
+    loc,
+    alternatives: toAlternatives(experienceRoutes.filter(route => route.path === path)),
+  }) satisfies SitemapUrl)
 
-  return (await Promise.all(sitemaps)).flat(2)
+  return [...postUrls, ...experienceUrls]
 })
