@@ -29,11 +29,11 @@ export default defineEventHandler(async (event) => {
       title,
       org,
       start: formatCardDate(start, locale),
-      end: end ? formatCardDate(end, locale) : t('time.the_moment', { locale }),
+      end: end ? formatCardDate(end, locale) : t('time.the_moment', {}, { locale }),
       locale,
       path,
       body,
-      date: end ? t('curriculum.graduated_in', { date: formatCardDate(end, locale) }, { locale }) : t('curriculum.in_progress', { locale }),
+      date: end ? t('curriculum.graduated_in', { date: formatCardDate(end, locale) }, { locale }) : t('curriculum.in_progress', {}, { locale }),
     }
   }).filter(item => item !== null) satisfies EducationDto[] ?? []
 })

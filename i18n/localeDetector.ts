@@ -9,8 +9,8 @@ function resolveSupportedLocale(val: unknown): string | null {
 }
 
 export default defineI18nLocaleDetector((event, config) => {
-  // try to get locale from query
-  const query = tryQueryLocale(event, { lang: '' })
+  // try to get locale from query (`?lang=`)
+  const query = tryQueryLocale(event, { lang: '', name: 'lang' })
   const queryLocale = resolveSupportedLocale(query)
   if (queryLocale) {
     return queryLocale

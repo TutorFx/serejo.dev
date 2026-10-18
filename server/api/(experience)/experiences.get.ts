@@ -34,7 +34,7 @@ export default defineEventHandler(async (event) => {
       org,
       image,
       start: formatCardDate(start, locale),
-      end: end ? formatCardDate(end, locale) : t('time.the_moment', { locale }),
+      end: end ? formatCardDate(end, locale) : t('time.the_moment', {}, { locale }),
       location,
       locale,
       readingTimeInSeconds,
