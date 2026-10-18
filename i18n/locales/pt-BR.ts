@@ -235,6 +235,13 @@ export default defineI18nLocale(() => {
       input_label: 'Digite sua mensagem...',
       reply_in_second: 'Típicamente responde em 1s',
       talk_to_cat: 'Oi, sou Felina. A assistente virtual do Serejo. Me mande um oi, te responderei caso você seja digno.',
+      greeting: {
+        hello: 'Olá',
+        morning: 'Bom dia',
+        afternoon: 'Boa tarde',
+        evening: 'Boa noite',
+        with_name: '{greeting}, {name}'
+      },
       tool_calendar: {
         availability: 'Disponibilidade',
         loading: 'Consultando agenda...',
@@ -259,7 +266,8 @@ export default defineI18nLocale(() => {
         open_calendar: 'Abrir Agenda',
         loading: 'Agendando evento na agenda...',
         error: 'Erro ao agendar reunião, tente novamente.',
-        denied_alert: 'Agendamento cancelado.'
+        denied_alert: 'Agendamento cancelado.',
+        datetime: '{date} às {time}'
       },
       tool_search: {
         loading: 'Consultando acervo...',

@@ -232,6 +232,13 @@ export default defineI18nLocale(() => {
       input_label: 'Type your message...',
       reply_in_second: 'I typically reply in a second',
       talk_to_cat: 'She can be sarcastic, but she\'s also incredibly smart and funny. 😹 Who knows, if you catch her in a good mood, she might even tell you some feline secrets!',
+      greeting: {
+        hello: 'Hello',
+        morning: 'Good morning',
+        afternoon: 'Good afternoon',
+        evening: 'Good evening',
+        with_name: '{greeting}, {name}'
+      },
       tool_calendar: {
         availability: 'Availability',
         loading: 'Checking calendar...',
@@ -256,7 +263,8 @@ export default defineI18nLocale(() => {
         open_calendar: 'Open Calendar',
         loading: 'Scheduling event in calendar...',
         error: 'Error scheduling meeting, please try again.',
-        denied_alert: 'Meeting request canceled.'
+        denied_alert: 'Meeting request canceled.',
+        datetime: '{date} at {time}'
       },
       tool_search: {
         loading: 'Searching knowledge base...',

@@ -7,7 +7,7 @@ const emit = defineEmits<{ openChat: [chatId: string] }>()
 const input = ref('')
 const loading = ref(false)
 
-const { user, loggedIn } = useUserSession()
+const { loggedIn } = useUserSession()
 const { renameChat, deleteChat } = useChatActions()
 
 const { data: chats, refresh: refreshChats } = await useFetch('/api/chats', {
@@ -26,16 +26,7 @@ watch(loggedIn, () => {
 
 const { groups } = useChats(chats as Ref<UIChat[] | undefined>)
 
-const greeting = computed(() => {
-  const hour = new Date().getHours()
-  let timeGreeting = 'Good evening'
-  if (hour < 12) timeGreeting = 'Good morning'
-  else if (hour < 18) timeGreeting = 'Good afternoon'
-
-  const name = user.value?.name?.split(' ')[0] || user.value?.username
-
-  return name ? `${timeGreeting}, ${name}` : `${timeGreeting}`
-})
+const greeting = useGreeting()
 
 async function createChat(prompt: string) {
   input.value = prompt

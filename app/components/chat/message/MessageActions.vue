@@ -13,16 +13,13 @@ const emit = defineEmits<{
   vote: [message: UIMessage, isUpvoted: boolean]
 }>()
 
-const formattedDate = computed(() => {
-  if (!props.message.createdAt) return null
+const { locale } = useI18n()
 
-  const date = new Date(props.message.createdAt)
+// Tooltip content only renders on the client, so the runtime time zone is safe here
+const fullDate = computed(() => {
+  if (!props.message.createdAt) return undefined
 
-  return {
-    time: date.toLocaleTimeString(undefined, { hour: 'numeric', minute: '2-digit' }),
-    full: date.toLocaleString(undefined, { dateStyle: 'medium', timeStyle: 'short' }),
-    iso: date.toISOString()
-  }
+  return new Date(props.message.createdAt).toLocaleString(locale.value, { dateStyle: 'medium', timeStyle: 'short' })
 })
 
 const clipboard = useClipboard()
@@ -77,10 +74,14 @@ function copy() {
   </template>
 
   <template v-if="message.role === 'user' && !streaming">
-    <UTooltip v-if="formattedDate" :text="formattedDate.full">
-      <time :datetime="formattedDate.iso" class="text-muted mr-1.5 text-xs">
-        {{ formattedDate.time }}
-      </time>
+    <UTooltip v-if="message.createdAt" :text="fullDate">
+      <NuxtTime
+        :datetime="message.createdAt"
+        :locale="locale"
+        hour="numeric"
+        minute="2-digit"
+        class="text-muted mr-1.5 text-xs"
+      />
     </UTooltip>
   </template>
 </template>

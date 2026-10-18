@@ -2,7 +2,7 @@
 import { format, parseISO } from 'date-fns'
 import type { CreateMeetingUIToolInvocation } from '../../../../shared/utils/tools/calendar'
 
-const { t } = useI18n()
+const { t, locale } = useI18n()
 
 defineProps<{
   invocation: CreateMeetingUIToolInvocation
@@ -16,7 +16,14 @@ const emit = defineEmits<{
 const formatDateTime = (isoString?: string) => {
   if (!isoString) return ''
   try {
-    return format(parseISO(isoString), 'dd/MM/yyyy \'às\' HH:mm')
+    // Show the wall-clock time as provided; a zone designator would make it depend on the runtime time zone
+    const date = parseISO(isoString.replace(/(?:Z|[+-]\d{2}:?\d{2})$/, ''))
+    const dateLocale = getDateLocale(locale.value)
+
+    return t('chat.tool_meet.datetime', {
+      date: format(date, 'P', { locale: dateLocale }),
+      time: format(date, 'p', { locale: dateLocale })
+    })
   } catch (e: unknown) {
     if (e instanceof Error) {
       return isoString
