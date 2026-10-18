@@ -5,21 +5,21 @@ export default defineEventHandler(async (event) => {
   const t = await useTranslation(event)
 
   if (!requestQuery.data)
-    throw new Error('400')
+    throw createError({ statusCode: 400, statusMessage: 'Bad Request', message: 'Invalid input', data: requestQuery.error.issues })
 
   const posts = await queryCollection(event, 'blog').orWhere(query => query.where('id', '=', requestQuery.data.contentPath).where('slug', '=', requestQuery.data.path)).all()
   // The same slug may exist in several locales: prefer the requested one
   const post = posts.find(item => getLocaleFromPath(item.id, LOCALE_KEYS) === requestQuery.data.lang) ?? posts[0]
 
   if (!post)
-    throw new Error('404')
+    throw createError({ statusCode: 404, statusMessage: 'Post not found' })
 
-  const { data } = blogSchemaWithBody.safeParse(post)
+  const parsed = blogSchemaWithBody.safeParse(post)
 
-  if (!data)
-    return null
+  if (!parsed.success)
+    throw createError({ statusCode: 500, statusMessage: 'Invalid post content', data: parsed.error.issues })
 
-  const { title, meta, stem, body, slug, createdAt } = data
+  const { title, meta, stem, body, slug, createdAt } = parsed.data
   const { locale, readingTimeInSeconds, reducedBody } = meta
 
   const readingTimeString = getExtenseShift(readingTimeInSeconds, locale)

@@ -5,16 +5,19 @@ export default defineEventHandler(async (event) => {
   const t = await useTranslation(event)
 
   if (!query.data)
-    throw new Error('400')
+    throw createError({ statusCode: 400, statusMessage: 'Bad Request', message: 'Invalid input', data: query.error.issues })
 
-  const experiences = await queryCollection(event, 'history').where('id', '=', query.data.contentPath).first()
+  const experience = await queryCollection(event, 'history').where('id', '=', query.data.contentPath).first()
 
-  const { data } = historyWithBodySchema.safeParse(experiences)
+  if (!experience)
+    throw createError({ statusCode: 404, statusMessage: 'Experience not found' })
 
-  if (!data)
-    return null
+  const parsed = historyWithBodySchema.safeParse(experience)
 
-  const { title, start, end, location, meta, org, stem, body, image, delivered } = data
+  if (!parsed.success)
+    throw createError({ statusCode: 500, statusMessage: 'Invalid experience content', data: parsed.error.issues })
+
+  const { title, start, end, location, meta, org, stem, body, image, delivered } = parsed.data
   const { locale, readingTimeInSeconds, reducedBody } = meta
 
   const readingTimeString = getExtenseShift(readingTimeInSeconds, locale)

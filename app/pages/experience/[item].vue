@@ -9,12 +9,20 @@ defineI18nRoute({
 const route = useRoute()
 const { locale } = useI18n()
 
-const { data } = await useFetch('/api/experience', {
+const { data, error } = await useFetch('/api/experience', {
   query: {
     lang: locale.value,
     path: 'item' in route.params ? route.params.item : '',
   },
 })
+
+if (!data.value) {
+  throw createError({
+    statusCode: error.value?.statusCode ?? 404,
+    statusMessage: error.value?.statusMessage ?? 'Experience not found',
+    fatal: true,
+  })
+}
 
 useHead({
   title: `${data.value?.org} — ${data.value?.title}`,

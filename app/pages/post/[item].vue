@@ -12,29 +12,35 @@ const localePath = useLocalePath()
 const setI18nParams = useSetI18nParams()
 const { locale } = useI18n()
 
-const { data } = await useFetch('/api/post', {
+const { data, error } = await useFetch('/api/post', {
   query: {
     lang: locale.value,
     path: 'item' in route.params ? route.params.item : '',
   },
 })
 
-if (data.value) {
-  const { alternates, slug, path } = data.value
+if (!data.value) {
+  throw createError({
+    statusCode: error.value?.statusCode ?? 404,
+    statusMessage: error.value?.statusMessage ?? 'Post not found',
+    fatal: true,
+  })
+}
 
-  // Lets switchLocalePath (language switcher) use the slug of each locale
-  setI18nParams(Object.fromEntries(
-    Object.entries(alternates).map(([alternateLocale, item]) => [alternateLocale, { item }]),
-  ))
+const { alternates, slug, path } = data.value
 
-  if (data.value.locale !== locale.value) {
-    const alternate = alternates[locale.value]
-    const redirectPath = alternate
-      ? localePath({ name: 'post-item', params: { item: alternate } })
-      : localePath({ name: 'post-item', params: { item: slug || path } }, data.value.locale)
+// Lets switchLocalePath (language switcher) use the slug of each locale
+setI18nParams(Object.fromEntries(
+  Object.entries(alternates).map(([alternateLocale, item]) => [alternateLocale, { item }]),
+))
 
-    await navigateTo(redirectPath, { redirectCode: 301, replace: true })
-  }
+if (data.value.locale !== locale.value) {
+  const alternate = alternates[locale.value]
+  const redirectPath = alternate
+    ? localePath({ name: 'post-item', params: { item: alternate } })
+    : localePath({ name: 'post-item', params: { item: slug || path } }, data.value.locale)
+
+  await navigateTo(redirectPath, { redirectCode: 301, replace: true })
 }
 
 useHead({
