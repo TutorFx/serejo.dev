@@ -19,8 +19,8 @@ const bodySchema = z.object({
 export default defineEventHandler(async (event) => {
   const { summary, description, startTime, endTime, timeZone, attendees, chatId } = await readValidatedBody(event, bodySchema.parse)
 
-  const start = new TZDate(startTime, timeZone)
-  const end = new TZDate(endTime, timeZone)
+  const start = parseInTimeZone(startTime, timeZone)
+  const end = parseInTimeZone(endTime, timeZone)
   const now = new TZDate(new Date(), timeZone)
   const minimumStartTime = addMinutes(now, CALENDAR_CONFIG.minAdvanceMinutes)
 

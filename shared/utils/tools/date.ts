@@ -21,6 +21,7 @@ import type { Day } from 'date-fns'
 import { enUS, ptBR } from 'date-fns/locale'
 import { TZDate } from '@date-fns/tz'
 import type { UIToolInvocation } from 'ai'
+import { parseInTimeZone } from '../time/time.functions'
 import {
   DATE_UNITS_ARRAY,
   DEFAULT_DATE_UNIT,
@@ -95,7 +96,7 @@ export const calculateDateTool = (args: DateToolContext) => {
     strict: true,
     execute: async ({ amount, unit, baseDate }) => {
       const base = baseDate
-        ? new TZDate(`${baseDate}T12:00:00`, timeZone)
+        ? parseInTimeZone(`${baseDate}T12:00:00`, timeZone)
         : new TZDate(new Date(), timeZone)
 
       let targetDate: Date
@@ -203,7 +204,7 @@ export const getWeekdayTool = (args: DateToolContext) => {
     strict: true,
     execute: async ({ day, occurrence, offsetWeeks, baseDate }) => {
       const base = baseDate
-        ? new TZDate(`${baseDate}T12:00:00`, timeZone)
+        ? parseInTimeZone(`${baseDate}T12:00:00`, timeZone)
         : new TZDate(new Date(), timeZone)
 
       const targetDayIndex = DAY_OF_WEEK_MAP[day]

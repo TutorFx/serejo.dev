@@ -6,16 +6,16 @@ export async function getBusyFree(args: { date: string, timeZone: string, calend
   const calendarService = createCalendarService(createGoogleAuth())
   const busyIntervals = await calendarService.checkAvailability(
     args.calendarId,
-    new TZDate(`${args.date}T00:00:00`, 'America/Sao_Paulo').toISOString(),
-    new TZDate(`${args.date}T23:59:59.999`, 'America/Sao_Paulo').toISOString(),
+    parseInTimeZone(`${args.date}T00:00:00`, CALENDAR_CONFIG.defaultTimeZone).toISOString(),
+    parseInTimeZone(`${args.date}T23:59:59.999`, CALENDAR_CONFIG.defaultTimeZone).toISOString(),
     args.timeZone
   )
 
-  const workStartStr = `${args.date}T08:00:00`
-  const workEndStr = `${args.date}T20:00:00`
+  const workStartStr = `${args.date}T${CALENDAR_CONFIG.workHoursStart}`
+  const workEndStr = `${args.date}T${CALENDAR_CONFIG.workHoursEnd}`
 
   const now = new TZDate(new Date(), args.timeZone)
-  const minimumStartTime = addMinutes(now, 45)
+  const minimumStartTime = addMinutes(now, CALENDAR_CONFIG.minAdvanceMinutes)
   const minStartStr = format(minimumStartTime, 'yyyy-MM-dd\'T\'HH:mm:ss')
   const nowStr = format(now, 'yyyy-MM-dd\'T\'HH:mm:ss')
 
@@ -54,8 +54,8 @@ export async function getBusyFree(args: { date: string, timeZone: string, calend
     free.push({ start: curr, end: workEndStr })
   }
 
-  const overlap = (new TZDate(`${args.date}T12:00:00`, 'America/Sao_Paulo').getTimezoneOffset()
-    - new TZDate(`${args.date}T12:00:00`, args.timeZone).getTimezoneOffset()) / 60
+  const overlap = (parseInTimeZone(`${args.date}T12:00:00`, CALENDAR_CONFIG.defaultTimeZone).getTimezoneOffset()
+    - parseInTimeZone(`${args.date}T12:00:00`, args.timeZone).getTimezoneOffset()) / 60
 
   return { busy, free, overlap }
 }

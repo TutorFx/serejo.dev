@@ -1,4 +1,5 @@
-import { format, formatDuration, intervalToDuration } from 'date-fns'
+import { tz } from '@date-fns/tz'
+import { format, formatDuration, intervalToDuration, parseISO } from 'date-fns'
 import { enUS, ptBR } from 'date-fns/locale'
 
 // date-fns v4 bug: each function expects a different Pick<Locale, ...>, and `options`
@@ -30,4 +31,10 @@ export function formatCardDate(date: Date, localeKey: LocaleKey) {
   return format(date, pattern, {
     locale: getDateLocale(localeKey),
   })
+}
+
+// `new TZDate(string, zone)` goes through `new Date(string)`, so an offset-less ISO string is read
+// in the host's time zone (UTC on Vercel). This reads it as wall-clock time in `timeZone` instead.
+export function parseInTimeZone(iso: string, timeZone: string) {
+  return parseISO(iso, { in: tz(timeZone) })
 }
