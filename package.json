@@ -9,7 +9,6 @@
     "preview": "bun --bun nuxt preview",
     "lint-staged": "lint-staged",
     "setup:dev": "docker compose up",
-    "start:generate": "bunx serve .output/public",
     "lint": "eslint .",
     "typecheck": "vue-tsc --noEmit",
     "postinstall": "nuxt prepare"

@@ -1,4 +1,4 @@
-import { format, isToday, isYesterday, parseISO, subMonths } from 'date-fns'
+import { format, isToday, isYesterday, parseISO, subDays, subMonths } from 'date-fns'
 
 export interface UIChat {
   id: string
@@ -18,7 +18,7 @@ export function useChats(chats: Ref<UIChat[] | undefined>) {
     const lastMonth: UIChat[] = []
     const older: Record<string, UIChat[]> = {}
 
-    const oneWeekAgo = subMonths(new Date(), 0.25) // ~7 days ago
+    const oneWeekAgo = subDays(new Date(), 7)
     const oneMonthAgo = subMonths(new Date(), 1)
 
     chats.value?.forEach((chat) => {
