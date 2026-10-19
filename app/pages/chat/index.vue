@@ -1,29 +1,43 @@
 <script setup lang="ts">
+import { getChatErrorKey } from '~/utils/ai/errors'
+
 const input = ref('')
 const loading = ref(false)
 
 const greeting = useGreeting()
 const localePath = useLocalePath()
 const { t } = useI18n()
+const toast = useToast()
+const { $csrfFetch } = useNuxtApp()
 
 async function createChat(prompt: string) {
   input.value = prompt
   loading.value = true
 
-  const parts: Array<{ type: string, text?: string, mediaType?: string, url?: string }> = [{ type: 'text', text: prompt }]
+  const parts = [{ type: 'text', text: prompt }]
 
-  const chat = await $fetch<{ id: string }>('/api/chats', {
-    method: 'POST',
-    body: {
-      message: {
-        role: 'user',
-        parts
+  try {
+    const chat = await $csrfFetch<{ id: string }>('/api/chats', {
+      method: 'POST',
+      body: {
+        message: {
+          role: 'user',
+          parts
+        }
       }
-    }
-  })
+    })
 
-  refreshNuxtData('chats')
-  navigateTo(localePath({ name: 'chat-id', params: { id: chat.id } }))
+    refreshNuxtData('chats')
+    navigateTo(localePath({ name: 'chat-id', params: { id: chat.id } }))
+  } catch (error) {
+    loading.value = false
+    toast.add({
+      title: t('chat.ui.create_failed'),
+      description: t(getChatErrorKey(error)),
+      icon: 'i-lucide-alert-circle',
+      color: 'error'
+    })
+  }
 }
 
 async function onSubmit() {

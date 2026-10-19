@@ -1,11 +1,14 @@
 <script setup lang="ts">
 import type { UIMessage } from 'ai'
 import { Chat } from '@ai-sdk/vue'
-import { DefaultChatTransport } from 'ai'
+import { lastAssistantMessageIsCompleteWithApprovalResponses } from 'ai'
+import { getChatErrorKey } from '~/utils/ai/errors'
+import { createChatTransport } from '~/utils/ai/transport'
 
 const route = useRoute()
 const toast = useToast()
 const { t } = useI18n()
+const { $csrfFetch } = useNuxtApp()
 
 const { data } = await useFetch(`/api/chats/${route.params.id}`, {
   key: `chat-${route.params.id}`,
@@ -36,7 +39,7 @@ async function vote(message: UIMessage, isUpvoted: boolean) {
     ]
 
   try {
-    await $fetch(`/api/chats/${route.params.id}/votes`, {
+    await $csrfFetch(`/api/chats/${route.params.id}/votes`, {
       method: 'POST',
       body: next === null ? { messageId: message.id } : { messageId: message.id, isUpvoted: next }
     })
@@ -63,9 +66,9 @@ const input = ref('')
 const chat = new Chat({
   id: data.value?.id,
   messages: data.value?.messages,
-  transport: new DefaultChatTransport({
-    api: `/api/chats/${data.value?.id}`
-  }),
+  sendAutomaticallyWhen: lastAssistantMessageIsCompleteWithApprovalResponses,
+  // Sends only the new message or the approval decisions (plus the visitor's time zone)
+  transport: createChatTransport(route.params.id as string),
   onData: async (dataPart) => {
     if (dataPart.type === 'data-chat-title') {
       await refreshNuxtData('chats')
@@ -77,21 +80,16 @@ const chat = new Chat({
     }
   },
   onError(error) {
-    let message = error.message
-    if (typeof message === 'string' && message[0] === '{') {
-      try {
-        message = JSON.parse(message).message || message
-      } catch {
-        // keep original message on malformed JSON
-      }
-    }
-
+    // Only translated messages: server and provider details are never shown
     toast.add({
-      description: message,
+      description: t(getChatErrorKey(error)),
       icon: 'i-lucide-alert-circle',
       color: 'error',
       duration: 0
     })
+    // Rate limits and busy chats are recoverable: keep the prompt usable.
+    // `onError` runs before the chat switches to the error status, so clear it on the next tick
+    setTimeout(() => chat.clearError(), 0)
   }
 })
 
@@ -163,6 +161,8 @@ onMounted(() => {
               <template #content="{ message }">
                 <ChatMessageContent
                   :message="message"
+                  @approve="chat.addToolApprovalResponse({ id: $event, approved: true })"
+                  @deny="chat.addToolApprovalResponse({ id: $event, approved: false })"
                 />
               </template>
 

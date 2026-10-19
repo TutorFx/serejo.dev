@@ -4,24 +4,32 @@ export function createCalendarService(authClient: ReturnType<typeof createGoogle
   const calendar = new calendar_v3.Calendar({ auth: authClient })
 
   return {
-    async checkAvailability(calendarId: string, timeMin: string, timeMax: string, timeZone = 'America/Sao_Paulo') {
+    /**
+     * Busy intervals of every calendar, merged and sorted by start.
+     */
+    async checkAvailability(calendarIds: string[], timeMin: string, timeMax: string, timeZone = 'America/Sao_Paulo') {
       try {
         const response = await calendar.freebusy.query({
           requestBody: {
             timeMin,
             timeMax,
             timeZone,
-            items: [{ id: calendarId }],
+            items: calendarIds.map(id => ({ id })),
           },
         })
 
-        const calendars = response.data.calendars
+        const calendars = response.data.calendars ?? {}
+        const busy: calendar_v3.Schema$TimePeriod[] = []
 
-        if (!calendars || !calendars[calendarId]) {
-          throw new Error('Calendário não encontrado ou sem permissão na requisição de freebusy')
+        for (const calendarId of calendarIds) {
+          const entry = calendars[calendarId]
+          if (!entry || entry.errors?.length) {
+            throw new Error('Calendário não encontrado ou sem permissão na requisição de freebusy')
+          }
+          busy.push(...(entry.busy ?? []))
         }
 
-        return calendars[calendarId].busy || []
+        return busy.sort((a, b) => String(a.start).localeCompare(String(b.start)))
       } catch (error) {
         console.error('Erro na Service ao verificar disponibilidade:', error)
         throw error

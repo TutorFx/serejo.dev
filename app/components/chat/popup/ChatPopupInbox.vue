@@ -1,11 +1,14 @@
 <script setup lang="ts">
 import type { UIMessage } from 'ai'
 import { Chat } from '@ai-sdk/vue'
-import { DefaultChatTransport, lastAssistantMessageIsCompleteWithApprovalResponses } from 'ai'
+import { lastAssistantMessageIsCompleteWithApprovalResponses } from 'ai'
+import { getChatErrorKey } from '~/utils/ai/errors'
+import { createChatTransport } from '~/utils/ai/transport'
 
 const props = defineProps<{ id: string }>()
 const toast = useToast()
 const { t } = useI18n()
+const { $csrfFetch } = useNuxtApp()
 
 const { data } = await useFetch(`/api/chats/${props.id}`, {
   key: `chat-${props.id}`,
@@ -36,7 +39,7 @@ async function vote(message: UIMessage, isUpvoted: boolean) {
     ]
 
   try {
-    await $fetch(`/api/chats/${props.id}/votes`, {
+    await $csrfFetch(`/api/chats/${props.id}/votes`, {
       method: 'POST',
       body: next === null ? { messageId: message.id } : { messageId: message.id, isUpvoted: next }
     })
@@ -63,35 +66,24 @@ const chat = new Chat({
   id: data.value?.id,
   messages: data.value?.messages,
   sendAutomaticallyWhen: lastAssistantMessageIsCompleteWithApprovalResponses,
-  transport: new DefaultChatTransport({
-    api: `/api/chats/${data.value?.id}`,
-    body: () => {
-      return {
-        timeZone: Intl.DateTimeFormat().resolvedOptions().timeZone
-      }
-    }
-  }),
+  // Sends only the new message or the approval decisions; the server rebuilds the history
+  transport: createChatTransport(props.id),
   onData: async (dataPart) => {
     if (dataPart.type === 'data-chat-title') {
       await refreshNuxtData(`chat-${props.id}`)
     }
   },
   onError(error) {
-    let message = error.message
-    if (typeof message === 'string' && message[0] === '{') {
-      try {
-        message = JSON.parse(message).message || message
-      } catch {
-        // keep original message on malformed JSON
-      }
-    }
-
+    // Only translated messages: server and provider details are never shown
     toast.add({
-      description: message,
+      description: t(getChatErrorKey(error)),
       icon: 'i-lucide-alert-circle',
       color: 'error',
       duration: 0
     })
+    // Rate limits and busy chats are recoverable: keep the prompt usable.
+    // `onError` runs before the chat switches to the error status, so clear it on the next tick
+    setTimeout(() => chat.clearError(), 0)
   }
 })
 

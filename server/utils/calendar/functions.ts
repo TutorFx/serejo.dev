@@ -2,10 +2,10 @@ import { TZDate } from '@date-fns/tz'
 import { format, addMinutes } from 'date-fns'
 import type { calendar_v3 } from 'googleapis'
 
-export async function getBusyFree(args: { date: string, timeZone: string, calendarId: string }) {
+export async function getBusyFree(args: { date: string, timeZone: string, calendarIds: string[] }) {
   const calendarService = createCalendarService(createGoogleAuth())
   const busyIntervals = await calendarService.checkAvailability(
-    args.calendarId,
+    args.calendarIds,
     parseInTimeZone(`${args.date}T00:00:00`, CALENDAR_CONFIG.defaultTimeZone).toISOString(),
     parseInTimeZone(`${args.date}T23:59:59.999`, CALENDAR_CONFIG.defaultTimeZone).toISOString(),
     args.timeZone
