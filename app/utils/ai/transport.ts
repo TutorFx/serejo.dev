@@ -30,7 +30,7 @@ export function createChatTransport(chatId: string) {
       if (last?.role === 'assistant') {
         const approvals = last.parts.flatMap(part =>
           isToolUIPart(part) && part.state === 'approval-responded'
-            ? [{ toolCallId: part.toolCallId, approvalId: part.approval.id, approved: part.approval.approved, reason: part.approval.reason }]
+            ? [{ toolCallId: part.toolCallId, approvalId: part.approval.id, approved: part.approval.approved }]
             : []
         )
         return { body: { trigger, messageId, timeZone, approvals } }

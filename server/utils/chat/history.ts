@@ -26,9 +26,15 @@ export type IncomingUserMessage = z.infer<typeof userMessageSchema>
 export const approvalDecisionSchema = z.object({
   toolCallId: z.string().min(1).max(CHAT_LIMITS.maxIdLength),
   approvalId: z.string().min(1).max(CHAT_LIMITS.maxIdLength),
-  approved: z.boolean(),
-  reason: z.string().max(CHAT_LIMITS.maxApprovalReasonChars).optional()
+  approved: z.boolean()
 })
+
+/**
+ * The denial reason reaches the model as the tool result (Gemini receives only this text),
+ * so it is fixed on the server: a client-provided reason would be an injection channel.
+ */
+export const DENIED_BY_VISITOR = 'The visitor denied this meeting request in the interface. Nothing was sent.'
+export const DENIED_BY_NEW_MESSAGE = 'The visitor sent a new message instead of approving this meeting request. Nothing was sent.'
 
 export type ApprovalDecision = z.infer<typeof approvalDecisionSchema>
 
@@ -155,7 +161,9 @@ export function mergeIncoming(
       return {
         ...part,
         state: 'approval-responded',
-        approval: { id: decision.approvalId, approved: decision.approved, reason: decision.reason }
+        approval: decision.approved
+          ? { id: decision.approvalId, approved: true }
+          : { id: decision.approvalId, approved: false, reason: DENIED_BY_VISITOR }
       }
     }) as UIMessage['parts']
 
@@ -174,7 +182,7 @@ export function mergeIncoming(
 
   if (last?.role === 'assistant' && last.parts.some(part => isPendingApproval(part, approvalToolTypes))) {
     const parts = last.parts.map(part => isPendingApproval(part, approvalToolTypes)
-      ? { ...part, state: 'output-denied', approval: { id: part.approval!.id, approved: false, reason: 'The visitor sent a new message instead of approving' } }
+      ? { ...part, state: 'output-denied', approval: { id: part.approval!.id, approved: false, reason: DENIED_BY_NEW_MESSAGE } }
       : part
     ) as UIMessage['parts']
 
