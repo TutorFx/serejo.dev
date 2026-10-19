@@ -28,9 +28,10 @@ export default defineEventHandler(async (event) => {
   try {
     return await getBusyFree({ ...body, calendarId })
   } catch (error: unknown) {
-    if (error instanceof Error) {
-      throw createError({ statusCode: 500, statusMessage: error.message || 'Erro ao consultar a API' })
-    }
-    throw createError({ statusCode: 500, statusMessage: 'Erro ao consultar a API' })
+    throw createError({
+      statusCode: 500,
+      statusMessage: 'Internal Server Error',
+      message: (error instanceof Error && error.message) || 'Erro ao consultar a API',
+    })
   }
 })

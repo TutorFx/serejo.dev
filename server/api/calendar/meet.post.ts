@@ -25,7 +25,7 @@ export default defineEventHandler(async (event) => {
   const minimumStartTime = addMinutes(now, CALENDAR_CONFIG.minAdvanceMinutes)
 
   if (isBefore(start, minimumStartTime)) {
-    throw createError({ statusCode: 400, statusMessage: `Não é possível agendar reuniões no passado ou com menos de ${CALENDAR_CONFIG.minAdvanceMinutes} minutos de antecedência.` })
+    throw createError({ statusCode: 400, statusMessage: 'Bad Request', message: `Não é possível agendar reuniões no passado ou com menos de ${CALENDAR_CONFIG.minAdvanceMinutes} minutos de antecedência.` })
   }
 
   const db = useDrizzle()
@@ -55,7 +55,7 @@ export default defineEventHandler(async (event) => {
   )
 
   if (!isAvailable) {
-    throw createError({ statusCode: 409, statusMessage: 'O horário selecionado não está mais disponível. Por favor, escolha outro horário.' })
+    throw createError({ statusCode: 409, statusMessage: 'Conflict', message: 'O horário selecionado não está mais disponível. Por favor, escolha outro horário.' })
   }
 
   try {
@@ -69,10 +69,10 @@ export default defineEventHandler(async (event) => {
       calendarId
     })
   } catch (error: unknown) {
-    if (error instanceof Error) {
-      throw createError({ statusCode: 500, statusMessage: error.message || 'Erro ao criar evento na API do Google Calendar' })
-    }
-
-    throw createError({ statusCode: 500, statusMessage: 'Erro ao criar evento na API do Google Calendar' })
+    throw createError({
+      statusCode: 500,
+      statusMessage: 'Internal Server Error',
+      message: (error instanceof Error && error.message) || 'Erro ao criar evento na API do Google Calendar',
+    })
   }
 })

@@ -7,6 +7,7 @@ import type { PageCollections } from '@nuxt/content'
 import { tool } from 'ai'
 import { z } from 'zod/v4'
 import type { UIToolInvocation } from 'ai'
+import { getFetchErrorMessage } from '../fetch/fetch.functions'
 import {
   SEARCH_DIRECTIONS_ARRAY,
   DEFAULT_SEARCH_DIRECTION,
@@ -94,17 +95,25 @@ export const hybridSearchTool = (args?: SearchToolContext) => {
     strict: true,
     execute: async ({ query, collection, limit, includeAdjacent, distinctByDocument }) => {
       const start = performance.now()
-      const res = await $fetch<HybridSearchOutput>('/api/search/hybrid', {
-        method: 'POST',
-        body: {
-          query,
-          collection,
-          limit,
-          includeAdjacent,
-          distinctByDocument,
-          chatId,
-        },
-      })
+      let res: HybridSearchOutput
+
+      try {
+        res = await $fetch<HybridSearchOutput>('/api/search/hybrid', {
+          method: 'POST',
+          body: {
+            query,
+            collection,
+            limit,
+            includeAdjacent,
+            distinctByDocument,
+            chatId,
+          },
+        })
+      } catch (error) {
+        // Repassa o `message` da API para o modelo (o FetchError só traz status e URL)
+        throw new Error(getFetchErrorMessage(error))
+      }
+
       const duration = (performance.now() - start).toFixed(2)
       console.info(`[Tool:searchContent] Query "${query}" finished in ${duration}ms (${res.count} results)`)
       return res
@@ -187,16 +196,23 @@ export const adjacentSearchTool = (args?: SearchToolContext) => {
     strict: true,
     execute: async ({ documentId, chunkIndex, direction, limit }) => {
       const start = performance.now()
-      const res = await $fetch<AdjacentSearchOutput>('/api/search/adjacent', {
-        method: 'POST',
-        body: {
-          documentId,
-          chunkIndex,
-          direction,
-          limit,
-          chatId,
-        },
-      })
+      let res: AdjacentSearchOutput
+
+      try {
+        res = await $fetch<AdjacentSearchOutput>('/api/search/adjacent', {
+          method: 'POST',
+          body: {
+            documentId,
+            chunkIndex,
+            direction,
+            limit,
+            chatId,
+          },
+        })
+      } catch (error) {
+        throw new Error(getFetchErrorMessage(error))
+      }
+
       const duration = (performance.now() - start).toFixed(2)
       console.info(`[Tool:getAdjacentChunks] Fetched adjacent for "${documentId}" in ${duration}ms`)
       return res

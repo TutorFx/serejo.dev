@@ -6,6 +6,7 @@
 import { tool } from 'ai'
 import { z } from 'zod/v4'
 import type { UIToolInvocation } from 'ai'
+import { getFetchErrorMessage } from '../fetch/fetch.functions'
 
 // ============================================================================
 // 1. SCHEMAS DE DISPONIBILIDADE (CALENDAR)
@@ -73,14 +74,19 @@ export const calendarTool = (args: CalendarToolContext) => {
     outputSchema: calendarOutputSchema,
     strict: true,
     execute: async ({ date }) => {
-      return await $fetch<CalendarOutput>('/api/calendar/freebusy', {
-        method: 'POST',
-        body: {
-          date,
-          timeZone,
-          chatId
-        }
-      })
+      try {
+        return await $fetch<CalendarOutput>('/api/calendar/freebusy', {
+          method: 'POST',
+          body: {
+            date,
+            timeZone,
+            chatId
+          }
+        })
+      } catch (error) {
+        // Repassa o `message` da API para o modelo (o FetchError só traz status e URL)
+        throw new Error(getFetchErrorMessage(error))
+      }
     }
   })
 }
@@ -134,18 +140,22 @@ export const createMeetingTool = (args: CalendarToolContext) => {
     outputSchema: createMeetingOutputSchema,
     strict: true,
     execute: async ({ summary, description, startTime, endTime, attendees }) => {
-      return await $fetch<CreateMeetingOutput>('/api/calendar/meet', {
-        method: 'POST',
-        body: {
-          summary,
-          description,
-          startTime,
-          endTime,
-          timeZone,
-          attendees,
-          chatId
-        }
-      })
+      try {
+        return await $fetch<CreateMeetingOutput>('/api/calendar/meet', {
+          method: 'POST',
+          body: {
+            summary,
+            description,
+            startTime,
+            endTime,
+            timeZone,
+            attendees,
+            chatId
+          }
+        })
+      } catch (error) {
+        throw new Error(getFetchErrorMessage(error))
+      }
     },
     needsApproval: true
   })

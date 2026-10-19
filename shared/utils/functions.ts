@@ -1,3 +1,4 @@
 export * from './cms/cms.functions'
+export * from './fetch/fetch.functions'
 export * from './routes/routes.functions'
 export * from './time/time.functions'
