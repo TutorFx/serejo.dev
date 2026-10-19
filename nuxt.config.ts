@@ -66,6 +66,11 @@ export default defineNuxtConfig({
   },
 
   content: {
+    experimental: {
+      // Use Node's built-in `node:sqlite` (Node >= 22.5): the better-sqlite3 native addon bundled by
+      // Vercel failed to load on the Node 24 runtime ("Module did not self-register")
+      sqliteConnector: 'native',
+    },
     build: {
       transformers: [
         '~~/transformers/reading-time.ts',
