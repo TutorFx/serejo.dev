@@ -250,8 +250,6 @@ export default defineI18nLocale(() => {
     chat: {
       input_label: 'Digite sua mensagem...',
       reply_in_second: 'Típicamente responde em 1s',
-      talk_to_cat:
-        'Oi, sou Felina. A assistente virtual do Serejo. Me mande um oi, te responderei caso você seja digno.',
       greeting: {
         hello: 'Olá',
         morning: 'Bom dia',
