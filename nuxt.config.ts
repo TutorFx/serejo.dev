@@ -114,6 +114,11 @@ export default defineNuxtConfig({
     // Keep `/` server-rendered (no prerender/ISR/SWR): the root locale redirect runs on the server,
     // and a cached English `/` would be switched to pt-BR on the client, breaking hydration
     '/pt-BR/inicio': { prerender: true },
+    // Playground and unfinished pages: keep them out of search engines (X-Robots-Tag) and the sitemap
+    '/test': { robots: false },
+    '/pt-BR/test': { robots: false },
+    '/projects': { robots: false },
+    '/pt-BR/projetos': { robots: false },
   },
 
   future: {
@@ -225,5 +230,7 @@ export default defineNuxtConfig({
     sources: [
       '/api/__sitemap__/urls',
     ],
+    // Localized paths are listed explicitly: the routes are defined with `defineI18nRoute`, not `i18n.pages`
+    exclude: ['/test', '/pt-BR/test', '/projects', '/pt-BR/projetos'],
   },
 })
