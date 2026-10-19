@@ -18,10 +18,10 @@ export function maskEmails(text: string): string {
 export function redactPartsForPublicView(parts: unknown): unknown[] {
   if (!Array.isArray(parts)) return []
 
-  return parts.flatMap((part) => {
+  return parts.flatMap(part => {
     if (typeof part !== 'object' || part === null) return []
 
-    const { type, text } = part as { type?: unknown, text?: unknown }
+    const { type, text } = part as { type?: unknown; text?: unknown }
     if (typeof type !== 'string' || PRIVATE_PART_TYPES.has(type)) return []
 
     if (type === 'text' && typeof text === 'string') {

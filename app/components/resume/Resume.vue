@@ -40,8 +40,12 @@ const certifications = computed<string[]>(() => {
 </script>
 
 <template>
-  <div class="resume-wrapper flex min-h-screen flex-col items-center justify-start bg-slate-100/70 py-0 sm:py-6 dark:bg-zinc-950 print:bg-white print:py-0">
-    <div class="resume-page w-full max-w-[21cm] bg-white text-black sm:rounded-sm sm:shadow-lg print:rounded-none print:shadow-none">
+  <div
+    class="resume-wrapper flex min-h-screen flex-col items-center justify-start bg-slate-100/70 py-0 sm:py-6 dark:bg-zinc-950 print:bg-white print:py-0"
+  >
+    <div
+      class="resume-page w-full max-w-[21cm] bg-white text-black sm:rounded-sm sm:shadow-lg print:rounded-none print:shadow-none"
+    >
       <CurriculumHeaderMinimal title="Gabriel Serejo" :contact />
       <ResumeBodyMinimal
         v-if="experiences && education"

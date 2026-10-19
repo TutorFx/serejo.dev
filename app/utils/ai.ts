@@ -10,7 +10,10 @@ export function getMergedParts(parts: UIMessage['parts']): UIMessage['parts'] {
     const prev = result[result.length - 1]
     if (part.type === 'source-url') {
       if (prev && isTextUIPart(prev)) {
-        result[result.length - 1] = { type: 'text', text: prev.text + sourceToInlineComark(part.url) }
+        result[result.length - 1] = {
+          type: 'text',
+          text: prev.text + sourceToInlineComark(part.url),
+        }
       }
       continue
     }

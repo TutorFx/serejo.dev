@@ -11,7 +11,11 @@ const { t } = useI18n()
 
 <template>
   <div>
-    <UICard :border="false" class="group h-full md:aspect-[4/2.5]" :ui="{ content: 'grid items-center' }">
+    <UICard
+      :border="false"
+      class="group h-full md:aspect-[4/2.5]"
+      :ui="{ content: 'grid items-center' }"
+    >
       <template #header>
         <div class="grid grid-flow-col justify-between">
           <div class="line-clamp-2 text-xl xl:text-3xl">

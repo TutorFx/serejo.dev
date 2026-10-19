@@ -1,6 +1,4 @@
-<script lang="ts">
-
-</script>
+<script lang="ts"></script>
 
 <script setup lang="ts">
 const model = defineModel<boolean>({ default: false })

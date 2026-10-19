@@ -7,7 +7,9 @@ defineProps<{
 </script>
 
 <template>
-  <div class="header-minimal flex flex-col items-start justify-between gap-2 bg-white text-black sm:flex-row sm:gap-0">
+  <div
+    class="header-minimal flex flex-col items-start justify-between gap-2 bg-white text-black sm:flex-row sm:gap-0"
+  >
     <!-- Left: Name and Title -->
     <div class="flex flex-col">
       <h1 class="header-name leading-none font-extrabold tracking-wide uppercase">

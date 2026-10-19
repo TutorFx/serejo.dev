@@ -10,14 +10,14 @@ export default defineConfig({
     // Same dirs and h3 preset that Nitro registers
     Unimport.vite({
       dirs: ['server/utils/**/*', 'shared/utils', 'shared/types'],
-      presets: [{ package: 'h3', ignore: [/^[A-Z]/, 'use'] }]
-    })
+      presets: [{ package: 'h3', ignore: [/^[A-Z]/, 'use'] }],
+    }),
   ],
   resolve: {
     alias: {
       '#shared': fileURLToPath(new URL('./shared', import.meta.url)),
       '#server': fileURLToPath(new URL('./server', import.meta.url)),
-      '~~': dirname(fileURLToPath(import.meta.url))
-    }
-  }
+      '~~': dirname(fileURLToPath(import.meta.url)),
+    },
+  },
 })

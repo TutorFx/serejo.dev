@@ -2,12 +2,14 @@
   // Enable the ESlint flat config support
   "eslint.experimental.useFlatConfig": true,
 
-  // Disable the default formatter, use eslint instead
+  // Formatting is done by oxfmt (oxc extension), through the code action below
   "prettier.enable": false,
   "editor.formatOnSave": false,
 
-  // Auto fix
+  // On explicit save: format with oxfmt, then fix (oxlint for JS/TS, ESLint for .vue)
   "editor.codeActionsOnSave": {
+    "source.format.oxc": "explicit",
+    "source.fixAll.oxc": "explicit",
     "source.fixAll.eslint": "explicit",
     "source.organizeImports": "never"
   },

@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { gsap } from 'gsap'
-import { SCHEDULE } from '../../../shared/utils/constants'
+import { SCHEDULE } from '#shared/utils/constants'
 
 const { t } = useI18n()
 
@@ -13,16 +13,28 @@ useGsap(() => {
 
 <template>
   <div>
-    <div class="relative grid h-[550px] grid-rows-[1fr_max-content] items-center overflow-hidden rounded-3xl sm:h-[calc(100dvh-96px)]">
+    <div
+      class="relative grid h-[550px] grid-rows-[1fr_max-content] items-center overflow-hidden rounded-3xl sm:h-[calc(100dvh-96px)]"
+    >
       <div class="relative h-full">
         <div class="absolute inset-0 grid">
           <div class="relative">
-            <div class="absolute top-[95%] left-[5%] size-42 -translate-[50%] rounded-full bg-[var(--brand-1)] blur-[100px]" />
-            <div class="absolute top-[70%] left-[60%] size-32 -translate-[50%] rounded-full bg-[var(--brand-7)] blur-[100px]" />
-            <div class="absolute top-[80%] left-[90%] size-42 -translate-[50%] rounded-full bg-[var(--brand-10)] blur-[100px]" />
-            <div class="absolute top-[10%] left-[10%] size-64 -translate-[50%] rounded-full bg-[var(--brand-7)] blur-[100px]" />
+            <div
+              class="absolute top-[95%] left-[5%] size-42 -translate-[50%] rounded-full bg-[var(--brand-1)] blur-[100px]"
+            />
+            <div
+              class="absolute top-[70%] left-[60%] size-32 -translate-[50%] rounded-full bg-[var(--brand-7)] blur-[100px]"
+            />
+            <div
+              class="absolute top-[80%] left-[90%] size-42 -translate-[50%] rounded-full bg-[var(--brand-10)] blur-[100px]"
+            />
+            <div
+              class="absolute top-[10%] left-[10%] size-64 -translate-[50%] rounded-full bg-[var(--brand-7)] blur-[100px]"
+            />
 
-            <div class="absolute top-[10%] left-[90%] size-128 -translate-[50%] rounded-full bg-[var(--brand-5)] blur-[100px]" />
+            <div
+              class="absolute top-[10%] left-[90%] size-128 -translate-[50%] rounded-full bg-[var(--brand-5)] blur-[100px]"
+            />
           </div>
         </div>
         <AssetsVecLine class="absolute -bottom-[10vw] w-[100vw] md:-bottom-[30vw]" />

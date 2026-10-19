@@ -37,7 +37,9 @@ defineProps<CurriculumBody>()
               <div class="text-lg font-semibold">
                 {{ graduation.org }}
               </div>
-              <div class="text-neutral-content -mt-1 grid grid-flow-col items-center justify-start gap-1 text-sm font-bold">
+              <div
+                class="text-neutral-content -mt-1 grid grid-flow-col items-center justify-start gap-1 text-sm font-bold"
+              >
                 {{ graduation.date }}
               </div>
               <div class="mt-2">
@@ -67,9 +69,15 @@ defineProps<CurriculumBody>()
           </div>
         </div>
         <div class="@container grid grid-cols-12 gap-8 pl-8">
-          <div v-for="(experience, key) in experiences" :key class="col-span-full grid items-start gap-3 @3xl:col-span-6 @6xl:col-span-4">
+          <div
+            v-for="(experience, key) in experiences"
+            :key
+            class="col-span-full grid items-start gap-3 @3xl:col-span-6 @6xl:col-span-4"
+          >
             <div class="grid grid-flow-col items-start justify-start gap-3">
-              <div class="grid size-14 items-center justify-center overflow-hidden rounded-xl bg-black">
+              <div
+                class="grid size-14 items-center justify-center overflow-hidden rounded-xl bg-black"
+              >
                 <NuxtImg class="size-14" :src="experience.image" />
               </div>
               <div class="grid gap-1">
@@ -77,7 +85,9 @@ defineProps<CurriculumBody>()
                   {{ experience.title }} • {{ experience.org }}
                 </div>
                 <div class="grid grid-flow-col items-end justify-start gap-3">
-                  <div class="bg-accent/35 grid grid-flow-col items-center justify-start gap-1 rounded-lg px-1 py-0.5 text-xs font-bold @md:text-sm">
+                  <div
+                    class="bg-accent/35 grid grid-flow-col items-center justify-start gap-1 rounded-lg px-1 py-0.5 text-xs font-bold @md:text-sm"
+                  >
                     <div class="break-keep">
                       {{ experience.start }}
                     </div>

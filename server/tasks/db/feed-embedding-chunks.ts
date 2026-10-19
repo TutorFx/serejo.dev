@@ -10,7 +10,8 @@ interface FeedTaskResult {
 export default defineTask<FeedTaskResult>({
   meta: {
     name: 'db:feed-embedding-chunks',
-    description: 'Enfileira chunks pendentes de embedding (embedding IS NULL e context preenchido) no BullMQ',
+    description:
+      'Enfileira chunks pendentes de embedding (embedding IS NULL e context preenchido) no BullMQ',
   },
   async run() {
     const logger = consola.withTag('feed-embedding-chunks')
@@ -28,8 +29,8 @@ export default defineTask<FeedTaskResult>({
           and(
             isNull(schema.documentChunks.embedding),
             isNotNull(schema.documentChunks.context),
-            sql`trim(${schema.documentChunks.context}) != ''`,
-          ),
+            sql`trim(${schema.documentChunks.context}) != ''`
+          )
         )
         .limit(15)
 
@@ -40,7 +41,7 @@ export default defineTask<FeedTaskResult>({
             data: {
               chunkId: chunk.id,
             },
-          })),
+          }))
         )
         logger.info(`Enqueued ${pendingEmbeddingChunks.length} chunk(s) for embeddings`)
       }

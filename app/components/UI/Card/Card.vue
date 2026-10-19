@@ -52,7 +52,10 @@ const gridTemplateRows = computed(() => {
 </script>
 
 <template>
-  <div :class="uiStyles.base({ ...props, class: props.class })" :style="{ gridTemplateAreas, gridTemplateRows }">
+  <div
+    :class="uiStyles.base({ ...props, class: props.class })"
+    :style="{ gridTemplateAreas, gridTemplateRows }"
+  >
     <div
       v-if="'header' in slots"
       :class="uiStyles.header({ class: props.ui?.header })"

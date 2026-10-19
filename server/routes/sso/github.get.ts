@@ -6,9 +6,20 @@ import { z } from 'zod/v4'
 const gitHubOAuthUserSchema = z.object({
   id: z.union([z.number(), z.string()]).transform(String),
   login: z.string().min(1, 'GitHub username is required'),
-  name: z.string().trim().min(1).nullish().transform(val => val || null),
-  email: z.email().nullish().or(z.literal('').transform(() => null)),
-  avatar_url: z.url().nullish().or(z.literal('').transform(() => null))
+  name: z
+    .string()
+    .trim()
+    .min(1)
+    .nullish()
+    .transform(val => val || null),
+  email: z
+    .email()
+    .nullish()
+    .or(z.literal('').transform(() => null)),
+  avatar_url: z
+    .url()
+    .nullish()
+    .or(z.literal('').transform(() => null)),
 })
 
 export default defineOAuthGitHubEventHandler({
@@ -21,28 +32,29 @@ export default defineOAuthGitHubEventHandler({
       throw createError({
         statusCode: 400,
         statusMessage: 'Invalid GitHub user data',
-        data: z.treeifyError(ghResult.error)
+        data: z.treeifyError(ghResult.error),
       })
     }
 
     const ghParsed = ghResult.data
 
     let user = await db.query.users.findFirst({
-      where: () => and(
-        eq(schema.users.provider, 'github'),
-        eq(schema.users.providerId, ghParsed.id)
-      )
+      where: () =>
+        and(eq(schema.users.provider, 'github'), eq(schema.users.providerId, ghParsed.id)),
     })
 
     if (!user) {
-      const [newUser] = await db.insert(schema.users).values({
-        id: session.id,
-        name: ghParsed.name ?? ghParsed.login,
-        email: ghParsed.email,
-        username: ghParsed.login,
-        provider: 'github',
-        providerId: ghParsed.id
-      }).returning()
+      const [newUser] = await db
+        .insert(schema.users)
+        .values({
+          id: session.id,
+          name: ghParsed.name ?? ghParsed.login,
+          email: ghParsed.email,
+          username: ghParsed.login,
+          provider: 'github',
+          providerId: ghParsed.id,
+        })
+        .returning()
       user = newUser
     }
 
@@ -51,9 +63,12 @@ export default defineOAuthGitHubEventHandler({
     }
 
     if (session.id) {
-      await db.update(schema.chats).set({
-        userId: user.id
-      }).where(eq(schema.chats.userId, session.id))
+      await db
+        .update(schema.chats)
+        .set({
+          userId: user.id,
+        })
+        .where(eq(schema.chats.userId, session.id))
     }
 
     const userData: User = defu(
@@ -63,7 +78,7 @@ export default defineOAuthGitHubEventHandler({
         email: user.email || undefined,
         username: user.username || undefined,
         provider: user.provider,
-        providerId: user.providerId
+        providerId: user.providerId,
       },
       {
         id: session.id,
@@ -72,12 +87,12 @@ export default defineOAuthGitHubEventHandler({
         avatar: ghParsed.avatar_url ?? '',
         username: ghParsed.login,
         provider: 'github' as const,
-        providerId: ghParsed.id
+        providerId: ghParsed.id,
       }
     ) as User
 
     await setUserSession(event, {
-      user: userData
+      user: userData,
     })
 
     return sendRedirect(event, '/')
@@ -85,5 +100,5 @@ export default defineOAuthGitHubEventHandler({
   onError(event, error) {
     console.error('GitHub OAuth error:', error)
     return sendRedirect(event, '/')
-  }
+  },
 })

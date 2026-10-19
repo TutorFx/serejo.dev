@@ -18,7 +18,7 @@ const splitter = new RecursiveCharacterTextSplitter({
   chunkOverlap: 200,
 })
 
-export default defineNitroPlugin(async (_nitro) => {
+export default defineNitroPlugin(async _nitro => {
   if (import.meta.prerender) {
     return
   }
@@ -32,12 +32,12 @@ export default defineNitroPlugin(async (_nitro) => {
   const db = useDrizzle()
 
   try {
-    const collectionNames = Object.keys(tables).filter(
-      name => name !== 'info'
-    ) as Array<keyof PageCollections>
+    const collectionNames = Object.keys(tables).filter(name => name !== 'info') as Array<
+      keyof PageCollections
+    >
 
     const collectionsData = await Promise.all(
-      collectionNames.map(async (collection) => {
+      collectionNames.map(async collection => {
         const documents = await queryCollection(undefined as unknown as H3Event, collection).all()
         return documents.map(doc => ({
           doc: doc as ContentDocument,
@@ -77,15 +77,17 @@ export default defineNitroPlugin(async (_nitro) => {
         .returning()
 
       if (modifiedDocuments.length > 0) {
-        logger.info(`Detected ${modifiedDocuments.length} new/modified document(s). Processing chunks...`)
+        logger.info(
+          `Detected ${modifiedDocuments.length} new/modified document(s). Processing chunks...`
+        )
 
         const docMap = new Map(allDocuments.map(({ doc }) => [doc.id, doc]))
         const modifiedIds = modifiedDocuments.map(doc => doc.id)
 
         // Limpa chunks antigos dos documentos que foram modificados
-        await db.delete(schema.documentChunks).where(
-          inArray(schema.documentChunks.documentId, modifiedIds)
-        )
+        await db
+          .delete(schema.documentChunks)
+          .where(inArray(schema.documentChunks.documentId, modifiedIds))
 
         const chunkRows: Array<typeof schema.documentChunks.$inferInsert> = []
 

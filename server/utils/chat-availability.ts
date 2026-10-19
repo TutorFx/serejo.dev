@@ -7,7 +7,7 @@
 
 export const CHAT_FLAGS = {
   chatDisabled: 'chat:disabled',
-  schedulingDisabled: 'chat:scheduling-disabled'
+  schedulingDisabled: 'chat:scheduling-disabled',
 } as const
 
 export interface ChatAvailability {
@@ -20,13 +20,13 @@ export async function getChatAvailability(): Promise<ChatAvailability> {
 
   const [chatFlag, schedulingFlag] = await Promise.all([
     securityStore.isFlagSet(CHAT_FLAGS.chatDisabled),
-    securityStore.isFlagSet(CHAT_FLAGS.schedulingDisabled)
+    securityStore.isFlagSet(CHAT_FLAGS.schedulingDisabled),
   ])
 
   const chatEnabled = config.enabled !== false && !chatFlag
   return {
     chatEnabled,
-    schedulingEnabled: chatEnabled && config.schedulingEnabled !== false && !schedulingFlag
+    schedulingEnabled: chatEnabled && config.schedulingEnabled !== false && !schedulingFlag,
   }
 }
 
@@ -35,7 +35,11 @@ export async function assertChatEnabled(): Promise<ChatAvailability> {
   const availability = await getChatAvailability()
   if (!availability.chatEnabled) {
     logSecurityEvent('chat-disabled')
-    throw createError({ statusCode: 503, statusMessage: 'Service Unavailable', message: SECURITY_ERROR.chatDisabled })
+    throw createError({
+      statusCode: 503,
+      statusMessage: 'Service Unavailable',
+      message: SECURITY_ERROR.chatDisabled,
+    })
   }
   return availability
 }

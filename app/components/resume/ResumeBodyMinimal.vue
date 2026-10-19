@@ -90,7 +90,9 @@ defineProps<CurriculumBody>()
         <div v-for="(project, key) in projects" :key="key" class="flex flex-col">
           <div class="body-text flex flex-col justify-between sm:flex-row sm:items-baseline">
             <span class="font-bold">{{ project.title }}</span>
-            <span v-if="project.start" class="font-medium text-gray-600 italic sm:text-right">{{ project.start }} - {{ project.end }}</span>
+            <span v-if="project.start" class="font-medium text-gray-600 italic sm:text-right"
+              >{{ project.start }} - {{ project.end }}</span
+            >
           </div>
           <div v-if="project.org" class="body-text font-medium text-gray-700 italic">
             {{ project.org }}

@@ -1,35 +1,37 @@
 import { and, eq } from 'drizzle-orm'
 import { z } from 'zod'
 
-export default defineEventHandler(async (event) => {
+export default defineEventHandler(async event => {
   const session = await getUserSession(event)
   const db = useDrizzle()
 
-  const { id } = await getValidatedRouterParams(event, z.object({
-    id: z.string()
-  }).parse)
+  const { id } = await getValidatedRouterParams(
+    event,
+    z.object({
+      id: z.string(),
+    }).parse
+  )
 
-  const { title } = await readValidatedBody(event, z.object({
-    title: z.string().trim().min(1).max(100)
-  }).parse)
+  const { title } = await readValidatedBody(
+    event,
+    z.object({
+      title: z.string().trim().min(1).max(100),
+    }).parse
+  )
 
   const chat = await db.query.chats.findFirst({
-    where: () => and(
-      eq(schema.chats.id, id),
-      eq(schema.chats.userId, session.user?.id || session.id)
-    )
+    where: () =>
+      and(eq(schema.chats.id, id), eq(schema.chats.userId, session.user?.id || session.id)),
   })
 
   if (!chat) {
     throw createError({ statusCode: 404, statusMessage: 'Chat not found' })
   }
 
-  const [updated] = await db.update(schema.chats)
+  const [updated] = await db
+    .update(schema.chats)
     .set({ title })
-    .where(and(
-      eq(schema.chats.id, id),
-      eq(schema.chats.userId, session.user?.id || session.id)
-    ))
+    .where(and(eq(schema.chats.id, id), eq(schema.chats.userId, session.user?.id || session.id)))
     .returning()
 
   if (!updated) {

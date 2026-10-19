@@ -1,0 +1,13 @@
+{
+  "$schema": "./node_modules/oxfmt/configuration_schema.json",
+  "printWidth": 100,
+  "semi": false,
+  "singleQuote": true,
+  "trailingComma": "es5",
+  "arrowParens": "avoid",
+  "quoteProps": "preserve",
+  "experimentalOperatorPosition": "start",
+  "embeddedLanguageFormatting": "off",
+  "sortPackageJson": false,
+  "ignorePatterns": ["**/*.json", "**/*.jsonc", "**/*.md", "**/*.yml", "**/*.yaml", "**/*.css"]
+}

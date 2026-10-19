@@ -25,7 +25,10 @@ withDefaults(
     xml:space="preserve"
   >
     <defs>
-      <path id="criclePath" :d="` M ${a}, ${a} m -${b}, 0 a ${b},${b} 0 0,1 ${b * 2},0 a ${b},${b} 0 0,1 -${b * 2},0 `" />
+      <path
+        id="criclePath"
+        :d="` M ${a}, ${a} m -${b}, 0 a ${b},${b} 0 0,1 ${b * 2},0 a ${b},${b} 0 0,1 -${b * 2},0 `"
+      />
     </defs>
 
     <g>

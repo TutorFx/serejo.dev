@@ -219,7 +219,10 @@ onMounted(() => {
     </div>
 
     <UContainer v-else class="flex flex-1 flex-col gap-4 sm:gap-6">
-      <UError :error="{ statusMessage: t('chat.ui.not_found'), statusCode: 404 }" class="min-h-full" />
+      <UError
+        :error="{ statusMessage: t('chat.ui.not_found'), statusCode: 404 }"
+        class="min-h-full"
+      />
     </UContainer>
   </div>
 </template>

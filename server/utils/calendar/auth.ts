@@ -17,7 +17,7 @@ export function createGoogleAuth() {
     scopes: [
       'https://www.googleapis.com/auth/calendar.events',
       'https://www.googleapis.com/auth/calendar.events.freebusy',
-      'https://www.googleapis.com/auth/calendar.freebusy'
+      'https://www.googleapis.com/auth/calendar.freebusy',
     ],
   })
 }

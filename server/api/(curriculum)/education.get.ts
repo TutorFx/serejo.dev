@@ -1,6 +1,6 @@
 import { queryCollection } from '@nuxt/content/server'
 
-export default defineEventHandler(async (event) => {
+export default defineEventHandler(async event => {
   const query = await getValidatedQuery(event, data => educationQuerySchema.safeParse(data))
   const t = await useTranslation(event)
 
@@ -13,27 +13,35 @@ export default defineEventHandler(async (event) => {
     })
   }
 
-  const experiences = await queryCollection(event, 'education').where('id', 'LIKE', `%/${query.data.lang || LOCALE_KEYS.EN_US}/%`).order('end', 'DESC').all()
+  const experiences = await queryCollection(event, 'education')
+    .where('id', 'LIKE', `%/${query.data.lang || LOCALE_KEYS.EN_US}/%`)
+    .order('end', 'DESC')
+    .all()
 
-  return experiences?.map((item) => {
-    const { data } = educationWithBodySchema.safeParse(item)
+  return (
+    (experiences
+      ?.map(item => {
+        const { data } = educationWithBodySchema.safeParse(item)
 
-    if (!data)
-      return null
+        if (!data) return null
 
-    const { title, start, end, meta, org, stem, body } = data
-    const { locale } = meta
-    const path = processCmsPath(locale, stem)
+        const { title, start, end, meta, org, stem, body } = data
+        const { locale } = meta
+        const path = processCmsPath(locale, stem)
 
-    return {
-      title,
-      org,
-      start: formatCardDate(start, locale),
-      end: end ? formatCardDate(end, locale) : t('time.the_moment', {}, { locale }),
-      locale,
-      path,
-      body,
-      date: end ? t('curriculum.graduated_in', { date: formatCardDate(end, locale) }, { locale }) : t('curriculum.in_progress', {}, { locale }),
-    }
-  }).filter(item => item !== null) satisfies EducationDto[] ?? []
+        return {
+          title,
+          org,
+          start: formatCardDate(start, locale),
+          end: end ? formatCardDate(end, locale) : t('time.the_moment', {}, { locale }),
+          locale,
+          path,
+          body,
+          date: end
+            ? t('curriculum.graduated_in', { date: formatCardDate(end, locale) }, { locale })
+            : t('curriculum.in_progress', {}, { locale }),
+        }
+      })
+      .filter(item => item !== null) satisfies EducationDto[]) ?? []
+  )
 })

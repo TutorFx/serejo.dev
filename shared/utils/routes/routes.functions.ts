@@ -23,7 +23,11 @@ export function getStaticRouteUrl(path: string, locale: AppLocale): string {
 /**
  * Constrói o texto formatado em Markdown para uma rota estática para indexação no RAG.
  */
-export function getStaticRouteContentFromMeta(meta: RouteMeta, routeUrl: string, locale: AppLocale): string {
+export function getStaticRouteContentFromMeta(
+  meta: RouteMeta,
+  routeUrl: string,
+  locale: AppLocale
+): string {
   const parts = [
     `# [Page / Route] ${meta.title}`,
     `- Page Route URL: ${routeUrl}`,

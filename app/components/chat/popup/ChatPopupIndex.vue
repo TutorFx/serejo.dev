@@ -130,7 +130,9 @@ const quickChats = QUICK_CHATS
 
     <!-- History / Past chats -->
     <div v-if="groups?.length" class="flex flex-col gap-3 pt-2">
-      <div class="text-dimmed flex items-center justify-between px-1 text-xs font-semibold tracking-wider uppercase">
+      <div
+        class="text-dimmed flex items-center justify-between px-1 text-xs font-semibold tracking-wider uppercase"
+      >
         <span>{{ t('chat.ui.recent_conversations') }}</span>
         <span class="text-muted text-xs font-normal lowercase">({{ chats?.length ?? 0 }})</span>
       </div>
@@ -149,8 +151,14 @@ const quickChats = QUICK_CHATS
               @click="emit('openChat', chat.id)"
             >
               <div class="flex min-w-0 flex-1 items-center gap-2.5">
-                <UIcon name="i-lucide-message-circle" class="text-dimmed group-hover:text-highlighted size-4 shrink-0 transition-colors" />
-                <span class="truncate" :class="chat.label === t('chat.ui.untitled') ? 'text-dimmed italic' : 'text-highlighted'">
+                <UIcon
+                  name="i-lucide-message-circle"
+                  class="text-dimmed group-hover:text-highlighted size-4 shrink-0 transition-colors"
+                />
+                <span
+                  class="truncate"
+                  :class="chat.label === t('chat.ui.untitled') ? 'text-dimmed italic' : 'text-highlighted'"
+                >
                   {{ chat.label }}
                 </span>
               </div>

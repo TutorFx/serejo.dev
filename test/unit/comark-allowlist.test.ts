@@ -1,14 +1,18 @@
 import { describe, expect, it } from 'vitest'
 import { parse } from 'comark'
 import security from 'comark/plugins/security'
-import { chatAllowlist, chatSecurityOptions, sanitizeComarkNodes } from '../../app/utils/ai/comark-allowlist'
+import {
+  chatAllowlist,
+  chatSecurityOptions,
+  sanitizeComarkNodes,
+} from '../../app/utils/ai/comark-allowlist'
 
 const SITE_URL = 'https://serejo.dev'
 
 async function renderTree(markdown: string) {
   const tree = await parse(markdown, {
     html: false,
-    plugins: [security(chatSecurityOptions(SITE_URL)), chatAllowlist()]
+    plugins: [security(chatSecurityOptions(SITE_URL)), chatAllowlist()],
   })
   return tree.nodes
 }
@@ -49,7 +53,11 @@ describe('chat markdown allowlist', () => {
   })
 
   it('never turns javascript: URLs into links', async () => {
-    for (const markdown of ['[click](javascript:alert(1))', '<javascript:alert(1)>', '[x](JaVaScRiPt:alert(1))']) {
+    for (const markdown of [
+      '[click](javascript:alert(1))',
+      '<javascript:alert(1)>',
+      '[x](JaVaScRiPt:alert(1))',
+    ]) {
       const nodes = await renderTree(markdown)
 
       // markdown-it rejects the URL and leaves the source as inert text
@@ -59,7 +67,9 @@ describe('chat markdown allowlist', () => {
   })
 
   it('keeps safe links', async () => {
-    const nodes = await renderTree('[blog](https://serejo.dev/blog) and [mail](mailto:hi@serejo.dev)')
+    const nodes = await renderTree(
+      '[blog](https://serejo.dev/blog) and [mail](mailto:hi@serejo.dev)'
+    )
     const json = JSON.stringify(nodes)
 
     expect(json).toContain('"href":"https://serejo.dev/blog"')
@@ -67,7 +77,9 @@ describe('chat markdown allowlist', () => {
   })
 
   it('strips presentational and component-swapping attributes', async () => {
-    const nodes = await renderTree('**bold**{style="position:fixed;inset:0" .fixed as="ProseCard"} [x]{as="ProseCallout" class="fixed inset-0"}')
+    const nodes = await renderTree(
+      '**bold**{style="position:fixed;inset:0" .fixed as="ProseCard"} [x]{as="ProseCallout" class="fixed inset-0"}'
+    )
     const json = JSON.stringify(nodes)
 
     expect(json).not.toContain('position:fixed')
@@ -77,7 +89,9 @@ describe('chat markdown allowlist', () => {
   })
 
   it('keeps only the url of source links', async () => {
-    const nodes = await renderTree('text :source-link{url="https://nuxt.com" favicon="https://evil.example/?leak" label="x"}')
+    const nodes = await renderTree(
+      'text :source-link{url="https://nuxt.com" favicon="https://evil.example/?leak" label="x"}'
+    )
     const json = JSON.stringify(nodes)
 
     expect(collectTags(nodes)).toContain('source-link')
@@ -96,22 +110,50 @@ describe('chat markdown allowlist', () => {
 describe('sanitizeComarkNodes', () => {
   it('keeps highlighter output inside pre and filters it outside', () => {
     const nodes = sanitizeComarkNodes([
-      ['pre', { class: 'shiki material-theme-lighter fixed', language: 'ts', onclick: 'x' }, ['code', { class: 'language-ts' }, ['span', { class: 'line evil', style: '--shiki-light:#fff;--shiki-dark:#000' }, 'const a = 1']]],
+      [
+        'pre',
+        { class: 'shiki material-theme-lighter fixed', language: 'ts', onclick: 'x' },
+        [
+          'code',
+          { class: 'language-ts' },
+          [
+            'span',
+            { class: 'line evil', style: '--shiki-light:#fff;--shiki-dark:#000' },
+            'const a = 1',
+          ],
+        ],
+      ],
       ['span', { style: 'color:red' }, 'outside'],
       ['div', { as: 'ProseCard' }, ['card', { to: 'javascript:alert(1)' }, 'child']],
-      [null, {}, 'comment']
+      [null, {}, 'comment'],
     ])
 
     expect(nodes).toEqual([
-      ['pre', { class: 'shiki material-theme-lighter', language: 'ts' }, ['code', { class: 'language-ts' }, ['span', { class: 'line', style: '--shiki-light:#fff;--shiki-dark:#000' }, 'const a = 1']]],
+      [
+        'pre',
+        { class: 'shiki material-theme-lighter', language: 'ts' },
+        [
+          'code',
+          { class: 'language-ts' },
+          ['span', { class: 'line', style: '--shiki-light:#fff;--shiki-dark:#000' }, 'const a = 1'],
+        ],
+      ],
       ['span', {}, 'outside'],
-      'child'
+      'child',
     ])
   })
 
   it('rejects unsafe styles inside code blocks', () => {
     const nodes = sanitizeComarkNodes([
-      ['pre', {}, ['code', {}, ['span', { style: 'position:fixed;inset:0;background:url(https://evil)' }, 'x']]]
+      [
+        'pre',
+        {},
+        [
+          'code',
+          {},
+          ['span', { style: 'position:fixed;inset:0;background:url(https://evil)' }, 'x'],
+        ],
+      ],
     ])
 
     expect(nodes).toEqual([['pre', {}, ['code', {}, ['span', {}, 'x']]]])

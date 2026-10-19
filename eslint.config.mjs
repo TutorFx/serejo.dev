@@ -1,18 +1,21 @@
 // @ts-check
 import withNuxt from './.nuxt/eslint.config.mjs'
+import prettier from 'eslint-config-prettier/flat'
 import pluginTailwindCSS from 'eslint-plugin-tailwindcss'
-import stylistic from '@stylistic/eslint-plugin'
 
 export default withNuxt(
+  // JS/TS files are linted by oxlint (.oxlintrc.json, generated with @oxlint/migrate). ESLint keeps the .vue files
+  // (oxlint has no Vue template linting yet) and the markdown link checks. Drop this ignore before re-running the migration
+  {
+    ignores: ['**/*.{js,cjs,mjs,jsx,ts,cts,mts,tsx}'],
+  },
   {
     rules: {
       'vue/multi-word-component-names': 'off',
-      'vue/max-attributes-per-line': ['error', { singleline: 3 }],
-      '@stylistic/comma-dangle': 'off',
-      '@stylistic/indent': ['error', 2],
-    },
-    plugins: {
-      '@stylistic': stylistic,
+      // Set by the Nuxt stylistic preset, which is off now that oxfmt formats the code
+      'vue/one-component-per-file': 'off',
+      'vue/require-default-prop': 'off',
+      'import/newline-after-import': ['error', { count: 1 }],
     },
   },
   {
@@ -31,4 +34,13 @@ export default withNuxt(
       'tailwindcss/no-contradicting-classname': 'error',
     },
   },
+  // Turns off the rules that conflict with oxfmt, as the oxfmt docs recommend; keep it after the other configs
+  prettier,
+  {
+    // Turned off by eslint-config-prettier, whose docs say it usually works with the formatter. It guards
+    // semicolon-less code and oxlint keeps it for JS/TS
+    rules: {
+      'no-unexpected-multiline': 'error',
+    },
+  }
 )

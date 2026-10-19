@@ -5,6 +5,7 @@
     "csstools.postcss",
     "antfu.unocss",
     "dbaeumer.vscode-eslint",
+    "oxc.oxc-vscode",
     "vue.volar"
   ]
 }

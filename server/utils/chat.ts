@@ -17,7 +17,7 @@ export async function getResumeContext(event?: H3Event): Promise<string> {
       .all()
 
     const formattedExp = historyDocs
-      .map((doc) => {
+      .map(doc => {
         const parsed = historySchema.safeParse(doc)
         if (!parsed.success) {
           return null
@@ -42,7 +42,7 @@ export async function getResumeContext(event?: H3Event): Promise<string> {
       .all()
 
     const formattedEdu = educationDocs
-      .map((doc) => {
+      .map(doc => {
         const parsed = educationSchema.safeParse(doc)
         if (!parsed.success) {
           return null
@@ -60,7 +60,9 @@ export async function getResumeContext(event?: H3Event): Promise<string> {
   }
 
   const skillsList = Array.isArray(curriculum.skills) ? curriculum.skills.join(', ') : ''
-  const certsList = Array.isArray(curriculum.certifications) ? curriculum.certifications.join(', ') : ''
+  const certsList = Array.isArray(curriculum.certifications)
+    ? curriculum.certifications.join(', ')
+    : ''
 
   return `
 **Candidate Resume & Profile Summary (Source of Truth):**

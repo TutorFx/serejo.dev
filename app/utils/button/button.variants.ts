@@ -20,7 +20,8 @@ export const button = tv({
       [CORE_COLORS.SECONDARY]: '[--color:var(--secondary)]',
     },
     variant: {
-      [BUTTON_VARIANTS.LINK]: 'px-1 py-1 [&_.wrapper]:text-start decoration-[var(--color)] hover:underline hover:decoration-wavy group-hover:underline group-hover:decoration-wavy',
+      [BUTTON_VARIANTS.LINK]:
+        'px-1 py-1 [&_.wrapper]:text-start decoration-[var(--color)] hover:underline hover:decoration-wavy group-hover:underline group-hover:decoration-wavy',
       [BUTTON_VARIANTS.DEFAULT]: 'bg-[var(--color)] text-[var(--text)] font-bold',
     },
     rounded: {

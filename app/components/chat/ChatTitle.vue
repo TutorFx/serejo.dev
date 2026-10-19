@@ -42,12 +42,7 @@ const items = computed<DropdownMenuItem[][]>(() => [[
     {{ displayTitle }}
   </span>
 
-  <UDropdownMenu
-    v-else
-    :items="items"
-    :content="{ align: 'end' }"
-    :ui="{ content: 'min-w-44' }"
-  >
+  <UDropdownMenu v-else :items="items" :content="{ align: 'end' }" :ui="{ content: 'min-w-44' }">
     <UButton
       color="neutral"
       variant="ghost"

@@ -9,13 +9,18 @@ type Database = ReturnType<typeof useDrizzle>
  */
 
 /** Returns false when the id is taken by a message of another chat */
-export async function saveUserMessage(db: Database, chatId: string, message: UIMessage): Promise<boolean> {
-  const rows = await db.insert(schema.messages)
+export async function saveUserMessage(
+  db: Database,
+  chatId: string,
+  message: UIMessage
+): Promise<boolean> {
+  const rows = await db
+    .insert(schema.messages)
     .values({ id: message.id, chatId, role: 'user', parts: message.parts })
     .onConflictDoUpdate({
       target: schema.messages.id,
       set: { parts: message.parts },
-      setWhere: and(eq(schema.messages.chatId, chatId), eq(schema.messages.role, 'user'))
+      setWhere: and(eq(schema.messages.chatId, chatId), eq(schema.messages.role, 'user')),
     })
     .returning({ id: schema.messages.id })
 
@@ -26,13 +31,18 @@ export async function saveUserMessage(db: Database, chatId: string, message: UIM
  * Inserts or updates an assistant message. Updates are needed for continuations
  * (a stream that resumes after an approval keeps the same message id).
  */
-export async function saveAssistantMessage(db: Database, chatId: string, message: UIMessage): Promise<boolean> {
-  const rows = await db.insert(schema.messages)
+export async function saveAssistantMessage(
+  db: Database,
+  chatId: string,
+  message: UIMessage
+): Promise<boolean> {
+  const rows = await db
+    .insert(schema.messages)
     .values({ id: message.id, chatId, role: 'assistant', parts: message.parts })
     .onConflictDoUpdate({
       target: schema.messages.id,
       set: { parts: message.parts },
-      setWhere: and(eq(schema.messages.chatId, chatId), eq(schema.messages.role, 'assistant'))
+      setWhere: and(eq(schema.messages.chatId, chatId), eq(schema.messages.role, 'assistant')),
     })
     .returning({ id: schema.messages.id })
 

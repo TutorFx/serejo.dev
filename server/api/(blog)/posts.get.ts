@@ -1,6 +1,6 @@
 import { queryCollection } from '@nuxt/content/server'
 
-export default defineEventHandler(async (event) => {
+export default defineEventHandler(async event => {
   const query = await getValidatedQuery(event, data => postsQuerySchema.safeParse(data))
   const t = await useTranslation(event)
 
@@ -13,29 +13,35 @@ export default defineEventHandler(async (event) => {
     })
   }
 
-  const posts = await queryCollection(event, 'blog').where('id', 'LIKE', `%/${query.data?.lang || LOCALE_KEYS.EN_US}/%`).order('createdAt', 'DESC').all()
+  const posts = await queryCollection(event, 'blog')
+    .where('id', 'LIKE', `%/${query.data?.lang || LOCALE_KEYS.EN_US}/%`)
+    .order('createdAt', 'DESC')
+    .all()
 
-  return posts?.map((item) => {
-    const { data } = blogSchema.safeParse(item)
+  return (
+    posts
+      ?.map(item => {
+        const { data } = blogSchema.safeParse(item)
 
-    if (!data)
-      return null
+        if (!data) return null
 
-    const { title, meta, stem, slug, createdAt } = data
-    const { locale, readingTimeInSeconds, reducedBody } = meta
+        const { title, meta, stem, slug, createdAt } = data
+        const { locale, readingTimeInSeconds, reducedBody } = meta
 
-    const readingTimeString = getExtenseShift(readingTimeInSeconds, locale)
-    const path = processCmsPath(locale, stem)
+        const readingTimeString = getExtenseShift(readingTimeInSeconds, locale)
+        const path = processCmsPath(locale, stem)
 
-    return {
-      title,
-      locale,
-      readingTimeInSeconds,
-      readingTimeString: t('time.reading_time', { time: readingTimeString }, { locale }),
-      reducedBody: reducedBody ? truncateString(reducedBody, 200) : undefined,
-      path,
-      slug,
-      createdAt,
-    }
-  }).filter(item => item !== null) ?? [] satisfies BlogPostsDto[]
+        return {
+          title,
+          locale,
+          readingTimeInSeconds,
+          readingTimeString: t('time.reading_time', { time: readingTimeString }, { locale }),
+          reducedBody: reducedBody ? truncateString(reducedBody, 200) : undefined,
+          path,
+          slug,
+          createdAt,
+        }
+      })
+      .filter(item => item !== null) ?? ([] satisfies BlogPostsDto[])
+  )
 })

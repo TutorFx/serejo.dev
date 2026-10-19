@@ -25,13 +25,13 @@ export default defineComarkComponent({
   html: false,
   plugins: [
     highlight({
-      languages: [html, css, python, sql, diff, dockerfile, xml, toml, markdown]
+      languages: [html, css, python, sql, diff, dockerfile, xml, toml, markdown],
     }),
     security(chatSecurityOptions(SITE_URL)),
-    chatAllowlist()
+    chatAllowlist(),
   ],
   components: {
-    'source-link': SourceLink
+    'source-link': SourceLink,
   },
-  class: '*:first:mt-0 *:last:mb-0'
+  class: '*:first:mt-0 *:last:mb-0',
 })

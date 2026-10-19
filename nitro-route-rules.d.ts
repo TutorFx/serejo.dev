@@ -2,10 +2,12 @@
 // `nitropack/types`, so the `csurf` route rule (used to exempt routes) needs this augmentation
 declare module 'nitropack/types' {
   interface NitroRouteConfig {
-    csurf?: false | {
-      enabled?: boolean
-      methodsToProtect?: string[]
-    }
+    csurf?:
+      | false
+      | {
+          enabled?: boolean
+          methodsToProtect?: string[]
+        }
   }
 }
 

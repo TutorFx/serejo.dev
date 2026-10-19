@@ -51,9 +51,7 @@ export default defineNuxtConfig({
     },
   },
 
-  css: [
-    '~/assets/css/tailwind.css',
-  ],
+  css: ['~/assets/css/tailwind.css'],
 
   site: {
     name: APP_NAME,
@@ -73,9 +71,7 @@ export default defineNuxtConfig({
       sqliteConnector: 'native',
     },
     build: {
-      transformers: [
-        '~~/transformers/reading-time.ts',
-      ],
+      transformers: ['~~/transformers/reading-time.ts'],
       markdown: {},
     },
     preview: {
@@ -130,7 +126,7 @@ export default defineNuxtConfig({
         'Referrer-Policy': 'strict-origin-when-cross-origin',
         'Permissions-Policy': 'camera=(), microphone=(), geolocation=(), payment=()',
         // Anti-clickjacking for the meeting approval button; Nuxt Studio previews the site in an iframe
-        'Content-Security-Policy': 'frame-ancestors \'self\' https://nuxt.studio',
+        'Content-Security-Policy': "frame-ancestors 'self' https://nuxt.studio",
       },
     },
     // CSRF exemptions: requests made by modules that cannot send the token
@@ -181,10 +177,7 @@ export default defineNuxtConfig({
       tasks: true,
     },
     scheduledTasks: {
-      '* * * * *': [
-        'db:feed-contextual-chunks',
-        'db:feed-embedding-chunks',
-      ],
+      '* * * * *': ['db:feed-contextual-chunks', 'db:feed-embedding-chunks'],
     },
     // The tests join the server TS project (aliases and auto-import types); test/nuxt belongs to the app.
     // Paths are relative to .nuxt/, where tsconfig.server.json is generated
@@ -197,9 +190,7 @@ export default defineNuxtConfig({
   },
 
   vite: {
-    plugins: [
-      tailwindcss(),
-    ],
+    plugins: [tailwindcss()],
     optimizeDeps: {
       // https://github.com/nuxt-modules/mdc/issues/394
       include: ['debug'],
@@ -215,11 +206,9 @@ export default defineNuxtConfig({
 
   eslint: {
     config: {
-      stylistic: {
-        commaDangle: 'never',
-        braceStyle: '1tbs'
-      }
-    }
+      // Formatting is done by oxfmt (.oxfmtrc.json): no stylistic rules in ESLint
+      stylistic: false,
+    },
   },
 
   googleFonts: {
@@ -281,10 +270,17 @@ export default defineNuxtConfig({
   },
 
   sitemap: {
-    sources: [
-      '/api/__sitemap__/urls',
-    ],
+    sources: ['/api/__sitemap__/urls'],
     // Localized paths are listed explicitly: the routes are defined with `defineI18nRoute`, not `i18n.pages`
-    exclude: ['/test', '/pt-BR/test', '/projects', '/pt-BR/projetos', '/chat', '/pt-BR/chat', '/resume', '/pt-BR/resume'],
+    exclude: [
+      '/test',
+      '/pt-BR/test',
+      '/projects',
+      '/pt-BR/projetos',
+      '/chat',
+      '/pt-BR/chat',
+      '/resume',
+      '/pt-BR/resume',
+    ],
   },
 })

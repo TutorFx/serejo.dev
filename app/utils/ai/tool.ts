@@ -7,11 +7,11 @@ export interface Source {
 }
 
 interface GoogleGroundingChunk {
-  web?: { uri?: string, title?: string }
+  web?: { uri?: string; title?: string }
 }
 
 interface SearchOutput {
-  sources?: { url: string, type?: string }[]
+  sources?: { url: string; type?: string }[]
   groundingChunks?: GoogleGroundingChunk[]
   groundingMetadata?: { groundingChunks?: GoogleGroundingChunk[] }
 }
@@ -23,8 +23,8 @@ export function getSearchQuery(part: ToolPart): string | undefined {
 }
 
 /** Keeps only sources with an absolute `https:` URL; tool output is untrusted */
-function toSafeSources(sources: Array<{ url?: string, title?: string }>): Source[] {
-  return sources.flatMap((source) => {
+function toSafeSources(sources: Array<{ url?: string; title?: string }>): Source[] {
+  return sources.flatMap(source => {
     const url = toSafeExternalUrl(source.url)
     return url ? [{ url, title: typeof source.title === 'string' ? source.title : undefined }] : []
   })
