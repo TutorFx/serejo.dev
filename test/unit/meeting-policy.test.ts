@@ -1,4 +1,4 @@
-import { describe, expect, it } from 'bun:test'
+import { describe, expect, it } from 'vitest'
 import { assertAvailabilityDate, assertMeetingPolicy, MeetingPolicyError } from '../../server/utils/calendar/policy'
 
 const timeZone = 'America/Sao_Paulo'
@@ -39,7 +39,7 @@ describe('assertMeetingPolicy', () => {
     [{ startTime: '2026-10-20T07:00:00', endTime: '2026-10-20T08:00:00' }, 'outside-work-hours'],
     [{ startTime: '2026-10-20T19:30:00', endTime: '2026-10-20T20:30:00' }, 'outside-work-hours'],
     [{ startTime: '2026-10-20T23:30:00', endTime: '2026-10-21T00:30:00' }, 'outside-work-hours']
-  ])('rejects %p as %s', (input, reason) => {
+  ])('rejects %o as %s', (input, reason) => {
     expect(violation(() => assertMeetingPolicy(input, { timeZone, now }))).toBe(reason)
   })
 })

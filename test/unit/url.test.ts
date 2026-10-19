@@ -1,4 +1,4 @@
-import { describe, expect, it } from 'bun:test'
+import { describe, expect, it } from 'vitest'
 import { resolveSafeLink, toSafeExternalUrl } from '../../app/utils/ai/url'
 
 const SITE = 'https://serejo.dev'
@@ -18,7 +18,7 @@ describe('toSafeExternalUrl', () => {
     '',
     undefined,
     42
-  ])('rejects %p', (value) => {
+  ])('rejects %o', (value) => {
     expect(toSafeExternalUrl(value)).toBeNull()
   })
 
@@ -53,7 +53,7 @@ describe('resolveSafeLink', () => {
     'vbscript:msgbox(1)',
     'data:text/html,x',
     'file:///etc/passwd'
-  ])('rejects %p', (value) => {
+  ])('rejects %o', (value) => {
     expect(resolveSafeLink(value, SITE)).toBeNull()
   })
 })

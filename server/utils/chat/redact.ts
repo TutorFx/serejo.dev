@@ -1,6 +1,5 @@
 /**
  * Redaction for chats opened by someone other than the owner (public link).
- * Pure module so it can be unit tested with `bun test`.
  *
  * - reasoning parts are removed (they may echo internal instructions)
  * - scheduling parts are removed: they hold the visitor's name and e-mail and Gabriel's busy slots

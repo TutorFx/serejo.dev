@@ -186,6 +186,14 @@ export default defineNuxtConfig({
         'db:feed-embedding-chunks',
       ],
     },
+    // The tests join the server TS project (aliases and auto-import types); test/nuxt belongs to the app.
+    // Paths are relative to .nuxt/, where tsconfig.server.json is generated
+    typescript: {
+      tsConfig: {
+        include: ['../test/**/*'],
+        exclude: ['../test/nuxt/**/*'],
+      },
+    },
   },
 
   vite: {

@@ -1,4 +1,4 @@
-import { describe, expect, it } from 'bun:test'
+import { describe, expect, it } from 'vitest'
 import type { UIMessage } from 'ai'
 import { chatRequestBodySchema, ChatRequestError, DENIED_BY_NEW_MESSAGE, DENIED_BY_VISITOR, firstUserText, mergeIncoming, selectContextWindow, toStoredHistory } from '../../server/utils/chat/history'
 

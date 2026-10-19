@@ -1,4 +1,4 @@
-import { describe, expect, it } from 'bun:test'
+import { describe, expect, it } from 'vitest'
 import { parse } from 'comark'
 import security from 'comark/plugins/security'
 import { chatAllowlist, chatSecurityOptions, sanitizeComarkNodes } from '../../app/utils/ai/comark-allowlist'

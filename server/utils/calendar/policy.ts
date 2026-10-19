@@ -1,10 +1,9 @@
 import { TZDate, tz } from '@date-fns/tz'
 import { addDays, addMinutes, differenceInMinutes, format, isBefore, parseISO } from 'date-fns'
-import { CALENDAR_CONFIG, MEETING_POLICY } from '../../../shared/utils/constants/chat.constants'
+import { CALENDAR_CONFIG, MEETING_POLICY } from '#shared/utils/constants/chat.constants'
 
 /**
  * Business rules for meeting requests, enforced in code regardless of what the model sends.
- * Pure module (explicit relative imports) so it can be unit tested with `bun test`.
  */
 
 export type MeetingPolicyViolation
