@@ -21,13 +21,14 @@
 pre-commit:
   parallel: true
   commands:
-    oxlint:
+    # Lint fixes first, then oxfmt; the two groups never touch the same files, so they can run in parallel
+    js-ts:
       glob: '*.{js,cjs,mjs,jsx,ts,cts,mts,tsx}'
-      run: bunx oxlint --fix --no-error-on-unmatched-pattern {staged_files}
+      run: bunx oxlint --fix --no-error-on-unmatched-pattern {staged_files} && bunx oxfmt --no-error-on-unmatched-pattern {staged_files}
       stage_fixed: true
-    eslint:
+    vue:
       glob: '*.vue'
-      run: bunx eslint --fix {staged_files}
+      run: bunx eslint --fix {staged_files} && bunx oxfmt --no-error-on-unmatched-pattern {staged_files}
       stage_fixed: true
     typecheck:
       glob: '*.{ts,vue}'
