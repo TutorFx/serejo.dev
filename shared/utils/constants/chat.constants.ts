@@ -160,7 +160,80 @@ export const DAYS_OF_WEEK_ARRAY = Object.values(DAY_OF_WEEK)
 export type DayOfWeek = (typeof DAY_OF_WEEK)[keyof typeof DAY_OF_WEEK]
 
 // ============================================================================
-// 5. QUICK CHAT PROMPTS
+// 5. LIMITES DE ABUSO E CUSTO (DEFESA EM PROFUNDIDADE)
+// ============================================================================
+
+const HOUR = 60 * 60
+const DAY = 24 * HOUR
+
+/**
+ * Cotas por sessão, por IP e globais aplicadas pelo servidor (Redis, com fallback em memória).
+ * Os valores são iniciais e devem ser ajustados com base nos logs `security:ratelimit`.
+ */
+export const ABUSE_LIMITS = {
+  messages: {
+    session: [{ limit: 20, windowSec: HOUR }, { limit: 60, windowSec: DAY }],
+    ip: [{ limit: 40, windowSec: HOUR }, { limit: 120, windowSec: DAY }]
+  },
+  chats: {
+    session: [{ limit: 5, windowSec: HOUR }],
+    ip: [{ limit: 10, windowSec: HOUR }]
+  },
+  tokens: {
+    /** Tokens (entrada + saída) por janela de 24h */
+    session: 150_000,
+    ip: 300_000,
+    /** Acima deste total global o chat é desligado até a janela expirar */
+    global: 2_000_000,
+    /** Teto por requisição: o stream é abortado ao ultrapassar */
+    perRequest: 40_000,
+    windowSec: DAY
+  },
+  meetings: {
+    perSessionPerDay: 2,
+    globalPerDay: 5,
+    /** Reserva de 1 reunião por chat */
+    perChatTtlSec: 30 * DAY
+  },
+  /** Duração máxima de um stream antes de o lock do chat expirar */
+  chatLockMs: 120_000
+} as const
+
+/**
+ * Limites de tamanho e de execução do agente.
+ */
+export const CHAT_LIMITS = {
+  maxBodyBytes: 32 * 1024,
+  maxMessageChars: 4000,
+  maxTextPartsPerMessage: 4,
+  maxIdLength: 64,
+  maxApprovalsPerRequest: 3,
+  maxApprovalReasonChars: 300,
+  /** Mensagens do histórico enviadas ao modelo */
+  historyWindow: 30,
+  maxSteps: 5,
+  maxOutputTokens: 2048,
+  titleInputChars: 500,
+  streamTotalTimeoutMs: 90_000,
+  streamChunkTimeoutMs: 20_000,
+  /** Conteúdo de RAG devolvido ao modelo */
+  maxChunkChars: 1500,
+  maxToolResultChars: 8000
+} as const
+
+/**
+ * Regras de agendamento revalidadas no servidor, independentemente do modelo.
+ */
+export const MEETING_POLICY = {
+  /** Horizonte máximo para solicitar reuniões (em dias). */
+  maxDaysAhead: 60,
+  maxAttendees: 1,
+  maxSummaryChars: 120,
+  maxDescriptionChars: 1000
+} as const
+
+// ============================================================================
+// 6. QUICK CHAT PROMPTS
 // ============================================================================
 
 export const QUICK_CHATS = [

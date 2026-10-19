@@ -32,7 +32,7 @@ export type SearchResultChunk = z.infer<typeof searchResultChunkSchema>
 
 export const hybridSearchOptionsSchema = z.object({
   query: z.string().min(1, 'A query não pode estar vazia'),
-  collection: z.custom<NuxtCollectionName>().optional(),
+  collection: z.custom<NuxtCollectionName | 'routes'>().optional(),
   limit: z.number().int().min(1).max(20).optional().default(5),
   includeAdjacent: z.boolean().optional().default(false),
   k: z.number().int().optional().default(60),
@@ -143,7 +143,8 @@ export async function generateQueryEmbedding(query: string, aiInstance?: ReturnT
     },
   })
   const duration = (performance.now() - start).toFixed(2)
-  logger.info(`[Embedding] Generated dense embedding for "${query.slice(0, 40)}" in ${duration}ms`)
+  // Never log the query text: it is typed by visitors
+  logger.info(`[Embedding] Generated dense embedding (${query.length} chars) in ${duration}ms`)
   return embedding
 }
 
@@ -429,7 +430,7 @@ export async function performHybridSearch(
   const totalStart = performance.now()
   const { query, collection, limit = 5, includeAdjacent = false, k = 60, distinctByDocument = true, maxChunksPerDocument = 1 } = options
 
-  logger.info(`[Hybrid Search:START] query="${query}" | collection=${collection || 'all'} | limit=${limit}`)
+  logger.info(`[Hybrid Search:START] query=${query.length} chars | collection=${collection || 'all'} | limit=${limit}`)
 
   let cohereApiKey = runtimeConfigInput?.cohereApiKey
   if (!cohereApiKey) {

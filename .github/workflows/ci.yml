@@ -37,3 +37,18 @@ jobs:
 
       - name: Typecheck
         run: bun run typecheck
+
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: oven-sh/setup-bun@v1
+        with:
+          bun-version: 1.2.15
+
+      - name: Install
+        run: bun install
+
+      # Unit tests of the agent security layers (history merge, approvals, meeting policy, output sanitization)
+      - name: Test
+        run: bun run test

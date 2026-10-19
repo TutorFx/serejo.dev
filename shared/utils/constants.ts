@@ -2,12 +2,6 @@ export * from './cms/cms.constants'
 export * from './constants/chat.constants'
 export * from './routes/routes.constants'
 
-const COOKIE_KEYS_GUEST = 'GUEST_ID'
-
-export const COOKIE_KEYS = {
-  GUEST: COOKIE_KEYS_GUEST,
-}
-
 export const APP_NAME = 'Gabriel Serejo'
 export const APP_DESCRIPTION = ``
 export const PHONE_NUMBER = `5562994063442`

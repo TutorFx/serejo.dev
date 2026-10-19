@@ -14,8 +14,15 @@ export const googleAuthEnvSchema = z.object({
 })
 
 export const googleCalendarEnvSchema = z.object({
+  /** Dedicated calendar where the agent writes meeting requests */
   calendarId: z.string().min(1, 'NUXT_GOOGLE_CALENDAR_ID / runtimeConfig.google.calendarId is required'),
-})
+  /** Main calendar, read only as free/busy (optional: defaults to the dedicated calendar only) */
+  availabilityCalendarId: z.string().optional().transform(value => value?.trim() || undefined),
+}).transform(({ calendarId, availabilityCalendarId }) => ({
+  calendarId,
+  // Busy slots come from both calendars, so pending requests also block the slot
+  availabilityCalendarIds: [...new Set([availabilityCalendarId, calendarId].filter((id): id is string => Boolean(id)))],
+}))
 
 export const upstashVectorEnvSchema = z.object({
   url: z.url('Invalid or missing NUXT_UPSTASH_VECTOR_REST_URL / runtimeConfig.upstash.vectorRestUrl'),

@@ -14,6 +14,7 @@
     "setup:dev": "docker compose up",
     "lint": "eslint .",
     "typecheck": "vue-tsc --noEmit",
+    "test": "bun test test/unit",
     "postinstall": "nuxt prepare"
   },
   "dependencies": {
@@ -58,6 +59,7 @@
     "@sidebase/nuxt-pdf": "1.0.0-alpha.0",
     "@stylistic/eslint-plugin": "^5.10.0",
     "@tailwindcss/vite": "^4.2.4",
+    "@types/bun": "^1.4.3",
     "@types/pg": "^8.23.1",
     "@types/three": "^0.184.1",
     "@types/yaml-front-matter": "^4.1.3",

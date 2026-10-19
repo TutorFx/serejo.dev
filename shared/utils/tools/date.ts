@@ -44,7 +44,7 @@ export const dateUnitSchema = z.enum(DATE_UNITS_ARRAY)
  * Schema de entrada da ferramenta `calculateDate`.
  */
 export const calculateDateInputSchema = z.object({
-  amount: z.number().int().describe('Quantidade inteira a ser calculada. Use números positivos para datas futuras (ex: 1 para amanhã com unit "days", 7 para daqui a 1 semana, 45 para daqui a 45 dias) ou negativos para o passado (ex: -1 para ontem).'),
+  amount: z.number().int().min(-3650).max(3650).describe('Quantidade inteira a ser calculada. Use números positivos para datas futuras (ex: 1 para amanhã com unit "days", 7 para daqui a 1 semana, 45 para daqui a 45 dias) ou negativos para o passado (ex: -1 para ontem).'),
   unit: dateUnitSchema.default(DEFAULT_DATE_UNIT).describe('Unidade temporal: "days" (dias), "weeks" (semanas), "months" (meses) ou "years" (anos).'),
   baseDate: z.iso.date().optional().describe('Data base de referência no formato yyyy-MM-dd. Se não informada, utiliza automaticamente a data atual da sessão do usuário.'),
 })
@@ -57,7 +57,8 @@ export type CalculateDateInput = z.infer<typeof calculateDateInputSchema>
  */
 export const calculateDateOutputSchema = z.object({
   date: z.iso.date().describe('Data calculada no formato yyyy-MM-dd.'),
-  iso: z.iso.datetime().describe('Data calculada em formato ISO completo.'),
+  // `TZDate.toISOString()` returns the offset of the session time zone (e.g. -03:00), not `Z`
+  iso: z.iso.datetime({ offset: true }).describe('Data calculada em formato ISO completo, com o offset do fuso da sessão.'),
   dayOfWeek: z.string().describe('Nome do dia da semana em português.'),
   formattedPtBR: z.string().describe('Data formatada por extenso em português.'),
   formattedEnUS: z.string().describe('Data formatada por extenso em inglês.'),
@@ -161,7 +162,7 @@ const DAY_OF_WEEK_MAP: Record<DayOfWeek, Day> = {
 export const getWeekdayInputSchema = z.object({
   day: dayOfWeekSchema.describe('Dia da semana a ser consultado: "sunday" (domingo), "monday" (segunda), "tuesday" (terça), "wednesday" (quarta), "thursday" (quinta), "friday" (sexta), "saturday" (sábado).'),
   occurrence: weekdayOccurrenceSchema.default(DEFAULT_WEEKDAY_OCCURRENCE).describe('Ocorrência desejada: "next" (próxima ocorrência do dia), "previous" (ocorrência anterior) ou "this_week" (o dia correspondente na semana atual, considerando segunda a domingo).'),
-  offsetWeeks: z.number().int().min(0).default(0).describe('Deslocamento adicional de semanas. 0 para a ocorrência imediata, 1 para dali a mais uma semana (ex: "na sexta-feira da outra semana").'),
+  offsetWeeks: z.number().int().min(0).max(8).default(0).describe('Deslocamento adicional de semanas. 0 para a ocorrência imediata, 1 para dali a mais uma semana (ex: "na sexta-feira da outra semana").'),
   baseDate: z.iso.date().optional().describe('Data base de referência no formato yyyy-MM-dd. Se não informada, utiliza automaticamente a data atual da sessão do usuário.'),
 })
 
@@ -173,7 +174,8 @@ export type GetWeekdayInput = z.infer<typeof getWeekdayInputSchema>
  */
 export const getWeekdayOutputSchema = z.object({
   date: z.iso.date().describe('Data exata calculada no formato yyyy-MM-dd.'),
-  iso: z.iso.datetime().describe('Data calculada em formato ISO completo.'),
+  // `TZDate.toISOString()` returns the offset of the session time zone (e.g. -03:00), not `Z`
+  iso: z.iso.datetime({ offset: true }).describe('Data calculada em formato ISO completo, com o offset do fuso da sessão.'),
   dayOfWeek: dayOfWeekSchema.describe('Identificador do dia da semana consultado.'),
   dayOfWeekPtBR: z.string().describe('Nome do dia da semana por extenso em português.'),
   formattedPtBR: z.string().describe('Data formatada por extenso em português.'),

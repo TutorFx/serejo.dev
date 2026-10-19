@@ -13,6 +13,7 @@ const emit = defineEmits<{
 const toast = useToast()
 const clipboard = useClipboard()
 const { t } = useI18n()
+const { $csrfFetch } = useNuxtApp()
 
 const loading = ref(false)
 
@@ -42,7 +43,7 @@ async function updateVisibility(value: 'public' | 'private') {
   emit('update:visibility', value)
 
   try {
-    await $fetch(`/api/chats/${props.chatId}/visibility`, {
+    await $csrfFetch(`/api/chats/${props.chatId}/visibility`, {
       method: 'PATCH' as never,
       body: { visibility: value }
     })

@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import type { DropdownMenuItem } from '@nuxt/ui'
 import type { UIChat } from '~/composables/useChats'
+import { getChatErrorKey } from '~/utils/ai/errors'
 
 const emit = defineEmits<{ openChat: [chatId: string] }>()
 
@@ -8,6 +9,8 @@ const input = ref('')
 const loading = ref(false)
 
 const { t } = useI18n()
+const toast = useToast()
+const { $csrfFetch } = useNuxtApp()
 const { loggedIn } = useUserSession()
 const { renameChat, deleteChat } = useChatActions()
 
@@ -33,10 +36,10 @@ async function createChat(prompt: string) {
   input.value = prompt
   loading.value = true
 
-  const parts: Array<{ type: string, text?: string, mediaType?: string, url?: string }> = [{ type: 'text', text: prompt }]
+  const parts = [{ type: 'text', text: prompt }]
 
   try {
-    const chat = await $fetch<{ id: string }>('/api/chats', {
+    const chat = await $csrfFetch<{ id: string }>('/api/chats', {
       method: 'POST',
       body: {
         message: {
@@ -48,6 +51,13 @@ async function createChat(prompt: string) {
 
     refreshNuxtData('chats')
     emit('openChat', chat.id)
+  } catch (error) {
+    toast.add({
+      title: t('chat.ui.create_failed'),
+      description: t(getChatErrorKey(error)),
+      icon: 'i-lucide-alert-circle',
+      color: 'error'
+    })
   } finally {
     loading.value = false
   }

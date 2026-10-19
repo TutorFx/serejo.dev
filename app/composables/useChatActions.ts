@@ -14,6 +14,8 @@ export function useChatActions() {
   const overlay = useOverlay()
   const { t } = useI18n()
   const localePath = useLocalePath()
+  // Mutations carry the CSRF token header
+  const { $csrfFetch } = useNuxtApp()
 
   const renameModal = overlay.create(LazyModalRename)
   const deleteModal = overlay.create(LazyModalConfirm, {
@@ -31,7 +33,7 @@ export function useChatActions() {
     if (!result || result === currentTitle) return null
 
     try {
-      await $fetch(`/api/chats/${id}/title`, {
+      await $csrfFetch(`/api/chats/${id}/title`, {
         method: 'PATCH' as never,
         body: { title: result }
       })
@@ -67,7 +69,7 @@ export function useChatActions() {
     if (!result) return false
 
     try {
-      await $fetch(`/api/chats/${id}`, {
+      await $csrfFetch(`/api/chats/${id}`, {
         method: 'DELETE' as never,
       })
 

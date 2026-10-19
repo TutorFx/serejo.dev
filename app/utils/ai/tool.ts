@@ -1,4 +1,5 @@
 import type { getToolName } from 'ai'
+import { toSafeExternalUrl } from './url'
 
 export interface Source {
   url: string
@@ -21,36 +22,44 @@ export function getSearchQuery(part: ToolPart): string | undefined {
   return (part.input as { query?: string } | undefined)?.query
 }
 
+/** Keeps only sources with an absolute `https:` URL; tool output is untrusted */
+function toSafeSources(sources: Array<{ url?: string, title?: string }>): Source[] {
+  return sources.flatMap((source) => {
+    const url = toSafeExternalUrl(source.url)
+    return url ? [{ url, title: typeof source.title === 'string' ? source.title : undefined }] : []
+  })
+}
+
 export function getSources(part: ToolPart): Source[] {
   const output = part.output
   if (!output) return []
 
   // Anthropic: array of { url, title }
   if (Array.isArray(output)) {
-    return output.filter((s: Source) => s.url).map((s: Source) => ({ url: s.url, title: s.title }))
+    return toSafeSources(output as Source[])
   }
 
   const typed = output as SearchOutput
 
   // OpenAI: { sources: [{ type: 'url', url }] }
   if (typed.sources) {
-    return typed.sources.filter(s => s.url).map(s => ({ url: s.url }))
+    return toSafeSources(typed.sources.map(s => ({ url: s.url })))
   }
 
   // Google: grounding chunks with { web: { uri, title } }
   const chunks = typed.groundingChunks ?? typed.groundingMetadata?.groundingChunks
   if (chunks) {
-    return chunks.filter(c => c.web?.uri).map(c => ({ url: c.web?.uri as string, title: c.web?.title }))
+    return toSafeSources(chunks.map(c => ({ url: c.web?.uri, title: c.web?.title })))
   }
 
   return []
 }
 
 export function sourceToInlineComark(url: string): string {
-  const domain = getDomain(url)
-  const favicon = getFaviconUrl(url)
-  const safeUrl = url.replace(/"/g, '&quot;')
-  const safeFavicon = favicon.replace(/"/g, '&quot;')
+  // `new URL().href` percent-encodes quotes, so the value cannot break out of the attribute
+  const safeUrl = toSafeExternalUrl(url)
+  if (!safeUrl) return ''
 
-  return ` :source-link{url="${safeUrl}" favicon="${safeFavicon}" label="${domain}"}`
+  // SourceLink derives favicon and label from the URL itself
+  return ` :source-link{url="${safeUrl}"}`
 }

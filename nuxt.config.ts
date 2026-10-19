@@ -24,6 +24,7 @@ export default defineNuxtConfig({
     '@nuxt/icon',
     '@comark/nuxt',
     'nuxt-auth-utils',
+    'nuxt-csurf',
     'nuxt-gtag',
     '@nuxt/ui',
   ],
@@ -90,9 +91,17 @@ export default defineNuxtConfig({
       apiKey: '',
     },
     google: {
+      // Dedicated calendar where the agent writes meeting requests
       calendarId: '',
+      // Main calendar, read as free/busy only (NUXT_GOOGLE_AVAILABILITY_CALENDAR_ID)
+      availabilityCalendarId: '',
       clientEmail: '',
       privateKey: '',
+    },
+    // Kill switches (NUXT_CHAT_ENABLED / NUXT_CHAT_SCHEDULING_ENABLED); Redis flags act without a redeploy
+    chat: {
+      enabled: true,
+      schedulingEnabled: true,
     },
     redisUrl: '',
     databaseUrl: '',
@@ -112,8 +121,25 @@ export default defineNuxtConfig({
 
   routeRules: {
     // Keep `/` server-rendered (no prerender/ISR/SWR): the root locale redirect runs on the server,
-    // and a cached English `/` would be switched to pt-BR on the client, breaking hydration
-    '/pt-BR/inicio': { prerender: true },
+    // and a cached English `/` would be switched to pt-BR on the client, breaking hydration.
+    // `/pt-BR/inicio` is not prerendered either: the CSRF cookie and meta tag only exist in server-rendered
+    // HTML, and the chat popup (mounted on every page) needs them to send messages
+    '/**': {
+      headers: {
+        'X-Content-Type-Options': 'nosniff',
+        'Referrer-Policy': 'strict-origin-when-cross-origin',
+        'Permissions-Policy': 'camera=(), microphone=(), geolocation=(), payment=()',
+        // Anti-clickjacking for the meeting approval button; Nuxt Studio previews the site in an iframe
+        'Content-Security-Policy': 'frame-ancestors \'self\' https://nuxt.studio',
+      },
+    },
+    // CSRF exemptions: requests made by modules that cannot send the token
+    // - Nuxt Content v3 queries collections with `POST /__nuxt_content/<collection>/query` (client and SSR)
+    // - nuxt-auth-utils logs out with `DELETE /api/_auth/session`
+    // - GitHub OAuth callback
+    '/__nuxt_content/**': { csurf: false },
+    '/api/_auth/**': { csurf: false },
+    '/sso/**': { csurf: false },
     // Playground and unfinished pages: keep them out of search engines (X-Robots-Tag) and the sitemap
     '/test': { robots: false },
     '/pt-BR/test': { robots: false },
@@ -138,12 +164,7 @@ export default defineNuxtConfig({
       functions: {
         maxDuration: 800,
       },
-      config: {
-        // crons: [{
-        //   "path": "/api/vercelCron/chat/process",
-        //   "schedule": "*/30 * * * *"
-        // }]
-      },
+      config: {},
     },
     experimental: {
       tasks: true,
@@ -164,6 +185,13 @@ export default defineNuxtConfig({
       // https://github.com/nuxt-modules/mdc/issues/394
       include: ['debug'],
     },
+  },
+
+  // CSRF: every mutation needs the `csrf-token` header (from the meta tag rendered by SSR).
+  // Production needs NUXT_CSURF_ENCRYPT_SECRET (exactly 32 ASCII chars, e.g. `openssl rand -base64 22`):
+  // otherwise a random secret is generated at build time and tokens break on every deploy
+  csurf: {
+    methodsToProtect: ['POST', 'PUT', 'PATCH', 'DELETE'],
   },
 
   eslint: {
