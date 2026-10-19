@@ -12,10 +12,12 @@ const localePath = useLocalePath()
 const setI18nParams = useSetI18nParams()
 const { locale } = useI18n()
 
+const routeItem = 'item' in route.params ? route.params.item : ''
+
 const { data, error } = await useFetch('/api/post', {
   query: {
     lang: locale.value,
-    path: 'item' in route.params ? route.params.item : '',
+    path: routeItem,
   },
 })
 
@@ -41,6 +43,9 @@ if (data.value.locale !== locale.value) {
     : localePath({ name: 'post-item', params: { item: slug || path } }, data.value.locale)
 
   await navigateTo(redirectPath, { redirectCode: 301, replace: true })
+} else if (slug && routeItem !== slug) {
+  // The API also resolves a post by its file name (e.g. `hello-world` for `ola-mundo`): keep one URL per post
+  await navigateTo(localePath({ name: 'post-item', params: { item: slug } }), { redirectCode: 301, replace: true })
 }
 
 useHead({
