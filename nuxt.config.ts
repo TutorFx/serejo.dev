@@ -145,6 +145,17 @@ export default defineNuxtConfig({
     '/pt-BR/test': { robots: false },
     '/projects': { robots: false },
     '/pt-BR/projetos': { robots: false },
+    // Not worth indexing: the chat page has almost no static content (and shared chats are visitor content);
+    // `/resume` is the print version of `/curriculum`
+    '/chat': { robots: false },
+    '/chat/**': { robots: false },
+    '/pt-BR/chat': { robots: false },
+    '/pt-BR/chat/**': { robots: false },
+    '/resume': { robots: false },
+    '/pt-BR/resume': { robots: false },
+    // Old locale prefix still linked externally (404 in Search Console)
+    '/en': { redirect: { to: '/', statusCode: 301 } },
+    '/en/**': { redirect: { to: '/**', statusCode: 301 } },
   },
 
   future: {
@@ -254,11 +265,18 @@ export default defineNuxtConfig({
     defaults: {},
   },
 
+  seo: {
+    // The pt-BR prefix has uppercase letters: a lowercased canonical (`/pt-br/...`) pointed to a different URL
+    // than the sitemap, the links and the hreflang alternates (`/pt-BR/...`), so Google skipped those pages.
+    // Other casings of the prefix are redirected by `server/middleware/locale-prefix.ts`
+    canonicalLowercase: false,
+  },
+
   sitemap: {
     sources: [
       '/api/__sitemap__/urls',
     ],
     // Localized paths are listed explicitly: the routes are defined with `defineI18nRoute`, not `i18n.pages`
-    exclude: ['/test', '/pt-BR/test', '/projects', '/pt-BR/projetos'],
+    exclude: ['/test', '/pt-BR/test', '/projects', '/pt-BR/projetos', '/chat', '/pt-BR/chat', '/resume', '/pt-BR/resume'],
   },
 })
