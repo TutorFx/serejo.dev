@@ -248,3 +248,13 @@ export const QUICK_CHATS = [
     icon: 'i-lucide-calendar',
   },
 ] as const
+
+// ============================================================================
+// 7. SHARED CONVERSATIONS
+// ============================================================================
+
+/** Query parameter that opens the chat popup on a conversation: `/?chat=<id>` (the `/chat` pages were removed) */
+export const CHAT_SHARE_QUERY = 'chat'
+
+/** Chat ids accepted from links: the server generates UUIDs, the length cap is the one the API validates */
+export const CHAT_ID_PATTERN = new RegExp(`^[\\w-]{1,${CHAT_LIMITS.maxIdLength}}$`)
