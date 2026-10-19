@@ -1,114 +1,90 @@
 <script setup lang="ts">
-import { onClickOutside } from '@vueuse/core'
-
 const { t } = useI18n()
-const isOpen = ref(false)
+const toast = useToast()
+
+// Closed on every page load: the panel only opens on a click
+const open = ref(false)
 const currentChatId = ref<string | null>(null)
-const popup = useTemplateRef<HTMLElement>('popup')
 
-function toggle() {
-  if (!document.startViewTransition) {
-    isOpen.value = !isOpen.value
-    return
-  }
-
-  document.startViewTransition(async () => {
-    isOpen.value = !isOpen.value
-    await nextTick()
+function onUnavailable(statusCode?: number) {
+  currentChatId.value = null
+  toast.add({
+    title: t('chat.ui.unavailable_title'),
+    description:
+      statusCode === 404 ? t('chat.ui.unavailable_description') : t('chat.errors.generic'),
+    icon: 'i-lucide-message-circle-off',
+    color: 'warning',
   })
 }
 
-onClickOutside(popup, () => {
-  if (!isOpen.value) {
-    toggle()
-  }
-})
+function onOpenAutoFocus(event: Event) {
+  // Reka would focus the first button (close); the message field focuses itself once mounted
+  event.preventDefault()
+  const panel = event.target as HTMLElement
+  panel.focus()
+}
 </script>
 
 <template>
   <ClientOnly>
-    <Teleport id="chat-popup" to="body">
-      <!-- Floating Trigger Button -->
-      <div
-        v-if="isOpen"
-        class="fixed bottom-8 left-8 z-1 cursor-pointer [view-transition-name:chat-handle]"
-        @click="toggle()"
+    <!-- In <body>, after the app: above the page content without a z-index, below what opens later
+         (menus, modals) and the toasts -->
+    <Teleport to="body">
+      <!-- Non-modal dialog: the page stays usable; Escape, the close button or a click outside close it.
+           Full screen on phones, ~400×620 anchored at the bottom right from `sm` up -->
+      <UModal
+        v-model:open="open"
+        :modal="false"
+        :overlay="false"
+        :transition="false"
+        fullscreen
+        :content="{ onOpenAutoFocus }"
+        :ui="{
+          content:
+            'origin-bottom-right overflow-hidden motion-safe:data-[state=open]:animate-[scale-in_200ms_ease-out] motion-safe:data-[state=closed]:animate-[scale-out_150ms_ease-in] sm:inset-auto sm:right-4 sm:bottom-4 sm:h-[min(620px,calc(100dvh-2rem))] sm:w-[400px] sm:rounded-2xl sm:shadow-2xl sm:ring sm:ring-default',
+          header: 'min-h-14 py-0 pr-14 pl-4 sm:pr-14 sm:pl-4',
+          title: 'flex items-center gap-2 text-base',
+          body: 'flex min-h-0 flex-col overflow-hidden p-0 sm:p-0',
+        }"
       >
+        <!-- Trigger: aria-haspopup, aria-expanded and aria-controls come from the dialog -->
         <button
           type="button"
-          class="bg-primary text-primary-foreground hover:bg-primary/90 flex size-14 items-center justify-center rounded-full shadow-lg transition-transform hover:scale-105 active:scale-95"
           :aria-label="t('chat.ui.open_chat')"
+          class="fixed right-4 bottom-4 grid size-14 cursor-pointer place-items-center rounded-full bg-(--brand-7) text-white shadow-lg focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--brand-7) motion-safe:transition-transform motion-safe:hover:scale-105 motion-safe:active:scale-95 sm:right-6 sm:bottom-6 dark:focus-visible:outline-white"
+          :class="{ invisible: open }"
         >
-          <UIcon name="i-lucide-message-circle" class="size-7" />
+          <UIcon name="i-lucide-bot-message-square" class="size-7" />
         </button>
-      </div>
 
-      <!-- Chat Inbox View -->
-      <div v-else-if="currentChatId !== null" ref="popup" class="fixed bottom-0 left-0 z-1 grid">
-        <div
-          class="bg-base-200/80 relative grid h-[min(100dvh,800px)] w-[min(100dvw,600px)] rounded-3xl p-2 backdrop-blur-lg [view-transition-name:chat-handle]"
-        >
-          <ChatPopupInbox :id="currentChatId" :key="currentChatId">
-            <template #default="{ title }">
-              <div class="flex items-center justify-between">
-                <div class="p-3 text-xl font-semibold">
-                  {{ title ?? t('chat.ui.untitled') }}
-                </div>
-                <div
-                  class="grid aspect-square size-8 cursor-pointer items-center justify-center rounded-full p-2 hover:bg-neutral-500/10"
-                  @click="currentChatId = null"
-                >
-                  <UIcon name="i-lucide-chevron-left" />
-                </div>
-              </div>
-            </template>
-          </ChatPopupInbox>
-        </div>
-      </div>
+        <template #title>
+          <UIcon name="i-lucide-bot-message-square" class="size-5 text-(--brand-7)" />
+          Serejo Chat
+        </template>
 
-      <!-- Chat Index View -->
-      <div v-else-if="currentChatId === null" ref="popup" class="fixed bottom-0 left-0 z-1 grid">
-        <div
-          class="bg-base-200/80 relative grid h-[min(100dvh,800px)] w-[min(100dvw,600px)] grid-rows-[max-content_1fr] overflow-hidden rounded-3xl p-2 backdrop-blur-lg [view-transition-name:chat-handle]"
-        >
-          <div class="z-1 flex items-center justify-between p-2">
-            <div class="flex items-center gap-2 p-2 text-xl font-semibold">
-              <UIcon name="i-lucide-bot" class="text-primary size-6" />
-              <span>Serejo Chat</span>
-            </div>
-            <div class="flex items-center gap-2">
-              <div
-                class="grid aspect-square size-8 cursor-pointer items-center justify-center rounded-full p-2 hover:bg-neutral-500/10"
-                @click="toggle()"
-              >
-                <UIcon name="i-lucide-x" />
-              </div>
-            </div>
-          </div>
-          <div class="relative grid min-h-0">
-            <div
-              class="
-              [&::-webkit-scrollbar]:bg-base-200/0
-              [&::-webkit-scrollbar]:border-base-200/0
-              [&::-webkit-scrollbar-track]:bg-base-200/0
-              [&::-webkit-scrollbar-thumb]:border-accent
-              [&::-webkit-scrollbar-thumb]:bg-accent
-              absolute
-              inset-0
-              overflow-y-auto
-              p-4
-              [&::-webkit-scrollbar]:size-3
-              [&::-webkit-scrollbar]:border-b-10
-              [&::-webkit-scrollbar-thumb]:rounded-xl
-              [&::-webkit-scrollbar-thumb]:border-6
-              [&::-webkit-scrollbar-track]:rounded-xl
-            "
-            >
-              <ChatPopupIndex @open-chat="currentChatId = $event" />
-            </div>
-          </div>
-        </div>
-      </div>
+        <!-- Rendered inside DialogClose; the default button is labelled by the Nuxt UI locale, not the site's -->
+        <template #close="{ ui }">
+          <UButton
+            icon="i-lucide-x"
+            color="neutral"
+            variant="ghost"
+            :aria-label="t('chat.ui.close_chat')"
+            :class="ui.close({ class: 'top-2.5 end-2' })"
+          />
+        </template>
+
+        <template #body>
+          <ChatPopupInbox
+            v-if="currentChatId"
+            :id="currentChatId"
+            :key="currentChatId"
+            @back="currentChatId = null"
+            @deleted="currentChatId = null"
+            @unavailable="onUnavailable"
+          />
+          <ChatPopupIndex v-else @open-chat="currentChatId = $event" />
+        </template>
+      </UModal>
     </Teleport>
   </ClientOnly>
 </template>

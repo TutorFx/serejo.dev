@@ -80,6 +80,7 @@ function copyLink() {
       <UButton
         color="neutral"
         variant="ghost"
+        size="sm"
         icon="i-lucide-share"
         :aria-label="t('chat.ui.share')"
       />
