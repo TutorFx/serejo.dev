@@ -1,10 +1,23 @@
 <script setup lang="ts">
+import { CHAT_SHARE_QUERY } from '#shared/utils/constants'
+import { readSharedChatId } from '~/utils/ai/share'
+
 const { t } = useI18n()
+const route = useRoute()
+const router = useRouter()
 const toast = useToast()
 
-// Closed on every page load: the panel only opens on a click
+// Closed on every page load: the panel only opens on a click or on a shared link
 const open = ref(false)
 const currentChatId = ref<string | null>(null)
+// The message field takes focus only when the visitor acts (launcher, back, a conversation of the list).
+// A panel opened by a shared link focuses the dialog itself: announced by screen readers, no virtual keyboard
+const autofocus = ref(true)
+
+function showChat(id: string | null) {
+  autofocus.value = true
+  currentChatId.value = id
+}
 
 function onUnavailable(statusCode?: number) {
   currentChatId.value = null
@@ -17,8 +30,29 @@ function onUnavailable(statusCode?: number) {
   })
 }
 
+// Shared links (`?chat=<id>`) open the panel on that conversation. The old `/chat/<id>` pages redirect here too
+function openSharedChat(value: unknown) {
+  if (value === undefined) return
+
+  const id = readSharedChatId(route.query)
+  // Dropped right away, so reloading or navigating does not reopen the conversation
+  const { [CHAT_SHARE_QUERY]: _, ...query } = route.query
+  router.replace({ query, hash: route.hash })
+
+  autofocus.value = false
+  currentChatId.value = id
+  open.value = true
+  if (!id) onUnavailable(404)
+}
+
+// This setup also runs on the server (only the template is client-only): read the link after hydration,
+// so the toast and the navigation happen once, in the browser
+onMounted(() => {
+  watch(() => route.query[CHAT_SHARE_QUERY], openSharedChat, { immediate: true })
+})
+
 function onOpenAutoFocus(event: Event) {
-  // Reka would focus the first button (close); the message field focuses itself once mounted
+  // Reka would focus the first button (close); the message field focuses itself when `autofocus` is on
   event.preventDefault()
   const panel = event.target as HTMLElement
   panel.focus()
@@ -53,6 +87,7 @@ function onOpenAutoFocus(event: Event) {
           :aria-label="t('chat.ui.open_chat')"
           class="fixed right-4 bottom-4 grid size-14 cursor-pointer place-items-center rounded-full bg-(--brand-7) text-white shadow-lg focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--brand-7) motion-safe:transition-transform motion-safe:hover:scale-105 motion-safe:active:scale-95 sm:right-6 sm:bottom-6 dark:focus-visible:outline-white"
           :class="{ invisible: open }"
+          @click="autofocus = true"
         >
           <UIcon name="i-lucide-bot-message-square" class="size-7" />
         </button>
@@ -78,11 +113,12 @@ function onOpenAutoFocus(event: Event) {
             v-if="currentChatId"
             :id="currentChatId"
             :key="currentChatId"
-            @back="currentChatId = null"
-            @deleted="currentChatId = null"
+            :autofocus
+            @back="showChat(null)"
+            @deleted="showChat(null)"
             @unavailable="onUnavailable"
           />
-          <ChatPopupIndex v-else @open-chat="currentChatId = $event" />
+          <ChatPopupIndex v-else :autofocus @open-chat="showChat" />
         </template>
       </UModal>
     </Teleport>

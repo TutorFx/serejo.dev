@@ -3,6 +3,11 @@ import type { DropdownMenuItem } from '@nuxt/ui'
 import type { UIChat } from '~/composables/useChats'
 import { getChatErrorKey } from '~/utils/ai/errors'
 
+defineProps<{
+  /** Focus the message field on mount (off when a shared link opened the panel) */
+  autofocus?: boolean
+}>()
+
 const emit = defineEmits<{ openChat: [chatId: string] }>()
 
 const input = ref('')
@@ -103,6 +108,7 @@ const quickChats = QUICK_CHATS
       <UChatPrompt
         v-model="input"
         :status="loading ? 'streaming' : 'ready'"
+        :autofocus
         variant="subtle"
         :ui="{ base: 'px-1.5' }"
         :placeholder="t('chat.ui.prompt_placeholder')"

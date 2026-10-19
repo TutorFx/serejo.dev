@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { useClipboard } from '@vueuse/core'
+import { getChatShareUrl } from '~/utils/ai/share'
 
 const props = defineProps<{
   chatId: string
@@ -14,11 +15,14 @@ const toast = useToast()
 const clipboard = useClipboard()
 const { t } = useI18n()
 const { $csrfFetch } = useNuxtApp()
+const localePath = useLocalePath()
+const { origin } = useRequestURL()
 
 const loading = ref(false)
 
 const isShared = computed(() => props.visibility === 'public')
-const shareUrl = computed(() => `${window.location.origin}/chat/${props.chatId}`)
+// The home in the sharer's language, with `?chat=<id>` opening the popup on this chat
+const shareUrl = computed(() => getChatShareUrl(origin, localePath('index'), props.chatId))
 
 const options = computed(() => [
   {

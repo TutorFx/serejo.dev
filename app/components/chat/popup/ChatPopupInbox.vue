@@ -7,6 +7,8 @@ import { createChatTransport } from '~/utils/ai/transport'
 
 const props = defineProps<{
   id: string
+  /** Focus the message field on mount (off when a shared link opened the panel) */
+  autofocus?: boolean
 }>()
 
 const emit = defineEmits<{
@@ -192,6 +194,7 @@ onMounted(() => {
       <UChatPrompt
         v-model="input"
         :error="chat.error"
+        :autofocus
         :placeholder="t('chat.ui.prompt_placeholder')"
         variant="subtle"
         :ui="{ base: 'pl-1.5' }"
