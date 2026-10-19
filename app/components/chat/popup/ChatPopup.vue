@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { useMediaQuery } from '@vueuse/core'
 import { CHAT_SHARE_QUERY } from '#shared/utils/constants'
 import { readSharedChatId } from '~/utils/ai/share'
 
@@ -50,6 +51,16 @@ function openSharedChat(value: unknown) {
 onMounted(() => {
   watch(() => route.query[CHAT_SHARE_QUERY], openSharedChat, { immediate: true })
 })
+
+// Below `sm` the panel covers the whole screen: following a link of a message (a source page) closes it,
+// otherwise the new page would load hidden behind it. The floating panel of larger screens stays open
+const fullScreen = useMediaQuery('(width < 40rem)')
+watch(
+  () => route.path,
+  () => {
+    if (fullScreen.value) open.value = false
+  }
+)
 
 function onOpenAutoFocus(event: Event) {
   // Reka would focus the first button (close); the message field focuses itself when `autofocus` is on
