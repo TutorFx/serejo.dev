@@ -208,7 +208,6 @@ export const CHAT_LIMITS = {
   maxTextPartsPerMessage: 4,
   maxIdLength: 64,
   maxApprovalsPerRequest: 3,
-  maxApprovalReasonChars: 300,
   /** Mensagens do histórico enviadas ao modelo */
   historyWindow: 30,
   maxSteps: 5,
