@@ -6,11 +6,15 @@
   "prettier.enable": false,
   "editor.formatOnSave": false,
 
-  // Auto fix
+  // Auto fix: oxlint for JS/TS, ESLint for .vue
   "editor.codeActionsOnSave": {
+    "source.fixAll.oxc": "explicit",
     "source.fixAll.eslint": "explicit",
     "source.organizeImports": "never"
   },
+
+  // The code style comes from the @stylistic rules (run by oxlint and ESLint), not from oxfmt
+  "oxc.enable.oxfmt": false,
 
   "tailwindCSS.experimental.classRegex": [
     ["tv\\({([\\s\\S]*?)}\\)", "[\"'`]([^\"'`]*)[\"'`]"],
