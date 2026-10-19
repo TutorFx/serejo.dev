@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { gsap } from 'gsap'
-import { SCHEDULE } from '../../../shared/utils/constants'
+import { SCHEDULE } from '#shared/utils/constants'
 
 const { t } = useI18n()
 
