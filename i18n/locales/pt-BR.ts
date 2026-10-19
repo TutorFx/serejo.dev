@@ -332,7 +332,6 @@ export default defineI18nLocale(() => {
         back_to_list: 'Voltar para as conversas',
         unavailable_title: 'Conversa indisponível',
         unavailable_description: 'Ela pode ter sido excluída ou não estar mais compartilhada.',
-        new_chat: 'Novo chat',
         prompt_placeholder: 'Pergunte qualquer coisa ou agende uma reunião...',
         thinking: 'Pensando...',
         not_found: 'Chat não encontrado',
