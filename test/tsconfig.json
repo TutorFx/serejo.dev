@@ -1,0 +1,4 @@
+{
+  // Lets the editor resolve the tests with the server TS project, which includes them (`nitro.typescript.tsConfig`)
+  "extends": "../.nuxt/tsconfig.server.json"
+}

@@ -1,4 +1,4 @@
-import { describe, expect, it } from 'bun:test'
+import { describe, expect, it } from 'vitest'
 import { limitAdjacentSearchOutput, limitHybridSearchOutput, truncateText } from '../../server/utils/chat/truncate'
 
 describe('truncateText', () => {

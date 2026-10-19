@@ -1,9 +1,8 @@
-import { CHAT_LIMITS } from '../../../shared/utils/constants/chat.constants'
-import type { AdjacentSearchOutput, HybridSearchOutput } from '../../../shared/utils/tools/search'
+import { CHAT_LIMITS } from '#shared/utils/constants/chat.constants'
+import type { AdjacentSearchOutput, HybridSearchOutput } from '#shared/utils/tools/search'
 
 /**
  * Bounds the RAG content returned to the model (and to the UI).
- * Pure module so it can be unit tested with `bun test`.
  */
 
 export function truncateText(text: string, maxChars: number): string {

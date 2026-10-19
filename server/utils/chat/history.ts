@@ -1,13 +1,12 @@
 import type { UIMessage } from 'ai'
 import { z } from 'zod'
-import { CHAT_LIMITS } from '../../../shared/utils/constants/chat.constants'
+import { CHAT_LIMITS } from '#shared/utils/constants/chat.constants'
 
 /**
  * Builds the conversation sent to the model from the database, never from the client.
  *
  * The client only sends (a) the text of a new user message or (b) the decisions for pending
  * tool approvals. Tool inputs, tool outputs and assistant messages always come from storage.
- * Pure module (explicit relative imports) so it can be unit tested with `bun test`.
  */
 
 const textPartSchema = z.object({

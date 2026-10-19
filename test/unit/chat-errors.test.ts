@@ -1,4 +1,4 @@
-import { describe, expect, it } from 'bun:test'
+import { describe, expect, it } from 'vitest'
 import { getChatErrorKey } from '../../app/utils/ai/errors'
 
 describe('getChatErrorKey', () => {
