@@ -172,12 +172,18 @@ const DAY = 24 * HOUR
  */
 export const ABUSE_LIMITS = {
   messages: {
-    session: [{ limit: 20, windowSec: HOUR }, { limit: 60, windowSec: DAY }],
-    ip: [{ limit: 40, windowSec: HOUR }, { limit: 120, windowSec: DAY }]
+    session: [
+      { limit: 20, windowSec: HOUR },
+      { limit: 60, windowSec: DAY },
+    ],
+    ip: [
+      { limit: 40, windowSec: HOUR },
+      { limit: 120, windowSec: DAY },
+    ],
   },
   chats: {
     session: [{ limit: 5, windowSec: HOUR }],
-    ip: [{ limit: 10, windowSec: HOUR }]
+    ip: [{ limit: 10, windowSec: HOUR }],
   },
   tokens: {
     /** Tokens (entrada + saída) por janela de 24h */
@@ -187,16 +193,16 @@ export const ABUSE_LIMITS = {
     global: 2_000_000,
     /** Teto por requisição: o stream é abortado ao ultrapassar */
     perRequest: 40_000,
-    windowSec: DAY
+    windowSec: DAY,
   },
   meetings: {
     perSessionPerDay: 2,
     globalPerDay: 5,
     /** Reserva de 1 reunião por chat */
-    perChatTtlSec: 30 * DAY
+    perChatTtlSec: 30 * DAY,
   },
   /** Duração máxima de um stream antes de o lock do chat expirar */
-  chatLockMs: 120_000
+  chatLockMs: 120_000,
 } as const
 
 /**
@@ -217,7 +223,7 @@ export const CHAT_LIMITS = {
   streamChunkTimeoutMs: 20_000,
   /** Conteúdo de RAG devolvido ao modelo */
   maxChunkChars: 1500,
-  maxToolResultChars: 8000
+  maxToolResultChars: 8000,
 } as const
 
 /**
@@ -228,7 +234,7 @@ export const MEETING_POLICY = {
   maxDaysAhead: 60,
   maxAttendees: 1,
   maxSummaryChars: 120,
-  maxDescriptionChars: 1000
+  maxDescriptionChars: 1000,
 } as const
 
 // ============================================================================
@@ -239,6 +245,6 @@ export const QUICK_CHATS = [
   {
     /** Chave i18n usada como rótulo e como texto do prompt enviado */
     key: 'chat.quick.schedule_meeting',
-    icon: 'i-lucide-calendar'
-  }
+    icon: 'i-lucide-calendar',
+  },
 ] as const

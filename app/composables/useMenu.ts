@@ -3,7 +3,7 @@ export function useMenu(menuData: MenuList<InternalRoute>): ComputedRef<MenuList
   const { locale } = useI18n()
 
   function localizeMenu(list: MenuList<InternalRoute>): MenuList<FinalRoute> {
-    return list.map((item) => {
+    return list.map(item => {
       const localizedItem = { ...item }
 
       if ('to' in localizedItem && localizedItem.to) {

@@ -22,19 +22,24 @@ export const dateObjectSchema = {
   end: z.coerce.date().nullable(),
 }
 
-export const blogSchema = z.object({
-  createdAt: z.coerce.date(),
-  slug: z.string().nullable(),
-}).extend(cmsEntrySchema)
+export const blogSchema = z
+  .object({
+    createdAt: z.coerce.date(),
+    slug: z.string().nullable(),
+  })
+  .extend(cmsEntrySchema)
 
 export const blogSchemaWithBody = blogSchema.extend(withBody)
 
-export const historySchema = z.object({
-  org: z.string().min(1),
-  image: z.string(),
-  delivered: z.array(z.string().min(1)).optional(),
-  location: z.string().min(1),
-}).extend(cmsEntrySchema).extend(dateObjectSchema)
+export const historySchema = z
+  .object({
+    org: z.string().min(1),
+    image: z.string(),
+    delivered: z.array(z.string().min(1)).optional(),
+    location: z.string().min(1),
+  })
+  .extend(cmsEntrySchema)
+  .extend(dateObjectSchema)
 
 export const historyWithBodySchema = historySchema.extend(withBody)
 
@@ -44,8 +49,11 @@ export const projectSchema = z.object({
   scroller: z.string(),
 })
 
-export const educationSchema = z.object({
-  org: z.string(),
-}).extend(cmsEntrySchema).extend(dateObjectSchema)
+export const educationSchema = z
+  .object({
+    org: z.string(),
+  })
+  .extend(cmsEntrySchema)
+  .extend(dateObjectSchema)
 
 export const educationWithBodySchema = educationSchema.extend(withBody)

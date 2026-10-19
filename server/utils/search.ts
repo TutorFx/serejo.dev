@@ -22,11 +22,13 @@ export const searchResultChunkSchema = z.object({
   lexicalRank: z.number().int().optional(),
   rrfScore: z.number(),
   rerankScore: z.number().optional(),
-  adjacent: z.object({
-    previous: z.array(z.object({ id: z.string(), index: z.number().int(), content: z.string() })),
-    next: z.array(z.object({ id: z.string(), index: z.number().int(), content: z.string() })),
-    expandedContent: z.string(),
-  }).optional(),
+  adjacent: z
+    .object({
+      previous: z.array(z.object({ id: z.string(), index: z.number().int(), content: z.string() })),
+      next: z.array(z.object({ id: z.string(), index: z.number().int(), content: z.string() })),
+      expandedContent: z.string(),
+    })
+    .optional(),
 })
 export type SearchResultChunk = z.infer<typeof searchResultChunkSchema>
 
@@ -50,15 +52,17 @@ export const adjacentSearchOptionsSchema = z.object({
 export type AdjacentSearchOptions = z.input<typeof adjacentSearchOptionsSchema>
 
 export const adjacentSearchResultSchema = z.object({
-  targetChunk: z.object({
-    id: z.string(),
-    index: z.number().int(),
-    documentId: z.string(),
-    collection: z.custom<NuxtCollectionName>(),
-    content: z.string(),
-    context: z.string().nullable(),
-    route: z.string().nullable(),
-  }).nullable(),
+  targetChunk: z
+    .object({
+      id: z.string(),
+      index: z.number().int(),
+      documentId: z.string(),
+      collection: z.custom<NuxtCollectionName>(),
+      content: z.string(),
+      context: z.string().nullable(),
+      route: z.string().nullable(),
+    })
+    .nullable(),
   previous: z.array(adjacentChunkItemSchema),
   next: z.array(adjacentChunkItemSchema),
   combinedContent: z.string(),
@@ -67,18 +71,26 @@ export type AdjacentSearchResult = z.infer<typeof adjacentSearchResultSchema>
 
 export const cohereRerankResponseSchema = z.object({
   id: z.string(),
-  results: z.array(z.object({
-    index: z.number().int(),
-    relevance_score: z.number(),
-  })),
-  meta: z.object({
-    api_version: z.object({
-      version: z.string(),
-    }).optional(),
-    billed_units: z.object({
-      search_units: z.number(),
-    }).optional(),
-  }).optional(),
+  results: z.array(
+    z.object({
+      index: z.number().int(),
+      relevance_score: z.number(),
+    })
+  ),
+  meta: z
+    .object({
+      api_version: z
+        .object({
+          version: z.string(),
+        })
+        .optional(),
+      billed_units: z
+        .object({
+          search_units: z.number(),
+        })
+        .optional(),
+    })
+    .optional(),
 })
 export type CohereRerankResponse = z.infer<typeof cohereRerankResponseSchema>
 
@@ -91,9 +103,7 @@ function getCollectionFilter(collection?: NuxtCollectionName | string) {
  * Extrai o identificador base do documento (removendo idioma ou sufixos equivalentes para evitar duplicatas em EN/PT)
  */
 export function getBaseDocumentKey(documentId: string): string {
-  return documentId
-    .replace(/(pt-BR|en-US)\//g, '')
-    .replace(/\.md$/, '')
+  return documentId.replace(/(pt-BR|en-US)\//g, '').replace(/\.md$/, '')
 }
 
 /**
@@ -101,7 +111,7 @@ export function getBaseDocumentKey(documentId: string): string {
  */
 export function deduplicateByDocument(
   results: SearchResultChunk[],
-  options: { limit?: number, maxChunksPerDocument?: number, distinctByBaseDocument?: boolean } = {}
+  options: { limit?: number; maxChunksPerDocument?: number; distinctByBaseDocument?: boolean } = {}
 ): SearchResultChunk[] {
   const limit = options.limit ?? 5
   const maxChunks = options.maxChunksPerDocument ?? 1
@@ -130,7 +140,10 @@ export function deduplicateByDocument(
 /**
  * Gera o embedding denso de 2000 dimensões para a query do usuário utilizando gemini-embedding-2
  */
-export async function generateQueryEmbedding(query: string, aiInstance?: ReturnType<typeof useAi>): Promise<number[]> {
+export async function generateQueryEmbedding(
+  query: string,
+  aiInstance?: ReturnType<typeof useAi>
+): Promise<number[]> {
   const start = performance.now()
   const ai = aiInstance ?? useAi()
   const { embedding } = await embed({
@@ -154,7 +167,7 @@ export async function generateQueryEmbedding(query: string, aiInstance?: ReturnT
 export async function executeVectorSearch(
   db: ReturnType<typeof useDrizzle>,
   embedding: number[],
-  options: { collection?: string, limit?: number } = {}
+  options: { collection?: string; limit?: number } = {}
 ) {
   const start = performance.now()
   const candidateLimit = Math.max((options.limit || 5) * 4, 20)
@@ -185,7 +198,9 @@ export async function executeVectorSearch(
     .limit(candidateLimit)
 
   const duration = (performance.now() - start).toFixed(2)
-  logger.info(`[Vector Search] pgvector cosine query returned ${results.length} candidate(s) in ${duration}ms`)
+  logger.info(
+    `[Vector Search] pgvector cosine query returned ${results.length} candidate(s) in ${duration}ms`
+  )
 
   return results.map((row, idx) => ({
     ...row,
@@ -199,7 +214,7 @@ export async function executeVectorSearch(
 export async function executeLexicalSearch(
   db: ReturnType<typeof useDrizzle>,
   query: string,
-  options: { collection?: string, limit?: number } = {}
+  options: { collection?: string; limit?: number } = {}
 ) {
   const start = performance.now()
   const candidateLimit = Math.max((options.limit || 5) * 4, 20)
@@ -244,7 +259,9 @@ export async function executeLexicalSearch(
     .limit(candidateLimit)
 
   const duration = (performance.now() - start).toFixed(2)
-  logger.info(`[Lexical Search] PostgreSQL text query returned ${results.length} candidate(s) in ${duration}ms`)
+  logger.info(
+    `[Lexical Search] PostgreSQL text query returned ${results.length} candidate(s) in ${duration}ms`
+  )
 
   return results.map((row, idx) => ({
     ...row,
@@ -257,12 +274,30 @@ export async function executeLexicalSearch(
  * Score RRF(d) = sum( 1 / (k + rank) )
  */
 export function reciprocalRankFusion<
-  V extends { id: string, index: number, documentId: string, collection: string | null, content: string, context: string | null, route: string | null, vectorRank: number },
-  L extends { id: string, index: number, documentId: string, collection: string | null, content: string, context: string | null, route: string | null, lexicalRank: number },
+  V extends {
+    id: string
+    index: number
+    documentId: string
+    collection: string | null
+    content: string
+    context: string | null
+    route: string | null
+    vectorRank: number
+  },
+  L extends {
+    id: string
+    index: number
+    documentId: string
+    collection: string | null
+    content: string
+    context: string | null
+    route: string | null
+    lexicalRank: number
+  },
 >(
   vectorResults: V[],
   lexicalResults: L[],
-  options: { k?: number, limit?: number } = {}
+  options: { k?: number; limit?: number } = {}
 ): SearchResultChunk[] {
   const k = options.k ?? 60
   const limit = options.limit ?? 5
@@ -319,7 +354,7 @@ export function reciprocalRankFusion<
 export async function rerankWithCohere(
   query: string,
   candidates: SearchResultChunk[],
-  options: { apiKey: string, topN?: number, model?: string }
+  options: { apiKey: string; topN?: number; model?: string }
 ): Promise<SearchResultChunk[]> {
   const start = performance.now()
   const { apiKey, topN = candidates.length, model = 'rerank-v3.5' } = options
@@ -359,7 +394,9 @@ export async function rerankWithCohere(
   }
 
   const duration = (performance.now() - start).toFixed(2)
-  logger.info(`[Cohere Rerank] Re-ranked ${candidates.length} candidate(s) down to ${reranked.length} in ${duration}ms`)
+  logger.info(
+    `[Cohere Rerank] Re-ranked ${candidates.length} candidate(s) down to ${reranked.length} in ${duration}ms`
+  )
 
   return reranked
 }
@@ -374,8 +411,9 @@ export async function getAdjacentChunks(
   const start = performance.now()
   const { documentId, chunkIndex, direction = 'both', limit = 2 } = options
 
-  const minIndex = (direction === 'previous' || direction === 'both') ? Math.max(1, chunkIndex - limit) : chunkIndex
-  const maxIndex = (direction === 'next' || direction === 'both') ? chunkIndex + limit : chunkIndex
+  const minIndex =
+    direction === 'previous' || direction === 'both' ? Math.max(1, chunkIndex - limit) : chunkIndex
+  const maxIndex = direction === 'next' || direction === 'both' ? chunkIndex + limit : chunkIndex
 
   const allChunks = await db
     .select({
@@ -403,14 +441,16 @@ export async function getAdjacentChunks(
   const combinedContent = allChunks.map(c => c.content).join('\n\n')
 
   const duration = (performance.now() - start).toFixed(2)
-  logger.info(`[Adjacent Chunks] Fetched ${allChunks.length} neighbor chunk(s) for ${documentId}#${chunkIndex} in ${duration}ms`)
+  logger.info(
+    `[Adjacent Chunks] Fetched ${allChunks.length} neighbor chunk(s) for ${documentId}#${chunkIndex} in ${duration}ms`
+  )
 
   return {
     targetChunk: targetChunk
       ? {
-        ...targetChunk,
-        collection: (targetChunk.collection ?? 'pages') as NuxtCollectionName,
-      }
+          ...targetChunk,
+          collection: (targetChunk.collection ?? 'pages') as NuxtCollectionName,
+        }
       : null,
     previous,
     next,
@@ -428,9 +468,19 @@ export async function performHybridSearch(
   runtimeConfigInput?: { cohereApiKey?: string }
 ): Promise<SearchResultChunk[]> {
   const totalStart = performance.now()
-  const { query, collection, limit = 5, includeAdjacent = false, k = 60, distinctByDocument = true, maxChunksPerDocument = 1 } = options
+  const {
+    query,
+    collection,
+    limit = 5,
+    includeAdjacent = false,
+    k = 60,
+    distinctByDocument = true,
+    maxChunksPerDocument = 1,
+  } = options
 
-  logger.info(`[Hybrid Search:START] query=${query.length} chars | collection=${collection || 'all'} | limit=${limit}`)
+  logger.info(
+    `[Hybrid Search:START] query=${query.length} chars | collection=${collection || 'all'} | limit=${limit}`
+  )
 
   let cohereApiKey = runtimeConfigInput?.cohereApiKey
   if (!cohereApiKey) {
@@ -502,8 +552,9 @@ export async function performHybridSearch(
   let adjacentDuration = '0.00'
   if (includeAdjacent && fusedResults.length > 0) {
     const adjacentStart = performance.now()
-    const conditions = fusedResults.map(chunk =>
-      sql`(${schema.documentChunks.documentId} = ${chunk.documentId} AND ${schema.documentChunks.index} BETWEEN ${Math.max(1, chunk.index - 1)} AND ${chunk.index + 1})`
+    const conditions = fusedResults.map(
+      chunk =>
+        sql`(${schema.documentChunks.documentId} = ${chunk.documentId} AND ${schema.documentChunks.index} BETWEEN ${Math.max(1, chunk.index - 1)} AND ${chunk.index + 1})`
     )
 
     const allNeighborChunks = await db
@@ -537,7 +588,9 @@ export async function performHybridSearch(
   }
 
   const totalDuration = (performance.now() - totalStart).toFixed(2)
-  logger.success(`[Hybrid Search:FINISH] Returned ${fusedResults.length} chunk(s) in ${totalDuration}ms (Parallel vector+lexical: ${parallelDuration}ms, RRF: ${rrfDuration}ms${isCohereAvailable ? `, Cohere: ${rerankDuration}ms` : ''}${includeAdjacent ? `, Adjacent: ${adjacentDuration}ms` : ''})`)
+  logger.success(
+    `[Hybrid Search:FINISH] Returned ${fusedResults.length} chunk(s) in ${totalDuration}ms (Parallel vector+lexical: ${parallelDuration}ms, RRF: ${rrfDuration}ms${isCohereAvailable ? `, Cohere: ${rerankDuration}ms` : ''}${includeAdjacent ? `, Adjacent: ${adjacentDuration}ms` : ''})`
+  )
 
   return fusedResults
 }

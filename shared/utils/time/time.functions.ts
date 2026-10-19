@@ -10,12 +10,10 @@ type FormatDurationLocale = NonNullable<Parameters<typeof formatDuration>[1]>['l
 type DateFnsLocale = FormatLocale & FormatDurationLocale
 
 export function getDateLocale(locale: LocaleKey): DateFnsLocale {
-  return (
-    {
-      [LOCALE_KEYS.PT_BR]: ptBR,
-      [LOCALE_KEYS.EN_US]: enUS,
-    }[locale] ?? enUS
-  ) as DateFnsLocale
+  return ({
+    [LOCALE_KEYS.PT_BR]: ptBR,
+    [LOCALE_KEYS.EN_US]: enUS,
+  }[locale] ?? enUS) as DateFnsLocale
 }
 
 export function getExtenseShift(seconds: number, localeKey: LocaleKey): string {

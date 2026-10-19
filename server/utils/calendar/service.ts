@@ -7,7 +7,12 @@ export function createCalendarService(authClient: ReturnType<typeof createGoogle
     /**
      * Busy intervals of every calendar, merged and sorted by start.
      */
-    async checkAvailability(calendarIds: string[], timeMin: string, timeMax: string, timeZone = 'America/Sao_Paulo') {
+    async checkAvailability(
+      calendarIds: string[],
+      timeMin: string,
+      timeMax: string,
+      timeZone = 'America/Sao_Paulo'
+    ) {
       try {
         const response = await calendar.freebusy.query({
           requestBody: {
@@ -60,14 +65,14 @@ export function createCalendarService(authClient: ReturnType<typeof createGoogle
             end: {
               dateTime: event.endTime,
               timeZone: event.timeZone,
-            }
-          }
+            },
+          },
         })
         return response.data
       } catch (error) {
         console.error('Erro na Service ao criar evento:', error)
         throw error
       }
-    }
+    },
   }
 }

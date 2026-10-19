@@ -1,6 +1,6 @@
 import { queryCollection } from '@nuxt/content/server'
 
-export default defineEventHandler(async (event) => {
+export default defineEventHandler(async event => {
   const query = await getValidatedQuery(event, data => experiencesQuerySchema.safeParse(data))
   const t = await useTranslation(event)
 
@@ -13,36 +13,42 @@ export default defineEventHandler(async (event) => {
     })
   }
 
-  const experiences = await queryCollection(event, 'history').where('id', 'LIKE', `%/${query.data.lang || LOCALE_KEYS.EN_US}/%`).order('start', 'DESC').all()
+  const experiences = await queryCollection(event, 'history')
+    .where('id', 'LIKE', `%/${query.data.lang || LOCALE_KEYS.EN_US}/%`)
+    .order('start', 'DESC')
+    .all()
 
-  return experiences?.map((item) => {
-    const hasBody = query.data?.includeBody === true
+  return (
+    (experiences
+      ?.map(item => {
+        const hasBody = query.data?.includeBody === true
 
-    const { data } = historyWithBodySchema.safeParse(item)
+        const { data } = historyWithBodySchema.safeParse(item)
 
-    if (!data)
-      return null
+        if (!data) return null
 
-    const { title, start, end, location, meta, org, stem, body, image, delivered } = data
-    const { locale, readingTimeInSeconds, reducedBody } = meta
+        const { title, start, end, location, meta, org, stem, body, image, delivered } = data
+        const { locale, readingTimeInSeconds, reducedBody } = meta
 
-    const readingTimeString = getExtenseShift(readingTimeInSeconds, locale)
-    const path = processCmsPath(locale, stem)
+        const readingTimeString = getExtenseShift(readingTimeInSeconds, locale)
+        const path = processCmsPath(locale, stem)
 
-    return {
-      title,
-      org,
-      image,
-      start: formatCardDate(start, locale),
-      end: end ? formatCardDate(end, locale) : t('time.the_moment', {}, { locale }),
-      location,
-      locale,
-      readingTimeInSeconds,
-      readingTimeString: t('time.reading_time', { time: readingTimeString }, { locale }),
-      reducedBody,
-      path,
-      body: hasBody ? body : null,
-      delivered,
-    }
-  }).filter(item => item !== null) satisfies ExperiencesDto[] ?? []
+        return {
+          title,
+          org,
+          image,
+          start: formatCardDate(start, locale),
+          end: end ? formatCardDate(end, locale) : t('time.the_moment', {}, { locale }),
+          location,
+          locale,
+          readingTimeInSeconds,
+          readingTimeString: t('time.reading_time', { time: readingTimeString }, { locale }),
+          reducedBody,
+          path,
+          body: hasBody ? body : null,
+          delivered,
+        }
+      })
+      .filter(item => item !== null) satisfies ExperiencesDto[]) ?? []
+  )
 })

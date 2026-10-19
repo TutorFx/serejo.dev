@@ -42,14 +42,14 @@ export function useRateLimitRedis(): Redis {
   }
 
   const { redisUrl } = redisEnvSchema.parse({
-    redisUrl: useRuntimeConfig().redisUrl
+    redisUrl: useRuntimeConfig().redisUrl,
   })
 
   const client = new Redis(redisUrl, {
     maxRetriesPerRequest: 1,
     connectTimeout: 2000,
     commandTimeout: 500,
-    lazyConnect: false
+    lazyConnect: false,
   })
 
   // Without a listener ioredis reports every reconnection failure as an unhandled error event

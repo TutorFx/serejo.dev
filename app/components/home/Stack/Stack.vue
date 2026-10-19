@@ -31,10 +31,16 @@ const { t } = useI18n()
             </div>
             <div class="mb-6 grid grid-cols-4 gap-12 max-md:justify-center">
               <div class="aspect-square p-2">
-                <NuxtImg class="h-full max-h-full w-full max-w-full" src="/brand/stack/typescript.svg" />
+                <NuxtImg
+                  class="h-full max-h-full w-full max-w-full"
+                  src="/brand/stack/typescript.svg"
+                />
               </div>
               <div class="aspect-square">
-                <NuxtImg class="h-full max-h-full w-full max-w-full" src="/brand/stack/tailwind.svg" />
+                <NuxtImg
+                  class="h-full max-h-full w-full max-w-full"
+                  src="/brand/stack/tailwind.svg"
+                />
               </div>
               <div class="aspect-square">
                 <NuxtImg class="h-full max-h-full w-full max-w-full" src="/brand/stack/nuxt.svg" />
@@ -68,7 +74,9 @@ const { t } = useI18n()
         <div>
           <div class="sticky top-[20%]">
             <div class="grid justify-center">
-              <div class="relative aspect-[882/1103] max-w-full overflow-hidden rounded-t-full lg:w-[50dvh]">
+              <div
+                class="relative aspect-[882/1103] max-w-full overflow-hidden rounded-t-full lg:w-[50dvh]"
+              >
                 <div class="absolute right-0 bottom-0 grid justify-center">
                   <AssetsVecScroll class="z-2" />
                 </div>

@@ -4,10 +4,7 @@ const props = defineProps<{ id?: string }>()
 
 <template>
   <h5 :id="props.id">
-    <a
-      v-if="props.id"
-      :href="`#${props.id}`"
-    >
+    <a v-if="props.id" :href="`#${props.id}`">
       <slot />
     </a>
     <slot v-else />

@@ -11,51 +11,72 @@ export default defineI18nLocale(() => {
       home: {
         path: '/',
         title: 'Home',
-        description: 'High-quality web development for new and legacy projects. Contact Gabriel Serejo today!',
-        keywords: 'Web development, new projects, legacy projects, custom solutions, high quality, Gabriel Serejo, AI Engineer, Full Stack',
-        summary: 'Personal portfolio of Gabriel Serejo, Generative AI & Full Stack Engineer with 8+ years of experience. Features introduction (Hero), international experience overview, technical stack arsenal, and highlighted professional experience.',
+        description:
+          'High-quality web development for new and legacy projects. Contact Gabriel Serejo today!',
+        keywords:
+          'Web development, new projects, legacy projects, custom solutions, high quality, Gabriel Serejo, AI Engineer, Full Stack',
+        summary:
+          'Personal portfolio of Gabriel Serejo, Generative AI & Full Stack Engineer with 8+ years of experience. Features introduction (Hero), international experience overview, technical stack arsenal, and highlighted professional experience.',
       },
       history: {
         path: '/my-trajectory',
         title: 'Job history',
-        description: 'Experienced web developer with a proven track record in international projects and a passion for turning ideas into reality. Skilled in various technologies including Vue, Nuxt and JavaScript. Open-source enthusiast and ready for new challenges.',
-        keywords: 'Web Developer, Front-end, Vue, Nuxt, JavaScript, Hexagonal Architecture, Service Layers, Vuetify, WordPress, Legacy Projects, Website Development, Landing Pages, International, Portugal, Brazil, Career History',
-        summary: 'Complete professional trajectory and career timeline of Gabriel Serejo. Detailed records of companies (Implanta IT Solutions, TLScontact, Cliqx, UniFAJ, Agência Industrial, ITH Pós Graduação), delivered roles, achievements, and architectural migrations.',
+        description:
+          'Experienced web developer with a proven track record in international projects and a passion for turning ideas into reality. Skilled in various technologies including Vue, Nuxt and JavaScript. Open-source enthusiast and ready for new challenges.',
+        keywords:
+          'Web Developer, Front-end, Vue, Nuxt, JavaScript, Hexagonal Architecture, Service Layers, Vuetify, WordPress, Legacy Projects, Website Development, Landing Pages, International, Portugal, Brazil, Career History',
+        summary:
+          'Complete professional trajectory and career timeline of Gabriel Serejo. Detailed records of companies (Implanta IT Solutions, TLScontact, Cliqx, UniFAJ, Agência Industrial, ITH Pós Graduação), delivered roles, achievements, and architectural migrations.',
       },
       projects: {
         path: '/projects',
         title: 'Projects',
-        description: 'Gabriel Serejo Dev: Professional journey and projects. Experiences in front-end development and feature implementation.',
-        keywords: 'Gabriel Serejo, Web Developer, Front-end Developer, Feature Implementation, Web Projects, Professional Journey, Experience, Portfolio, Open Source, AI Projects',
-        summary: 'Showcase of software engineering and AI projects built by Gabriel Serejo, including web applications, open source libraries, tools, and technical demonstrations.',
+        description:
+          'Gabriel Serejo Dev: Professional journey and projects. Experiences in front-end development and feature implementation.',
+        keywords:
+          'Gabriel Serejo, Web Developer, Front-end Developer, Feature Implementation, Web Projects, Professional Journey, Experience, Portfolio, Open Source, AI Projects',
+        summary:
+          'Showcase of software engineering and AI projects built by Gabriel Serejo, including web applications, open source libraries, tools, and technical demonstrations.',
       },
       blog: {
         path: '/blog',
         title: 'Blog',
-        description: 'Technical articles, tutorials, and insights on Web Development, Generative AI, Nuxt, Vue, TypeScript, AI Agents, and Software Architecture by Gabriel Serejo.',
-        keywords: 'Blog, Web Developer, Front-end, Vue, Nuxt, JavaScript, TypeScript, Generative AI, LLMs, AI Agents, RAG, Architecture, Articles, Tutorials',
-        summary: 'Technical blog listing articles, tutorials, and thought pieces by Gabriel Serejo on modern web engineering, AI integrations, performance, and best practices.',
+        description:
+          'Technical articles, tutorials, and insights on Web Development, Generative AI, Nuxt, Vue, TypeScript, AI Agents, and Software Architecture by Gabriel Serejo.',
+        keywords:
+          'Blog, Web Developer, Front-end, Vue, Nuxt, JavaScript, TypeScript, Generative AI, LLMs, AI Agents, RAG, Architecture, Articles, Tutorials',
+        summary:
+          'Technical blog listing articles, tutorials, and thought pieces by Gabriel Serejo on modern web engineering, AI integrations, performance, and best practices.',
       },
       resume: {
         path: '/resume',
         title: 'Resume',
-        description: 'Gabriel Serejo - Generative AI & Full Stack Engineer Resume. Summary, technical proficiencies, certifications, and work experience.',
-        keywords: 'Resume, CV, Gabriel Serejo, Generative AI Engineer, Full Stack Developer, Skills, Certifications, Career History',
-        summary: 'Printable and digital Resume of Gabriel Serejo. Displays profile summary, technical skills (Python, TypeScript, Vue/Nuxt, LangChain, RAG, pgvector), AI certifications, and major career projects.',
+        description:
+          'Gabriel Serejo - Generative AI & Full Stack Engineer Resume. Summary, technical proficiencies, certifications, and work experience.',
+        keywords:
+          'Resume, CV, Gabriel Serejo, Generative AI Engineer, Full Stack Developer, Skills, Certifications, Career History',
+        summary:
+          'Printable and digital Resume of Gabriel Serejo. Displays profile summary, technical skills (Python, TypeScript, Vue/Nuxt, LangChain, RAG, pgvector), AI certifications, and major career projects.',
       },
       curriculum: {
         path: '/curriculum',
         title: 'Curriculum Vitae',
-        description: 'Gabriel Serejo - Curriculum Vitae. Comprehensive overview of professional experience, academic education, certifications, and competencies.',
-        keywords: 'Curriculum Vitae, CV, Gabriel Serejo, AI Engineer, Full Stack Developer, Education, Experience, Certifications',
-        summary: 'Comprehensive Curriculum Vitae (CV) of Gabriel Serejo detailing full work history, academic education, certifications, and technical proficiencies in software engineering and AI.',
+        description:
+          'Gabriel Serejo - Curriculum Vitae. Comprehensive overview of professional experience, academic education, certifications, and competencies.',
+        keywords:
+          'Curriculum Vitae, CV, Gabriel Serejo, AI Engineer, Full Stack Developer, Education, Experience, Certifications',
+        summary:
+          'Comprehensive Curriculum Vitae (CV) of Gabriel Serejo detailing full work history, academic education, certifications, and technical proficiencies in software engineering and AI.',
       },
       chat: {
         path: '/chat',
         title: 'AI Assistant & Chat',
-        description: 'Interactive AI assistant on Gabriel Serejo\'s website. Ask questions about Gabriel\'s background, projects, articles, technical skills, or schedule a meeting.',
-        keywords: 'AI Chat, AI Assistant, Gabriel Serejo, RAG, Chatbot, Meeting Scheduler, Interactive Portfolio',
-        summary: 'AI conversational assistant allowing visitors to explore Gabriel Serejo\'s portfolio with hybrid search (RAG), check calendar availability, and schedule meetings.',
+        description:
+          "Interactive AI assistant on Gabriel Serejo's website. Ask questions about Gabriel's background, projects, articles, technical skills, or schedule a meeting.",
+        keywords:
+          'AI Chat, AI Assistant, Gabriel Serejo, RAG, Chatbot, Meeting Scheduler, Interactive Portfolio',
+        summary:
+          "AI conversational assistant allowing visitors to explore Gabriel Serejo's portfolio with hybrid search (RAG), check calendar availability, and schedule meetings.",
       },
     },
     SCHEDULE_support_text: `Hey! I am Gabriel, a web engineering consultant based in Brazil. 
@@ -148,7 +169,7 @@ export default defineI18nLocale(() => {
           org: 'UniFAJ',
           delivered: [
             'I developed the end-to-end user interface for the student admission application, covering all critical stages from initial registration to the completion of exams and essays.',
-            'I implemented key new features while simultaneously restructuring legacy code, applying clean code principles to enhance the application\'s maintainability and overall quality.',
+            "I implemented key new features while simultaneously restructuring legacy code, applying clean code principles to enhance the application's maintainability and overall quality.",
           ],
         },
         {
@@ -164,7 +185,7 @@ export default defineI18nLocale(() => {
           org: 'ITH Pós Graduação',
           delivered: [
             'I led a complete refactoring of the legacy application, a project that directly improved Google Speed Insight scores and significantly reduced advertising expenses.',
-            'I developed and launched a new front-end application using Nuxt2, which integrated with the company\'s WordPress CMS to modernize the user experience and content delivery.',
+            "I developed and launched a new front-end application using Nuxt2, which integrated with the company's WordPress CMS to modernize the user experience and content delivery.",
           ],
         },
       ],
@@ -172,7 +193,8 @@ export default defineI18nLocale(() => {
     active: 'Active',
     download_curriculum: 'Download Curriculum',
     me: {
-      summary: 'Generative AI Engineer with 2 years of specialized experience building production-grade LLM and RAG applications, backed by 8+ years in full-stack software engineering. I combine deep expertise in backend systems, databases, and frontend (Python, Node.js, Vue/Nuxt) with modern AI frameworks (LangChain, Vector DBs) to design and ship scalable, intelligent systems. Proven track record of leading architectural migrations and delivering high-impact AI solutions for international markets.',
+      summary:
+        'Generative AI Engineer with 2 years of specialized experience building production-grade LLM and RAG applications, backed by 8+ years in full-stack software engineering. I combine deep expertise in backend systems, databases, and frontend (Python, Node.js, Vue/Nuxt) with modern AI frameworks (LangChain, Vector DBs) to design and ship scalable, intelligent systems. Proven track record of leading architectural migrations and delivering high-impact AI solutions for international markets.',
       abroad: `During my career, I have worked on international projects, 
             collaborating daily with people from all over the world and aligning strategies 
             with backend and frontend teams. After **8 years** of experience, I offer expertise 
@@ -235,13 +257,14 @@ export default defineI18nLocale(() => {
     chat: {
       input_label: 'Type your message...',
       reply_in_second: 'I typically reply in a second',
-      talk_to_cat: 'She can be sarcastic, but she\'s also incredibly smart and funny. 😹 Who knows, if you catch her in a good mood, she might even tell you some feline secrets!',
+      talk_to_cat:
+        "She can be sarcastic, but she's also incredibly smart and funny. 😹 Who knows, if you catch her in a good mood, she might even tell you some feline secrets!",
       greeting: {
         hello: 'Hello',
         morning: 'Good morning',
         afternoon: 'Good afternoon',
         evening: 'Good evening',
-        with_name: '{greeting}, {name}'
+        with_name: '{greeting}, {name}',
       },
       tool_calendar: {
         availability: 'Availability',
@@ -250,7 +273,7 @@ export default defineI18nLocale(() => {
         free_slots: 'Free Slots',
         busy_slots: 'Scheduled Appointments',
         no_slots: 'No free slots found during business hours for this day.',
-        timezone_difference: 'Different time zone:'
+        timezone_difference: 'Different time zone:',
       },
       tool_meet: {
         confirm: 'Confirm Appointment',
@@ -263,12 +286,13 @@ export default defineI18nLocale(() => {
         deny: 'Cancel',
         scheduled: 'Request Sent!',
         next_step: 'Awaiting Confirmation',
-        next_step_desc: 'Gabriel will evaluate his availability. You will receive the official confirmation and meeting link at the provided email.',
+        next_step_desc:
+          'Gabriel will evaluate his availability. You will receive the official confirmation and meeting link at the provided email.',
         open_calendar: 'Open Calendar',
         loading: 'Scheduling event in calendar...',
         error: 'Error scheduling meeting, please try again.',
         denied_alert: 'Meeting request canceled.',
-        datetime: '{date} at {time}'
+        datetime: '{date} at {time}',
       },
       tool_search: {
         loading: 'Searching knowledge base...',
@@ -336,11 +360,14 @@ export default defineI18nLocale(() => {
       },
       errors: {
         rate_limited: 'You are sending messages too fast. Please wait a moment and try again.',
-        budget_exceeded: 'You reached the daily usage limit of the assistant. Please come back tomorrow.',
+        budget_exceeded:
+          'You reached the daily usage limit of the assistant. Please come back tomorrow.',
         chat_disabled: 'The assistant is temporarily unavailable. Please try again later.',
-        chat_busy: 'The assistant is still answering your previous message. Please wait for it to finish.',
+        chat_busy:
+          'The assistant is still answering your previous message. Please wait for it to finish.',
         payload_too_large: 'This message is too long. Please shorten it and try again.',
-        invalid_request: 'This message could not be processed. Please reload the page and try again.',
+        invalid_request:
+          'This message could not be processed. Please reload the page and try again.',
         approval_invalid: 'This request is no longer pending. Please reload the page.',
         session_expired: 'Your session expired. Please reload the page and try again.',
         stream_error: 'The assistant could not answer right now. Please try again.',

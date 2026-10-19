@@ -42,7 +42,7 @@ export class MemoryStore {
   }
 
   /** Increments a counter; the TTL starts on the first increment of the window */
-  increment(key: string, amount: number, ttlMs: number): { value: number, ttlMs: number } {
+  increment(key: string, amount: number, ttlMs: number): { value: number; ttlMs: number } {
     const entry = this.get(key)
     if (entry) {
       entry.value += amount

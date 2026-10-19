@@ -15,7 +15,8 @@ const props = defineProps<BlogPostProps>()
     <UIContainer class="grid">
       <UIHeroCms :title="props.title" :back-to="{ name: 'blog' }">
         <div class="grid grid-flow-col items-center justify-start gap-3 p-4 font-light">
-          <Icon class="text-accent" size="24" name="material-symbols:alarm-outline-rounded" /> {{ props.readingTimeString }}
+          <Icon class="text-accent" size="24" name="material-symbols:alarm-outline-rounded" />
+          {{ props.readingTimeString }}
         </div>
       </UIHeroCms>
     </UIContainer>

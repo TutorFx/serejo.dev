@@ -31,9 +31,9 @@ export function useFluidOrb() {
         new THREE.Color('#4cc9f0'),
         new THREE.Color('#fca311'),
         new THREE.Color('#3a0ca3'),
-        new THREE.Color('#9ef01a')
-      ]
-    }
+        new THREE.Color('#9ef01a'),
+      ],
+    },
   }
 
   const updateColors = (hexColors: string[]) => {
@@ -52,7 +52,11 @@ export function useFluidOrb() {
     camera = new THREE.PerspectiveCamera(45, 1, 0.1, 100)
     camera.position.z = 4.5
 
-    renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true, powerPreference: 'low-power' })
+    renderer = new THREE.WebGLRenderer({
+      antialias: true,
+      alpha: true,
+      powerPreference: 'low-power',
+    })
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
     renderer.toneMapping = THREE.ACESFilmicToneMapping
     renderer.toneMappingExposure = 1.0
@@ -66,7 +70,7 @@ export function useFluidOrb() {
       uniforms,
       side: THREE.FrontSide,
       transparent: true,
-      blending: THREE.NormalBlending
+      blending: THREE.NormalBlending,
     })
 
     geometry = new THREE.IcosahedronGeometry(0.9, 32)
@@ -75,10 +79,7 @@ export function useFluidOrb() {
     scene.add(orb)
 
     const renderScene = new RenderPass(scene, camera)
-    const bloomPass = new UnrealBloomPass(
-      new THREE.Vector2(256, 256),
-      0.4, 0.5, 0.3
-    )
+    const bloomPass = new UnrealBloomPass(new THREE.Vector2(256, 256), 0.4, 0.5, 0.3)
 
     composer = new EffectComposer(renderer)
     composer.addPass(renderScene)
@@ -89,17 +90,17 @@ export function useFluidOrb() {
         tDiffuse: { value: null },
         uAspect: { value: 1.0 },
         uScale: { value: scale },
-        uIsLight: { value: isLightMode ? 1.0 : 0.0 }
+        uIsLight: { value: isLightMode ? 1.0 : 0.0 },
       },
       vertexShader: alphaVertexShader,
-      fragmentShader: alphaFragmentShader
+      fragmentShader: alphaFragmentShader,
     })
     composer.addPass(alphaPass)
 
     timer = new THREE.Timer()
     timer.connect(document)
 
-    resizeObserver = new ResizeObserver((entries) => {
+    resizeObserver = new ResizeObserver(entries => {
       for (const entry of entries) {
         const w = Math.max(1, entry.contentRect.width)
         const h = Math.max(1, entry.contentRect.height)
@@ -202,6 +203,6 @@ export function useFluidOrb() {
     dispose,
     setScale,
     setLightMode,
-    updateColors
+    updateColors,
   }
 }

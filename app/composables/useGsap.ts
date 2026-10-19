@@ -7,8 +7,7 @@ export function useGsap(callback?: () => void, scope?: Element | string | object
   const ctx = gsap.context(() => {}, scope)
 
   onMounted(() => {
-    if (callback)
-      ctx.add(callback, scope)
+    if (callback) ctx.add(callback, scope)
   })
 
   onUnmounted(() => {

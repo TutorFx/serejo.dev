@@ -16,9 +16,7 @@ const copyrightYear = useState('copyright-year', () => new Date().getFullYear())
         <div class="grid grid-flow-col justify-start gap-3">
           <div>
             <UIPopover>
-              <template #content>
-                Email
-              </template>
+              <template #content> Email </template>
               <UIButton
                 class="text-3xl"
                 icon="mdi:alternate-email"
@@ -29,9 +27,7 @@ const copyrightYear = useState('copyright-year', () => new Date().getFullYear())
           </div>
           <div>
             <UIPopover>
-              <template #content>
-                Github
-              </template>
+              <template #content> Github </template>
               <UIButton
                 class="text-3xl"
                 icon="mdi:github"
@@ -42,9 +38,7 @@ const copyrightYear = useState('copyright-year', () => new Date().getFullYear())
           </div>
           <div>
             <UIPopover>
-              <template #content>
-                Linkedin
-              </template>
+              <template #content> Linkedin </template>
               <UIButton
                 class="text-3xl"
                 icon="mdi:linkedin"
@@ -55,7 +49,10 @@ const copyrightYear = useState('copyright-year', () => new Date().getFullYear())
           </div>
         </div>
         <div class="grid justify-start">
-          <UIButton variant="link" :to="LocalePathFunction({ name: 'pages-path', params: { path: 'politicas-de-privacidade' } })">
+          <UIButton
+            variant="link"
+            :to="LocalePathFunction({ name: 'pages-path', params: { path: 'politicas-de-privacidade' } })"
+          >
             {{ t('footer.privacy_policy') }}
           </UIButton>
           <UIButton variant="link" href="mailto:gabrielserejo11@gmail.com">
@@ -67,13 +64,9 @@ const copyrightYear = useState('copyright-year', () => new Date().getFullYear())
     </UIContainer>
     <div class="text-base-content py-8 text-center text-lg font-bold">
       <div class="grid gap-3">
-        <div>
-          {{ t('copyright') }} ©2024 — {{ copyrightYear }}
-        </div>
+        <div>{{ t('copyright') }} ©2024 — {{ copyrightYear }}</div>
       </div>
-      <div>
-        {{ runtimeConfig.public.name }} {{ runtimeConfig.public.version }}
-      </div>
+      <div>{{ runtimeConfig.public.name }} {{ runtimeConfig.public.version }}</div>
     </div>
   </footer>
 </template>

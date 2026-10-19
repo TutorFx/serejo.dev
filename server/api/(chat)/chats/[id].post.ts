@@ -1,5 +1,14 @@
 import type { StopCondition, UIMessage } from 'ai'
-import { convertToModelMessages, createUIMessageStream, createUIMessageStreamResponse, generateText, safeValidateUIMessages, smoothStream, stepCountIs, streamText } from 'ai'
+import {
+  convertToModelMessages,
+  createUIMessageStream,
+  createUIMessageStreamResponse,
+  generateText,
+  safeValidateUIMessages,
+  smoothStream,
+  stepCountIs,
+  streamText,
+} from 'ai'
 import { createGoogleGenerativeAI } from '@ai-sdk/google'
 import type { GoogleLanguageModelOptions } from '@ai-sdk/google'
 import { z } from 'zod'
@@ -8,9 +17,21 @@ import { TZDate } from '@date-fns/tz'
 import { format } from 'date-fns'
 import { enUS, ptBR } from 'date-fns/locale'
 import { consola } from 'consola'
-import { ABUSE_LIMITS, CHAT_LIMITS, CHAT_TOOL, CHAT_TOOLS_ARRAY } from '#shared/utils/constants/chat.constants'
+import {
+  ABUSE_LIMITS,
+  CHAT_LIMITS,
+  CHAT_TOOL,
+  CHAT_TOOLS_ARRAY,
+} from '#shared/utils/constants/chat.constants'
 import type { MergeResult } from '~~/server/utils/chat/history'
-import { chatRequestBodySchema, ChatRequestError, firstUserText, mergeIncoming, selectContextWindow, toStoredHistory } from '~~/server/utils/chat/history'
+import {
+  chatRequestBodySchema,
+  ChatRequestError,
+  firstUserText,
+  mergeIncoming,
+  selectContextWindow,
+  toStoredHistory,
+} from '~~/server/utils/chat/history'
 import { saveAssistantMessage, saveUserMessage } from '~~/server/utils/chat/persistence'
 import { buildSystemPrompt } from '~~/server/utils/chat/prompt'
 import type { ChatTools, ChatUIMessage } from '~~/server/utils/chat/tools'
@@ -26,7 +47,7 @@ const SAFETY_SETTINGS: NonNullable<GoogleLanguageModelOptions['safetySettings']>
   { category: 'HARM_CATEGORY_HARASSMENT', threshold: 'BLOCK_MEDIUM_AND_ABOVE' },
   { category: 'HARM_CATEGORY_HATE_SPEECH', threshold: 'BLOCK_MEDIUM_AND_ABOVE' },
   { category: 'HARM_CATEGORY_SEXUALLY_EXPLICIT', threshold: 'BLOCK_MEDIUM_AND_ABOVE' },
-  { category: 'HARM_CATEGORY_DANGEROUS_CONTENT', threshold: 'BLOCK_MEDIUM_AND_ABOVE' }
+  { category: 'HARM_CATEGORY_DANGEROUS_CONTENT', threshold: 'BLOCK_MEDIUM_AND_ABOVE' },
 ]
 
 /**
@@ -57,12 +78,15 @@ function sanitizeTitle(text: string): string {
     .slice(0, 60)
 }
 
-export default defineEventHandler(async (event) => {
+export default defineEventHandler(async event => {
   const chatReqStart = performance.now()
 
-  const { id } = await getValidatedRouterParams(event, z.object({
-    id: z.string().min(1).max(CHAT_LIMITS.maxIdLength)
-  }).parse)
+  const { id } = await getValidatedRouterParams(
+    event,
+    z.object({
+      id: z.string().min(1).max(CHAT_LIMITS.maxIdLength),
+    }).parse
+  )
 
   const logger = consola.withTag(`chat:${id.slice(0, 8)}`)
 
@@ -70,29 +94,28 @@ export default defineEventHandler(async (event) => {
   await assertBodySize(event, CHAT_LIMITS.maxBodyBytes)
   const availability = await assertChatEnabled()
   const identity = await getRequestIdentity(event)
-  await assertRateLimits(event, buildRateLimitChecks('msg', identity, ABUSE_LIMITS.messages), { route: 'chat:message' })
+  await assertRateLimits(event, buildRateLimitChecks('msg', identity, ABUSE_LIMITS.messages), {
+    route: 'chat:message',
+  })
   await assertTokenBudget(identity)
 
   // 2. Input: only a user text message or approval decisions
   const body = await readValidatedBody(event, chatRequestBodySchema.parse)
 
   const { apiKey } = geminiEnvSchema.parse({
-    apiKey: useRuntimeConfig().gemini.apiKey
+    apiKey: useRuntimeConfig().gemini.apiKey,
   })
   const llm = createGoogleGenerativeAI({ apiKey })
 
   // 3. Ownership and stored history
   const db = useDrizzle()
   const chat = await db.query.chats.findFirst({
-    where: () => and(
-      eq(schema.chats.id, id),
-      eq(schema.chats.userId, identity.ownerId)
-    ),
+    where: () => and(eq(schema.chats.id, id), eq(schema.chats.userId, identity.ownerId)),
     with: {
       messages: {
-        orderBy: () => asc(schema.messages.createdAt)
-      }
-    }
+        orderBy: () => asc(schema.messages.createdAt),
+      },
+    },
   })
 
   if (!chat) {
@@ -104,7 +127,11 @@ export default defineEventHandler(async (event) => {
   const lockToken = await securityStore.acquireLock(lockKey, ABUSE_LIMITS.chatLockMs)
   if (!lockToken) {
     logSecurityEvent('concurrent-stream', { owner: identity.ownerHash })
-    throw createError({ statusCode: 409, statusMessage: 'Conflict', message: SECURITY_ERROR.chatBusy })
+    throw createError({
+      statusCode: 409,
+      statusMessage: 'Conflict',
+      message: SECURITY_ERROR.chatBusy,
+    })
   }
 
   let lockReleased = false
@@ -115,7 +142,11 @@ export default defineEventHandler(async (event) => {
   }
 
   try {
-    const tools = buildChatTools({ chatId: id, ownerHash: identity.ownerHash, timeZone: body.timeZone })
+    const tools = buildChatTools({
+      chatId: id,
+      ownerHash: identity.ownerHash,
+      timeZone: body.timeZone,
+    })
     const history = await dropInvalidMessages(toStoredHistory(chat.messages), tools)
 
     let merged: MergeResult
@@ -127,7 +158,10 @@ export default defineEventHandler(async (event) => {
         throw createError({
           statusCode: 409,
           statusMessage: 'Conflict',
-          message: error.code === 'approval-invalid' ? SECURITY_ERROR.approvalInvalid : SECURITY_ERROR.invalidRequest
+          message:
+            error.code === 'approval-invalid'
+              ? SECURITY_ERROR.approvalInvalid
+              : SECURITY_ERROR.invalidRequest,
         })
       }
       throw error
@@ -138,18 +172,26 @@ export default defineEventHandler(async (event) => {
       await saveAssistantMessage(db, id, merged.updatedAssistantMessage)
     }
 
-    if (merged.userMessage && !await saveUserMessage(db, id, merged.userMessage)) {
+    if (merged.userMessage && !(await saveUserMessage(db, id, merged.userMessage))) {
       logSecurityEvent('message-conflict', { owner: identity.ownerHash })
-      throw createError({ statusCode: 409, statusMessage: 'Conflict', message: SECURITY_ERROR.invalidRequest })
+      throw createError({
+        statusCode: 409,
+        statusMessage: 'Conflict',
+        message: SECURITY_ERROR.invalidRequest,
+      })
     }
 
     const validated = await safeValidateUIMessages<ChatUIMessage>({
       messages: selectContextWindow(merged.messages, CHAT_LIMITS.historyWindow),
-      tools
+      tools,
     })
     if (!validated.success) {
       logSecurityEvent('history-invalid', { stage: 'merged' })
-      throw createError({ statusCode: 400, statusMessage: 'Bad Request', message: SECURITY_ERROR.invalidRequest })
+      throw createError({
+        statusCode: 400,
+        statusMessage: 'Bad Request',
+        message: SECURITY_ERROR.invalidRequest,
+      })
     }
     const messages = validated.data
 
@@ -174,17 +216,20 @@ export default defineEventHandler(async (event) => {
           prompt: firstUserText(merged.messages, CHAT_LIMITS.titleInputChars),
           maxOutputTokens: 32,
           maxRetries: 1,
-          abortSignal: abortController.signal
+          abortSignal: abortController.signal,
         })
         await recordTokenUsage(identity, usage.totalTokens)
 
         const title = sanitizeTitle(text)
         if (title) {
-          await db.update(schema.chats)
+          await db
+            .update(schema.chats)
             .set({ title })
             .where(and(eq(schema.chats.id, id), eq(schema.chats.userId, identity.ownerId)))
         }
-        logger.info(`Generated chat title (${title.length} chars) in ${(performance.now() - titleStart).toFixed(2)}ms`)
+        logger.info(
+          `Generated chat title (${title.length} chars) in ${(performance.now() - titleStart).toFixed(2)}ms`
+        )
       } catch (error) {
         logger.warn('Title generation failed', error)
       }
@@ -195,11 +240,12 @@ export default defineEventHandler(async (event) => {
     logger.info(`Loaded dynamic resumeContext in ${(performance.now() - resumeStart).toFixed(2)}ms`)
 
     const sessionTimeZone = new TZDate(new Date(), body.timeZone)
-    const currentDate = `${format(sessionTimeZone, 'EEEE, yyyy-MM-dd HH:mm:ss', { locale: enUS })} (${format(sessionTimeZone, 'EEEE, dd \'de\' MMMM \'de\' yyyy', { locale: ptBR })})`
+    const currentDate = `${format(sessionTimeZone, 'EEEE, yyyy-MM-dd HH:mm:ss', { locale: enUS })} (${format(sessionTimeZone, "EEEE, dd 'de' MMMM 'de' yyyy", { locale: ptBR })})`
 
-    const activeTools = (availability.schedulingEnabled
-      ? CHAT_TOOLS_ARRAY
-      : CHAT_TOOLS_ARRAY.filter(name => !(SCHEDULING_TOOLS as readonly string[]).includes(name))
+    const activeTools = (
+      availability.schedulingEnabled
+        ? CHAT_TOOLS_ARRAY
+        : CHAT_TOOLS_ARRAY.filter(name => !(SCHEDULING_TOOLS as readonly string[]).includes(name))
     ) as Array<keyof ChatTools>
 
     let budgetExceeded = false
@@ -208,7 +254,7 @@ export default defineEventHandler(async (event) => {
 
     const stream = createUIMessageStream({
       originalMessages: messages,
-      onError: (error) => {
+      onError: error => {
         logger.error('UI stream error', error)
         return STREAM_ERROR
       },
@@ -221,7 +267,7 @@ export default defineEventHandler(async (event) => {
             currentDate,
             timeZone: body.timeZone,
             resumeContext,
-            schedulingEnabled: availability.schedulingEnabled
+            schedulingEnabled: availability.schedulingEnabled,
           }),
           // `tools` lets `toModelOutput` bound tool results replayed from history too
           messages: await convertToModelMessages(messages, { tools }),
@@ -229,7 +275,7 @@ export default defineEventHandler(async (event) => {
           activeTools,
           experimental_transform: smoothStream({
             delayInMs: 20,
-            chunking: 'word'
+            chunking: 'word',
           }),
           stopWhen: [stepCountIs(CHAT_LIMITS.maxSteps), stopOnBudget],
           toolChoice: 'auto',
@@ -238,11 +284,11 @@ export default defineEventHandler(async (event) => {
           maxRetries: 1,
           timeout: {
             totalMs: CHAT_LIMITS.streamTotalTimeoutMs,
-            chunkMs: CHAT_LIMITS.streamChunkTimeoutMs
+            chunkMs: CHAT_LIMITS.streamChunkTimeoutMs,
           },
           abortSignal: abortController.signal,
           providerOptions: {
-            google: { safetySettings: SAFETY_SETTINGS } satisfies GoogleLanguageModelOptions
+            google: { safetySettings: SAFETY_SETTINGS } satisfies GoogleLanguageModelOptions,
           },
           onStepFinish: async ({ usage }) => {
             requestTokens += usage.totalTokens ?? 0
@@ -256,35 +302,39 @@ export default defineEventHandler(async (event) => {
           },
           onAbort: ({ steps }) => {
             logger.warn(`Stream aborted after ${steps.length} step(s)`)
-          }
+          },
         })
 
         if (!chat.title) {
           writer.write({
             type: 'data-chat-title',
             data: { message: 'Generating title...' },
-            transient: true
+            transient: true,
           })
         }
 
         const uiStream = result.toUIMessageStream({
           sendReasoning: true,
           sendStart: false,
-          onError: (error) => {
+          onError: error => {
             logger.error('Model stream error', error)
             return STREAM_ERROR
-          }
+          },
         })
 
         let firstChunkTime: number | null = null
         for await (const chunk of uiStream) {
           if (firstChunkTime === null) {
             firstChunkTime = performance.now()
-            logger.info(`Time-to-First-Chunk (TTFC): ${(firstChunkTime - streamStart).toFixed(2)}ms (from request start: ${(firstChunkTime - chatReqStart).toFixed(2)}ms)`)
+            logger.info(
+              `Time-to-First-Chunk (TTFC): ${(firstChunkTime - streamStart).toFixed(2)}ms (from request start: ${(firstChunkTime - chatReqStart).toFixed(2)}ms)`
+            )
           }
           writer.write(chunk)
         }
-        logger.success(`Chat streaming completed in ${(performance.now() - streamStart).toFixed(2)}ms (${requestTokens} tokens)`)
+        logger.success(
+          `Chat streaming completed in ${(performance.now() - streamStart).toFixed(2)}ms (${requestTokens} tokens)`
+        )
       },
       onFinish: async ({ responseMessage }) => {
         try {
@@ -296,11 +346,11 @@ export default defineEventHandler(async (event) => {
         } finally {
           await releaseLock()
         }
-      }
+      },
     })
 
     return createUIMessageStreamResponse({
-      stream
+      stream,
     })
   } catch (error) {
     await releaseLock()

@@ -10,7 +10,7 @@ import {
   type EmbeddingJobData,
 } from '~~/server/utils/queues'
 
-export default defineNitroPlugin(async (nitro) => {
+export default defineNitroPlugin(async nitro => {
   if (import.meta.prerender) {
     return
   }
@@ -29,7 +29,7 @@ export default defineNitroPlugin(async (nitro) => {
     // 1. Worker para Contextual Chunking (Gemini 2.5 Flash)
     contextualWorker = createQueueWorker<ContextualChunkJobData>(
       QUEUE_NAMES.CONTEXTUAL_CHUNKING,
-      async (job) => {
+      async job => {
         const { chunkId } = job.data
 
         const currentChunk = await db.query.documentChunks.findFirst({
@@ -49,9 +49,8 @@ export default defineNitroPlugin(async (nitro) => {
           .where(eq(schema.documentChunks.documentId, currentChunk.documentId))
           .orderBy(asc(schema.documentChunks.index))
 
-        const wholeDocument = docChunks.length > 0
-          ? docChunks.map(c => c.content).join('\n\n')
-          : currentChunk.content
+        const wholeDocument =
+          docChunks.length > 0 ? docChunks.map(c => c.content).join('\n\n') : currentChunk.content
 
         const prompt = `<document>
  ${wholeDocument}
@@ -89,13 +88,13 @@ CRITICAL RULES:
           await embeddingsQueue.add('process-embedding', { chunkId })
         }
       },
-      { concurrency: 3 },
+      { concurrency: 3 }
     )
 
     // 2. Worker para Embeddings
     embeddingsWorker = createQueueWorker<EmbeddingJobData>(
       QUEUE_NAMES.EMBEDDINGS,
-      async (job) => {
+      async job => {
         const { chunkId } = job.data
 
         const currentChunk = await db.query.documentChunks.findFirst({
@@ -131,7 +130,7 @@ CRITICAL RULES:
 
         embeddingsLogger.log(`Generated embedding for chunk ${chunkId}`)
       },
-      { concurrency: 5 },
+      { concurrency: 5 }
     )
 
     contextualWorker.on('failed', (job, err) => {

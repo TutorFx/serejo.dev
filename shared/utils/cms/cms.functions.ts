@@ -34,7 +34,7 @@ export function textToSeconds(text: string): number {
 
 export function getLocaleFromPath<T extends Record<string, string>>(
   path: string,
-  localesObject: T,
+  localesObject: T
 ): T[keyof T] | null {
   const availableLocales = Object.values(localesObject)
   const foundLocale = availableLocales.find(locale => path.includes(locale))
@@ -52,7 +52,7 @@ export function processCmsPath(locale: string, stem: string): string {
 
 export function extractDocumentRoute(
   collectionName: keyof PageCollections | 'routes' | string,
-  doc: ContentDocument,
+  doc: ContentDocument
 ): string | null {
   if (collectionName === 'routes' || ('route' in doc && typeof doc.route === 'string')) {
     return 'route' in doc && typeof doc.route === 'string' ? doc.route : null
@@ -94,9 +94,12 @@ export function extractDocumentRoute(
 
 export function extractDocumentContent(
   collectionName: keyof PageCollections | 'routes' | string,
-  doc: ContentDocument,
+  doc: ContentDocument
 ): string {
-  if (collectionName === 'routes' || ('content' in doc && typeof doc.content === 'string' && !('body' in doc))) {
+  if (
+    collectionName === 'routes'
+    || ('content' in doc && typeof doc.content === 'string' && !('body' in doc))
+  ) {
     return 'content' in doc && typeof doc.content === 'string' ? doc.content : ''
   }
 
@@ -122,7 +125,9 @@ export function extractDocumentContent(
       ]
 
       if (delivered && delivered.length > 0) {
-        parts.push(`- Key Deliverables & Achievements:\n${delivered.map(d => `  * ${d}`).join('\n')}`)
+        parts.push(
+          `- Key Deliverables & Achievements:\n${delivered.map(d => `  * ${d}`).join('\n')}`
+        )
       }
 
       if (body) {
@@ -169,10 +174,7 @@ export function extractDocumentContent(
     if (parsed.success) {
       const { title, createdAt, body } = parsed.data
       const createdStr = createdAt ? new Date(createdAt).toISOString().split('T')[0] : ''
-      const parts: string[] = [
-        `# [Blog Post] ${title}`,
-        `- Publication Date: ${createdStr}`,
-      ]
+      const parts: string[] = [`# [Blog Post] ${title}`, `- Publication Date: ${createdStr}`]
 
       if ('description' in doc && typeof doc.description === 'string' && doc.description) {
         parts.push(`- Summary: ${doc.description}`)
@@ -204,7 +206,8 @@ export function extractDocumentContent(
     }
 
     if ('body' in doc && doc.body) {
-      const bodyText = typeof doc.body === 'string' ? doc.body : extractTreeText(doc.body as MinimarkTree)
+      const bodyText =
+        typeof doc.body === 'string' ? doc.body : extractTreeText(doc.body as MinimarkTree)
       if (bodyText) {
         parts.push(`\n${bodyText}`)
       }

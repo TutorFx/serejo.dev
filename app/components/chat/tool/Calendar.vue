@@ -89,12 +89,16 @@ const formatDate = (isoString: string) => {
         </div>
       </div>
 
-      <template v-if="invocation.output?.overlap !== undefined && invocation.output?.overlap !== 0" #footer>
+      <template
+        v-if="invocation.output?.overlap !== undefined && invocation.output?.overlap !== 0"
+        #footer
+      >
         <div class="text-muted flex items-center gap-2 text-xs @sm:text-sm">
           <UIcon name="i-lucide-globe" class="size-5 shrink-0" />
           <div>
             <span class="font-medium">{{ t('chat.tool_calendar.timezone_difference') }}</span>
-            {{ Math.abs(invocation.output.overlap) }}h {{ invocation.output.overlap > 0 ? '+' : '-' }}
+            {{ Math.abs(invocation.output.overlap) }}h
+            {{ invocation.output.overlap > 0 ? '+' : '-' }}
           </div>
         </div>
       </template>
@@ -111,10 +115,7 @@ const formatDate = (isoString: string) => {
 
     <UCard v-else class="my-5">
       <div class="flex flex-col items-center justify-center py-6">
-        <UIcon
-          name="i-lucide-loader-circle"
-          class="text-primary mb-3 size-8 animate-spin"
-        />
+        <UIcon name="i-lucide-loader-circle" class="text-primary mb-3 size-8 animate-spin" />
         <div class="text-muted text-sm font-medium">
           {{ t('chat.tool_calendar.loading') }}
         </div>

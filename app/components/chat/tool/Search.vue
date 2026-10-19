@@ -63,11 +63,10 @@ function getCollectionColor(col?: string): 'primary' | 'neutral' | 'success' | '
       chevron="leading"
       class="my-2"
     >
-      <div class="border-default bg-elevated/30 @container max-h-64 overflow-y-auto rounded-md border p-1.5 text-xs">
-        <div
-          v-if="results.length"
-          class="grid grid-cols-1 gap-1.5 @lg:grid-cols-2"
-        >
+      <div
+        class="border-default bg-elevated/30 @container max-h-64 overflow-y-auto rounded-md border p-1.5 text-xs"
+      >
+        <div v-if="results.length" class="grid grid-cols-1 gap-1.5 @lg:grid-cols-2">
           <div
             v-for="(item, idx) in results"
             :key="`${item.documentId}-${item.index}-${idx}`"
@@ -106,7 +105,9 @@ function getCollectionColor(col?: string): 'primary' | 'neutral' | 'success' | '
               </UButton>
             </div>
 
-            <p class="text-dimmed line-clamp-2 text-[11px] leading-relaxed @xs:text-xs @sm:line-clamp-3">
+            <p
+              class="text-dimmed line-clamp-2 text-[11px] leading-relaxed @xs:text-xs @sm:line-clamp-3"
+            >
               {{ item.content }}
             </p>
           </div>
@@ -126,15 +127,10 @@ function getCollectionColor(col?: string): 'primary' | 'neutral' | 'success' | '
       <span>{{ t('chat.tool_search.error') }}</span>
     </div>
 
-    <div
-      v-else
-      class="text-muted my-2 flex min-w-0 items-center gap-2 text-xs"
-    >
+    <div v-else class="text-muted my-2 flex min-w-0 items-center gap-2 text-xs">
       <ChatIndicator class="text-primary shrink-0" />
       <UChatShimmer :text="t('chat.tool_search.loading')" class="shrink-0 text-xs font-medium" />
-      <span v-if="query" class="min-w-0 truncate font-mono opacity-70">
-        “{{ query }}”
-      </span>
+      <span v-if="query" class="min-w-0 truncate font-mono opacity-70"> “{{ query }}” </span>
     </div>
   </div>
 </template>

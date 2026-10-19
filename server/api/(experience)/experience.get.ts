@@ -1,21 +1,31 @@
 import { queryCollection } from '@nuxt/content/server'
 
-export default defineEventHandler(async (event) => {
+export default defineEventHandler(async event => {
   const query = await getValidatedQuery(event, data => experienceQuerySchema.safeParse(data))
   const t = await useTranslation(event)
 
   if (!query.data)
-    throw createError({ statusCode: 400, statusMessage: 'Bad Request', message: 'Invalid input', data: query.error.issues })
+    throw createError({
+      statusCode: 400,
+      statusMessage: 'Bad Request',
+      message: 'Invalid input',
+      data: query.error.issues,
+    })
 
-  const experience = await queryCollection(event, 'history').where('id', '=', query.data.contentPath).first()
+  const experience = await queryCollection(event, 'history')
+    .where('id', '=', query.data.contentPath)
+    .first()
 
-  if (!experience)
-    throw createError({ statusCode: 404, statusMessage: 'Experience not found' })
+  if (!experience) throw createError({ statusCode: 404, statusMessage: 'Experience not found' })
 
   const parsed = historyWithBodySchema.safeParse(experience)
 
   if (!parsed.success)
-    throw createError({ statusCode: 500, statusMessage: 'Invalid experience content', data: parsed.error.issues })
+    throw createError({
+      statusCode: 500,
+      statusMessage: 'Invalid experience content',
+      data: parsed.error.issues,
+    })
 
   const { title, start, end, location, meta, org, stem, body, image, delivered } = parsed.data
   const { locale, readingTimeInSeconds, reducedBody } = meta

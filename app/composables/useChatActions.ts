@@ -22,8 +22,8 @@ export function useChatActions() {
     props: {
       title: t('chat.ui.delete_title'),
       description: t('chat.ui.delete_description'),
-      color: 'error'
-    }
+      color: 'error',
+    },
   })
 
   async function renameChat(id: string, currentTitle?: string | null): Promise<string | null> {
@@ -35,7 +35,7 @@ export function useChatActions() {
     try {
       await $csrfFetch(`/api/chats/${id}/title`, {
         method: 'PATCH' as never,
-        body: { title: result }
+        body: { title: result },
       })
 
       const chatsCache = useNuxtData<ChatListItem[]>('chats')
@@ -55,7 +55,7 @@ export function useChatActions() {
       toast.add({
         description: t('chat.ui.rename_failed'),
         icon: 'i-lucide-alert-circle',
-        color: 'error'
+        color: 'error',
       })
 
       return null
@@ -76,7 +76,7 @@ export function useChatActions() {
       toast.add({
         title: t('chat.ui.deleted_title'),
         description: t('chat.ui.deleted_description'),
-        icon: 'i-lucide-trash'
+        icon: 'i-lucide-trash',
       })
 
       const chatsCache = useNuxtData<ChatListItem[]>('chats')
@@ -93,7 +93,7 @@ export function useChatActions() {
       toast.add({
         description: t('chat.ui.delete_failed'),
         icon: 'i-lucide-alert-circle',
-        color: 'error'
+        color: 'error',
       })
 
       return false
@@ -102,6 +102,6 @@ export function useChatActions() {
 
   return {
     renameChat,
-    deleteChat
+    deleteChat,
   }
 }

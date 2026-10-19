@@ -1,13 +1,15 @@
-type AsyncEnvelope<TData> = {
-  data: TData
-  error: null
-} | {
-  data: null
-  error: Error
-}
+type AsyncEnvelope<TData> =
+  | {
+      data: TData
+      error: null
+    }
+  | {
+      data: null
+      error: Error
+    }
 
 export async function asyncEnvelope<TData>(
-  asyncFunction: () => Promise<TData>,
+  asyncFunction: () => Promise<TData>
 ): Promise<AsyncEnvelope<TData>> {
   try {
     const data = await asyncFunction()

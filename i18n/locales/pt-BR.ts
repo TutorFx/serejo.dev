@@ -11,51 +11,72 @@ export default defineI18nLocale(() => {
       home: {
         path: '/inicio',
         title: 'Início',
-        description: 'Desenvolvimento web de alta qualidade para projetos novos e legados. Entre em contato com Gabriel Serejo hoje mesmo!',
-        keywords: 'Desenvolvimento web, projetos novos, projetos legados, soluções personalizadas, alta qualidade, Gabriel Serejo, Engenheiro de IA, Full Stack',
-        summary: 'Portfólio pessoal de Gabriel Serejo, Engenheiro de IA Generativa & Full Stack com 8+ anos de experiência. Apresentação inicial (Hero), atuação internacional, arsenal de tecnologias (stack) e destaques de experiências profissionais.',
+        description:
+          'Desenvolvimento web de alta qualidade para projetos novos e legados. Entre em contato com Gabriel Serejo hoje mesmo!',
+        keywords:
+          'Desenvolvimento web, projetos novos, projetos legados, soluções personalizadas, alta qualidade, Gabriel Serejo, Engenheiro de IA, Full Stack',
+        summary:
+          'Portfólio pessoal de Gabriel Serejo, Engenheiro de IA Generativa & Full Stack com 8+ anos de experiência. Apresentação inicial (Hero), atuação internacional, arsenal de tecnologias (stack) e destaques de experiências profissionais.',
       },
       history: {
         path: '/minha-jornada',
         title: 'Histórico de trabalhos',
-        description: 'Desenvolvedor web experiente com histórico comprovado em projetos internacionais e paixão por transformar ideias em realidade. Habilidade em diversas tecnologias, incluindo Vue, Nuxt e JavaScript. Entusiasta de código aberto e pronto para novos desafios.',
-        keywords: 'Desenvolvedor Web, Front-end, Vue, Nuxt, JavaScript, Arquitetura Hexagonal, Camadas de Serviço, Vuetify, WordPress, Projetos Legados, Desenvolvimento de Sites, Landing Pages, Internacional, Portugal, Brasil, Histórico Profissional',
-        summary: 'Trajetória profissional completa e linha do tempo de carreira de Gabriel Serejo. Histórico detalhado de empresas (Implanta IT Solutions, TLScontact, Cliqx, UniFAJ, Agência Industrial, ITH Pós Graduação), cargos, entregas e migrações arquiteturais.',
+        description:
+          'Desenvolvedor web experiente com histórico comprovado em projetos internacionais e paixão por transformar ideias em realidade. Habilidade em diversas tecnologias, incluindo Vue, Nuxt e JavaScript. Entusiasta de código aberto e pronto para novos desafios.',
+        keywords:
+          'Desenvolvedor Web, Front-end, Vue, Nuxt, JavaScript, Arquitetura Hexagonal, Camadas de Serviço, Vuetify, WordPress, Projetos Legados, Desenvolvimento de Sites, Landing Pages, Internacional, Portugal, Brasil, Histórico Profissional',
+        summary:
+          'Trajetória profissional completa e linha do tempo de carreira de Gabriel Serejo. Histórico detalhado de empresas (Implanta IT Solutions, TLScontact, Cliqx, UniFAJ, Agência Industrial, ITH Pós Graduação), cargos, entregas e migrações arquiteturais.',
       },
       projects: {
         path: '/projetos',
         title: 'Projetos',
-        description: 'Gabriel Serejo Dev: Trajetória profissional e projetos. Experiências em desenvolvimento front-end e implementação de recursos.',
-        keywords: 'Gabriel Serejo, Desenvolvedor Web, Desenvolvedor Front-end, Implementação de Recursos, Projetos Web, Trajetória Profissional, Experiência, Portfólio, Código Aberto, Projetos de IA',
-        summary: 'Vitrine de projetos de engenharia de software e inteligência artificial desenvolvidos por Gabriel Serejo, incluindo aplicações web, bibliotecas open source, ferramentas e demonstrações técnicas.',
+        description:
+          'Gabriel Serejo Dev: Trajetória profissional e projetos. Experiências em desenvolvimento front-end e implementação de recursos.',
+        keywords:
+          'Gabriel Serejo, Desenvolvedor Web, Desenvolvedor Front-end, Implementação de Recursos, Projetos Web, Trajetória Profissional, Experiência, Portfólio, Código Aberto, Projetos de IA',
+        summary:
+          'Vitrine de projetos de engenharia de software e inteligência artificial desenvolvidos por Gabriel Serejo, incluindo aplicações web, bibliotecas open source, ferramentas e demonstrações técnicas.',
       },
       blog: {
         path: '/blog',
         title: 'Blog',
-        description: 'Artigos técnicos, tutoriais e reflexões sobre Desenvolvimento Web, IA Generativa, Nuxt, Vue, TypeScript, Agentes de IA e Arquitetura de Software por Gabriel Serejo.',
-        keywords: 'Blog, Desenvolvedor Web, Front-end, Vue, Nuxt, JavaScript, TypeScript, IA Generativa, LLMs, Agentes de IA, RAG, Arquitetura, Artigos, Tutoriais',
-        summary: 'Blog técnico com listagem de artigos, tutoriais e análises de Gabriel Serejo sobre engenharia web moderna, integrações com IA, performance e boas práticas.',
+        description:
+          'Artigos técnicos, tutoriais e reflexões sobre Desenvolvimento Web, IA Generativa, Nuxt, Vue, TypeScript, Agentes de IA e Arquitetura de Software por Gabriel Serejo.',
+        keywords:
+          'Blog, Desenvolvedor Web, Front-end, Vue, Nuxt, JavaScript, TypeScript, IA Generativa, LLMs, Agentes de IA, RAG, Arquitetura, Artigos, Tutoriais',
+        summary:
+          'Blog técnico com listagem de artigos, tutoriais e análises de Gabriel Serejo sobre engenharia web moderna, integrações com IA, performance e boas práticas.',
       },
       resume: {
         path: '/resume',
         title: 'Currículo (Resume)',
-        description: 'Gabriel Serejo - Currículo de Engenheiro de IA Generativa e Full Stack. Resumo, competências técnicas, certificações e experiência de trabalho.',
-        keywords: 'Currículo, Resume, CV, Gabriel Serejo, Engenheiro de IA Generativa, Desenvolvedor Full Stack, Habilidades, Certificações, Histórico Profissional',
-        summary: 'Currículo digital e para impressão de Gabriel Serejo. Apresenta resumo do perfil, competências técnicas (Python, TypeScript, Vue/Nuxt, LangChain, RAG, pgvector), certificações em IA e principais projetos da carreira.',
+        description:
+          'Gabriel Serejo - Currículo de Engenheiro de IA Generativa e Full Stack. Resumo, competências técnicas, certificações e experiência de trabalho.',
+        keywords:
+          'Currículo, Resume, CV, Gabriel Serejo, Engenheiro de IA Generativa, Desenvolvedor Full Stack, Habilidades, Certificações, Histórico Profissional',
+        summary:
+          'Currículo digital e para impressão de Gabriel Serejo. Apresenta resumo do perfil, competências técnicas (Python, TypeScript, Vue/Nuxt, LangChain, RAG, pgvector), certificações em IA e principais projetos da carreira.',
       },
       curriculum: {
         path: '/curriculum',
         title: 'Curriculum Vitae',
-        description: 'Gabriel Serejo - Curriculum Vitae. Visão abrangente de experiência profissional, formação acadêmica, certificações e competências.',
-        keywords: 'Curriculum Vitae, CV, Gabriel Serejo, Engenheiro de IA, Desenvolvedor Full Stack, Educação, Experiência, Certificações',
-        summary: 'Curriculum Vitae (CV) completo de Gabriel Serejo detalhando histórico profissional integral, formação acadêmica, certificações e competências técnicas em engenharia de software e IA.',
+        description:
+          'Gabriel Serejo - Curriculum Vitae. Visão abrangente de experiência profissional, formação acadêmica, certificações e competências.',
+        keywords:
+          'Curriculum Vitae, CV, Gabriel Serejo, Engenheiro de IA, Desenvolvedor Full Stack, Educação, Experiência, Certificações',
+        summary:
+          'Curriculum Vitae (CV) completo de Gabriel Serejo detalhando histórico profissional integral, formação acadêmica, certificações e competências técnicas em engenharia de software e IA.',
       },
       chat: {
         path: '/chat',
         title: 'Assistente de IA & Chat',
-        description: 'Assistente interativo de IA no site de Gabriel Serejo. Tire dúvidas sobre a carreira de Gabriel, projetos, artigos, habilidades técnicas ou agende uma reunião.',
-        keywords: 'Chat de IA, Assistente de IA, Gabriel Serejo, RAG, Chatbot, Agendamento de Reuniões, Portfólio Interativo',
-        summary: 'Assistente conversacional com IA permitindo aos visitantes explorar o portfólio de Gabriel Serejo com busca híbrida (RAG), consultar disponibilidade de agenda e agendar reuniões.',
+        description:
+          'Assistente interativo de IA no site de Gabriel Serejo. Tire dúvidas sobre a carreira de Gabriel, projetos, artigos, habilidades técnicas ou agende uma reunião.',
+        keywords:
+          'Chat de IA, Assistente de IA, Gabriel Serejo, RAG, Chatbot, Agendamento de Reuniões, Portfólio Interativo',
+        summary:
+          'Assistente conversacional com IA permitindo aos visitantes explorar o portfólio de Gabriel Serejo com busca híbrida (RAG), consultar disponibilidade de agenda e agendar reuniões.',
       },
     },
     SCHEDULE_support_text: `Olá! Sou Gabriel Serejo, desenvovedor full stack. Ajudo empresas no desenvolvimento de 
@@ -171,7 +192,8 @@ export default defineI18nLocale(() => {
     },
     active: 'Ativo',
     me: {
-      summary: 'Engenheiro de IA Generativa com 2 anos de experiência especializada na construção de aplicações de LLM e RAG em produção, respaldado por 8+ anos em engenharia de software full-stack. Combino profunda expertise em sistemas backend, bancos de dados e frontend (Python, Node.js, Vue/Nuxt) com frameworks modernos de IA (LangChain, Bancos Vetoriais) para projetar e entregar sistemas inteligentes e escaláveis. Histórico comprovado de liderança em migrações arquiteturais e entrega de soluções de IA de alto impacto para o mercado internacional.',
+      summary:
+        'Engenheiro de IA Generativa com 2 anos de experiência especializada na construção de aplicações de LLM e RAG em produção, respaldado por 8+ anos em engenharia de software full-stack. Combino profunda expertise em sistemas backend, bancos de dados e frontend (Python, Node.js, Vue/Nuxt) com frameworks modernos de IA (LangChain, Bancos Vetoriais) para projetar e entregar sistemas inteligentes e escaláveis. Histórico comprovado de liderança em migrações arquiteturais e entrega de soluções de IA de alto impacto para o mercado internacional.',
       abroad: `Em **8 anos** de trajetória, trabalhei com uma ampla variedade de produtos. Transformando 
       idéias em códigos e construído aplicações pixel perfect. Minha jornada é baseada em 
       estudos constantes, para não só me adaptar a tecnologia,
@@ -238,13 +260,14 @@ export default defineI18nLocale(() => {
     chat: {
       input_label: 'Digite sua mensagem...',
       reply_in_second: 'Típicamente responde em 1s',
-      talk_to_cat: 'Oi, sou Felina. A assistente virtual do Serejo. Me mande um oi, te responderei caso você seja digno.',
+      talk_to_cat:
+        'Oi, sou Felina. A assistente virtual do Serejo. Me mande um oi, te responderei caso você seja digno.',
       greeting: {
         hello: 'Olá',
         morning: 'Bom dia',
         afternoon: 'Boa tarde',
         evening: 'Boa noite',
-        with_name: '{greeting}, {name}'
+        with_name: '{greeting}, {name}',
       },
       tool_calendar: {
         availability: 'Disponibilidade',
@@ -253,7 +276,7 @@ export default defineI18nLocale(() => {
         free_slots: 'Horários Livres',
         busy_slots: 'Compromissos Agendados',
         no_slots: 'Nenhum horário livre encontrado para o horário comercial deste dia.',
-        timezone_difference: 'Fuso horário diferente:'
+        timezone_difference: 'Fuso horário diferente:',
       },
       tool_meet: {
         confirm: 'Confirmar Agendamento',
@@ -266,12 +289,13 @@ export default defineI18nLocale(() => {
         deny: 'Cancelar',
         scheduled: 'Solicitação Enviada!',
         next_step: 'Aguardando Confirmação',
-        next_step_desc: 'Gabriel avaliará a disponibilidade. Você receberá a confirmação oficial e o link da reunião no e-mail informado.',
+        next_step_desc:
+          'Gabriel avaliará a disponibilidade. Você receberá a confirmação oficial e o link da reunião no e-mail informado.',
         open_calendar: 'Abrir Agenda',
         loading: 'Agendando evento na agenda...',
         error: 'Erro ao agendar reunião, tente novamente.',
         denied_alert: 'Agendamento cancelado.',
-        datetime: '{date} às {time}'
+        datetime: '{date} às {time}',
       },
       tool_search: {
         loading: 'Consultando acervo...',
@@ -319,7 +343,8 @@ export default defineI18nLocale(() => {
         rename_placeholder: 'Título do chat',
         rename_failed: 'Não foi possível renomear o chat',
         delete_title: 'Excluir chat',
-        delete_description: 'Tem certeza de que deseja excluir este chat? Isso não pode ser desfeito.',
+        delete_description:
+          'Tem certeza de que deseja excluir este chat? Isso não pode ser desfeito.',
         deleted_title: 'Chat excluído',
         deleted_description: 'Seu chat foi excluído',
         delete_failed: 'Não foi possível excluir o chat',
@@ -338,12 +363,16 @@ export default defineI18nLocale(() => {
         create_failed: 'Não foi possível iniciar a conversa',
       },
       errors: {
-        rate_limited: 'Você está enviando mensagens rápido demais. Aguarde um pouco e tente novamente.',
+        rate_limited:
+          'Você está enviando mensagens rápido demais. Aguarde um pouco e tente novamente.',
         budget_exceeded: 'Você atingiu o limite diário de uso do assistente. Volte amanhã.',
-        chat_disabled: 'O assistente está temporariamente indisponível. Tente novamente mais tarde.',
-        chat_busy: 'O assistente ainda está respondendo à mensagem anterior. Aguarde a resposta terminar.',
+        chat_disabled:
+          'O assistente está temporariamente indisponível. Tente novamente mais tarde.',
+        chat_busy:
+          'O assistente ainda está respondendo à mensagem anterior. Aguarde a resposta terminar.',
         payload_too_large: 'A mensagem é longa demais. Encurte o texto e tente novamente.',
-        invalid_request: 'Não foi possível processar esta mensagem. Recarregue a página e tente novamente.',
+        invalid_request:
+          'Não foi possível processar esta mensagem. Recarregue a página e tente novamente.',
         approval_invalid: 'Esta solicitação não está mais pendente. Recarregue a página.',
         session_expired: 'Sua sessão expirou. Recarregue a página e tente novamente.',
         stream_error: 'O assistente não conseguiu responder agora. Tente novamente.',

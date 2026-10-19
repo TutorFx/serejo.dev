@@ -3,7 +3,7 @@
  * Nitro reports every request error through the `error` hook, so CSRF rejections are logged here
  * next to the other `security` events (path only: no query string, no body).
  */
-export default defineNitroPlugin((nitroApp) => {
+export default defineNitroPlugin(nitroApp => {
   nitroApp.hooks.hook('error', (error, { event }) => {
     if (!event) return
 

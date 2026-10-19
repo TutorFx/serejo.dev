@@ -13,7 +13,10 @@ const props = defineProps<ExperienceProps>()
     <UIContainer class="grid">
       <UIHeroCms :title="props.org" :back-to="{ name: 'history' }">
         <div class="grid grid-flow-col items-center justify-start gap-3 p-4 font-light">
-          <Icon class="text-accent" size="24" name="line-md:calendar" /> <div>{{ props.start }}</div> — <div>{{ props.end }}</div>
+          <Icon class="text-accent" size="24" name="line-md:calendar" />
+          <div>{{ props.start }}</div>
+          —
+          <div>{{ props.end }}</div>
         </div>
       </UIHeroCms>
     </UIContainer>

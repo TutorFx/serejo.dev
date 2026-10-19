@@ -4,21 +4,21 @@ import { consola } from 'consola'
 
 const logger = consola.withTag('security')
 
-export type SecurityEventType
-  = | 'ratelimit'
-    | 'ratelimit-degraded'
-    | 'payload-too-large'
-    | 'history-invalid'
-    | 'approval-invalid'
-    | 'regenerate-invalid'
-    | 'message-conflict'
-    | 'concurrent-stream'
-    | 'budget-exceeded'
-    | 'chat-disabled'
-    | 'meeting-policy'
-    | 'meeting-limit'
-    | 'tool-error'
-    | 'csrf'
+export type SecurityEventType =
+  | 'ratelimit'
+  | 'ratelimit-degraded'
+  | 'payload-too-large'
+  | 'history-invalid'
+  | 'approval-invalid'
+  | 'regenerate-invalid'
+  | 'message-conflict'
+  | 'concurrent-stream'
+  | 'budget-exceeded'
+  | 'chat-disabled'
+  | 'meeting-policy'
+  | 'meeting-limit'
+  | 'tool-error'
+  | 'csrf'
 
 /**
  * Error codes returned in `error.message` so the client can show a translated message.
@@ -30,7 +30,7 @@ export const SECURITY_ERROR = {
   chatBusy: 'CHAT_BUSY',
   payloadTooLarge: 'PAYLOAD_TOO_LARGE',
   invalidRequest: 'INVALID_REQUEST',
-  approvalInvalid: 'APPROVAL_INVALID'
+  approvalInvalid: 'APPROVAL_INVALID',
 } as const
 
 /** Short, non-reversible identifier for logs (never log raw session ids, IPs or user text) */
@@ -38,7 +38,10 @@ export function hashIdentifier(value: string): string {
   return createHash('sha256').update(value).digest('hex').slice(0, 12)
 }
 
-export function logSecurityEvent(type: SecurityEventType, details: Record<string, string | number | boolean | undefined> = {}) {
+export function logSecurityEvent(
+  type: SecurityEventType,
+  details: Record<string, string | number | boolean | undefined> = {}
+) {
   logger.warn(`[${type}]`, details)
 }
 
@@ -55,7 +58,11 @@ export async function getRequestIdentity(event: H3Event): Promise<RequestIdentit
   const ownerId = session.user?.id || session.id
 
   if (!ownerId) {
-    throw createError({ statusCode: 401, statusMessage: 'Unauthorized', message: SECURITY_ERROR.invalidRequest })
+    throw createError({
+      statusCode: 401,
+      statusMessage: 'Unauthorized',
+      message: SECURITY_ERROR.invalidRequest,
+    })
   }
 
   // On Vercel `x-forwarded-for` is overwritten by the edge with the real client IP
@@ -65,7 +72,7 @@ export async function getRequestIdentity(event: H3Event): Promise<RequestIdentit
     ownerId,
     ip,
     ownerHash: hashIdentifier(ownerId),
-    ipHash: hashIdentifier(ip)
+    ipHash: hashIdentifier(ip),
   }
 }
 
@@ -77,12 +84,20 @@ export async function assertBodySize(event: H3Event, maxBytes: number) {
   const declared = Number(getRequestHeader(event, 'content-length'))
   if (Number.isFinite(declared) && declared > maxBytes) {
     logSecurityEvent('payload-too-large', { declared })
-    throw createError({ statusCode: 413, statusMessage: 'Payload Too Large', message: SECURITY_ERROR.payloadTooLarge })
+    throw createError({
+      statusCode: 413,
+      statusMessage: 'Payload Too Large',
+      message: SECURITY_ERROR.payloadTooLarge,
+    })
   }
 
   const raw = await readRawBody(event, false)
   if (raw && raw.length > maxBytes) {
     logSecurityEvent('payload-too-large', { actual: raw.length })
-    throw createError({ statusCode: 413, statusMessage: 'Payload Too Large', message: SECURITY_ERROR.payloadTooLarge })
+    throw createError({
+      statusCode: 413,
+      statusMessage: 'Payload Too Large',
+      message: SECURITY_ERROR.payloadTooLarge,
+    })
   }
 }

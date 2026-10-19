@@ -21,7 +21,7 @@ export function useChats(chats: Ref<UIChat[] | undefined>) {
     const oneWeekAgo = subDays(new Date(), 7)
     const oneMonthAgo = subMonths(new Date(), 1)
 
-    chats.value?.forEach((chat) => {
+    chats.value?.forEach(chat => {
       const chatDate = new Date(chat.createdAt)
 
       if (isToday(chatDate)) {
@@ -62,7 +62,7 @@ export function useChats(chats: Ref<UIChat[] | undefined>) {
       formattedGroups.push({
         id: 'today',
         label: t('chat.history.today'),
-        items: today
+        items: today,
       })
     }
 
@@ -70,7 +70,7 @@ export function useChats(chats: Ref<UIChat[] | undefined>) {
       formattedGroups.push({
         id: 'yesterday',
         label: t('chat.history.yesterday'),
-        items: yesterday
+        items: yesterday,
       })
     }
 
@@ -78,7 +78,7 @@ export function useChats(chats: Ref<UIChat[] | undefined>) {
       formattedGroups.push({
         id: 'last-week',
         label: t('chat.history.last_week'),
-        items: lastWeek
+        items: lastWeek,
       })
     }
 
@@ -86,17 +86,17 @@ export function useChats(chats: Ref<UIChat[] | undefined>) {
       formattedGroups.push({
         id: 'last-month',
         label: t('chat.history.last_month'),
-        items: lastMonth
+        items: lastMonth,
       })
     }
 
     // Add each month group
-    sortedMonthKeys.forEach((monthKey) => {
+    sortedMonthKeys.forEach(monthKey => {
       if (older[monthKey]?.length) {
         formattedGroups.push({
           id: monthKey,
           label: monthFormatter.format(parseISO(monthKey)),
-          items: older[monthKey]
+          items: older[monthKey],
         })
       }
     })
@@ -105,6 +105,6 @@ export function useChats(chats: Ref<UIChat[] | undefined>) {
   })
 
   return {
-    groups
+    groups,
   }
 }

@@ -30,7 +30,13 @@ export function createChatTransport(chatId: string) {
       if (last?.role === 'assistant') {
         const approvals = last.parts.flatMap(part =>
           isToolUIPart(part) && part.state === 'approval-responded'
-            ? [{ toolCallId: part.toolCallId, approvalId: part.approval.id, approved: part.approval.approved }]
+            ? [
+                {
+                  toolCallId: part.toolCallId,
+                  approvalId: part.approval.id,
+                  approved: part.approval.approved,
+                },
+              ]
             : []
         )
         return { body: { trigger, messageId, timeZone, approvals } }
@@ -44,10 +50,12 @@ export function createChatTransport(chatId: string) {
           message: last && {
             id: last.id,
             role: last.role,
-            parts: last.parts.flatMap(part => part.type === 'text' ? [{ type: 'text', text: part.text }] : [])
-          }
-        }
+            parts: last.parts.flatMap(part =>
+              part.type === 'text' ? [{ type: 'text', text: part.text }] : []
+            ),
+          },
+        },
       }
-    }
+    },
   })
 }

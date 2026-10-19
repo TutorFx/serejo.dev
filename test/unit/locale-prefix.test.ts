@@ -10,7 +10,7 @@ describe('normalizeLocalePrefix', () => {
     ['/pt-br/blog', '/pt-BR/blog'],
     ['/PT-BR/curriculum?print', '/pt-BR/curriculum?print'],
     ['/Pt-Br/post/ola-mundo#intro', '/pt-BR/post/ola-mundo#intro'],
-    ['/pt-br?x=1', '/pt-BR?x=1']
+    ['/pt-br?x=1', '/pt-BR?x=1'],
   ])('redirects %o to %o', (path, expected) => {
     expect(normalizeLocalePrefix(path, PREFIXES)).toBe(expected)
   })
@@ -22,8 +22,8 @@ describe('normalizeLocalePrefix', () => {
     '/blog',
     '/pt-brx/blog',
     '/api/chats',
-    '/_nuxt/BljGyQLa2.js'
-  ])('keeps %o', (path) => {
+    '/_nuxt/BljGyQLa2.js',
+  ])('keeps %o', path => {
     expect(normalizeLocalePrefix(path, PREFIXES)).toBeNull()
   })
 })

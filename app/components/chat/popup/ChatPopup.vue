@@ -45,7 +45,9 @@ onClickOutside(popup, () => {
 
       <!-- Chat Inbox View -->
       <div v-else-if="currentChatId !== null" ref="popup" class="fixed bottom-0 left-0 z-1 grid">
-        <div class="bg-base-200/80 relative grid h-[min(100dvh,800px)] w-[min(100dvw,600px)] rounded-3xl p-2 backdrop-blur-lg [view-transition-name:chat-handle]">
+        <div
+          class="bg-base-200/80 relative grid h-[min(100dvh,800px)] w-[min(100dvw,600px)] rounded-3xl p-2 backdrop-blur-lg [view-transition-name:chat-handle]"
+        >
           <ChatPopupInbox :id="currentChatId" :key="currentChatId">
             <template #default="{ title }">
               <div class="flex items-center justify-between">
@@ -66,7 +68,9 @@ onClickOutside(popup, () => {
 
       <!-- Chat Index View -->
       <div v-else-if="currentChatId === null" ref="popup" class="fixed bottom-0 left-0 z-1 grid">
-        <div class="bg-base-200/80 relative grid h-[min(100dvh,800px)] w-[min(100dvw,600px)] grid-rows-[max-content_1fr] overflow-hidden rounded-3xl p-2 backdrop-blur-lg [view-transition-name:chat-handle]">
+        <div
+          class="bg-base-200/80 relative grid h-[min(100dvh,800px)] w-[min(100dvw,600px)] grid-rows-[max-content_1fr] overflow-hidden rounded-3xl p-2 backdrop-blur-lg [view-transition-name:chat-handle]"
+        >
           <div class="z-1 flex items-center justify-between p-2">
             <div class="flex items-center gap-2 p-2 text-xl font-semibold">
               <UIcon name="i-lucide-bot" class="text-primary size-6" />

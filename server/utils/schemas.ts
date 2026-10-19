@@ -5,28 +5,36 @@ export const queryLanguage = {
 }
 
 export const postsQuerySchema = z.object({}).extend(queryLanguage)
-export const experiencesQuerySchema = z.object({
-  includeBody: z.preprocess(val => val === 'true', z.boolean()).default(false),
-}).extend(queryLanguage)
+export const experiencesQuerySchema = z
+  .object({
+    includeBody: z.preprocess(val => val === 'true', z.boolean()).default(false),
+  })
+  .extend(queryLanguage)
 export const educationQuerySchema = z.object({}).extend(queryLanguage)
 
-export const postQuerySchema = z.object({
-  path: z.string(),
-}).extend(queryLanguage).transform((item) => {
-  const contentPath = `blog/blog/${item.lang}/${item.path}.md`
-  return {
-    ...item,
-    contentPath,
-  }
-})
+export const postQuerySchema = z
+  .object({
+    path: z.string(),
+  })
+  .extend(queryLanguage)
+  .transform(item => {
+    const contentPath = `blog/blog/${item.lang}/${item.path}.md`
+    return {
+      ...item,
+      contentPath,
+    }
+  })
 
-export const experienceQuerySchema = z.object({
-  path: z.string(),
-}).extend(queryLanguage).transform((item) => {
-  const contentPath = `history/history/${item.lang}/${item.path}.md`
+export const experienceQuerySchema = z
+  .object({
+    path: z.string(),
+  })
+  .extend(queryLanguage)
+  .transform(item => {
+    const contentPath = `history/history/${item.lang}/${item.path}.md`
 
-  return {
-    ...item,
-    contentPath,
-  }
-})
+    return {
+      ...item,
+      contentPath,
+    }
+  })

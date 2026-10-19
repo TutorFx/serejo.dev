@@ -19,7 +19,11 @@ export function isPublicToolError(error: unknown): error is PublicToolError | Me
 /**
  * Runs a tool body and maps unexpected errors to `fallbackMessage`.
  */
-export async function runTool<T>(toolName: string, fallbackMessage: string, body: () => Promise<T>): Promise<T> {
+export async function runTool<T>(
+  toolName: string,
+  fallbackMessage: string,
+  body: () => Promise<T>
+): Promise<T> {
   try {
     return await body()
   } catch (error) {

@@ -11,13 +11,13 @@ import { CHAT_LIMITS } from '#shared/utils/constants/chat.constants'
 
 const textPartSchema = z.object({
   type: z.literal('text'),
-  text: z.string().trim().min(1).max(CHAT_LIMITS.maxMessageChars)
+  text: z.string().trim().min(1).max(CHAT_LIMITS.maxMessageChars),
 })
 
 export const userMessageSchema = z.object({
   id: z.string().min(1).max(CHAT_LIMITS.maxIdLength),
   role: z.literal('user'),
-  parts: z.array(textPartSchema).min(1).max(CHAT_LIMITS.maxTextPartsPerMessage)
+  parts: z.array(textPartSchema).min(1).max(CHAT_LIMITS.maxTextPartsPerMessage),
 })
 
 export type IncomingUserMessage = z.infer<typeof userMessageSchema>
@@ -25,37 +25,49 @@ export type IncomingUserMessage = z.infer<typeof userMessageSchema>
 export const approvalDecisionSchema = z.object({
   toolCallId: z.string().min(1).max(CHAT_LIMITS.maxIdLength),
   approvalId: z.string().min(1).max(CHAT_LIMITS.maxIdLength),
-  approved: z.boolean()
+  approved: z.boolean(),
 })
 
 /**
  * The denial reason reaches the model as the tool result (Gemini receives only this text),
  * so it is fixed on the server: a client-provided reason would be an injection channel.
  */
-export const DENIED_BY_VISITOR = 'The visitor denied this meeting request in the interface. Nothing was sent.'
-export const DENIED_BY_NEW_MESSAGE = 'The visitor sent a new message instead of approving this meeting request. Nothing was sent.'
+export const DENIED_BY_VISITOR =
+  'The visitor denied this meeting request in the interface. Nothing was sent.'
+export const DENIED_BY_NEW_MESSAGE =
+  'The visitor sent a new message instead of approving this meeting request. Nothing was sent.'
 
 export type ApprovalDecision = z.infer<typeof approvalDecisionSchema>
 
-export const chatRequestBodySchema = z.object({
-  trigger: z.enum(['submit-message', 'regenerate-message']),
-  messageId: z.string().max(CHAT_LIMITS.maxIdLength).optional(),
-  timeZone: z.enum(Intl.supportedValuesOf('timeZone')),
-  message: userMessageSchema.optional(),
-  approvals: z.array(approvalDecisionSchema).min(1).max(CHAT_LIMITS.maxApprovalsPerRequest).optional()
-}).refine(
-  body => body.trigger === 'regenerate-message'
-    ? !body.message && !body.approvals
-    : Boolean(body.message) !== Boolean(body.approvals),
-  { message: 'Send either a user message or approval decisions' }
-)
+export const chatRequestBodySchema = z
+  .object({
+    trigger: z.enum(['submit-message', 'regenerate-message']),
+    messageId: z.string().max(CHAT_LIMITS.maxIdLength).optional(),
+    timeZone: z.enum(Intl.supportedValuesOf('timeZone')),
+    message: userMessageSchema.optional(),
+    approvals: z
+      .array(approvalDecisionSchema)
+      .min(1)
+      .max(CHAT_LIMITS.maxApprovalsPerRequest)
+      .optional(),
+  })
+  .refine(
+    body =>
+      body.trigger === 'regenerate-message'
+        ? !body.message && !body.approvals
+        : Boolean(body.message) !== Boolean(body.approvals),
+    { message: 'Send either a user message or approval decisions' }
+  )
 
 export type ChatRequestBody = z.infer<typeof chatRequestBodySchema>
 
 export type ChatRequestErrorCode = 'approval-invalid' | 'regenerate-invalid'
 
 export class ChatRequestError extends Error {
-  constructor(public readonly code: ChatRequestErrorCode, message: string) {
+  constructor(
+    public readonly code: ChatRequestErrorCode,
+    message: string
+  ) {
     super(message)
     this.name = 'ChatRequestError'
   }
@@ -72,7 +84,7 @@ export interface StoredMessageRow {
  * the server persisted whatever the client sent, and must never reach the model.
  */
 export function toStoredHistory(rows: readonly StoredMessageRow[]): UIMessage[] {
-  return rows.flatMap((row) => {
+  return rows.flatMap(row => {
     if ((row.role !== 'user' && row.role !== 'assistant') || !Array.isArray(row.parts)) return []
     return [{ id: row.id, role: row.role, parts: row.parts as UIMessage['parts'] }]
   })
@@ -82,17 +94,22 @@ interface ApprovalPart {
   type: string
   toolCallId: string
   state: string
-  approval?: { id: string, approved?: boolean, reason?: string }
+  approval?: { id: string; approved?: boolean; reason?: string }
 }
 
-function isPendingApproval(part: unknown, approvalToolTypes: ReadonlySet<string>): part is ApprovalPart {
+function isPendingApproval(
+  part: unknown,
+  approvalToolTypes: ReadonlySet<string>
+): part is ApprovalPart {
   if (typeof part !== 'object' || part === null) return false
   const candidate = part as Partial<ApprovalPart>
-  return typeof candidate.type === 'string'
+  return (
+    typeof candidate.type === 'string'
     && approvalToolTypes.has(candidate.type)
     && candidate.state === 'approval-requested'
     && typeof candidate.toolCallId === 'string'
     && typeof candidate.approval?.id === 'string'
+  )
 }
 
 export interface MergeResult {
@@ -124,7 +141,10 @@ export function mergeIncoming(
 
   if (body.trigger === 'regenerate-message') {
     if (last?.role !== 'user') {
-      throw new ChatRequestError('regenerate-invalid', 'Only the first response of a conversation can be regenerated')
+      throw new ChatRequestError(
+        'regenerate-invalid',
+        'Only the first response of a conversation can be regenerated'
+      )
     }
     return { kind: 'regenerate', messages: [...history] }
   }
@@ -142,7 +162,9 @@ export function mergeIncoming(
       decisions.set(decision.approvalId, decision)
     }
 
-    const pending = last.parts.filter(part => isPendingApproval(part, approvalToolTypes)) as ApprovalPart[]
+    const pending = last.parts.filter(part =>
+      isPendingApproval(part, approvalToolTypes)
+    ) as ApprovalPart[]
     if (pending.length === 0 || pending.length !== decisions.size) {
       throw new ChatRequestError('approval-invalid', 'Every pending approval must be answered')
     }
@@ -154,7 +176,7 @@ export function mergeIncoming(
       }
     }
 
-    const parts = last.parts.map((part) => {
+    const parts = last.parts.map(part => {
       if (!isPendingApproval(part, approvalToolTypes)) return part
       const decision = decisions.get(part.approval!.id)!
       return {
@@ -162,7 +184,7 @@ export function mergeIncoming(
         state: 'approval-responded',
         approval: decision.approved
           ? { id: decision.approvalId, approved: true }
-          : { id: decision.approvalId, approved: false, reason: DENIED_BY_VISITOR }
+          : { id: decision.approvalId, approved: false, reason: DENIED_BY_VISITOR },
       }
     }) as UIMessage['parts']
 
@@ -173,16 +195,24 @@ export function mergeIncoming(
   const userMessage: UIMessage = {
     id: body.message!.id,
     role: 'user',
-    parts: body.message!.parts.map(part => ({ type: 'text', text: part.text }))
+    parts: body.message!.parts.map(part => ({ type: 'text', text: part.text })),
   }
 
   let updatedAssistantMessage: UIMessage | undefined
   let base = [...history]
 
-  if (last?.role === 'assistant' && last.parts.some(part => isPendingApproval(part, approvalToolTypes))) {
-    const parts = last.parts.map(part => isPendingApproval(part, approvalToolTypes)
-      ? { ...part, state: 'output-denied', approval: { id: part.approval!.id, approved: false, reason: DENIED_BY_NEW_MESSAGE } }
-      : part
+  if (
+    last?.role === 'assistant'
+    && last.parts.some(part => isPendingApproval(part, approvalToolTypes))
+  ) {
+    const parts = last.parts.map(part =>
+      isPendingApproval(part, approvalToolTypes)
+        ? {
+            ...part,
+            state: 'output-denied',
+            approval: { id: part.approval!.id, approved: false, reason: DENIED_BY_NEW_MESSAGE },
+          }
+        : part
     ) as UIMessage['parts']
 
     updatedAssistantMessage = { ...last, parts }
@@ -195,7 +225,10 @@ export function mergeIncoming(
 /**
  * Last `size` messages, always starting at a user message so tool call/result pairs stay intact.
  */
-export function selectContextWindow<T extends { role: string }>(messages: readonly T[], size: number): T[] {
+export function selectContextWindow<T extends { role: string }>(
+  messages: readonly T[],
+  size: number
+): T[] {
   if (messages.length <= size) return [...messages]
 
   let start = messages.length - size

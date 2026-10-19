@@ -21,17 +21,17 @@ const emit = defineEmits<{
 </script>
 
 <template>
-  <template v-for="(part, index) in getMergedParts(message.parts)" :key="`${message.id}-${part.type}-${index}`">
+  <template
+    v-for="(part, index) in getMergedParts(message.parts)"
+    :key="`${message.id}-${part.type}-${index}`"
+  >
     <UChatReasoning
       v-if="isReasoningUIPart(part)"
       :text="part.text"
       :streaming="isPartStreaming(part)"
       chevron="leading"
     >
-      <ChatComark
-        :markdown="part.text"
-        :streaming="isPartStreaming(part)"
-      />
+      <ChatComark :markdown="part.text" :streaming="isPartStreaming(part)" />
     </UChatReasoning>
 
     <template v-else-if="isToolUIPart(part)">

@@ -11,13 +11,13 @@ const ERROR_KEYS: Record<string, string> = {
   PAYLOAD_TOO_LARGE: 'chat.errors.payload_too_large',
   INVALID_REQUEST: 'chat.errors.invalid_request',
   APPROVAL_INVALID: 'chat.errors.approval_invalid',
-  STREAM_ERROR: 'chat.errors.stream_error'
+  STREAM_ERROR: 'chat.errors.stream_error',
 }
 
 const STATUS_KEYS: Record<number, string> = {
   413: 'chat.errors.payload_too_large',
   429: 'chat.errors.rate_limited',
-  503: 'chat.errors.chat_disabled'
+  503: 'chat.errors.chat_disabled',
 }
 
 /** nuxt-csurf rejects requests without a valid token with this status message */
@@ -45,7 +45,11 @@ function toPayload(error: unknown): ErrorPayload {
   if (typeof error !== 'object' || error === null) return {}
 
   // `$fetch` (ofetch) errors carry the h3 error body in `data`
-  const { data, statusCode, message } = error as { data?: unknown, statusCode?: number, message?: unknown }
+  const { data, statusCode, message } = error as {
+    data?: unknown
+    statusCode?: number
+    message?: unknown
+  }
   if (typeof data === 'object' && data !== null) {
     return { statusCode, ...(data as ErrorPayload) }
   }

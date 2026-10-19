@@ -69,10 +69,7 @@ const icon = computed(() => loading.value ? 'line-md:loading-twotone-loop' : pro
   >
     <div v-if="('leading' in slots) || icon" :class="ui.leading()">
       <slot name="leading">
-        <Icon
-          v-if="icon"
-          :name="icon"
-        />
+        <Icon v-if="icon" :name="icon" />
       </slot>
     </div>
     <div v-if="('default' in slots)" class="wrapper" :class="ui.wrapper()">
@@ -80,10 +77,7 @@ const icon = computed(() => loading.value ? 'line-md:loading-twotone-loop' : pro
     </div>
     <div v-if="'trailing' in slots" :class="ui.trailing()">
       <slot name="trailing">
-        <Icon
-          v-if="trailingIcon"
-          :name="trailingIcon"
-        />
+        <Icon v-if="trailingIcon" :name="trailingIcon" />
       </slot>
     </div>
   </component>

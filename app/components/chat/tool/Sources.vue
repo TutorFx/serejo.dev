@@ -8,7 +8,10 @@ defineProps<{
 </script>
 
 <template>
-  <div v-if="sources.length" class="border-default @container max-h-40 overflow-y-auto rounded-md border p-1">
+  <div
+    v-if="sources.length"
+    class="border-default @container max-h-40 overflow-y-auto rounded-md border p-1"
+  >
     <div class="grid grid-cols-1 gap-1 @md:grid-cols-2">
       <a
         v-for="source in sources"
@@ -24,9 +27,13 @@ defineProps<{
           class="size-4 shrink-0 rounded-sm"
           loading="lazy"
           @error="($event.target as HTMLImageElement).style.display = 'none'"
-        >
+        />
         <span class="truncate">{{ source.title || getDomain(source.url) }}</span>
-        <span v-if="source.title" class="text-dimmed ms-auto hidden shrink-0 text-xs @xs:inline">{{ getDomain(source.url) }}</span>
+        <span
+          v-if="source.title"
+          class="text-dimmed ms-auto hidden shrink-0 text-xs @xs:inline"
+          >{{ getDomain(source.url) }}</span
+        >
       </a>
     </div>
   </div>

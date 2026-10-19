@@ -1,10 +1,4 @@
-import {
-  Queue,
-  Worker,
-  type Processor,
-  type QueueOptions,
-  type WorkerOptions,
-} from 'bullmq'
+import { Queue, Worker, type Processor, type QueueOptions, type WorkerOptions } from 'bullmq'
 
 export interface ContextualChunkJobData {
   chunkId: string
@@ -84,7 +78,7 @@ export async function closeQueues(): Promise<void> {
 export function createQueueWorker<T>(
   queueName: string,
   processor: Processor<T>,
-  opts?: Partial<WorkerOptions>,
+  opts?: Partial<WorkerOptions>
 ): Worker<T> {
   const connection = useRedis()
   return new Worker<T>(queueName, processor, {

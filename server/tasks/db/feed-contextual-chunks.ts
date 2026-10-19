@@ -34,7 +34,7 @@ export default defineTask<FeedTaskResult>({
             data: {
               chunkId: chunk.id,
             },
-          })),
+          }))
         )
         logger.info(`Enqueued ${pendingContextChunks.length} chunk(s) for contextual processing`)
       }

@@ -12,7 +12,10 @@ const localePath = useLocalePath()
             <Comark :markdown="t('me.abroad')" />
           </div>
           <div class="mx-auto">
-            <UIButton target="_blank" :to="localePath({ name: 'curriculum', query: { print: null } })">
+            <UIButton
+              target="_blank"
+              :to="localePath({ name: 'curriculum', query: { print: null } })"
+            >
               {{ t('download_curriculum') }}
             </UIButton>
           </div>

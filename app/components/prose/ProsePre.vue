@@ -73,7 +73,9 @@ const { copy, copied } = useClipboard({ source: props.code })
     >
       <slot />
     </pre>
-    <div class="border-base-100 grid grid-flow-col items-center justify-between rounded-b-xl border-t-2 px-3 py-1">
+    <div
+      class="border-base-100 grid grid-flow-col items-center justify-between rounded-b-xl border-t-2 px-3 py-1"
+    >
       <div class="grid grid-flow-col items-center gap-3">
         <div v-if="icon" class="grid items-center">
           <Icon :name="icon" />
@@ -82,7 +84,10 @@ const { copy, copied } = useClipboard({ source: props.code })
           {{ props.filename ?? pascalCase(props.language || 'plaintext') }}
         </div>
       </div>
-      <div class="bg-base-300 border-base-100 grid h-11 w-11 cursor-pointer items-center justify-center rounded-lg border-2 p-3" @click="() => copy()">
+      <div
+        class="bg-base-300 border-base-100 grid h-11 w-11 cursor-pointer items-center justify-center rounded-lg border-2 p-3"
+        @click="() => copy()"
+      >
         <Icon v-if="!copied" name="line-md:clipboard" />
         <Icon v-else name="line-md:clipboard-check" />
       </div>

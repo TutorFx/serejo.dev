@@ -12,7 +12,10 @@ export function truncateText(text: string, maxChars: number): string {
 
 export function limitHybridSearchOutput(
   output: HybridSearchOutput,
-  limits: { maxChunkChars: number, maxTotalChars: number } = { maxChunkChars: CHAT_LIMITS.maxChunkChars, maxTotalChars: CHAT_LIMITS.maxToolResultChars }
+  limits: { maxChunkChars: number; maxTotalChars: number } = {
+    maxChunkChars: CHAT_LIMITS.maxChunkChars,
+    maxTotalChars: CHAT_LIMITS.maxToolResultChars,
+  }
 ): HybridSearchOutput {
   const results: HybridSearchOutput['results'] = []
   let total = 0
@@ -30,14 +33,20 @@ export function limitHybridSearchOutput(
 
 export function limitAdjacentSearchOutput(
   output: AdjacentSearchOutput,
-  limits: { maxChunkChars: number, maxTotalChars: number } = { maxChunkChars: CHAT_LIMITS.maxChunkChars, maxTotalChars: CHAT_LIMITS.maxToolResultChars }
+  limits: { maxChunkChars: number; maxTotalChars: number } = {
+    maxChunkChars: CHAT_LIMITS.maxChunkChars,
+    maxTotalChars: CHAT_LIMITS.maxToolResultChars,
+  }
 ): AdjacentSearchOutput {
-  const limitChunk = <T extends { content: string }>(chunk: T): T => ({ ...chunk, content: truncateText(chunk.content, limits.maxChunkChars) })
+  const limitChunk = <T extends { content: string }>(chunk: T): T => ({
+    ...chunk,
+    content: truncateText(chunk.content, limits.maxChunkChars),
+  })
 
   return {
     targetChunk: output.targetChunk ? limitChunk(output.targetChunk) : null,
     previous: output.previous.map(limitChunk),
     next: output.next.map(limitChunk),
-    combinedContent: truncateText(output.combinedContent, limits.maxTotalChars)
+    combinedContent: truncateText(output.combinedContent, limits.maxTotalChars),
   }
 }
