@@ -12,26 +12,27 @@ const emit = defineEmits<{
 
 const toast = useToast()
 const clipboard = useClipboard()
+const { t } = useI18n()
 
 const loading = ref(false)
 
 const isShared = computed(() => props.visibility === 'public')
 const shareUrl = computed(() => `${window.location.origin}/chat/${props.chatId}`)
 
-const options = [
+const options = computed(() => [
   {
     value: 'private' as const,
-    label: 'Keep private',
-    description: 'Only you have access',
+    label: t('chat.ui.keep_private'),
+    description: t('chat.ui.keep_private_description'),
     icon: 'i-lucide-lock'
   },
   {
     value: 'public' as const,
-    label: 'Shared',
-    description: 'Anyone with the link can view',
+    label: t('chat.ui.shared_option'),
+    description: t('chat.ui.shared_option_description'),
     icon: 'i-lucide-globe'
   }
-]
+])
 
 async function updateVisibility(value: 'public' | 'private') {
   if (value === props.visibility) return
@@ -48,7 +49,7 @@ async function updateVisibility(value: 'public' | 'private') {
   } catch {
     emit('update:visibility', previous)
     toast.add({
-      description: 'Failed to update visibility',
+      description: t('chat.ui.visibility_failed'),
       icon: 'i-lucide-alert-circle',
       color: 'error'
     })
@@ -70,16 +71,16 @@ function copyLink() {
 
 <template>
   <UModal
-    :title="isShared ? 'Chat shared' : 'Share chat'"
-    :description="isShared ? 'Anyone with the link can view this chat.' : 'Only you can view this chat.'"
+    :title="isShared ? t('chat.ui.shared') : t('chat.ui.share')"
+    :description="isShared ? t('chat.ui.share_description_public') : t('chat.ui.share_description_private')"
     close
   >
-    <UTooltip text="Share chat">
+    <UTooltip :text="t('chat.ui.share')">
       <UButton
         color="neutral"
         variant="ghost"
         icon="i-lucide-share"
-        aria-label="Share chat"
+        :aria-label="t('chat.ui.share')"
       />
     </UTooltip>
 
@@ -118,7 +119,7 @@ function copyLink() {
         </a>
 
         <UButton
-          :label="copied ? 'Copied!' : 'Copy link'"
+          :label="copied ? t('chat.ui.copied') : t('chat.ui.copy_link')"
           size="sm"
           color="neutral"
           :variant="copied ? 'soft' : 'solid'"

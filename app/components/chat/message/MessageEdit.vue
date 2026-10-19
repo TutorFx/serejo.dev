@@ -12,6 +12,7 @@ const emit = defineEmits<{
 }>()
 
 const editingText = ref(props.text)
+const { t } = useI18n()
 </script>
 
 <template>
@@ -31,12 +32,12 @@ const editingText = ref(props.text)
         size="sm"
         variant="soft"
         color="neutral"
-        label="Cancel"
+        :label="t('chat.ui.cancel')"
         @click="emit('cancel')"
       />
       <UButton
         size="sm"
-        label="Save"
+        :label="t('chat.ui.save')"
         :disabled="!editingText.trim() || editingText === text"
         @click="emit('save', message, editingText)"
       />

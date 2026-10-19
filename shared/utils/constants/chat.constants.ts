@@ -165,7 +165,8 @@ export type DayOfWeek = (typeof DAY_OF_WEEK)[keyof typeof DAY_OF_WEEK]
 
 export const QUICK_CHATS = [
   {
-    label: 'Schedule a meeting with Gabriel',
+    /** Chave i18n usada como rótulo e como texto do prompt enviado */
+    key: 'chat.quick.schedule_meeting',
     icon: 'i-lucide-calendar'
   }
 ] as const

@@ -6,6 +6,7 @@ defineProps<{
 }>()
 
 const { user, clear } = useUserSession()
+const { t } = useI18n()
 
 const items = computed<DropdownMenuItem[][]>(() => ([
   [{
@@ -17,7 +18,7 @@ const items = computed<DropdownMenuItem[][]>(() => ([
     }
   }],
   [{
-    label: 'Log out',
+    label: t('chat.ui.log_out'),
     icon: 'i-lucide-log-out',
     onSelect() {
       clear()

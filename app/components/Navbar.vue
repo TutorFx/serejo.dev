@@ -1,5 +1,6 @@
 <script setup lang="ts">
 const localePath = useLocalePath()
+const { t } = useI18n()
 </script>
 
 <template>
@@ -20,7 +21,7 @@ const localePath = useLocalePath()
         icon="i-lucide-circle-plus"
         :to="localePath({ name: 'chat' })"
         class="lg:hidden"
-        aria-label="New chat"
+        :aria-label="t('chat.ui.new_chat')"
       />
     </template>
   </UDashboardNavbar>

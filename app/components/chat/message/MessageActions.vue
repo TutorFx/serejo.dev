@@ -13,7 +13,7 @@ const emit = defineEmits<{
   vote: [message: UIMessage, isUpvoted: boolean]
 }>()
 
-const { locale } = useI18n()
+const { t, locale } = useI18n()
 
 // Tooltip content only renders on the client, so the runtime time zone is safe here
 const fullDate = computed(() => {
@@ -39,35 +39,35 @@ function copy() {
 
 <template>
   <template v-if="message.role === 'assistant' && !streaming">
-    <UTooltip text="Copy response">
+    <UTooltip :text="t('chat.ui.copy_response')">
       <UButton
         size="sm"
         :color="copied ? 'primary' : 'neutral'"
         variant="ghost"
         :icon="copied ? 'i-lucide-copy-check' : 'i-lucide-copy'"
-        aria-label="Copy response"
+        :aria-label="t('chat.ui.copy_response')"
         @click="copy"
       />
     </UTooltip>
 
-    <UTooltip text="Good response">
+    <UTooltip :text="t('chat.ui.good_response')">
       <UButton
         size="sm"
         :color="vote === true ? 'success' : 'neutral'"
         variant="ghost"
         icon="i-lucide-thumbs-up"
-        aria-label="Good response"
+        :aria-label="t('chat.ui.good_response')"
         @click="emit('vote', message, true)"
       />
     </UTooltip>
 
-    <UTooltip text="Bad response">
+    <UTooltip :text="t('chat.ui.bad_response')">
       <UButton
         size="sm"
         :color="vote === false ? 'error' : 'neutral'"
         variant="ghost"
         icon="i-lucide-thumbs-down"
-        aria-label="Bad response"
+        :aria-label="t('chat.ui.bad_response')"
         @click="emit('vote', message, false)"
       />
     </UTooltip>

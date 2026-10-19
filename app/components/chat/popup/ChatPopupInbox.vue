@@ -5,6 +5,7 @@ import { DefaultChatTransport, lastAssistantMessageIsCompleteWithApprovalRespons
 
 const props = defineProps<{ id: string }>()
 const toast = useToast()
+const { t } = useI18n()
 
 const { data } = await useFetch(`/api/chats/${props.id}`, {
   key: `chat-${props.id}`,
@@ -42,7 +43,7 @@ async function vote(message: UIMessage, isUpvoted: boolean) {
   } catch {
     votes.value = snapshot
     toast.add({
-      description: 'Failed to save vote',
+      description: t('chat.ui.vote_failed'),
       icon: 'i-lucide-alert-circle',
       color: 'error'
     })
@@ -177,7 +178,7 @@ onMounted(() => {
                   <div class="flex items-center gap-1.5">
                     <ChatIndicator />
 
-                    <UChatShimmer text="Thinking..." class="text-sm" />
+                    <UChatShimmer :text="t('chat.ui.thinking')" class="text-sm" />
                   </div>
                 </template>
 
@@ -226,7 +227,7 @@ onMounted(() => {
     </div>
 
     <UContainer v-else class="flex flex-1 flex-col gap-4 sm:gap-6">
-      <UError :error="{ statusMessage: 'Chat not found', statusCode: 404 }" class="min-h-full" />
+      <UError :error="{ statusMessage: t('chat.ui.not_found'), statusCode: 404 }" class="min-h-full" />
     </UContainer>
   </div>
 </template>

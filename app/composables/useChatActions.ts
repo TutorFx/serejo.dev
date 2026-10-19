@@ -12,12 +12,14 @@ export function useChatActions() {
   const route = useRoute()
   const toast = useToast()
   const overlay = useOverlay()
+  const { t } = useI18n()
+  const localePath = useLocalePath()
 
   const renameModal = overlay.create(LazyModalRename)
   const deleteModal = overlay.create(LazyModalConfirm, {
     props: {
-      title: 'Delete chat',
-      description: 'Are you sure you want to delete this chat? This cannot be undone.',
+      title: t('chat.ui.delete_title'),
+      description: t('chat.ui.delete_description'),
       color: 'error'
     }
   })
@@ -49,7 +51,7 @@ export function useChatActions() {
       return result
     } catch {
       toast.add({
-        description: 'Failed to rename chat',
+        description: t('chat.ui.rename_failed'),
         icon: 'i-lucide-alert-circle',
         color: 'error'
       })
@@ -70,8 +72,8 @@ export function useChatActions() {
       })
 
       toast.add({
-        title: 'Chat deleted',
-        description: 'Your chat has been deleted',
+        title: t('chat.ui.deleted_title'),
+        description: t('chat.ui.deleted_description'),
         icon: 'i-lucide-trash'
       })
 
@@ -81,13 +83,13 @@ export function useChatActions() {
       }
 
       if ('id' in route.params && route.params.id === id) {
-        navigateTo('/')
+        navigateTo(localePath({ name: 'index' }))
       }
 
       return true
     } catch {
       toast.add({
-        description: 'Failed to delete chat',
+        description: t('chat.ui.delete_failed'),
         icon: 'i-lucide-alert-circle',
         color: 'error'
       })

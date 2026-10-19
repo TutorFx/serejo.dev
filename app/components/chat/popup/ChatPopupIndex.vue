@@ -7,6 +7,7 @@ const emit = defineEmits<{ openChat: [chatId: string] }>()
 const input = ref('')
 const loading = ref(false)
 
+const { t } = useI18n()
 const { loggedIn } = useUserSession()
 const { renameChat, deleteChat } = useChatActions()
 
@@ -14,7 +15,7 @@ const { data: chats, refresh: refreshChats } = await useFetch('/api/chats', {
   key: 'chats',
   transform: (data: Array<{ id: string, title: string | null, createdAt: string }>) => data.map(chat => ({
     id: chat.id,
-    label: chat.title || 'Untitled',
+    label: chat.title || t('chat.ui.untitled'),
     icon: 'i-lucide-message-circle',
     createdAt: chat.createdAt
   }))
@@ -60,13 +61,13 @@ async function onSubmit() {
 function getChatActions(item: { id: string, label: string }): DropdownMenuItem[][] {
   return [[
     {
-      label: 'Rename',
+      label: t('chat.ui.rename'),
       icon: 'i-lucide-pencil',
-      onSelect: () => renameChat(item.id, item.label === 'Untitled' ? '' : item.label)
+      onSelect: () => renameChat(item.id, item.label === t('chat.ui.untitled') ? '' : item.label)
     }
   ], [
     {
-      label: 'Delete',
+      label: t('chat.ui.delete'),
       icon: 'i-lucide-trash',
       color: 'error' as const,
       onSelect: () => deleteChat(item.id)
@@ -91,7 +92,7 @@ const quickChats = QUICK_CHATS
         class="[view-transition-name:chat-prompt]"
         variant="subtle"
         :ui="{ base: 'px-1.5' }"
-        placeholder="Ask anything or schedule a meet..."
+        :placeholder="t('chat.ui.prompt_placeholder')"
         @submit="onSubmit"
       >
         <template #footer>
@@ -105,14 +106,14 @@ const quickChats = QUICK_CHATS
       <div class="flex flex-wrap gap-1.5 pt-1">
         <UButton
           v-for="quickChat in quickChats"
-          :key="quickChat.label"
+          :key="quickChat.key"
           :icon="quickChat.icon"
-          :label="quickChat.label"
+          :label="t(quickChat.key)"
           size="xs"
           color="neutral"
           variant="outline"
           class="hover:bg-accented/50 cursor-pointer rounded-full"
-          @click="createChat(quickChat.label)"
+          @click="createChat(t(quickChat.key))"
         />
       </div>
     </div>
@@ -120,7 +121,7 @@ const quickChats = QUICK_CHATS
     <!-- History / Past chats -->
     <div v-if="groups?.length" class="flex flex-col gap-3 pt-2">
       <div class="text-dimmed flex items-center justify-between px-1 text-xs font-semibold tracking-wider uppercase">
-        <span>Recent Conversations</span>
+        <span>{{ t('chat.ui.recent_conversations') }}</span>
         <span class="text-muted text-xs font-normal lowercase">({{ chats?.length ?? 0 }})</span>
       </div>
 
@@ -139,7 +140,7 @@ const quickChats = QUICK_CHATS
             >
               <div class="flex min-w-0 flex-1 items-center gap-2.5">
                 <UIcon name="i-lucide-message-circle" class="text-dimmed group-hover:text-highlighted size-4 shrink-0 transition-colors" />
-                <span class="truncate" :class="chat.label === 'Untitled' ? 'text-dimmed italic' : 'text-highlighted'">
+                <span class="truncate" :class="chat.label === t('chat.ui.untitled') ? 'text-dimmed italic' : 'text-highlighted'">
                   {{ chat.label }}
                 </span>
               </div>
@@ -155,7 +156,7 @@ const quickChats = QUICK_CHATS
                   variant="ghost"
                   size="xs"
                   class="rounded-md opacity-0 transition-opacity group-hover:opacity-100"
-                  aria-label="Chat actions"
+                  :aria-label="t('chat.ui.chat_actions')"
                   @click.stop.prevent
                 />
               </UDropdownMenu>

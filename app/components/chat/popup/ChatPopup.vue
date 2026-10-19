@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { onClickOutside } from '@vueuse/core'
 
+const { t } = useI18n()
 const isOpen = ref(false)
 const currentChatId = ref<string | null>(null)
 const popup = useTemplateRef<HTMLElement>('popup')
@@ -36,7 +37,7 @@ onClickOutside(popup, () => {
         <button
           type="button"
           class="bg-primary text-primary-foreground hover:bg-primary/90 flex size-14 items-center justify-center rounded-full shadow-lg transition-transform hover:scale-105 active:scale-95"
-          aria-label="Open chat"
+          :aria-label="t('chat.ui.open_chat')"
         >
           <UIcon name="i-lucide-message-circle" class="size-7" />
         </button>
@@ -49,7 +50,7 @@ onClickOutside(popup, () => {
             <template #default="{ title }">
               <div class="flex items-center justify-between">
                 <div class="p-3 text-xl font-semibold">
-                  {{ title ?? 'Untitled' }}
+                  {{ title ?? t('chat.ui.untitled') }}
                 </div>
                 <div
                   class="grid aspect-square size-8 cursor-pointer items-center justify-center rounded-full p-2 hover:bg-neutral-500/10"

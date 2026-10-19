@@ -3,6 +3,8 @@ const input = ref('')
 const loading = ref(false)
 
 const greeting = useGreeting()
+const localePath = useLocalePath()
+const { t } = useI18n()
 
 async function createChat(prompt: string) {
   input.value = prompt
@@ -21,7 +23,7 @@ async function createChat(prompt: string) {
   })
 
   refreshNuxtData('chats')
-  navigateTo(`/chat/${chat?.id}`)
+  navigateTo(localePath({ name: 'chat-id', params: { id: chat.id } }))
 }
 
 async function onSubmit() {
@@ -66,14 +68,14 @@ const quickChats = QUICK_CHATS
           <div class="flex flex-wrap gap-2">
             <UButton
               v-for="quickChat in quickChats"
-              :key="quickChat.label"
+              :key="quickChat.key"
               :icon="quickChat.icon"
-              :label="quickChat.label"
+              :label="t(quickChat.key)"
               size="sm"
               color="neutral"
               variant="outline"
               class="hover:bg-accented/50 cursor-pointer rounded-full"
-              @click="createChat(quickChat.label)"
+              @click="createChat(t(quickChat.key))"
             />
           </div>
         </UContainer>

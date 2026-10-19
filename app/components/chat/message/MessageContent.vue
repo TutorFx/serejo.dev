@@ -12,6 +12,8 @@ defineProps<{
   message: UIMessage
 }>()
 
+const { t } = useI18n()
+
 const emit = defineEmits<{
   approve: [id: string]
   deny: [id: string]
@@ -35,7 +37,7 @@ const emit = defineEmits<{
     <template v-else-if="isToolUIPart(part)">
       <UChatTool
         v-if="getToolName(part) === 'web_search' || getToolName(part) === 'google_search'"
-        :text="isToolStreaming(part) ? 'Searching the web...' : 'Searched the web'"
+        :text="isToolStreaming(part) ? t('chat.ui.searching_web') : t('chat.ui.searched_web')"
         :suffix="getSearchQuery(part)"
         :streaming="isToolStreaming(part)"
         chevron="leading"

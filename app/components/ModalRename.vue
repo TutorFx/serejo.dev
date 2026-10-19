@@ -6,6 +6,7 @@ const props = defineProps<{
 const emit = defineEmits<{ close: [string | false] }>()
 
 const value = ref(props.title ?? '')
+const { t } = useI18n()
 
 const trimmed = computed(() => value.value.trim())
 
@@ -17,8 +18,8 @@ function submit() {
 
 <template>
   <UModal
-    title="Rename chat"
-    description="Choose a new title for this chat."
+    :title="t('chat.ui.rename_title')"
+    :description="t('chat.ui.rename_description')"
     :ui="{
       footer: 'flex-row-reverse justify-start'
     }"
@@ -29,7 +30,7 @@ function submit() {
         v-model="value"
         autofocus
         size="lg"
-        placeholder="Chat title"
+        :placeholder="t('chat.ui.rename_placeholder')"
         class="w-full"
         :ui="{ root: 'w-full' }"
         @keydown.enter.prevent="submit"
@@ -37,11 +38,11 @@ function submit() {
     </template>
 
     <template #footer>
-      <UButton label="Save" :disabled="!trimmed" @click="submit" />
+      <UButton :label="t('chat.ui.save')" :disabled="!trimmed" @click="submit" />
       <UButton
         color="neutral"
         variant="ghost"
-        label="Cancel"
+        :label="t('chat.ui.cancel')"
         @click="emit('close', false)"
       />
     </template>

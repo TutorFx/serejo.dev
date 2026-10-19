@@ -2,20 +2,21 @@
 import { format, parseISO } from 'date-fns'
 import type { CalendarUIToolInvocation } from '../../../../shared/utils/tools/calendar'
 
-const { t } = useI18n()
+const { t, locale } = useI18n()
 
 defineProps<{
   invocation: CalendarUIToolInvocation
 }>()
 
+// Horários e datas no formato do idioma atual (ex.: 2:00 PM / 14:00, 09/07/2026 / 07/09/2026)
 const formatTime = (isoString: string) => {
   if (!isoString) return ''
-  return format(parseISO(isoString), 'HH:mm')
+  return format(parseISO(isoString), 'p', { locale: getDateLocale(locale.value) })
 }
 
 const formatDate = (isoString: string) => {
   if (!isoString) return ''
-  return format(parseISO(isoString), 'dd/MM/yyyy')
+  return format(parseISO(isoString), 'P', { locale: getDateLocale(locale.value) })
 }
 </script>
 
