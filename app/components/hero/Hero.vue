@@ -53,14 +53,21 @@ useGsap(() => {
         <div class="bg-base-100 absolute inset-0 -inset-x-[100%] top-[10%] h-[200%] blur-3xl" />
         <div class="bg-base-100 absolute inset-0 -inset-x-[100%] top-[20%] h-[200%] blur-3xl" />
         <div class="border-base-300 relative border-t" />
-        <UIContainer class="relative grid justify-between gap-3 p-6 md:grid-flow-col">
-          <div>
-            {{ t('SCHEDULE_support_text') }}
-          </div>
-          <div class="grid items-center justify-start">
-            <UIButton :to="SCHEDULE">
-              {{ t('SCHEDULE_cta') }}
-            </UIButton>
+        <UIContainer class="relative">
+          <!--
+            sm:pr-24 keeps the bar clear of the fixed chat launcher (56px, 24px from the edge), which covered the end
+            of the text from 640px and of the CTA from 768px to ~1390px. It lives on this wrapper: on UIContainer,
+            its own md:px-6 would override it
+          -->
+          <div class="grid justify-between gap-3 py-6 sm:pr-24 md:grid-flow-col">
+            <div>
+              {{ t('SCHEDULE_support_text') }}
+            </div>
+            <div class="grid items-center justify-start">
+              <UIButton :to="SCHEDULE">
+                {{ t('SCHEDULE_cta') }}
+              </UIButton>
+            </div>
           </div>
         </UIContainer>
       </div>
