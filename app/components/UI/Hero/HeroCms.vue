@@ -18,7 +18,7 @@ const { t } = useI18n()
     <div v-if="props.backTo" class="absolute top-0 left-0 p-4">
       <UIButton
         :to="localePath(props.backTo)"
-        class="-translate-x-[calc(100%+theme(space.4))] duration-300 group-hover:translate-x-0"
+        class="-translate-x-[calc(100%+theme(space.4))] duration-300 group-hover:translate-x-0 focus-visible:translate-x-0"
       >
         <template #leading> <Icon name="material-symbols:arrow-back" /> </template
         >{{ t('navigation.back') }}
@@ -27,9 +27,10 @@ const { t } = useI18n()
     <slot name="top">
       <div class="h-12" />
     </slot>
-    <div class="grid items-center justify-center text-center text-5xl font-bold text-balance">
+    <!-- The page title of blog posts and experiences: their Markdown bodies start at H2 -->
+    <h1 class="grid items-center justify-center text-center text-5xl font-bold text-balance">
       {{ props.title }}
-    </div>
+    </h1>
     <slot class="info">
       <div class="h-12" />
     </slot>
