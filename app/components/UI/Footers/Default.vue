@@ -22,6 +22,7 @@ const copyrightYear = useState('copyright-year', () => new Date().getFullYear())
                 icon="mdi:alternate-email"
                 variant="link"
                 href="mailto:gabrielserejo11@gmail.com"
+                aria-label="Email"
               />
             </UIPopover>
           </div>
@@ -33,6 +34,7 @@ const copyrightYear = useState('copyright-year', () => new Date().getFullYear())
                 icon="mdi:github"
                 variant="link"
                 href="https://github.com/TutorFx"
+                aria-label="GitHub"
               />
             </UIPopover>
           </div>
@@ -44,6 +46,7 @@ const copyrightYear = useState('copyright-year', () => new Date().getFullYear())
                 icon="mdi:linkedin"
                 variant="link"
                 href="https://www.linkedin.com/in/gabrielserejo/"
+                aria-label="LinkedIn"
               />
             </UIPopover>
           </div>
