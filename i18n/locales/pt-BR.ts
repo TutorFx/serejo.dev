@@ -68,16 +68,6 @@ export default defineI18nLocale(() => {
         summary:
           'Curriculum Vitae (CV) completo de Gabriel Serejo detalhando histórico profissional integral, formação acadêmica, certificações e competências técnicas em engenharia de software e IA.',
       },
-      chat: {
-        path: '/chat',
-        title: 'Assistente de IA & Chat',
-        description:
-          'Assistente interativo de IA no site de Gabriel Serejo. Tire dúvidas sobre a carreira de Gabriel, projetos, artigos, habilidades técnicas ou agende uma reunião.',
-        keywords:
-          'Chat de IA, Assistente de IA, Gabriel Serejo, RAG, Chatbot, Agendamento de Reuniões, Portfólio Interativo',
-        summary:
-          'Assistente conversacional com IA permitindo aos visitantes explorar o portfólio de Gabriel Serejo com busca híbrida (RAG), consultar disponibilidade de agenda e agendar reuniões.',
-      },
     },
     SCHEDULE_support_text: `Olá! Sou Gabriel Serejo, desenvovedor full stack. Ajudo empresas no desenvolvimento de 
     software e aplicações web.`,

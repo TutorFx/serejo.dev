@@ -68,16 +68,6 @@ export default defineI18nLocale(() => {
         summary:
           'Comprehensive Curriculum Vitae (CV) of Gabriel Serejo detailing full work history, academic education, certifications, and technical proficiencies in software engineering and AI.',
       },
-      chat: {
-        path: '/chat',
-        title: 'AI Assistant & Chat',
-        description:
-          "Interactive AI assistant on Gabriel Serejo's website. Ask questions about Gabriel's background, projects, articles, technical skills, or schedule a meeting.",
-        keywords:
-          'AI Chat, AI Assistant, Gabriel Serejo, RAG, Chatbot, Meeting Scheduler, Interactive Portfolio',
-        summary:
-          "AI conversational assistant allowing visitors to explore Gabriel Serejo's portfolio with hybrid search (RAG), check calendar availability, and schedule meetings.",
-      },
     },
     SCHEDULE_support_text: `Hey! I am Gabriel, a web engineering consultant based in Brazil. 
         I help companies to build better web applications and to improve their knowledge, 
