@@ -68,16 +68,6 @@ export default defineI18nLocale(() => {
         summary:
           'Curriculum Vitae (CV) completo de Gabriel Serejo detalhando histórico profissional integral, formação acadêmica, certificações e competências técnicas em engenharia de software e IA.',
       },
-      chat: {
-        path: '/chat',
-        title: 'Assistente de IA & Chat',
-        description:
-          'Assistente interativo de IA no site de Gabriel Serejo. Tire dúvidas sobre a carreira de Gabriel, projetos, artigos, habilidades técnicas ou agende uma reunião.',
-        keywords:
-          'Chat de IA, Assistente de IA, Gabriel Serejo, RAG, Chatbot, Agendamento de Reuniões, Portfólio Interativo',
-        summary:
-          'Assistente conversacional com IA permitindo aos visitantes explorar o portfólio de Gabriel Serejo com busca híbrida (RAG), consultar disponibilidade de agenda e agendar reuniões.',
-      },
     },
     SCHEDULE_support_text: `Olá! Sou Gabriel Serejo, desenvovedor full stack. Ajudo empresas no desenvolvimento de 
     software e aplicações web.`,
@@ -124,7 +114,7 @@ export default defineI18nLocale(() => {
         'TensorFlow',
         'Deep Learning',
         'LangSmith',
-        'LangFuse',
+        'Langfuse',
         'OTel',
         'Google ADK',
         'Ragas',
@@ -160,7 +150,7 @@ export default defineI18nLocale(() => {
             'Gerenciei a infraestrutura em nuvem no Azure, provisionando e configurando instâncias de servidores para suportar aplicações de varejo de alta concorrência.',
             'Escalei a arquitetura front-end de uma grande aplicação de varejo (Pernambucanas) utilizando o padrão hexagonal orientado a serviços.',
             'Implementei a funcionalidade de escaneamento e triagem de currículos via IA no projeto Pernambucanas, automatizando a extração estruturada de dados de candidatos.',
-            'Engenheirei uma camada de cache Redis/SWR de alto desempenho, fornecendo a base de baixa latência necessária para aplicações orientadas a dados de IA.',
+            'Projetei uma camada de cache Redis/SWR de alto desempenho, fornecendo a base de baixa latência necessária para aplicações orientadas a dados de IA.',
             'Migrei fluxos legados para Nuxt 3, aumentando a capacidade de processamento do sistema e a velocidade de desenvolvimento da equipe.',
           ],
         },
@@ -184,7 +174,7 @@ export default defineI18nLocale(() => {
           title: 'Refatoração de Aplicação Legada & Integração com CMS',
           org: 'ITH Pós Graduação',
           delivered: [
-            'Liderai a refatoração completa da aplicação legada, projeto que melhorou diretamente as pontuações do Google Speed Insights e reduziu significativamente os custos de anúncios.',
+            'Liderei a refatoração completa da aplicação legada, projeto que melhorou diretamente as pontuações do Google PageSpeed Insights e reduziu significativamente os custos de anúncios.',
             'Desenvolvi e lancei uma nova aplicação front-end utilizando Nuxt 2, integrada com o WordPress CMS da empresa para modernizar a experiência do usuário e a entrega de conteúdo.',
           ],
         },
@@ -260,8 +250,6 @@ export default defineI18nLocale(() => {
     chat: {
       input_label: 'Digite sua mensagem...',
       reply_in_second: 'Típicamente responde em 1s',
-      talk_to_cat:
-        'Oi, sou Felina. A assistente virtual do Serejo. Me mande um oi, te responderei caso você seja digno.',
       greeting: {
         hello: 'Olá',
         morning: 'Bom dia',
@@ -327,8 +315,11 @@ export default defineI18nLocale(() => {
         cancel: 'Cancelar',
         save: 'Salvar',
         chat_actions: 'Ações do chat',
-        open_chat: 'Abrir chat',
-        new_chat: 'Novo chat',
+        open_chat: 'Abrir o Serejo Chat',
+        close_chat: 'Fechar o chat',
+        back_to_list: 'Voltar para as conversas',
+        unavailable_title: 'Conversa indisponível',
+        unavailable_description: 'Ela pode ter sido excluída ou não estar mais compartilhada.',
         prompt_placeholder: 'Pergunte qualquer coisa ou agende uma reunião...',
         thinking: 'Pensando...',
         not_found: 'Chat não encontrado',

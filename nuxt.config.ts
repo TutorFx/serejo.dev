@@ -141,12 +141,8 @@ export default defineNuxtConfig({
     '/pt-BR/test': { robots: false },
     '/projects': { robots: false },
     '/pt-BR/projetos': { robots: false },
-    // Not worth indexing: the chat page has almost no static content (and shared chats are visitor content);
-    // `/resume` is the print version of `/curriculum`
-    '/chat': { robots: false },
-    '/chat/**': { robots: false },
-    '/pt-BR/chat': { robots: false },
-    '/pt-BR/chat/**': { robots: false },
+    // Not worth indexing: `/resume` is the print version of `/curriculum`.
+    // The `/chat` pages were removed: `server/middleware/chat-redirect.ts` sends them to the home (301)
     '/resume': { robots: false },
     '/pt-BR/resume': { robots: false },
     // Old locale prefix still linked externally (404 in Search Console)
@@ -272,15 +268,6 @@ export default defineNuxtConfig({
   sitemap: {
     sources: ['/api/__sitemap__/urls'],
     // Localized paths are listed explicitly: the routes are defined with `defineI18nRoute`, not `i18n.pages`
-    exclude: [
-      '/test',
-      '/pt-BR/test',
-      '/projects',
-      '/pt-BR/projetos',
-      '/chat',
-      '/pt-BR/chat',
-      '/resume',
-      '/pt-BR/resume',
-    ],
+    exclude: ['/test', '/pt-BR/test', '/projects', '/pt-BR/projetos', '/resume', '/pt-BR/resume'],
   },
 })

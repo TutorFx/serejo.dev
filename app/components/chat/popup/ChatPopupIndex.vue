@@ -3,6 +3,11 @@ import type { DropdownMenuItem } from '@nuxt/ui'
 import type { UIChat } from '~/composables/useChats'
 import { getChatErrorKey } from '~/utils/ai/errors'
 
+defineProps<{
+  /** Focus the message field on mount (off when a shared link opened the panel) */
+  autofocus?: boolean
+}>()
+
 const emit = defineEmits<{ openChat: [chatId: string] }>()
 
 const input = ref('')
@@ -14,8 +19,10 @@ const { $csrfFetch } = useNuxtApp()
 const { loggedIn } = useUserSession()
 const { renameChat, deleteChat } = useChatActions()
 
-const { data: chats, refresh: refreshChats } = await useFetch('/api/chats', {
+// Not awaited: the greeting and the message field render at once, the history follows
+const { data: chats, refresh: refreshChats } = useFetch('/api/chats', {
   key: 'chats',
+  lazy: true,
   transform: (data: Array<{ id: string, title: string | null, createdAt: string }>) => data.map(chat => ({
     id: chat.id,
     label: chat.title || t('chat.ui.untitled'),
@@ -89,17 +96,19 @@ const quickChats = QUICK_CHATS
 </script>
 
 <template>
-  <div class="flex min-h-0 flex-col gap-5">
+  <div
+    class="flex min-h-0 flex-1 [scrollbar-width:thin] flex-col gap-5 overflow-y-auto overscroll-contain p-4"
+  >
     <!-- Greeting & Input -->
     <div class="flex flex-col gap-3">
-      <h2 class="text-highlighted text-2xl font-bold">
+      <p class="text-highlighted text-2xl font-bold">
         {{ greeting }}
-      </h2>
+      </p>
 
       <UChatPrompt
         v-model="input"
         :status="loading ? 'streaming' : 'ready'"
-        class="[view-transition-name:chat-prompt]"
+        :autofocus
         variant="subtle"
         :ui="{ base: 'px-1.5' }"
         :placeholder="t('chat.ui.prompt_placeholder')"
@@ -130,12 +139,12 @@ const quickChats = QUICK_CHATS
 
     <!-- History / Past chats -->
     <div v-if="groups?.length" class="flex flex-col gap-3 pt-2">
-      <div
+      <h3
         class="text-dimmed flex items-center justify-between px-1 text-xs font-semibold tracking-wider uppercase"
       >
         <span>{{ t('chat.ui.recent_conversations') }}</span>
         <span class="text-muted text-xs font-normal lowercase">({{ chats?.length ?? 0 }})</span>
-      </div>
+      </h3>
 
       <div class="flex flex-col gap-4">
         <div v-for="group in groups" :key="group.id" class="flex flex-col gap-1">
@@ -147,10 +156,13 @@ const quickChats = QUICK_CHATS
             <div
               v-for="chat in group.items"
               :key="chat.id"
-              class="group hover:bg-default/80 flex cursor-pointer items-center justify-between gap-2 rounded-xl px-3 py-2 text-sm transition-colors"
-              @click="emit('openChat', chat.id)"
+              class="group hover:bg-elevated/50 flex items-center justify-between gap-2 rounded-xl pr-1 text-sm transition-colors"
             >
-              <div class="flex min-w-0 flex-1 items-center gap-2.5">
+              <button
+                type="button"
+                class="outline-inverted/25 flex min-w-0 flex-1 cursor-pointer items-center gap-2.5 rounded-xl py-2 pl-3 text-left focus-visible:outline-3"
+                @click="emit('openChat', chat.id)"
+              >
                 <UIcon
                   name="i-lucide-message-circle"
                   class="text-dimmed group-hover:text-highlighted size-4 shrink-0 transition-colors"
@@ -161,21 +173,17 @@ const quickChats = QUICK_CHATS
                 >
                   {{ chat.label }}
                 </span>
-              </div>
+              </button>
 
-              <UDropdownMenu
-                :items="getChatActions(chat)"
-                :content="{ align: 'end' }"
-                :ui="{ content: 'z-2' }"
-              >
+              <UDropdownMenu :items="getChatActions(chat)" :content="{ align: 'end' }">
+                <!-- Revealed on hover and on keyboard focus -->
                 <UButton
                   icon="i-lucide-ellipsis"
                   color="neutral"
                   variant="ghost"
                   size="xs"
-                  class="rounded-md opacity-0 transition-opacity group-hover:opacity-100"
+                  class="rounded-md opacity-0 transition-opacity group-focus-within:opacity-100 group-hover:opacity-100 data-[state=open]:opacity-100"
                   :aria-label="t('chat.ui.chat_actions')"
-                  @click.stop.prevent
                 />
               </UDropdownMenu>
             </div>

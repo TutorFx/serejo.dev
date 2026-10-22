@@ -68,16 +68,6 @@ export default defineI18nLocale(() => {
         summary:
           'Comprehensive Curriculum Vitae (CV) of Gabriel Serejo detailing full work history, academic education, certifications, and technical proficiencies in software engineering and AI.',
       },
-      chat: {
-        path: '/chat',
-        title: 'AI Assistant & Chat',
-        description:
-          "Interactive AI assistant on Gabriel Serejo's website. Ask questions about Gabriel's background, projects, articles, technical skills, or schedule a meeting.",
-        keywords:
-          'AI Chat, AI Assistant, Gabriel Serejo, RAG, Chatbot, Meeting Scheduler, Interactive Portfolio',
-        summary:
-          "AI conversational assistant allowing visitors to explore Gabriel Serejo's portfolio with hybrid search (RAG), check calendar availability, and schedule meetings.",
-      },
     },
     SCHEDULE_support_text: `Hey! I am Gabriel, a web engineering consultant based in Brazil. 
         I help companies to build better web applications and to improve their knowledge, 
@@ -107,7 +97,7 @@ export default defineI18nLocale(() => {
         'Generative AI',
         'RAG',
         'LLMs',
-        'AI agents',
+        'AI Agents',
         'MCP (Model Context Protocol)',
         'LangChain',
         'TypeScript',
@@ -124,7 +114,7 @@ export default defineI18nLocale(() => {
         'TensorFlow',
         'Deep Learning',
         'LangSmith',
-        'LangFuse',
+        'Langfuse',
         'OTel',
         'Google ADK',
         'Ragas',
@@ -184,8 +174,8 @@ export default defineI18nLocale(() => {
           title: 'Legacy Application Refactoring & CMS Integration',
           org: 'ITH Pós Graduação',
           delivered: [
-            'I led a complete refactoring of the legacy application, a project that directly improved Google Speed Insight scores and significantly reduced advertising expenses.',
-            "I developed and launched a new front-end application using Nuxt2, which integrated with the company's WordPress CMS to modernize the user experience and content delivery.",
+            'I led a complete refactoring of the legacy application, a project that directly improved Google PageSpeed Insights scores and significantly reduced advertising expenses.',
+            "I developed and launched a new front-end application using Nuxt 2, which integrated with the company's WordPress CMS to modernize the user experience and content delivery.",
           ],
         },
       ],
@@ -257,8 +247,6 @@ export default defineI18nLocale(() => {
     chat: {
       input_label: 'Type your message...',
       reply_in_second: 'I typically reply in a second',
-      talk_to_cat:
-        "She can be sarcastic, but she's also incredibly smart and funny. 😹 Who knows, if you catch her in a good mood, she might even tell you some feline secrets!",
       greeting: {
         hello: 'Hello',
         morning: 'Good morning',
@@ -324,8 +312,11 @@ export default defineI18nLocale(() => {
         cancel: 'Cancel',
         save: 'Save',
         chat_actions: 'Chat actions',
-        open_chat: 'Open chat',
-        new_chat: 'New chat',
+        open_chat: 'Open Serejo Chat',
+        close_chat: 'Close the chat',
+        back_to_list: 'Back to conversations',
+        unavailable_title: 'Conversation unavailable',
+        unavailable_description: 'It may have been deleted or is no longer shared.',
         prompt_placeholder: 'Ask anything or schedule a meeting...',
         thinking: 'Thinking...',
         not_found: 'Chat not found',

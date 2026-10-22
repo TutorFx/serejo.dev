@@ -80,7 +80,11 @@ const { t } = useI18n()
                 <div class="absolute right-0 bottom-0 grid justify-center">
                   <AssetsVecScroll class="z-2" />
                 </div>
-                <NuxtImg width="472" class="w-full rounded-b-3xl" src="/brand/pictures/about.png" />
+                <NuxtImg
+                  width="472"
+                  class="w-full rounded-b-3xl"
+                  src="/brand/pictures/about.webp"
+                />
               </div>
             </div>
           </div>

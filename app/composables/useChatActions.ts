@@ -9,11 +9,9 @@ interface ChatListItem {
 }
 
 export function useChatActions() {
-  const route = useRoute()
   const toast = useToast()
   const overlay = useOverlay()
   const { t } = useI18n()
-  const localePath = useLocalePath()
   // Mutations carry the CSRF token header
   const { $csrfFetch } = useNuxtApp()
 
@@ -84,10 +82,7 @@ export function useChatActions() {
         chatsCache.data.value = chatsCache.data.value.filter(c => c.id !== id)
       }
 
-      if ('id' in route.params && route.params.id === id) {
-        navigateTo(localePath({ name: 'index' }))
-      }
-
+      // The caller leaves the deleted chat (the popup goes back to its list)
       return true
     } catch {
       toast.add({
