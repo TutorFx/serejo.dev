@@ -41,7 +41,8 @@ const ui = button()
 const route = useRoute()
 const router = useRouter()
 const isActive = computed(() => {
-  if (!props.to)
+  // External URLs (the Google Calendar CTA) are never the current route; resolving them warns
+  if (!props.to || (typeof props.to === 'string' && /^[a-z][\w+.-]*:/i.test(props.to)))
     return false
 
   const resolvedRoute = router.resolve(props.to)

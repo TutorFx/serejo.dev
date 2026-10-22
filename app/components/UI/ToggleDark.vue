@@ -1,5 +1,11 @@
 <script setup lang="ts">
 const color = useColorMode()
+const { t } = useI18n()
+// The stored preference is only known in the browser: expose the pressed state after mount
+const mounted = ref(false)
+onMounted(() => {
+  mounted.value = true
+})
 
 useHead({
   meta: [{
@@ -15,7 +21,13 @@ function toggleDark() {
 </script>
 
 <template>
-  <button class="grid items-center justify-center !outline-none" @click="toggleDark">
+  <button
+    type="button"
+    class="focus-visible:outline-primary grid items-center justify-center rounded-full focus-visible:outline-2"
+    :aria-label="t('settings.dark_mode')"
+    :aria-pressed="mounted ? color.value === 'dark' : undefined"
+    @click="toggleDark"
+  >
     <ClientOnly>
       <Icon
         v-if="color.preference === 'dark'"
