@@ -313,9 +313,10 @@ export default defineEventHandler(async event => {
           })
         }
 
+        // Keeps the start event: createUIMessageStream puts in it the id that onFinish persists (the same id on
+        // continuations). Without it the client keeps an id of its own, and voting on the answer finds no message
         const uiStream = result.toUIMessageStream({
           sendReasoning: true,
-          sendStart: false,
           onError: error => {
             logger.error('Model stream error', error)
             return STREAM_ERROR
