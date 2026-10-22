@@ -1,8 +1,9 @@
 <script setup lang="ts">
-import { useWindowScroll } from '@vueuse/core'
+import { usePreferredReducedMotion, useWindowScroll } from '@vueuse/core'
 import { gsap } from 'gsap'
 
 const { y } = useWindowScroll()
+const reducedMotion = usePreferredReducedMotion()
 
 const direction = ref(1)
 const rotation = ref(0)
@@ -17,6 +18,9 @@ const applyRotation = computed(() => wheel.value
   : () => null)
 
 function ticker(time: number, timeDelta: number) {
+  // The ring is decorative: it stands still for visitors who ask for reduced motion
+  if (reducedMotion.value === 'reduce')
+    return
   rotation.value += ((timeDelta * 0.01) * direction.value)
   applyRotation.value(rotation.value + (y.value * 0.5))
 }
@@ -32,10 +36,19 @@ watch(() => y.value, (after, before) => {
 useGsap(() => {
   gsap.ticker.add(ticker)
 })
+
+// gsap.context() does not track ticker listeners: without this, each visit adds another one
+onUnmounted(() => {
+  gsap.ticker.remove(ticker)
+})
 </script>
 
 <template>
-  <div ref="wheel" class="relative" :class="{ 'animate-[spin_10s_linear_infinite]': !isMounted }">
+  <div
+    ref="wheel"
+    class="relative"
+    :class="{ 'animate-[spin_10s_linear_infinite] motion-reduce:animate-none': !isMounted }"
+  >
     <div class="absolute">
       <AssetsVecCircularText class="text-primary translate-x-[-50%] translate-y-[-50%] scale-125" />
     </div>
