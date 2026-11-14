@@ -69,9 +69,9 @@ export default defineI18nLocale(() => {
           'Curriculum Vitae (CV) completo de Gabriel Serejo detalhando histórico profissional integral, formação acadêmica, certificações e competências técnicas em engenharia de software e IA.',
       },
     },
-    SCHEDULE_support_text: `Olá! Sou Gabriel Serejo, desenvovedor full stack. Ajudo empresas no desenvolvimento de 
-    software e aplicações web.`,
-    SCHEDULE_cta: 'Agende uma chamada',
+    SCHEDULE_support_text:
+      'Sou Gabriel Serejo. Desenvolvo software há mais de 6 anos, os 2 últimos colocando agentes e RAG em produção em sistemas que já existiam.',
+    SCHEDULE_cta: 'Agendar conversa',
     description: 'Descrição',
     see_more: 'Ver mais',
     copyright: 'Todos os direitos reservados',
@@ -79,7 +79,7 @@ export default defineI18nLocale(() => {
       privacy_policy: 'Políticas de privacidade',
       contact: 'Contato',
     },
-    download_curriculum: 'Baixar Curriculum',
+    download_curriculum: 'Baixar currículo',
     curriculum: {
       summary: 'Resumo',
       profession: 'Engenheiro de IA Generativa',
@@ -205,9 +205,9 @@ export default defineI18nLocale(() => {
       live_in: 'Atualmente eu vivo no Brasil, em Goiânia - GO.',
     },
     hero: {
-      fl: 'Consultor &',
-      sl: 'Desenvolvedor',
-      tl: 'Experiente',
+      fl: 'Dev Sênior',
+      sl: 'Full-Stack',
+      tl: 'e IA',
     },
     navigation: {
       menu: 'Menu',

@@ -69,10 +69,9 @@ export default defineI18nLocale(() => {
           'Comprehensive Curriculum Vitae (CV) of Gabriel Serejo detailing full work history, academic education, certifications, and technical proficiencies in software engineering and AI.',
       },
     },
-    SCHEDULE_support_text: `Hey! I am Gabriel, a web engineering consultant based in Brazil. 
-        I help companies to build better web applications and to improve their knowledge, 
-        workflows, and culture.`,
-    SCHEDULE_cta: 'SCHEDULE a call',
+    SCHEDULE_support_text:
+      "I'm Gabriel Serejo. I've been building software for over 6 years, the last 2 putting agents and RAG into production inside systems that already existed.",
+    SCHEDULE_cta: 'Book a call',
     description: 'Description',
     see_more: 'See more',
     copyright: 'All rights reserved',
@@ -181,7 +180,7 @@ export default defineI18nLocale(() => {
       ],
     },
     active: 'Active',
-    download_curriculum: 'Download Curriculum',
+    download_curriculum: 'Download CV',
     me: {
       summary:
         'Generative AI Engineer with 2 years of specialized experience building production-grade LLM and RAG applications, backed by 8+ years in full-stack software engineering. I combine deep expertise in backend systems, databases, and frontend (Python, Node.js, Vue/Nuxt) with modern AI frameworks (LangChain, Vector DBs) to design and ship scalable, intelligent systems. Proven track record of leading architectural migrations and delivering high-impact AI solutions for international markets.',
@@ -200,9 +199,9 @@ export default defineI18nLocale(() => {
       live_in: 'Actually i live in Brazil',
     },
     hero: {
-      fl: 'Consultant &',
-      sl: 'Developer',
-      tl: 'Experienced',
+      fl: 'Senior',
+      sl: 'Full-Stack',
+      tl: 'and AI',
     },
     navigation: {
       menu: 'Menu',

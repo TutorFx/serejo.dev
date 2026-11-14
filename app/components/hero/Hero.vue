@@ -3,6 +3,7 @@ import { gsap } from 'gsap'
 import { SCHEDULE } from '#shared/utils/constants'
 
 const { t } = useI18n()
+const localePath = useLocalePath()
 
 useGsap(() => {
   const tl = gsap.timeline()
@@ -60,11 +61,17 @@ useGsap(() => {
             its own md:px-6 would override it
           -->
           <div class="grid justify-between gap-3 py-6 sm:pr-24 md:grid-flow-col">
-            <div>
+            <div class="max-w-2xl">
               {{ t('SCHEDULE_support_text') }}
             </div>
-            <div class="grid items-center justify-start">
-              <UIButton :to="SCHEDULE">
+            <div class="grid grid-flow-col items-center justify-start gap-3">
+              <UIButton
+                target="_blank"
+                :to="localePath({ name: 'curriculum', query: { print: null } })"
+              >
+                {{ t('download_curriculum') }}
+              </UIButton>
+              <UIButton variant="link" :to="SCHEDULE">
                 {{ t('SCHEDULE_cta') }}
               </UIButton>
             </div>
