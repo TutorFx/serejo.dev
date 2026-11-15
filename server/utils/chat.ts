@@ -25,7 +25,8 @@ export async function getResumeContext(event?: H3Event): Promise<string> {
         const { title, org, start, end, location } = parsed.data
         const startYear = start ? new Date(start).getFullYear() : ''
         const endYear = end ? new Date(end).getFullYear() : 'Present'
-        const isCurrent = !end
+        // The CV gives the current role its planned end date; it stays current until that date
+        const isCurrent = !end || end > new Date()
         return `- ${title} at ${org} (${startYear} - ${endYear}, ${location}) ${isCurrent ? '[CURRENT ROLE / ACTIVE]' : '[PAST ROLE]'}`
       })
       .filter(Boolean)
@@ -59,14 +60,18 @@ export async function getResumeContext(event?: H3Event): Promise<string> {
     // Fallback
   }
 
-  const skillsList = Array.isArray(curriculum.skills) ? curriculum.skills.join(', ') : ''
+  // The texts of the CV keep the literal interpolations vue-i18n needs (such as {'@'}); the prompt gets the plain character
+  const plain = (text: string) => text.replace(/\{'([^']*)'\}/g, '$1')
+  const skillsList = Array.isArray(curriculum.skills)
+    ? curriculum.skills.map(group => `${plain(group.title)}: ${plain(group.items)}`).join('; ')
+    : ''
   const certsList = Array.isArray(curriculum.certifications)
-    ? curriculum.certifications.join(', ')
+    ? curriculum.certifications.map(cert => plain(cert)).join(', ')
     : ''
 
   return `
 **Candidate Resume & Profile Summary (Source of Truth):**
-- **Profession / Primary Title**: ${curriculum.profession || 'Generative AI Engineer'}
+- **Profession / Primary Title**: ${plain(curriculum.profession || 'Generative AI Engineer')}
 ${experiencesText ? `- **Work Experience & Timeline**:\n${experiencesText}` : ''}
 ${educationText ? `- **Education**:\n${educationText}` : ''}
 ${skillsList ? `- **Key Technical Proficiencies**: ${skillsList}` : ''}

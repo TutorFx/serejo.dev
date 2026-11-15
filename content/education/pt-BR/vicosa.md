@@ -1,9 +1,9 @@
 ---
-title: Pós-Graduação - Especialização em Inteligência Artificial e Computacional
-org: Universidade Federal de Viçosa
-location: Viçosa Minas Gerais, Brazil
+title: "Pós-Graduação Lato Sensu em Inteligência Artificial e Computacional"
+org: "Universidade Federal de Viçosa"
+location: "Viçosa, MG (EAD)"
 start: 2024-03-02
-end: 2026-08-01
+end: 2026-08-15
 ---
 
 Neste curso, estou me especializando no desenvolvimento de projetos práticos de inteligência artificial para me tornar um profissional autônomo e qualificado para o mercado. O objetivo é que eu consiga não apenas aplicar as ferramentas de IA para resolver problemas reais, mas também ter a base para inovar e empreender na área, desenvolvendo minhas próprias soluções.

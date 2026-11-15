@@ -1,18 +1,13 @@
 ---
-title: Software Engineer
-org: Agência Industrial
+title: "Desenvolvedor Full-Stack"
+org: "Agência Industrial"
 image: '/experience/experience-industrial-agency.webp'
-location: Goiânia, Brazil
+location: "Goiânia, GO"
 start: 2020-01-02
 end: 2022-10-31
 delivered:
-- I delivered complete, end-to-end web solutions for multiple clients, managing the
-  entire project lifecycle from UI/UX design to full-stack implementation and deployment.
-- I developed and launched websites for prominent local companies, including Cremozinn,
-  establishing their digital presence in the market.
-- I enhanced client projects by developing and integrating small-scale AI solutions
-  using the GPT-3 API with Python and Node.js.
-- Comecei a utilizar a API da OpenAI para automatizar processos repetitivos. Como frameworks especializados não existiam na época, desenvolvi minhas próprias estratégias de encapsulamento usando Regex e Zod.
+  - "Desenvolvi aplicações web full-stack e integrações de APIs para clientes corporativos com TypeScript, Python e Node.js."
+  - "Em 2021, antes de existirem frameworks de agentes, coloquei a API do GPT-3 em produção. Escrevi validadores determinísticos com Zod e regex para garantir que toda resposta seguisse o schema esperado."
 ---
 
 Na Agência Industrial, fui responsável pelo desenvolvimento de sites

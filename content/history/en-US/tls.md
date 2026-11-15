@@ -1,15 +1,14 @@
 ---
-title: Software Engineer
-org: TLScontact
+title: "Software Engineer"
+org: "TLScontact"
 image: '/experience/experience-tls.webp'
-location: Lisbon, Portugal
+location: "Lisbon, Portugal (Remote)"
 start: 2023-07-02
 end: 2024-05-31
 delivered:
-  - I was the lead developer for the official customer support chatbot, overseeing the integration of conversational flows and ensuring a seamless user experience.
-  - I championed the migration of the help module to a 'Feature Services' architecture, providing the scalability required for future AI tool integration.
-  - I delivered critical features and mitigated vulnerabilities for institutional visa tools using Vue 3 and Node.js.
-
+  - "Main developer on the rewrite of the customer support chatbot, which went from rigid decision trees to an architecture with dynamic tool use that can look up the live status of a customer's application during the conversation."
+  - "Helped break the support monolith into microservices split by domain (Feature Services), which unblocked independent deploys and prepared the ground for real-time AI integrations."
+  - "Fixed serious security flaws that an internal audit flagged in Java (Spring Boot) and Node.js services, and rewrote slow SQL queries on high-volume tables."
 ---
 
 At TLScontact, I perform a variety of tasks including implementing new features, mitigating vulnerabilities, and refactoring code. I work directly with institutional tools for issuing visas. The frameworks used are Vue 2 and Vue 3.

@@ -26,7 +26,7 @@ export default defineI18nLocale(() => {
         keywords:
           'Desenvolvedor Web, Front-end, Vue, Nuxt, JavaScript, Arquitetura Hexagonal, Camadas de Serviço, Vuetify, WordPress, Projetos Legados, Desenvolvimento de Sites, Landing Pages, Internacional, Portugal, Brasil, Histórico Profissional',
         summary:
-          'Trajetória profissional completa e linha do tempo de carreira de Gabriel Serejo. Histórico detalhado de empresas (Implanta IT Solutions, TLScontact, Cliqx, UniFAJ, Agência Industrial, ITH Pós Graduação), cargos, entregas e migrações arquiteturais.',
+          'Trajetória profissional completa e linha do tempo de carreira de Gabriel Serejo. Histórico detalhado de empresas (Implanta IT Solutions, TLScontact, Cliqx, UniFAJ, Agência Industrial), cargos, entregas e migrações arquiteturais.',
       },
       projects: {
         path: '/projetos',
@@ -82,108 +82,56 @@ export default defineI18nLocale(() => {
     download_curriculum: 'Baixar currículo',
     curriculum: {
       summary: 'Resumo',
-      profession: 'Engenheiro de IA Generativa',
-      objective_title: 'Objetivo',
-      objective: 'Engenheiro de IA Generativa',
+      profession: "Desenvolvedor Full-Stack Sênior {'|'} IA Agêntica e Generativa",
       work_experience: 'Experiência Profissional',
-      education: 'Educação',
-      graduated_in: 'Formado em {date}',
+      education: 'Formação acadêmica',
+      graduated_in: 'Conclusão: {date}',
       in_progress: 'Em progresso',
-      technical_proficiencies: 'Competências Técnicas',
+      technical_proficiencies: 'Habilidades técnicas',
       certifications_title: 'Certificações',
-      professional_experience: 'Experiência Profissional',
-      projects_title: 'Projetos',
+      professional_experience: 'Experiência profissional',
       skills: [
-        'IA Generativa',
-        'RAG',
-        'LLMs',
-        'Agentes de IA',
-        'MCP (Model Context Protocol)',
-        'LangChain',
-        'TypeScript',
-        'Python',
-        'PyTorch',
-        'Engenharia de Prompt',
-        'Bancos de Dados Vetoriais',
-        'PLN (Processamento de Linguagem Natural)',
-        'PII',
-        'Hugging Face',
-        'APIs de Modelos (OpenAI, Gemini, Anthropic)',
-        'Modelos Auto-hospedados (Ollama, vLLM, Hugging Face)',
-        'Plataformas em Nuvem (Azure, AWS, GCP)',
-        'TensorFlow',
-        'Deep Learning',
-        'LangSmith',
-        'Langfuse',
-        'OTel',
-        'Google ADK',
-        'Ragas',
+        {
+          title: 'IA agêntica e LLMs',
+          items:
+            'Model Context Protocol (cliente e servidor MCP), sistemas multiagentes, LangGraph, LangChain, Vercel AI SDK, Amazon Bedrock, tool/function calling, prompt caching, padrões de prompt e raciocínio (ReAct, CoT, ToT)',
+        },
+        {
+          title: 'Linguagens e frameworks',
+          items:
+            'Python (FastAPI, asyncio), TypeScript, Node.js, React, Next.js, Java (Spring Boot), SQL',
+        },
+        {
+          title: 'Busca vetorial e dados',
+          items:
+            'busca híbrida contextual (BM25 + vetores densos), reciprocal rank fusion, pgvector (HNSW, IVFFlat), Redis, BullMQ, modelos de embedding, reranking semântico (bge-reranker)',
+        },
+        {
+          title: 'Arquitetura e APIs',
+          items:
+            'microsserviços, arquitetura orientada a eventos, DDD, SOLID, ports and adapters (arquitetura hexagonal), inversão de dependência, REST, padrão BFF',
+        },
+        {
+          title: 'Segurança, testes e observabilidade',
+          items:
+            "OpenTelemetry (OTel), Datadog, LangSmith, DeepEval, avaliação de documentos e de RAG (grounding, Recall{'@'}K, Precision{'@'}K), Microsoft Presidio e GLiNER (anonimização de PII), guardrails determinísticos, testes automatizados (pytest, Vitest)",
+        },
+        {
+          title: 'Cloud, DevOps e infraestrutura',
+          items:
+            'AWS (Bedrock, ECS, S3, SES), Microsoft Azure, Terraform (IaC), Docker, pipelines de CI/CD, Git',
+        },
       ],
       certifications: [
-        'Oracle Agentic AI Certified Foundations Associate (2026)',
+        'Oracle Agentic AI Foundations Associate (2026)',
         'Google AI Professional Certificate (2026)',
-        'Oracle AI Vector Search Certified Professional (2026)',
-      ],
-      projects: [
-        {
-          title: 'Chatbot Atlas & Cockpit 2.0 (RAG & Busca Semântica)',
-          org: 'Implanta IT Solutions',
-          delivered: [
-            'Desenvolvi o "Atlas", um chatbot RAG de nível de produção utilizando LangChain, Vercel AI SDK e pg-vector, unificando a documentação e acelerando o onboarding.',
-            'Criei um sistema de referência cruzada semântica usando modelos de embedding para normalização automatizada de produtos via PLN.',
-            'Projetei o "Cockpit 2.0", construindo um motor dinâmico de UI-from-API com TypeScript avançado que desacoplou o frontend dos lançamentos de recursos.',
-          ],
-        },
-        {
-          title: 'Chatbot de Suporte ao Cliente & Migração para Micro-Frontends Escaláveis',
-          org: 'TLScontact',
-          delivered: [
-            'Atuei como desenvolvedor principal do chatbot oficial de suporte ao cliente, gerenciando a integração ponta a ponta dos fluxos de IA conversacional.',
-            'Lidei com a migração para uma arquitetura de "Feature Services", estabelecendo a escalabilidade necessária para ferramentas de IA em tempo real.',
-            'Supervisionei a segurança e entrega de recursos para ferramentas institucionais de vistos utilizando Vue 3 e Node.js.',
-          ],
-        },
-        {
-          title: 'Arquitetura de Aplicação de Varejo (Padrões de Alta Concorrência)',
-          org: 'Cliqx',
-          delivered: [
-            'Gerenciei a infraestrutura em nuvem no Azure, provisionando e configurando instâncias de servidores para suportar aplicações de varejo de alta concorrência.',
-            'Escalei a arquitetura front-end de uma grande aplicação de varejo (Pernambucanas) utilizando o padrão hexagonal orientado a serviços.',
-            'Implementei a funcionalidade de escaneamento e triagem de currículos via IA no projeto Pernambucanas, automatizando a extração estruturada de dados de candidatos.',
-            'Projetei uma camada de cache Redis/SWR de alto desempenho, fornecendo a base de baixa latência necessária para aplicações orientadas a dados de IA.',
-            'Migrei fluxos legados para Nuxt 3, aumentando a capacidade de processamento do sistema e a velocidade de desenvolvimento da equipe.',
-          ],
-        },
-        {
-          title: 'Aplicação de Admissão de Estudantes',
-          org: 'UniFAJ',
-          delivered: [
-            'Desenvolvi a interface de usuário ponta a ponta para a aplicação de admissão de estudantes, cobrindo todas as etapas críticas desde o registro inicial até a conclusão de exames e redações.',
-            'Implementei novos recursos fundamentais e reestruturei o código legado, aplicando princípios de código limpo para aprimorar a manutenibilidade e a qualidade geral da aplicação.',
-          ],
-        },
-        {
-          title: 'Soluções Web & Integração de IA',
-          org: 'Agência Industrial',
-          delivered: [
-            'Entreguei soluções web completas e integradas para múltiplos clientes, gerenciando todo o ciclo de vida do projeto, do design de UI/UX à implementação e implantação full-stack.',
-            'Aprimorei projetos de clientes desenvolvendo e integrando soluções de IA de pequeno porte utilizando a API GPT-3 com Python e Node.js.',
-          ],
-        },
-        {
-          title: 'Refatoração de Aplicação Legada & Integração com CMS',
-          org: 'ITH Pós Graduação',
-          delivered: [
-            'Liderei a refatoração completa da aplicação legada, projeto que melhorou diretamente as pontuações do Google PageSpeed Insights e reduziu significativamente os custos de anúncios.',
-            'Desenvolvi e lancei uma nova aplicação front-end utilizando Nuxt 2, integrada com o WordPress CMS da empresa para modernizar a experiência do usuário e a entrega de conteúdo.',
-          ],
-        },
+        'Oracle AI Vector Search Certified Professional (2025)',
       ],
     },
     active: 'Ativo',
     me: {
       summary:
-        'Engenheiro de IA Generativa com 2 anos de experiência especializada na construção de aplicações de LLM e RAG em produção, respaldado por 8+ anos em engenharia de software full-stack. Combino profunda expertise em sistemas backend, bancos de dados e frontend (Python, Node.js, Vue/Nuxt) com frameworks modernos de IA (LangChain, Bancos Vetoriais) para projetar e entregar sistemas inteligentes e escaláveis. Histórico comprovado de liderança em migrações arquiteturais e entrega de soluções de IA de alto impacto para o mercado internacional.',
+        'Desenvolvedor full-stack sênior com mais de 6 anos de experiência, sendo 2 deles em sistemas de IA generativa, agentes e RAG em produção. No dia a dia, integro LLMs a sistemas que já estão no ar, principalmente com TypeScript, Python, Node.js e React. Boa parte do trabalho fica na camada de confiabilidade e engenharia em torno desses modelos: Model Context Protocol (MCP), busca híbrida no PostgreSQL (pgvector), validação determinística, observabilidade (OpenTelemetry e Datadog) e anonimização de dados pessoais (PII).',
       abroad: `Em **8 anos** de trajetória, trabalhei com uma ampla variedade de produtos. Transformando 
       idéias em códigos e construído aplicações pixel perfect. Minha jornada é baseada em 
       estudos constantes, para não só me adaptar a tecnologia,

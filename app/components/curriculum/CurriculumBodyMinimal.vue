@@ -2,8 +2,7 @@
 export interface CurriculumBody {
   experiences: ExperiencesDto[]
   education: EducationDto[]
-  skills?: string[]
-  projects?: ProjectDto[]
+  skills?: SkillGroupDto[]
   certifications?: string[] // Simple string array for now as minimal view
 }
 </script>
@@ -14,17 +13,8 @@ defineProps<CurriculumBody>()
 </script>
 
 <template>
+  <!-- Sections, their order and the layout of each entry follow the CV -->
   <div class="mx-auto flex max-w-[21cm] flex-col gap-6 bg-white px-4 py-6 text-black">
-    <!-- Objective -->
-    <section>
-      <h2 class="mb-2 border-b-2 border-black text-lg font-bold uppercase">
-        {{ t('curriculum.objective_title') }}
-      </h2>
-      <p class="text-sm font-medium">
-        {{ t('curriculum.objective') }}
-      </p>
-    </section>
-
     <!-- Statement / Summary -->
     <section class="mb-2">
       <h2 class="mb-2 border-b-2 border-black text-lg font-bold uppercase">
@@ -35,30 +25,17 @@ defineProps<CurriculumBody>()
       </p>
     </section>
 
-    <!-- Technical Proficiencies -->
+    <!-- Technical Skills -->
     <section v-if="skills && skills.length">
       <h2 class="mb-2 border-b-2 border-black text-lg font-bold uppercase">
         {{ t('curriculum.technical_proficiencies') }}
       </h2>
-      <div class="flex flex-wrap gap-x-6 gap-y-1 text-sm">
-        <div v-for="skill in skills" :key="skill" class="flex items-center">
-          <span class="mr-2">•</span>
-          {{ skill }}
-        </div>
-      </div>
-    </section>
-
-    <!-- Certifications -->
-    <section v-if="certifications && certifications.length" class="mt-4">
-      <h2 class="mb-2 border-b-2 border-black text-lg font-bold uppercase">
-        {{ t('curriculum.certifications_title') }}
-      </h2>
-      <div class="flex flex-col gap-1 text-sm">
-        <div v-for="cert in certifications" :key="cert" class="flex items-center">
-          <span class="mr-2">•</span>
-          {{ cert }}
-        </div>
-      </div>
+      <ul class="flex flex-col gap-1 text-sm">
+        <li v-for="group in skills" :key="group.title">
+          <span class="font-bold">{{ group.title }}</span
+          >: {{ group.items }}
+        </li>
+      </ul>
     </section>
 
     <!-- Professional Experience -->
@@ -68,17 +45,17 @@ defineProps<CurriculumBody>()
       </h2>
       <div class="flex flex-col gap-4">
         <div v-for="(experience, key) in experiences" :key="key" class="flex flex-col">
-          <div class="flex items-baseline justify-between">
-            <h3 class="text-base font-bold uppercase">
-              {{ experience.title }}
+          <div class="flex items-baseline justify-between gap-4">
+            <h3 class="text-base font-bold">
+              {{ experience.org }}
             </h3>
-            <span class="text-sm font-medium whitespace-nowrap italic">
+            <span class="text-sm font-medium whitespace-nowrap">
               {{ experience.start }} - {{ experience.end }}
             </span>
           </div>
-          <!-- Optional: Organization if needed, though image focuses on Role -->
-          <div v-if="experience.org" class="mb-1 text-sm font-semibold italic">
-            {{ experience.org }}
+          <div class="mb-1 flex items-baseline justify-between gap-4 text-sm italic">
+            <span>{{ experience.title }}</span>
+            <span class="whitespace-nowrap">{{ experience.location }}</span>
           </div>
 
           <ul v-if="experience.delivered" class="ml-4 list-outside list-disc space-y-0.5 text-sm">
@@ -90,35 +67,15 @@ defineProps<CurriculumBody>()
       </div>
     </section>
 
-    <!-- Projects -->
-    <section v-if="projects && projects.length">
-      <h2 class="mb-3 border-b-2 border-black text-lg font-bold uppercase">
-        {{ t('curriculum.projects_title') }}
+    <!-- Certifications -->
+    <section v-if="certifications && certifications.length">
+      <h2 class="mb-2 border-b-2 border-black text-lg font-bold uppercase">
+        {{ t('curriculum.certifications_title') }}
       </h2>
-      <div class="flex flex-col gap-4">
-        <div v-for="(project, key) in projects" :key="key" class="flex flex-col">
-          <div class="mb-1 flex items-baseline justify-between border-b border-gray-200 pb-0.5">
-            <div class="flex items-baseline gap-2">
-              <h3 class="text-base font-bold">
-                {{ project.title }}
-              </h3>
-              <span class="text-sm text-gray-700 italic">– {{ project.org }}</span>
-            </div>
-            <!-- Date for projects if available, otherwise hide -->
-            <span v-if="project.start" class="text-sm font-medium whitespace-nowrap italic">
-              {{ project.start }} - {{ project.end }}
-            </span>
-          </div>
-
-          <p v-if="project.reducedBody" class="mb-1 text-sm">
-            {{ project.reducedBody }}
-          </p>
-
-          <ul v-if="project.delivered" class="ml-4 list-outside list-disc space-y-0.5 text-sm">
-            <li v-for="(item, index) in project.delivered" :key="index" class="pl-1">
-              {{ item }}
-            </li>
-          </ul>
+      <div class="flex flex-col gap-1 text-sm">
+        <div v-for="cert in certifications" :key="cert" class="flex items-center">
+          <span class="mr-2">•</span>
+          {{ cert }}
         </div>
       </div>
     </section>
@@ -130,16 +87,17 @@ defineProps<CurriculumBody>()
       </h2>
       <div class="flex flex-col gap-2">
         <div v-for="(edu, key) in education" :key="key" class="flex flex-col">
-          <div class="flex items-baseline justify-between">
+          <div class="flex items-baseline justify-between gap-4">
             <h3 class="text-base font-bold">
               {{ edu.org }}
             </h3>
-            <span class="text-right text-sm font-bold">
+            <span class="text-sm font-medium whitespace-nowrap">
               {{ edu.date || edu.end }}
             </span>
           </div>
-          <div class="text-sm">
-            {{ edu.title }}
+          <div class="flex items-baseline justify-between gap-4 text-sm italic">
+            <span>{{ edu.title }}</span>
+            <span class="whitespace-nowrap">{{ edu.location }}</span>
           </div>
         </div>
       </div>

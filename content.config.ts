@@ -36,6 +36,7 @@ export const projectSchema = z.object({
 export const educationSchema = z
   .object({
     org: z.string(),
+    location: z.string().min(1),
   })
   .extend(cmsEntrySchema)
   .extend(dateObjectSchema)

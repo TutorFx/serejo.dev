@@ -35,6 +35,7 @@ export type BlogPostsDto = Omit<BlogPostDto, 'body' | 'alternates'>
 export interface EducationDto {
   title: string
   org: string
+  location: string
   start: string
   end: string
   date: string
@@ -43,11 +44,7 @@ export interface EducationDto {
   body: object
 }
 
-export interface ProjectDto {
+export interface SkillGroupDto {
   title: string
-  org: string
-  reducedBody?: string
-  delivered?: string[]
-  start?: string
-  end?: string
+  items: string
 }

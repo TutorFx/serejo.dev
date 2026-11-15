@@ -1,14 +1,17 @@
 ---
-title: Generative AI Engineer
-org: Implanta IT Solutions
+title: "Desenvolvedor Full-Stack Sênior / Engenheiro de IA Generativa"
+org: "Implanta IT Solutions"
 image: '/experience/experience-implanta.webp'
-location: Goiânia, Brazil
-start: 2024-06-02
-end:
+location: "Goiânia, GO"
+start: 2024-05-02
+end: 2026-11-30
 delivered:
-  - Eu implementei o 'Atlas', um chatbot de RAG para produção utilizando LangChain, Vercel AI SDK e pg-vector que unificou a documentação da empresa, acelerando significativamente o onboarding interno.
-  - Eu desenvolvi um sistema de busca semântica de alta precisão utilizando modelos de Embedding, permitindo a normalização automatizada de produtos via NLP.
-  - Eu arquitetei o 'Cockpit 2.0', implementando um motor de renderização dinâmica de UI-via-API com TypeScript avançado que removeu a dependência de deploys de frontend.
+  - "Integro agentes de IA e pipelines de RAG a sistemas corporativos existentes em Node.js, TypeScript e Python, sem precisar reescrever o código legado ao redor deles."
+  - "Em um hackathon interno, criei o Atlas, um chatbot que centraliza as regras de negócio da empresa. A ideia era não ter que pagar US$ 50 por usuário/mês em licenças do NotebookLM. O projeto venceu a competição e virou um produto comercial. Arquitetura: BFF em Node.js, LangGraph, LangChain e Vercel AI SDK com Amazon Bedrock. Combinei busca híbrida (BM25 + pgvector com índice HNSW) com reranking semântico e cheguei a 98,9% de Recall@5 no conjunto de avaliação interno."
+  - "Desenvolvi o cliente MCP do Atlas e servidores MCP próprios que leem os bancos de dados relacionais dos clientes, com uma camada de anonimização bidirecional em tempo real (Microsoft Presidio e GLiNER) que remove PII antes que qualquer dado chegue aos modelos."
+  - "Montei o pipeline de testes e telemetria dos LLMs com OpenTelemetry, Datadog, LangSmith e DeepEval. Acompanho métricas de grounding, Recall@K e Precision@K vinculadas às tags de commit do Git para detectar regressões de prompt e drift de modelo antes do deploy."
+  - "Construí o Cockpit 2.0, uma engine em TypeScript que monta as telas do frontend dinamicamente a partir do que a API retorna. Usei DDD, SOLID, ports and adapters e inversão de dependência para desacoplar os módulos. Assim, os microsserviços podem mudar sem um novo deploy da interface."
+  - "Tirei o processamento pesado de documentos da rota principal da API e passei para filas com Redis e BullMQ, além de configurar prompt caching para o contexto dos documentos. Com isso, o chat continuou rápido e o consumo de tokens caiu."
 ---
 
 Na Implanta, fui incumbido de um dos maiores desafios da minha carreira. Com 20 anos de mercado, a empresa já está consolidada, e eu aceitei a missão de, junto dos meus amigos do time Sépia, reconstruir a ferramenta que é o pilar central do negócio Implanta: o Cockpit 2.0.

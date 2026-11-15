@@ -2,8 +2,7 @@
 export interface CurriculumBody {
   experiences: ExperiencesDto[]
   education: EducationDto[]
-  skills?: string[]
-  projects?: ProjectDto[]
+  skills?: SkillGroupDto[]
   certifications?: string[]
 }
 </script>
@@ -14,17 +13,8 @@ defineProps<CurriculumBody>()
 </script>
 
 <template>
+  <!-- Sections, their order and the layout of each entry follow the CV; the experience stays compact, without the items -->
   <div class="body-minimal flex flex-col bg-white text-black">
-    <!-- Objective -->
-    <section>
-      <h2 class="section-title border-b border-black font-bold tracking-wider uppercase">
-        {{ t('curriculum.objective_title') }}
-      </h2>
-      <p class="body-text font-medium">
-        {{ t('curriculum.objective') }}
-      </p>
-    </section>
-
     <!-- Statement / Summary -->
     <section>
       <h2 class="section-title border-b border-black font-bold tracking-wider uppercase">
@@ -35,15 +25,38 @@ defineProps<CurriculumBody>()
       </p>
     </section>
 
-    <!-- Technical Proficiencies -->
+    <!-- Technical Skills -->
     <section v-if="skills && skills.length">
       <h2 class="section-title border-b border-black font-bold tracking-wider uppercase">
         {{ t('curriculum.technical_proficiencies') }}
       </h2>
-      <div class="skills-grid flex flex-wrap gap-x-4 sm:gap-x-6 print:gap-x-4">
-        <div v-for="skill in skills" :key="skill" class="flex items-center">
-          <span class="mr-1.5">•</span>
-          {{ skill }}
+      <ul class="skills-grid flex flex-col">
+        <li v-for="group in skills" :key="group.title">
+          <span class="font-bold">{{ group.title }}</span
+          >: {{ group.items }}
+        </li>
+      </ul>
+    </section>
+
+    <!-- Professional Experience (Compact) -->
+    <section v-if="experiences && experiences.length">
+      <h2 class="section-title border-b border-black font-bold tracking-wider uppercase">
+        {{ t('curriculum.professional_experience') }}
+      </h2>
+      <div class="experience-list flex flex-col">
+        <div v-for="(experience, key) in experiences" :key="key" class="body-text flex flex-col">
+          <div class="flex flex-col justify-between sm:flex-row sm:items-baseline">
+            <span class="font-bold">{{ experience.org }}</span>
+            <span class="font-medium whitespace-nowrap text-gray-600 sm:text-right">
+              {{ experience.start }} - {{ experience.end }}
+            </span>
+          </div>
+          <div
+            class="flex flex-col justify-between text-gray-700 italic sm:flex-row sm:items-baseline"
+          >
+            <span>{{ experience.title }}</span>
+            <span class="sm:text-right">{{ experience.location }}</span>
+          </div>
         </div>
       </div>
     </section>
@@ -61,46 +74,6 @@ defineProps<CurriculumBody>()
       </div>
     </section>
 
-    <!-- Professional Experience (Compact) -->
-    <section v-if="experiences && experiences.length">
-      <h2 class="section-title border-b border-black font-bold tracking-wider uppercase">
-        {{ t('curriculum.professional_experience') }}
-      </h2>
-      <div class="experience-list flex flex-col">
-        <div v-for="(experience, key) in experiences" :key="key" class="flex flex-col">
-          <div class="body-text flex flex-col justify-between sm:flex-row sm:items-baseline">
-            <span class="font-bold uppercase">{{ experience.title }}</span>
-            <span class="font-medium whitespace-nowrap text-gray-600 italic sm:text-right">
-              {{ experience.start }} - {{ experience.end }}
-            </span>
-          </div>
-          <div v-if="experience.org" class="body-text font-medium text-gray-700 italic">
-            {{ experience.org }}
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Projects (Compact) -->
-    <section v-if="projects && projects.length">
-      <h2 class="section-title border-b border-black font-bold tracking-wider uppercase">
-        {{ t('curriculum.projects_title') }}
-      </h2>
-      <div class="projects-list flex flex-col">
-        <div v-for="(project, key) in projects" :key="key" class="flex flex-col">
-          <div class="body-text flex flex-col justify-between sm:flex-row sm:items-baseline">
-            <span class="font-bold">{{ project.title }}</span>
-            <span v-if="project.start" class="font-medium text-gray-600 italic sm:text-right"
-              >{{ project.start }} - {{ project.end }}</span
-            >
-          </div>
-          <div v-if="project.org" class="body-text font-medium text-gray-700 italic">
-            {{ project.org }}
-          </div>
-        </div>
-      </div>
-    </section>
-
     <!-- Education -->
     <section v-if="education && education.length">
       <h2 class="section-title border-b border-black font-bold tracking-wider uppercase">
@@ -109,15 +82,14 @@ defineProps<CurriculumBody>()
       <div class="education-list flex flex-col">
         <div v-for="(edu, key) in education" :key="key" class="body-text flex flex-col">
           <div class="flex flex-col justify-between sm:flex-row sm:items-baseline">
-            <span class="font-bold">
-              {{ edu.org }}
-            </span>
-            <span class="font-medium text-gray-600 italic sm:text-right">
-              {{ edu.date || edu.end }}
-            </span>
+            <span class="font-bold">{{ edu.org }}</span>
+            <span class="font-medium text-gray-600 sm:text-right">{{ edu.date || edu.end }}</span>
           </div>
-          <div class="text-gray-700">
-            {{ edu.title }}
+          <div
+            class="flex flex-col justify-between text-gray-700 italic sm:flex-row sm:items-baseline"
+          >
+            <span>{{ edu.title }}</span>
+            <span class="sm:text-right">{{ edu.location }}</span>
           </div>
         </div>
       </div>
@@ -151,9 +123,6 @@ defineProps<CurriculumBody>()
   gap: calc(var(--item-gap, 0.5rem) * 0.5);
 }
 .experience-list {
-  gap: var(--item-gap, 0.5rem);
-}
-.projects-list {
   gap: var(--item-gap, 0.5rem);
 }
 .education-list {

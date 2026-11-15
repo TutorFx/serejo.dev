@@ -1,16 +1,15 @@
 ---
-title: Software Engineer
-org: Cliqx
+title: "Full-Stack Developer"
+org: "Cliqx"
 image: '/experience/experience-cliqx.webp'
-location: São Paulo, Brazil
+location: "São Paulo, Brazil (Remote)"
 start: 2023-01-02
-end: 2023-08-31
+end: 2023-07-31
 delivered:
-  - I scaled the front-end architecture for a major retail application (Pernambucanas) using a service-oriented hexagonal pattern in Nuxt 3.
-  - I engineered and integrated an AI-powered resume scanning and parsing feature for the Pernambucanas recruitment platform, automating candidate data extraction.
-  - I designed a high-performance caching layer using Redis and SWR, establishing the performance foundation necessary for data-intensive applications.
-  - I successfully migrated legacy workflows to modern reactive patterns, improving team velocity and system throughput.
-  - I managed cloud infrastructure on Azure, taking initiative to provision and configure server instances alongside development duties.
+  - "Worked on the frontend architecture of the Pernambucanas retail platform with TypeScript and hexagonal architecture, and separated the business logic from the UI components so the platform could handle traffic from big campaigns."
+  - "Wrote a resume parser with the OpenAI API (structured JSON output) that replaced manual candidate data entry in HR screening."
+  - "Added Redis and SWR caching to the heaviest read routes to take load off the main database at peak hours."
+  - "Automated the provisioning of environments and event-driven microservices on Microsoft Azure with Terraform."
 ---
 
 As a Front-End developer at Cliqx, I worked on several projects, mostly software for the retail market. My main contribution was structuring an application for Pernambucanas, where I proposed the use of the Nuxt3 framework and collaborated on the application development using a hexagonal architecture with service layers. Overall, the project was designed with a scalable strategy using Redis, SWR, and Nuxt3 to reduce server workload.

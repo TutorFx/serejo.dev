@@ -1,14 +1,17 @@
 ---
-title: Generative AI Engineer
-org: Implanta IT Solutions
+title: "Senior Full-Stack Developer / Generative AI Engineer"
+org: "Implanta IT Solutions"
 image: '/experience/experience-implanta.webp'
-location: Goiânia, Brazil
-start: 2024-06-02
-end:
+location: "Goiânia, Brazil"
+start: 2024-05-02
+end: 2026-11-30
 delivered:
-  - I engineered 'Atlas', a production-grade RAG chatbot using LangChain, Vercel AI SDK, and pg-vector that unified company documentation, significantly accelerating internal onboarding.
-  - I developed a high-precision semantic cross-reference system using Embedding models, enabling automated product normalization through NLP.
-  - I architected 'Cockpit 2.0', implementing a dynamic UI-from-API rendering engine using advanced TypeScript patterns that decoupled frontend deployments.
+  - "Integrate AI agents and RAG pipelines into existing enterprise systems in Node.js, TypeScript, and Python, without having to rewrite the legacy code around them."
+  - "Created Atlas, a chatbot that centralizes the company's business rules, at an internal hackathon to avoid paying US$50 per user per month for NotebookLM licenses. The project won the competition and became a commercial product. Architecture: Node.js BFF, LangGraph, LangChain, and Vercel AI SDK with Amazon Bedrock. Combined hybrid search (BM25 + pgvector with an HNSW index) with semantic reranking and reached 98.9% Recall@5 on the internal evaluation set."
+  - "Developed the Atlas MCP client and in-house MCP servers that read customers' relational databases, with a real-time bidirectional anonymization layer (Microsoft Presidio and GLiNER) that removes PII before anything is sent to the models."
+  - "Set up the LLM testing and telemetry pipeline with OpenTelemetry, Datadog, LangSmith, and DeepEval. Track grounding, Recall@K, and Precision@K metrics tied to Git commit tags to catch prompt regressions and model drift before deploy."
+  - "Built Cockpit 2.0, a TypeScript engine that assembles screens dynamically on the frontend from what the API returns. Used DDD, SOLID, ports and adapters, and dependency inversion to decouple the modules and let the microservices change without a new UI deploy."
+  - "Moved heavy document processing off the main API route onto Redis and BullMQ queues and set up prompt caching for the document context, which kept the chat fast and cut token usage."
 ---
 
 At Implanta, I was entrusted with one of the biggest challenges of my career. With 20 years in the market, the company is already well-established, and I accepted the mission, alongside my friends from the Sépia team, to rebuild the tool that is the central pillar of the Implanta business: Cockpit 2.0.

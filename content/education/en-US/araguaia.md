@@ -1,7 +1,7 @@
 ---
-title: Advertising and Marketing
-org: UniAraguaia Centro Universitário
-location: Goiânia, Brazil
+title: "Bachelor's Degree in Advertising"
+org: "UniAraguaia Centro Universitário"
+location: "Goiânia, Brazil"
 start: 2018-01-01
 end: 2022-12-02
 ---

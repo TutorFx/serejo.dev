@@ -25,13 +25,14 @@ export default defineEventHandler(async event => {
 
         if (!data) return null
 
-        const { title, start, end, meta, org, stem, body } = data
+        const { title, start, end, meta, org, stem, body, location } = data
         const { locale } = meta
         const path = processCmsPath(locale, stem)
 
         return {
           title,
           org,
+          location,
           start: formatCardDate(start, locale),
           end: end ? formatCardDate(end, locale) : t('time.the_moment', {}, { locale }),
           locale,

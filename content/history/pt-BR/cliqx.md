@@ -1,16 +1,15 @@
 ---
-title: Software Engineer
-org: Cliqx
+title: "Desenvolvedor Full-Stack"
+org: "Cliqx"
 image: '/experience/experience-cliqx.webp'
-location: São Paulo, Brazil
+location: "São Paulo, SP (remoto)"
 start: 2023-01-02
-end: 2023-08-31
+end: 2023-07-31
 delivered:
-  - Eu escalonei a arquitetura front-end de uma grande aplicação de varejo (Pernambucanas) utilizando o padrão hexagonal orientado a serviços no Nuxt 3.
-  - Eu projetei e implementei a funcionalidade de escaneamento e triagem de currículos via Inteligência Artificial no projeto Pernambucanas, automatizando a extração estruturada de dados de candidatos.
-  - Eu projetei uma camada de cache de alta concorrência usando Redis e SWR, estabelecendo a base de performance necessária para aplicações intensivas em dados.
-  - Eu migrei fluxos legados para padrões reativos modernos, aumentando a velocidade da equipe e a vazão do sistema.
-  - Gerenciei infraestrutura em nuvem na Azure, tomando a iniciativa de provisionar e configurar instâncias de servidores além das responsabilidades de desenvolvimento.
+  - "Trabalhei na arquitetura do frontend da plataforma de varejo da Pernambucanas (TypeScript e arquitetura hexagonal) e separei a lógica de negócio dos componentes de interface para a plataforma aguentar o tráfego das grandes campanhas."
+  - "Desenvolvi um parser de currículos com a API da OpenAI (saída estruturada em JSON) que acabou com a digitação manual de dados de candidatos na triagem do RH."
+  - "Adicionei cache com Redis e SWR nas rotas de leitura mais pesadas para aliviar o banco de dados principal nos horários de pico."
+  - "Automatizei com Terraform o provisionamento de ambientes e de microsserviços orientados a eventos no Microsoft Azure."
 ---
 
 Na Cliqx, fui desenvolvedor Front-End e trabalhei em diversos projetos. Em sua maioria, os projetos eram de softwares para o mercado de varejo. Minha entrega principal foi a estruturação de um aplicativo para a Pernambucanas, no qual idealizei para o projeto o uso do Framework Nuxt3, e colaborei com o desenvolvimento do aplicativo usando uma arquitetura hexagonal com camadas de serviço. No geral, o projeto foi elaborado a partir de uma estratégia escalável usando Redis, SWR e Nuxt3 para reduzir a carga de trabalho do servidor.

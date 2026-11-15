@@ -1,14 +1,14 @@
 ---
-title: Software Engineer
-org: TLScontact
+title: "Engenheiro de Software"
+org: "TLScontact"
 image: '/experience/experience-tls.webp'
-location: Lisbon, Portugal
+location: "Lisboa, Portugal (remoto)"
 start: 2023-07-02
 end: 2024-05-31
 delivered:
-  - Eu fui o desenvolvedor principal do chatbot oficial de suporte ao cliente, supervisionando a integração de fluxos conversacionais e garantindo uma experiência de usuário fluida.
-  - Eu liderei a migração do módulo de ajuda para uma arquitetura de 'Feature Services', provendo a escalabilidade necessária para futuras integrações de ferramentas de IA.
-  - Eu entreguei funcionalidades críticas e mitiguei vulnerabilidades para ferramentas institucionais de visto utilizando Vue 3 e Node.js.
+  - "Fui o principal desenvolvedor da reescrita do chatbot de atendimento ao cliente, que saiu de árvores de decisão rígidas para uma arquitetura com uso dinâmico de ferramentas, capaz de consultar em tempo real, durante a conversa, o status da solicitação do cliente."
+  - "Ajudei a quebrar o monólito de atendimento em microsserviços divididos por domínio (Feature Services), o que liberou deploys independentes e preparou o terreno para integrações de IA em tempo real."
+  - "Corrigi falhas graves de segurança apontadas em auditoria interna nos serviços Java (Spring Boot) e Node.js e reescrevi consultas SQL lentas em tabelas com alto volume de dados."
 ---
 
 Em uma experiência internacional na TLScontact, em Portugal, abracei o desafio de transformar uma Prova de Conceito (PoC) em uma plataforma de larga escala. O objetivo era criar uma aplicação robusta para o registro de imigrantes e a oferta de serviços para múltiplos países, como Reino Unido, França e Alemanha, lidando com um ecossistema complexo e regulamentações diversas.

@@ -1,6 +1,7 @@
 ---
-title: Advertising and Marketing
-org: UniAraguaia Centro Universitário
+title: "Bacharelado em Publicidade e Propaganda"
+org: "Centro Universitário Araguaia (UniAraguaia)"
+location: "Goiânia, GO"
 start: 2018-01-01
 end: 2022-12-02
 ---
