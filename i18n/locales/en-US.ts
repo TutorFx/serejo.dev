@@ -16,7 +16,7 @@ export default defineI18nLocale(() => {
         keywords:
           'Web development, new projects, legacy projects, custom solutions, high quality, Gabriel Serejo, AI Engineer, Full Stack',
         summary:
-          'Personal portfolio of Gabriel Serejo, Generative AI & Full Stack Engineer with 8+ years of experience. Features introduction (Hero), international experience overview, technical stack arsenal, and highlighted professional experience.',
+          'Personal portfolio of Gabriel Serejo, Generative AI & Full Stack Engineer with 6+ years of experience. Features introduction (Hero), international experience overview, technical stack arsenal, and highlighted professional experience.',
       },
       history: {
         path: '/my-trajectory',
@@ -134,7 +134,7 @@ export default defineI18nLocale(() => {
         'Senior full-stack developer with over 6 years in software development, 2 of them on generative AI systems, agents, and RAG in production. Day-to-day work involves integrating LLMs into software that already runs in production, mostly with TypeScript, Python, Node.js, and React. A lot of it is on the reliability and engineering layer around these models: Model Context Protocol (MCP), hybrid search on PostgreSQL (pgvector), deterministic validation, observability (OpenTelemetry and Datadog), and PII anonymization.',
       abroad: `During my career, I have worked on international projects, 
             collaborating daily with people from all over the world and aligning strategies 
-            with backend and frontend teams. After **8 years** of experience, I offer expertise 
+            with backend and frontend teams. After **6 years** of experience, I offer expertise 
             based on concrete cases.`,
       passion: `My passion is to bridge the gap between imagination and reality. I breathe code and dream in pixels. I'm a web developer with a passion for crafting beautiful 
             and functional web applications.`,

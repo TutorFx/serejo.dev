@@ -16,7 +16,7 @@ export default defineI18nLocale(() => {
         keywords:
           'Desenvolvimento web, projetos novos, projetos legados, soluções personalizadas, alta qualidade, Gabriel Serejo, Engenheiro de IA, Full Stack',
         summary:
-          'Portfólio pessoal de Gabriel Serejo, Engenheiro de IA Generativa & Full Stack com 8+ anos de experiência. Apresentação inicial (Hero), atuação internacional, arsenal de tecnologias (stack) e destaques de experiências profissionais.',
+          'Portfólio pessoal de Gabriel Serejo, Engenheiro de IA Generativa & Full Stack com 6+ anos de experiência. Apresentação inicial (Hero), atuação internacional, arsenal de tecnologias (stack) e destaques de experiências profissionais.',
       },
       history: {
         path: '/minha-jornada',
@@ -132,7 +132,7 @@ export default defineI18nLocale(() => {
     me: {
       summary:
         'Desenvolvedor full-stack sênior com mais de 6 anos de experiência, sendo 2 deles em sistemas de IA generativa, agentes e RAG em produção. No dia a dia, integro LLMs a sistemas que já estão no ar, principalmente com TypeScript, Python, Node.js e React. Boa parte do trabalho fica na camada de confiabilidade e engenharia em torno desses modelos: Model Context Protocol (MCP), busca híbrida no PostgreSQL (pgvector), validação determinística, observabilidade (OpenTelemetry e Datadog) e anonimização de dados pessoais (PII).',
-      abroad: `Em **8 anos** de trajetória, trabalhei com uma ampla variedade de produtos. Transformando 
+      abroad: `Em **6 anos** de trajetória, trabalhei com uma ampla variedade de produtos. Transformando 
       idéias em códigos e construído aplicações pixel perfect. Minha jornada é baseada em 
       estudos constantes, para não só me adaptar a tecnologia,
       mas também para estabelecer padrões elevados no desenvolvimento das soluções.`,
