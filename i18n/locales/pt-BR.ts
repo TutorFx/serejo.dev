@@ -136,19 +136,14 @@ export default defineI18nLocale(() => {
       idéias em códigos e construído aplicações pixel perfect. Minha jornada é baseada em 
       estudos constantes, para não só me adaptar a tecnologia,
       mas também para estabelecer padrões elevados no desenvolvimento das soluções.`,
-      passion: `Minha paixão é preencher a lacuna entre a imaginação e a realidade!
-      Respiro código e sonho em pixels. Sou um
-      desenvolvedor web apaixonado por criar aplicações agradáveis e funcionais.`,
-      stack: `Adoro trabalhar com tantos frameworks e bibliotecas incríveis! E para 
-          o meu projeto ideal, eu definitivamente escolheria usar...`,
-      legacy: `Embora projetos no início sejam empolgantes, também me sinto 
-          confortável em lidar com bases de códigos já existentes. Sou hábil em modernizar sistemas construídos
-          com tecnologias obsoletas, tais como Vue 2, Nuxt 2, algumas bibliotecas de 
-          componentes, JavaScript puro, jQuery e muito mais. Então, traga seus projetos 
-          legados - estou pronto para modernizá-los e otimizá-los!`,
-      open_source: `Meu entusiasmo por software de código aberto, me leva a fazer 
-          contribuições significativas durante meu tempo livre. Sinta-se à vontade para 
-          dar uma olhada no meu github!`,
+      passion:
+        'Sou desenvolvedor full-stack e pós-graduado em Inteligência Artificial pela Universidade Federal de Viçosa. Meu foco é a engenharia em torno dos modelos: busca, validação, observabilidade e proteção de dados sensíveis.',
+      stack:
+        'Trabalho com frameworks e bibliotecas de IA, como LangChain, LangGraph e Vercel AI SDK. E, para a interface do meu projeto ideal, eu escolheria...',
+      legacy:
+        'Embora projetos do zero sejam empolgantes, também me sinto confortável em lidar com bases de código já existentes. Tenho experiência em manter e migrar sistemas legados construídos com Vue 2, Nuxt 2, bibliotecas de componentes, JavaScript puro e jQuery. Se a sua equipe tem um projeto assim, posso modernizá-lo, otimizá-lo e, onde fizer sentido, integrar modelos de linguagem a ele sem reescrevê-lo.',
+      open_source:
+        'Meu interesse por software de código aberto me leva a contribuir no tempo livre. Você pode ler o código deste site, incluindo o agente de IA do chat, no meu',
       years_old: 'Eu tenho {years} anos',
       live_in: 'Atualmente eu vivo no Brasil, em Goiânia - GO.',
     },
@@ -167,15 +162,15 @@ export default defineI18nLocale(() => {
         title: 'Declarações',
       },
       about_me: {
-        title: 'O Arquiteto de Pixels',
+        title: 'Engenharia de IA Generativa',
         accent: 'Sobre mim',
       },
       stack: {
-        title: 'Meu Arsenal de Desenvolvimento',
+        title: 'Minhas Ferramentas de Desenvolvimento',
         accent: 'Tech Stack',
       },
       open_source: {
-        title: `Eu ❤️ código aberto!`,
+        title: 'Apoio o código aberto',
         accent: 'Open Source',
       },
       experiences: {

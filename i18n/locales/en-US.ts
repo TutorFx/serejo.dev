@@ -136,13 +136,14 @@ export default defineI18nLocale(() => {
             collaborating daily with people from all over the world and aligning strategies 
             with backend and frontend teams. After **6 years** of experience, I offer expertise 
             based on concrete cases.`,
-      passion: `My passion is to bridge the gap between imagination and reality. I breathe code and dream in pixels. I'm a web developer with a passion for crafting beautiful 
-            and functional web applications.`,
-      stack: `I love working with so many great frameworks and libraries! For my ideal project, I'd definitely choose to use...`,
-      legacy: `While greenfield projects are exciting, I'm also comfortable tackling existing codebases. I'm skilled at working with 
-            and migrating legacy technologies like Vue 2, Nuxt 2, various component libraries, plain JavaScript, jQuery, and more. So, 
-            bring on your brownfield projects - I'm ready to modernize and optimize them!`,
-      open_source: `My enthusiasm for open source software drives me to make meaningful contributions during my free time. Feel free to give a look at my github!`,
+      passion:
+        "I'm a full-stack developer with a postgraduate specialization in AI from the Federal University of Viçosa. My focus is the engineering around the models: search, validation, observability, and sensitive data protection.",
+      stack:
+        "I work with AI frameworks and libraries like LangChain, LangGraph, and the Vercel AI SDK. For my ideal project's front end, I'd choose...",
+      legacy:
+        "While greenfield projects are exciting, I'm also comfortable tackling existing codebases. I have experience maintaining and migrating legacy systems built with Vue 2, Nuxt 2, component libraries, plain JavaScript, and jQuery. If your team has a brownfield project, I can modernize and optimize it and, where it makes sense, integrate language models into it without a rewrite.",
+      open_source:
+        'My interest in open source software leads me to contribute in my free time. You can read the code of this site, including its AI chat agent, on my',
       years_old: 'I am {years} years old',
       live_in: 'Actually i live in Brazil',
     },
@@ -161,15 +162,15 @@ export default defineI18nLocale(() => {
         title: 'Statement',
       },
       about_me: {
-        title: 'The Pixel Architect',
+        title: 'Generative AI Engineering',
         accent: 'About me',
       },
       stack: {
-        title: 'My Development Arsenal',
+        title: 'My Development Toolkit',
         accent: 'Tech Stack',
       },
       open_source: {
-        title: `I ❤️ open source!`,
+        title: 'I support open source',
         accent: 'Open Source',
       },
       experiences: {
