@@ -1,6 +1,7 @@
 import { defineCollection, defineContentConfig } from '@nuxt/content'
 import { z } from 'zod/v4'
-import { LOCALES } from './shared/utils/cms/cms.constants'
+// With the extension: modules/content-validation.ts imports this file through the native loader
+import { LOCALES } from './shared/utils/cms/cms.constants.ts'
 
 // Written by transformers/reading-time.ts: declared so they become typed columns instead of `meta`
 const computedFields = {

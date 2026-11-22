@@ -13,10 +13,19 @@ export default defineNuxtModule({
     let initialPassDone = false
 
     // content.config.ts calls `defineCollection`, which only works once Nuxt Content is set up: a
-    // static import would run it too early, so the schemas are imported when the first file arrives
-    let schemas: Promise<typeof import('../content.config').collectionSchemas> | undefined
+    // static import would run it too early, so the schemas are imported when the first file arrives.
+    // Nuxt loads this module with the native loader of the runtime (Node on Vercel), hence the `.ts`
+    let schemas: Promise<typeof import('../content.config.ts').collectionSchemas> | undefined
+    let schemasError: unknown
     const loadSchemas = () =>
-      (schemas ??= import('../content.config').then(config => config.collectionSchemas))
+      (schemas ??= import('../content.config.ts').then(
+        config => config.collectionSchemas,
+        error => {
+          schemasError = error
+          logger.error('Could not load the collection schemas from content.config.ts', error)
+          throw error
+        }
+      ))
 
     nuxt.hook('content:file:afterParse', async ({ file, content, collection }) => {
       const collectionSchemas = await loadSchemas()
@@ -44,7 +53,16 @@ export default defineNuxtModule({
     })
 
     nuxt.hook('build:before', () => {
-      if (nuxt.options.dev || invalidFiles.size === 0) return
+      if (nuxt.options.dev) return
+
+      // Nuxt Content swallows what the hook throws and leaves the file out, so a failed import would
+      // otherwise build a site without content
+      if (schemasError) {
+        throw new Error('Content was not validated: the collection schemas failed to load', {
+          cause: schemasError,
+        })
+      }
+      if (invalidFiles.size === 0) return
 
       throw new Error(
         `${invalidFiles.size} content file(s) do not match their collection schema (see the errors above)`
