@@ -87,7 +87,7 @@
     "ioredis": "^6.0.0",
     "lefthook": "^2.2.2",
     "nuxt": "^4.6.4",
-    "nuxt-auth-utils": "^0.5.34",
+    "nuxt-auth-utils": "^0.6.0",
     "nuxt-csurf": "^1.6.6",
     "nuxt-module-eslint-config": "^0.1.1",
     "nuxt-site-config": "^4.2.3",
