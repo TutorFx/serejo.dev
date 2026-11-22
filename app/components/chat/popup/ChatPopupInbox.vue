@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import type { UIMessage } from 'ai'
-import { Chat } from '@ai-sdk/vue'
+import { useChat } from '@ai-sdk/vue'
 import { lastAssistantMessageIsCompleteWithApprovalResponses } from 'ai'
 import { getChatErrorKey } from '~/utils/ai/errors'
 import { createChatTransport } from '~/utils/ai/transport'
@@ -78,7 +78,7 @@ watch(() => data.value?.title, (next) => {
 
 const input = ref('')
 
-const chat = new Chat({
+const chat = useChat({
   id: data.value?.id,
   messages: data.value?.messages,
   sendAutomaticallyWhen: lastAssistantMessageIsCompleteWithApprovalResponses,
@@ -102,6 +102,7 @@ const chat = new Chat({
     setTimeout(() => chat.clearError(), 0)
   }
 })
+const { messages, status, error: chatError } = chat
 
 async function handleSubmit(e: Event) {
   e.preventDefault()
@@ -127,7 +128,7 @@ onMounted(() => {
 
 <template>
   <div v-if="data" class="flex min-h-0 flex-1 flex-col">
-    <div class="border-default flex shrink-0 items-center gap-1 border-b px-2 py-1.5">
+    <div class="flex shrink-0 items-center gap-1 border-b border-default px-2 py-1.5">
       <UButton
         icon="i-lucide-chevron-left"
         color="neutral"
@@ -159,8 +160,8 @@ onMounted(() => {
       <UChatMessages
         should-auto-scroll
         :auto-scroll="false"
-        :messages="chat.messages"
-        :status="chat.status"
+        :messages="messages"
+        :status="status"
         class="py-4"
       >
         <template #indicator>
@@ -182,7 +183,7 @@ onMounted(() => {
         <template v-if="isOwner" #actions="{ message }">
           <ChatMessageActions
             :message="message"
-            :streaming="chat.status === 'streaming' && message.id === chat.messages[chat.messages.length - 1]?.id"
+            :streaming="status === 'streaming' && message.id === messages[messages.length - 1]?.id"
             :vote="getVote(message.id)"
             @vote="(_message, isUpvoted) => vote(_message, isUpvoted)"
           />
@@ -193,7 +194,7 @@ onMounted(() => {
     <div v-if="isOwner" class="shrink-0 px-3 pb-3">
       <UChatPrompt
         v-model="input"
-        :error="chat.error"
+        :error="chatError"
         :autofocus
         :placeholder="t('chat.ui.prompt_placeholder')"
         variant="subtle"
@@ -203,7 +204,7 @@ onMounted(() => {
         <template #footer>
           <div class="flex items-center gap-1" />
 
-          <UChatPromptSubmit :status="chat.status" color="neutral" size="sm" @stop="chat.stop()" />
+          <UChatPromptSubmit :status="status" color="neutral" size="sm" @stop="chat.stop()" />
         </template>
       </UChatPrompt>
     </div>

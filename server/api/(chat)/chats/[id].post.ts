@@ -4,12 +4,13 @@ import {
   createUIMessageStream,
   createUIMessageStreamResponse,
   generateText,
+  isStepCount,
   safeValidateUIMessages,
   smoothStream,
-  stepCountIs,
   streamText,
+  toUIMessageStream,
 } from 'ai'
-import { createGoogleGenerativeAI } from '@ai-sdk/google'
+import { createGoogle } from '@ai-sdk/google'
 import type { GoogleLanguageModelOptions } from '@ai-sdk/google'
 import { z } from 'zod'
 import { and, asc, eq } from 'drizzle-orm'
@@ -35,7 +36,7 @@ import {
 import { saveAssistantMessage, saveUserMessage } from '~~/server/utils/chat/persistence'
 import { buildSystemPrompt } from '~~/server/utils/chat/prompt'
 import type { ChatTools, ChatUIMessage } from '~~/server/utils/chat/tools'
-import { buildChatTools, SCHEDULING_TOOLS } from '~~/server/utils/chat/tools'
+import { buildChatTools, CHAT_TOOL_APPROVAL, SCHEDULING_TOOLS } from '~~/server/utils/chat/tools'
 
 /** Tool parts that require the visitor's approval before running */
 const APPROVAL_TOOL_TYPES = [`tool-${CHAT_TOOL.createMeeting}`]
@@ -105,7 +106,7 @@ export default defineEventHandler(async event => {
   const { apiKey } = geminiEnvSchema.parse({
     apiKey: useRuntimeConfig().gemini.apiKey,
   })
-  const llm = createGoogleGenerativeAI({ apiKey })
+  const llm = createGoogle({ apiKey })
 
   // 3. Ownership and stored history
   const db = useDrizzle()
@@ -206,7 +207,7 @@ export default defineEventHandler(async event => {
       try {
         const { text, usage } = await generateText({
           model: llm('gemini-2.5-flash-lite'),
-          system: `You are a title generator for a chat:
+          instructions: `You are a title generator for a chat:
           - Generate a short title based on the first user's message
           - The title should be less than 30 characters long
           - The title should be a summary of the user's message
@@ -263,7 +264,7 @@ export default defineEventHandler(async event => {
 
         const result = streamText({
           model: llm('gemini-3.1-pro-preview-customtools'),
-          system: buildSystemPrompt({
+          instructions: buildSystemPrompt({
             currentDate,
             timeZone: body.timeZone,
             resumeContext,
@@ -272,12 +273,13 @@ export default defineEventHandler(async event => {
           // `tools` lets `toModelOutput` bound tool results replayed from history too
           messages: await convertToModelMessages(messages, { tools }),
           tools,
+          toolApproval: CHAT_TOOL_APPROVAL,
           activeTools,
           experimental_transform: smoothStream({
             delayInMs: 20,
             chunking: 'word',
           }),
-          stopWhen: [stepCountIs(CHAT_LIMITS.maxSteps), stopOnBudget],
+          stopWhen: [isStepCount(CHAT_LIMITS.maxSteps), stopOnBudget],
           toolChoice: 'auto',
           temperature: 0.2,
           maxOutputTokens: CHAT_LIMITS.maxOutputTokens,
@@ -290,7 +292,7 @@ export default defineEventHandler(async event => {
           providerOptions: {
             google: { safetySettings: SAFETY_SETTINGS } satisfies GoogleLanguageModelOptions,
           },
-          onStepFinish: async ({ usage }) => {
+          onStepEnd: async ({ usage }) => {
             requestTokens += usage.totalTokens ?? 0
             if (await recordTokenUsage(identity, usage.totalTokens)) {
               budgetExceeded = true
@@ -313,9 +315,11 @@ export default defineEventHandler(async event => {
           })
         }
 
-        // Keeps the start event: createUIMessageStream puts in it the id that onFinish persists (the same id on
+        // Keeps the start event: createUIMessageStream puts in it the id that onEnd persists (the same id on
         // continuations). Without it the client keeps an id of its own, and voting on the answer finds no message
-        const uiStream = result.toUIMessageStream({
+        const uiStream = toUIMessageStream({
+          stream: result.stream,
+          tools,
           sendReasoning: true,
           onError: error => {
             logger.error('Model stream error', error)
@@ -324,7 +328,11 @@ export default defineEventHandler(async event => {
         })
 
         let firstChunkTime: number | null = null
-        for await (const chunk of uiStream) {
+        const reader = uiStream.getReader()
+        while (true) {
+          const { done, value: chunk } = await reader.read()
+          if (done) break
+
           if (firstChunkTime === null) {
             firstChunkTime = performance.now()
             logger.info(
@@ -337,7 +345,7 @@ export default defineEventHandler(async event => {
           `Chat streaming completed in ${(performance.now() - streamStart).toFixed(2)}ms (${requestTokens} tokens)`
         )
       },
-      onFinish: async ({ responseMessage }) => {
+      onEnd: async ({ responseMessage }) => {
         try {
           if (responseMessage.parts.length > 0) {
             await saveAssistantMessage(db, id, responseMessage)

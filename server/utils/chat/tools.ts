@@ -1,5 +1,5 @@
 import { tool } from 'ai'
-import type { InferUITools, UIDataTypes, UIMessage } from 'ai'
+import type { InferUITools, ToolApprovalConfiguration, UIDataTypes, UIMessage } from 'ai'
 import { CHAT_TOOL } from '#shared/utils/constants/chat.constants'
 import type { CalendarToolContext } from '#shared/utils/tools/calendar'
 import {
@@ -58,7 +58,6 @@ export function buildChatTools(context: CalendarToolContext) {
       inputSchema: createMeetingInputSchema,
       outputSchema: createMeetingOutputSchema,
       strict: true,
-      needsApproval: true,
       execute: async input =>
         runTool(
           CHAT_TOOL.createMeeting,
@@ -134,6 +133,14 @@ export function buildChatTools(context: CalendarToolContext) {
 }
 
 export type ChatTools = ReturnType<typeof buildChatTools>
+
+/**
+ * Tools that only run after the visitor approves the call in the interface. Since AI SDK 7 the approval
+ * is an option of the `streamText` call, not of the tool: every call that gets these tools must get this too
+ */
+export const CHAT_TOOL_APPROVAL = {
+  [CHAT_TOOL.createMeeting]: 'user-approval',
+} as const satisfies ToolApprovalConfiguration<ChatTools, unknown>
 
 /** UI message typed with the agent tools, used to validate stored history against the tool schemas */
 export type ChatUIMessage = UIMessage<unknown, UIDataTypes, InferUITools<ChatTools>>

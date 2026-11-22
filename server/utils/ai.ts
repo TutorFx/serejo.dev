@@ -1,5 +1,5 @@
 import type { z } from 'zod/v4'
-import { createGoogleGenerativeAI } from '@ai-sdk/google'
+import { createGoogle } from '@ai-sdk/google'
 import { geminiEnvSchema } from './env.schemas'
 
 type AiConfig = Partial<z.infer<typeof geminiEnvSchema>>
@@ -11,7 +11,7 @@ export function useAi(runtimeConfig?: AiConfig) {
     apiKey: apiKeyInput,
   })
 
-  const google = createGoogleGenerativeAI({
+  const google = createGoogle({
     apiKey,
   })
 
