@@ -32,8 +32,7 @@ defineProps<CurriculumBody>()
       </h2>
       <ul class="flex flex-col gap-1 text-sm">
         <li v-for="group in skills" :key="group.title">
-          <span class="font-bold">{{ group.title }}</span
-          >: {{ group.items }}
+          <span class="font-bold">{{ group.title }}</span>: {{ group.items }}
         </li>
       </ul>
     </section>

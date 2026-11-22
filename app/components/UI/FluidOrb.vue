@@ -56,5 +56,5 @@ onBeforeUnmount(() => {
 </script>
 
 <template>
-  <div ref="canvasContainer" class="relative h-full w-full" />
+  <div ref="canvasContainer" class="relative size-full" />
 </template>

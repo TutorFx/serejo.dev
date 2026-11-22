@@ -40,20 +40,20 @@ useGsap(() => {
         </div>
         <AssetsVecLine class="absolute -bottom-[10vw] w-[100vw] md:-bottom-[30vw]" />
         <div class="absolute inset-0 blur-[75px]">
-          <div class="bg-base-100 absolute inset-x-[-10vh] top-[-10vh] h-[15vh]" />
-          <div class="bg-base-100 absolute inset-x-[-10vh] bottom-[-15vh] h-[15vh]" />
-          <div class="bg-base-100 absolute inset-y-[-10vh] left-[-10vh] w-[15vh]" />
-          <div class="bg-base-100 absolute inset-y-[-10vh] right-[-10vh] w-[15vh]" />
+          <div class="absolute inset-x-[-10vh] top-[-10vh] h-[15vh] bg-base-100" />
+          <div class="absolute inset-x-[-10vh] bottom-[-15vh] h-[15vh] bg-base-100" />
+          <div class="absolute inset-y-[-10vh] left-[-10vh] w-[15vh] bg-base-100" />
+          <div class="absolute inset-y-[-10vh] right-[-10vh] w-[15vh] bg-base-100" />
         </div>
         <div class="relative z-10 grid h-full items-center">
           <HeroText />
         </div>
       </div>
       <div class="relative">
-        <div class="bg-base-100 absolute inset-0 -inset-x-[100%] top-0 h-[200%] blur-3xl" />
-        <div class="bg-base-100 absolute inset-0 -inset-x-[100%] top-[10%] h-[200%] blur-3xl" />
-        <div class="bg-base-100 absolute inset-0 -inset-x-[100%] top-[20%] h-[200%] blur-3xl" />
-        <div class="border-base-300 relative border-t" />
+        <div class="absolute inset-0 -inset-x-[100%] top-0 h-[200%] bg-base-100 blur-3xl" />
+        <div class="absolute inset-0 -inset-x-[100%] top-[10%] h-[200%] bg-base-100 blur-3xl" />
+        <div class="absolute inset-0 -inset-x-[100%] top-[20%] h-[200%] bg-base-100 blur-3xl" />
+        <div class="relative border-t border-base-300" />
         <UIContainer class="relative">
           <!--
             sm:pr-24 keeps the bar clear of the fixed chat launcher (56px, 24px from the edge), which covered the end

@@ -7,7 +7,7 @@ const menuList = useMenu(NAVBAR_CONTENT)
 
 <template>
   <div
-    class="bg-base-100 text-base-content grid min-h-full grid-rows-[max-content_1fr_max-content]"
+    class="grid min-h-full grid-rows-[max-content_1fr_max-content] bg-base-100 text-base-content"
   >
     <UIHeadersCoreHeader :list="menuList" />
     <NuxtPage />

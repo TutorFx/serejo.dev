@@ -26,7 +26,7 @@ const { t } = useI18n()
       </div>
       <template #footer>
         <div class="grid grid-flow-col justify-between">
-          <div class="text-neutral-content grid items-center">
+          <div class="grid items-center text-neutral-content">
             {{ props.post.readingTimeString }}
           </div>
           <div>

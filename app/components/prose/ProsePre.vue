@@ -45,36 +45,15 @@ const { copy, copied } = useClipboard({ source: props.code })
 </script>
 
 <template>
-  <div class="bg-base-200 relative grid rounded-xl">
+  <div class="relative grid rounded-xl bg-base-200">
     <pre
-      class="
-      bg-base-300
-      [&::-webkit-scrollbar]:bg-base-300
-      [&::-webkit-scrollbar]:border-base-300
-      [&::-webkit-scrollbar-track]:bg-base-300
-      [&::-webkit-scrollbar-thumb]:border-base-300
-      [&::-webkit-scrollbar-thumb]:bg-base-100
-      relative
-
-      grid
-      overflow-x-scroll
-      rounded-t-xl
-      px-4
-
-      pt-6
-      [&::-webkit-scrollbar]:size-6
-
-      [&::-webkit-scrollbar]:border-b-10
-      [&::-webkit-scrollbar-thumb]:rounded-xl
-      [&::-webkit-scrollbar-thumb]:border-6
-      [&::-webkit-scrollbar-track]:rounded-xl
-      "
+      class="relative grid overflow-x-scroll rounded-t-xl bg-base-300 px-4 pt-6 [&::-webkit-scrollbar]:size-6 [&::-webkit-scrollbar]:border-b-10 [&::-webkit-scrollbar]:border-base-300 [&::-webkit-scrollbar]:bg-base-300 [&::-webkit-scrollbar-thumb]:rounded-xl [&::-webkit-scrollbar-thumb]:border-6 [&::-webkit-scrollbar-thumb]:border-base-300 [&::-webkit-scrollbar-thumb]:bg-base-100 [&::-webkit-scrollbar-track]:rounded-xl [&::-webkit-scrollbar-track]:bg-base-300"
       :class="$props.class"
     >
       <slot />
     </pre>
     <div
-      class="border-base-100 grid grid-flow-col items-center justify-between rounded-b-xl border-t-2 px-3 py-1"
+      class="grid grid-flow-col items-center justify-between rounded-b-xl border-t-2 border-base-100 px-3 py-1"
     >
       <div class="grid grid-flow-col items-center gap-3">
         <div v-if="icon" class="grid items-center">
@@ -85,7 +64,7 @@ const { copy, copied } = useClipboard({ source: props.code })
         </div>
       </div>
       <div
-        class="bg-base-300 border-base-100 grid h-11 w-11 cursor-pointer items-center justify-center rounded-lg border-2 p-3"
+        class="grid size-11 cursor-pointer items-center justify-center rounded-lg border-2 border-base-100 bg-base-300 p-3"
         @click="() => copy()"
       >
         <Icon v-if="!copied" name="line-md:clipboard" />

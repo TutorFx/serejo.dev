@@ -47,7 +47,7 @@ const items = computed<DropdownMenuItem[][]>(() => ([
       variant="ghost"
       size="sm"
       :square="collapsed"
-      class="data-[state=open]:bg-elevated cursor-pointer"
+      class="cursor-pointer data-[state=open]:bg-elevated"
       :ui="{
         trailingIcon: 'text-dimmed'
       }"

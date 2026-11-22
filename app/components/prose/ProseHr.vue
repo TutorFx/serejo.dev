@@ -1,3 +1,3 @@
 <template>
-  <div class="border-base-300 w-full border-b" />
+  <div class="w-full border-b border-base-300" />
 </template>

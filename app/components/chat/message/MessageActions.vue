@@ -80,7 +80,7 @@ function copy() {
         :locale="locale"
         hour="numeric"
         minute="2-digit"
-        class="text-muted mr-1.5 text-xs"
+        class="mr-1.5 text-xs text-muted"
       />
     </UTooltip>
   </template>

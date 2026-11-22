@@ -8,13 +8,13 @@ defineProps<{
 
 <template>
   <div
-    class="bg-base-100 text-base-content @container grid grid-cols-[max-content_max-content] justify-between gap-3 px-8 py-12"
+    class="@container grid grid-cols-[max-content_max-content] justify-between gap-3 bg-base-100 px-8 py-12 text-base-content"
   >
     <div class="grid">
       <div class="text-2xl font-black">
         {{ title }}
       </div>
-      <div v-if="profession" class="text-accent text-xl">
+      <div v-if="profession" class="text-xl text-accent">
         {{ profession }}
       </div>
     </div>
@@ -22,7 +22,7 @@ defineProps<{
       <div
         v-for="(i, key) in contact"
         :key
-        class="text-base-content grid grid-cols-[max-content_max-content] items-center justify-start gap-1"
+        class="grid grid-cols-[max-content_max-content] items-center justify-start gap-1 text-base-content"
       >
         <div class="uppercase">{{ i.key }}:</div>
         <div>

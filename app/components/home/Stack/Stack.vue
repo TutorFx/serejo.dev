@@ -32,21 +32,18 @@ const { t } = useI18n()
             <div class="mb-6 grid grid-cols-4 gap-12 max-md:justify-center">
               <div class="aspect-square p-2">
                 <NuxtImg
-                  class="h-full max-h-full w-full max-w-full"
+                  class="size-full max-h-full max-w-full"
                   src="/brand/stack/typescript.svg"
                 />
               </div>
               <div class="aspect-square">
-                <NuxtImg
-                  class="h-full max-h-full w-full max-w-full"
-                  src="/brand/stack/tailwind.svg"
-                />
+                <NuxtImg class="size-full max-h-full max-w-full" src="/brand/stack/tailwind.svg" />
               </div>
               <div class="aspect-square">
-                <NuxtImg class="h-full max-h-full w-full max-w-full" src="/brand/stack/nuxt.svg" />
+                <NuxtImg class="size-full max-h-full max-w-full" src="/brand/stack/nuxt.svg" />
               </div>
               <div class="aspect-square p-2">
-                <NuxtImg class="h-full max-h-full w-full max-w-full" src="/brand/stack/vue.svg" />
+                <NuxtImg class="size-full max-h-full max-w-full" src="/brand/stack/vue.svg" />
               </div>
             </div>
             <div class="mb-6 max-w-md text-lg md:text-xl">

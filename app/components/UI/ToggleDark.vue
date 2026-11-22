@@ -23,7 +23,7 @@ function toggleDark() {
 <template>
   <button
     type="button"
-    class="focus-visible:outline-primary grid items-center justify-center rounded-full focus-visible:outline-2"
+    class="grid items-center justify-center rounded-full focus-visible:outline-2 focus-visible:outline-primary"
     :aria-label="t('settings.dark_mode')"
     :aria-pressed="mounted ? color.value === 'dark' : undefined"
     @click="toggleDark"

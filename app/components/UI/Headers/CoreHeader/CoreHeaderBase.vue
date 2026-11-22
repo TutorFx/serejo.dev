@@ -19,11 +19,11 @@ const LocalePathFunction = useLocalePath()
       Gabriel S.
     </NuxtLink>
     <div class="grid grid-flow-col items-center justify-center gap-3">
-      <div class="hover:bg-base-300 rounded-full p-0.5">
+      <div class="rounded-full p-0.5 hover:bg-base-300">
         <UIToggleDark />
       </div>
       <UIPopover class="max-md:hidden">
-        <div class="hover:bg-base-300 grid items-center rounded-full p-1">
+        <div class="grid items-center rounded-full p-1 hover:bg-base-300">
           <UILocaleIcon size="28" :country-code="locale" />
         </div>
         <template #content>

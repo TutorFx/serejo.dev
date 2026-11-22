@@ -21,7 +21,7 @@ const { t } = useI18n()
           <div class="line-clamp-2 text-xl xl:text-3xl">
             {{ props.experience.org }}
           </div>
-          <div class="text-neutral-content grid grid-flow-col items-center justify-start gap-3">
+          <div class="grid grid-flow-col items-center justify-start gap-3 text-neutral-content">
             <Icon name="line-md:calendar" />
             <div class="grid">
               <div class="text-sm">
@@ -43,7 +43,7 @@ const { t } = useI18n()
       </div>
       <template #footer>
         <div class="grid grid-flow-col justify-between">
-          <div class="text-neutral-content grid items-center">
+          <div class="grid items-center text-neutral-content">
             {{ props.experience.readingTimeString }}
           </div>
           <div>

@@ -31,7 +31,7 @@ const style = computed(() => {
         class="fixed z-50"
       >
         <div class="h-2" />
-        <div class="bg-base-300 text-base-content rounded-md p-3">
+        <div class="rounded-md bg-base-300 p-3 text-base-content">
           <slot name="content" />
         </div>
       </div>

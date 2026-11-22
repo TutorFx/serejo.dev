@@ -39,12 +39,12 @@ const formatDateTime = (isoString?: string) => {
     <UCard v-if="invocation.state === 'approval-requested'" class="my-5">
       <template #header>
         <div class="flex items-center gap-3">
-          <UIcon name="i-lucide-calendar-plus" class="text-primary size-6 shrink-0" />
+          <UIcon name="i-lucide-calendar-plus" class="size-6 shrink-0 text-primary" />
           <div>
-            <h3 class="text-primary text-base leading-tight font-semibold">
+            <h3 class="text-base leading-tight font-semibold text-primary">
               {{ t('chat.tool_meet.confirm') }}
             </h3>
-            <p class="text-muted text-sm">
+            <p class="text-sm text-muted">
               {{ t('chat.tool_meet.description') }}
             </p>
           </div>
@@ -126,12 +126,12 @@ const formatDateTime = (isoString?: string) => {
     <UCard v-else-if="invocation.state === 'output-available'" class="my-5">
       <template #header>
         <div class="flex items-center gap-3">
-          <UIcon name="i-lucide-check-circle-2" class="text-success size-6 shrink-0" />
+          <UIcon name="i-lucide-check-circle-2" class="size-6 shrink-0 text-success" />
           <div>
             <h3 class="text-foreground text-base leading-tight font-semibold">
               {{ t('chat.tool_meet.scheduled') }}
             </h3>
-            <p class="text-muted text-sm">
+            <p class="text-sm text-muted">
               {{ invocation.output?.summary }}
             </p>
           </div>
@@ -168,8 +168,8 @@ const formatDateTime = (isoString?: string) => {
 
     <UCard v-else class="my-5">
       <div class="flex flex-col items-center justify-center py-6">
-        <UIcon name="i-lucide-loader-circle" class="text-primary mb-3 size-8 animate-spin" />
-        <div class="text-muted text-sm font-medium">
+        <UIcon name="i-lucide-loader-circle" class="mb-3 size-8 animate-spin text-primary" />
+        <div class="text-sm font-medium text-muted">
           {{ t('chat.tool_meet.loading') }}
         </div>
       </div>

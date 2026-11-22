@@ -16,10 +16,10 @@ const menuState = ref(false)
     <UIContainer>
       <UIHeadersCoreHeaderBase v-model="menuState" :list />
       <teleport to="body">
-        <div v-if="menuState" class="bg-base-100 text-base-content absolute inset-0 z-50">
+        <div v-if="menuState" class="absolute inset-0 z-50 bg-base-100 text-base-content">
           <UIContainer class="grid h-full grid-rows-[max-content_max-content_1fr]">
             <UIHeadersCoreHeaderBase v-model="menuState" :list />
-            <div class="border-base-300 border-b" />
+            <div class="border-b border-base-300" />
             <div class="grid items-center">
               <div class="grid">
                 <div>

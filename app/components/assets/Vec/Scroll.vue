@@ -50,7 +50,7 @@ onUnmounted(() => {
     :class="{ 'animate-[spin_10s_linear_infinite] motion-reduce:animate-none': !isMounted }"
   >
     <div class="absolute">
-      <AssetsVecCircularText class="text-primary translate-x-[-50%] translate-y-[-50%] scale-125" />
+      <AssetsVecCircularText class="translate-[-50%] scale-125 text-primary" />
     </div>
   </div>
 </template>

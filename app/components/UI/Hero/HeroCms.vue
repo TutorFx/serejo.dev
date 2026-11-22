@@ -13,7 +13,7 @@ const { t } = useI18n()
 
 <template>
   <div
-    class="bg-base-200 group relative grid min-h-42 grid-rows-[max-content_1fr_max-content] overflow-hidden rounded-2xl"
+    class="group relative grid min-h-42 grid-rows-[max-content_1fr_max-content] overflow-hidden rounded-2xl bg-base-200"
   >
     <div v-if="props.backTo" class="absolute top-0 left-0 p-4">
       <UIButton

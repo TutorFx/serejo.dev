@@ -22,17 +22,17 @@ const { t } = useI18n()
     </div>
 
     <div class="absolute inset-0 blur-[75px]">
-      <div class="bg-base-100 absolute -inset-x-[10vh] -top-[10vh] h-[15vh]" />
-      <div class="bg-base-100 absolute -inset-x-[10vh] -bottom-[15vh] h-[15vh]" />
-      <div class="bg-base-100 absolute -inset-y-[10vh] -left-[10vh] w-[15vh]" />
-      <div class="bg-base-100 absolute -inset-y-[10vh] -right-[10vh] w-[15vh]" />
+      <div class="absolute -inset-x-[10vh] -top-[10vh] h-[15vh] bg-base-100" />
+      <div class="absolute -inset-x-[10vh] -bottom-[15vh] h-[15vh] bg-base-100" />
+      <div class="absolute -inset-y-[10vh] -left-[10vh] w-[15vh] bg-base-100" />
+      <div class="absolute -inset-y-[10vh] -right-[10vh] w-[15vh] bg-base-100" />
     </div>
 
     <UIContainer class="relative">
       <div class="absolute inset-0 grid">
         <div class="relative">
           <AssetsVecLine
-            class="absolute top-[50%] left-[50%] h-[150dvh] w-[150dvw] -translate-x-[50%] -translate-y-[50%] rotate-180 md:h-screen md:w-screen md:scale-[99%]"
+            class="absolute top-[50%] left-[50%] h-[150dvh] w-[150dvw] -translate-[50%] rotate-180 md:h-screen md:w-screen md:scale-[99%]"
           />
         </div>
       </div>

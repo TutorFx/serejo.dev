@@ -43,7 +43,7 @@ const items = computed<DropdownMenuItem[][]>(() => [[
 </script>
 
 <template>
-  <span v-if="!isOwner" class="text-highlighted block min-w-0 truncate px-2 text-sm font-medium">
+  <span v-if="!isOwner" class="block min-w-0 truncate px-2 text-sm font-medium text-highlighted">
     {{ displayTitle }}
   </span>
 
@@ -54,7 +54,7 @@ const items = computed<DropdownMenuItem[][]>(() => [[
       size="sm"
       trailing-icon="i-lucide-chevron-down"
       :label="displayTitle"
-      :class="['group data-[state=open]:bg-elevated max-w-full min-w-0', { 'text-muted': !title }]"
+      :class="['group max-w-full min-w-0 data-[state=open]:bg-elevated', { 'text-muted': !title }]"
       :ui="{
         trailingIcon: 'text-dimmed shrink-0 group-data-[state=open]:rotate-180 transition-transform duration-200'
       }"

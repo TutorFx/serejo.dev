@@ -25,12 +25,12 @@ const formatDate = (isoString: string) => {
     <UCard v-if="invocation.state === 'output-available'" class="my-5">
       <template #header>
         <div class="flex items-center gap-3">
-          <UIcon name="i-lucide-calendar-days" class="text-primary size-6 shrink-0" />
+          <UIcon name="i-lucide-calendar-days" class="size-6 shrink-0 text-primary" />
           <div>
             <h3 class="text-foreground text-base leading-tight font-semibold">
               {{ t('chat.tool_calendar.availability') }}
             </h3>
-            <p class="text-muted text-sm">
+            <p class="text-sm text-muted">
               {{ formatDate(invocation.input.date) }}
             </p>
           </div>
@@ -41,7 +41,7 @@ const formatDate = (isoString: string) => {
         <!-- Horários Livres -->
         <div v-if="invocation.output?.free?.length" class="flex flex-col gap-3">
           <div class="text-foreground flex items-center gap-2 text-sm font-medium">
-            <UIcon name="i-lucide-check-circle-2" class="text-success size-5 shrink-0" />
+            <UIcon name="i-lucide-check-circle-2" class="size-5 shrink-0 text-success" />
             {{ t('chat.tool_calendar.free_slots') }}
           </div>
           <div class="flex flex-wrap gap-2">
@@ -70,7 +70,7 @@ const formatDate = (isoString: string) => {
         <!-- Horários Ocupados -->
         <div v-if="invocation.output?.busy?.length" class="flex flex-col gap-3">
           <div class="text-foreground flex items-center gap-2 text-sm font-medium">
-            <UIcon name="i-lucide-x-circle" class="text-error size-5 shrink-0" />
+            <UIcon name="i-lucide-x-circle" class="size-5 shrink-0 text-error" />
             {{ t('chat.tool_calendar.busy_slots') }}
           </div>
           <div class="flex flex-wrap gap-2">
@@ -82,7 +82,7 @@ const formatDate = (isoString: string) => {
               size="md"
               class="w-full justify-center @2xs:w-auto"
             >
-              <div class="bg-error mr-2 h-2 w-2 shrink-0 rounded-full" />
+              <div class="mr-2 size-2 shrink-0 rounded-full bg-error" />
               {{ formatTime(slot.start) }} - {{ formatTime(slot.end) }}
             </UBadge>
           </div>
@@ -93,7 +93,7 @@ const formatDate = (isoString: string) => {
         v-if="invocation.output?.overlap !== undefined && invocation.output?.overlap !== 0"
         #footer
       >
-        <div class="text-muted flex items-center gap-2 text-xs @sm:text-sm">
+        <div class="flex items-center gap-2 text-xs text-muted @sm:text-sm">
           <UIcon name="i-lucide-globe" class="size-5 shrink-0" />
           <div>
             <span class="font-medium">{{ t('chat.tool_calendar.timezone_difference') }}</span>
@@ -115,8 +115,8 @@ const formatDate = (isoString: string) => {
 
     <UCard v-else class="my-5">
       <div class="flex flex-col items-center justify-center py-6">
-        <UIcon name="i-lucide-loader-circle" class="text-primary mb-3 size-8 animate-spin" />
-        <div class="text-muted text-sm font-medium">
+        <UIcon name="i-lucide-loader-circle" class="mb-3 size-8 animate-spin text-primary" />
+        <div class="text-sm font-medium text-muted">
           {{ t('chat.tool_calendar.loading') }}
         </div>
       </div>

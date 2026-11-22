@@ -101,7 +101,7 @@ const quickChats = QUICK_CHATS
   >
     <!-- Greeting & Input -->
     <div class="flex flex-col gap-3">
-      <p class="text-highlighted text-2xl font-bold">
+      <p class="text-2xl font-bold text-highlighted">
         {{ greeting }}
       </p>
 
@@ -131,7 +131,7 @@ const quickChats = QUICK_CHATS
           size="xs"
           color="neutral"
           variant="outline"
-          class="hover:bg-accented/50 cursor-pointer rounded-full"
+          class="cursor-pointer rounded-full hover:bg-accented/50"
           @click="createChat(t(quickChat.key))"
         />
       </div>
@@ -140,15 +140,15 @@ const quickChats = QUICK_CHATS
     <!-- History / Past chats -->
     <div v-if="groups?.length" class="flex flex-col gap-3 pt-2">
       <h3
-        class="text-dimmed flex items-center justify-between px-1 text-xs font-semibold tracking-wider uppercase"
+        class="flex items-center justify-between px-1 text-xs font-semibold tracking-wider text-dimmed uppercase"
       >
         <span>{{ t('chat.ui.recent_conversations') }}</span>
-        <span class="text-muted text-xs font-normal lowercase">({{ chats?.length ?? 0 }})</span>
+        <span class="text-xs font-normal text-muted lowercase">({{ chats?.length ?? 0 }})</span>
       </h3>
 
       <div class="flex flex-col gap-4">
         <div v-for="group in groups" :key="group.id" class="flex flex-col gap-1">
-          <div class="text-dimmed px-2 py-0.5 text-[11px] font-medium">
+          <div class="px-2 py-0.5 text-[11px] font-medium text-dimmed">
             {{ group.label }}
           </div>
 
@@ -156,16 +156,16 @@ const quickChats = QUICK_CHATS
             <div
               v-for="chat in group.items"
               :key="chat.id"
-              class="group hover:bg-elevated/50 flex items-center justify-between gap-2 rounded-xl pr-1 text-sm transition-colors"
+              class="group flex items-center justify-between gap-2 rounded-xl pr-1 text-sm transition-colors hover:bg-elevated/50"
             >
               <button
                 type="button"
-                class="outline-inverted/25 flex min-w-0 flex-1 cursor-pointer items-center gap-2.5 rounded-xl py-2 pl-3 text-left focus-visible:outline-3"
+                class="flex min-w-0 flex-1 cursor-pointer items-center gap-2.5 rounded-xl py-2 pl-3 text-left outline-inverted/25 focus-visible:outline-3"
                 @click="emit('openChat', chat.id)"
               >
                 <UIcon
                   name="i-lucide-message-circle"
-                  class="text-dimmed group-hover:text-highlighted size-4 shrink-0 transition-colors"
+                  class="size-4 shrink-0 text-dimmed transition-colors group-hover:text-highlighted"
                 />
                 <span
                   class="truncate"

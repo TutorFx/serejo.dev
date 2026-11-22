@@ -64,13 +64,13 @@ function getCollectionColor(col?: string): 'primary' | 'neutral' | 'success' | '
       class="my-2"
     >
       <div
-        class="border-default bg-elevated/30 @container max-h-64 overflow-y-auto rounded-md border p-1.5 text-xs"
+        class="@container max-h-64 overflow-y-auto rounded-md border border-default bg-elevated/30 p-1.5 text-xs"
       >
         <div v-if="results.length" class="grid grid-cols-1 gap-1.5 @lg:grid-cols-2">
           <div
             v-for="(item, idx) in results"
             :key="`${item.documentId}-${item.index}-${idx}`"
-            class="hover:bg-elevated/60 flex flex-col justify-between gap-1.5 rounded-md p-2 transition-colors @xs:p-2.5"
+            class="flex flex-col justify-between gap-1.5 rounded-md p-2 transition-colors hover:bg-elevated/60 @xs:p-2.5"
           >
             <div class="flex items-center justify-between gap-2">
               <div class="flex min-w-0 items-center gap-1.5 @xs:gap-2">
@@ -86,7 +86,7 @@ function getCollectionColor(col?: string): 'primary' | 'neutral' | 'success' | '
                     {{ t(`chat.tool_search.collections.${item.collection}`) || item.collection }}
                   </span>
                 </UBadge>
-                <span class="text-muted truncate font-mono text-[11px] @xs:text-xs">
+                <span class="truncate font-mono text-[11px] text-muted @xs:text-xs">
                   {{ formatDocumentTitle(item.documentId) }}
                 </span>
               </div>
@@ -106,14 +106,14 @@ function getCollectionColor(col?: string): 'primary' | 'neutral' | 'success' | '
             </div>
 
             <p
-              class="text-dimmed line-clamp-2 text-[11px] leading-relaxed @xs:text-xs @sm:line-clamp-3"
+              class="line-clamp-2 text-[11px] leading-relaxed text-dimmed @xs:text-xs @sm:line-clamp-3"
             >
               {{ item.content }}
             </p>
           </div>
         </div>
 
-        <div v-else class="text-muted p-2 text-center text-xs">
+        <div v-else class="p-2 text-center text-xs text-muted">
           {{ t('chat.tool_search.no_results') }}
         </div>
       </div>
@@ -121,14 +121,14 @@ function getCollectionColor(col?: string): 'primary' | 'neutral' | 'success' | '
 
     <div
       v-else-if="invocation.state === 'output-error'"
-      class="text-error my-2 flex items-center gap-2 text-xs"
+      class="my-2 flex items-center gap-2 text-xs text-error"
     >
       <UIcon name="i-lucide-alert-circle" class="size-4 shrink-0" />
       <span>{{ t('chat.tool_search.error') }}</span>
     </div>
 
-    <div v-else class="text-muted my-2 flex min-w-0 items-center gap-2 text-xs">
-      <ChatIndicator class="text-primary shrink-0" />
+    <div v-else class="my-2 flex min-w-0 items-center gap-2 text-xs text-muted">
+      <ChatIndicator class="shrink-0 text-primary" />
       <UChatShimmer :text="t('chat.tool_search.loading')" class="shrink-0 text-xs font-medium" />
       <span v-if="query" class="min-w-0 truncate font-mono opacity-70"> “{{ query }}” </span>
     </div>
