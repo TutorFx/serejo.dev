@@ -20,55 +20,28 @@ export default defineEventHandler(async event => {
     )
     .all()
   // The same slug may exist in several locales: prefer the requested one
-  const post =
-    posts.find(item => getLocaleFromPath(item.id, LOCALE_KEYS) === requestQuery.data.lang)
-    ?? posts[0]
+  const item = posts.find(post => post.locale === requestQuery.data.lang) ?? posts[0]
 
-  if (!post) throw createError({ statusCode: 404, statusMessage: 'Post not found' })
+  if (!item) throw createError({ statusCode: 404, statusMessage: 'Post not found' })
 
-  const parsed = blogSchemaWithBody.safeParse(post)
-
-  if (!parsed.success)
-    throw createError({
-      statusCode: 500,
-      statusMessage: 'Invalid post content',
-      data: parsed.error.issues,
-    })
-
-  const { title, meta, stem, body, slug, createdAt } = parsed.data
-  const { locale, readingTimeInSeconds, reducedBody } = meta
-
-  const readingTimeString = getExtenseShift(readingTimeInSeconds, locale)
-  const path = processCmsPath(locale, stem)
+  const post = toBlogPostDto(item, t)
+  const { locale, stem, path } = post
 
   // Same file stem in each locale, e.g. blog/en-US/hello-world and blog/pt-BR/hello-world
   const translations = await queryCollection(event, 'blog')
     .where(
       'stem',
       'IN',
-      LOCALES.map(item => stem.replace(`/${locale}/`, `/${item}/`))
+      LOCALES.map(translationLocale => stem.replace(`/${locale}/`, `/${translationLocale}/`))
     )
-    .select('stem', 'slug')
+    .select('locale', 'slug')
     .all()
 
-  const alternates: Partial<Record<LocaleKey, string>> = {}
+  const alternates: BlogPostDto['alternates'] = {}
 
   for (const translation of translations) {
-    const translationLocale = getLocaleFromPath(translation.stem, LOCALE_KEYS)
-
-    if (translationLocale) alternates[translationLocale] = translation.slug || path
+    alternates[translation.locale] = translation.slug || path
   }
 
-  return {
-    title,
-    locale,
-    readingTimeInSeconds,
-    readingTimeString: t('time.reading_time', { time: readingTimeString }, { locale }),
-    reducedBody,
-    path,
-    slug,
-    body,
-    createdAt,
-    alternates,
-  } satisfies BlogPostDto
+  return { ...post, alternates } satisfies BlogPostDto
 })

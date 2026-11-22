@@ -1,12 +1,6 @@
-import type { MinimarkNode, MinimarkTree, PageCollections } from '@nuxt/content'
+import type { Collections, MinimarkNode, MinimarkTree, PageCollections } from '@nuxt/content'
 import type { ContentDocument } from './cms'
 import { CMS_ROUTE_LIST, LOCALE_KEYS } from './cms.constants'
-import {
-  blogSchemaWithBody,
-  educationWithBodySchema,
-  historyWithBodySchema,
-  projectSchema,
-} from './cms.schemas'
 
 export function traverseNodes(nodes: MinimarkNode[]): string {
   let text = ''
@@ -26,6 +20,10 @@ export function traverseNodes(nodes: MinimarkNode[]): string {
 export function extractTreeText(tree: MinimarkTree): string {
   const textoCompleto = traverseNodes(tree.value)
   return textoCompleto.trim().replace(/\s+/g, ' ')
+}
+
+function toIsoDay(date: string): string {
+  return new Date(date).toISOString().split('T')[0] ?? ''
 }
 
 export function textToSeconds(text: string): number {
@@ -103,114 +101,82 @@ export function extractDocumentContent(
     return 'content' in doc && typeof doc.content === 'string' ? doc.content : ''
   }
 
+  // The collection name tells which generated type the document has (modules/content-validation.ts
+  // checks every file against the schema of its collection)
   if (collectionName === 'history') {
-    const parsed = historyWithBodySchema.safeParse(doc)
-    if (parsed.success) {
-      const { title, org, location, start, end, delivered, body } = parsed.data
-      const isCurrent = !end
-      const status = isCurrent
-        ? 'CURRENT ROLE / ACTIVE POSITION (Present)'
-        : 'Past Experience / Completed'
+    const { title, org, location, start, end, delivered, body } = doc as Collections['history']
+    const status = end ? 'Past Experience / Completed' : 'CURRENT ROLE / ACTIVE POSITION (Present)'
 
-      const startStr = start ? new Date(start).toISOString().split('T')[0] : ''
-      const endStr = end ? new Date(end).toISOString().split('T')[0] : 'Present'
+    const parts: string[] = [
+      `# [Professional Experience] ${title} at ${org}`,
+      `- Company/Organization: ${org}`,
+      `- Role/Position: ${title}`,
+      `- Location: ${location}`,
+      `- Period: ${toIsoDay(start)} to ${end ? toIsoDay(end) : 'Present'}`,
+      `- Status: ${status}`,
+    ]
 
-      const parts: string[] = [
-        `# [Professional Experience] ${title} at ${org}`,
-        `- Company/Organization: ${org}`,
-        `- Role/Position: ${title}`,
-        `- Location: ${location}`,
-        `- Period: ${startStr} to ${endStr}`,
-        `- Status: ${status}`,
-      ]
-
-      if (delivered && delivered.length > 0) {
-        parts.push(
-          `- Key Deliverables & Achievements:\n${delivered.map(d => `  * ${d}`).join('\n')}`
-        )
-      }
-
-      if (body) {
-        const bodyText = typeof body === 'string' ? body : extractTreeText(body as MinimarkTree)
-        if (bodyText) {
-          parts.push(`\n## Experience Details\n${bodyText}`)
-        }
-      }
-
-      return parts.join('\n')
+    if (delivered && delivered.length > 0) {
+      parts.push(`- Key Deliverables & Achievements:\n${delivered.map(d => `  * ${d}`).join('\n')}`)
     }
+
+    const bodyText = extractTreeText(body)
+    if (bodyText) {
+      parts.push(`\n## Experience Details\n${bodyText}`)
+    }
+
+    return parts.join('\n')
   }
 
   if (collectionName === 'education') {
-    const parsed = educationWithBodySchema.safeParse(doc)
-    if (parsed.success) {
-      const { title, org, start, end, body } = parsed.data
-      const isCurrent = end ? new Date(end).getTime() > Date.now() : true
-      const status = isCurrent ? 'In Progress' : 'Completed'
-      const startStr = start ? new Date(start).toISOString().split('T')[0] : ''
-      const endStr = end ? new Date(end).toISOString().split('T')[0] : 'Present'
+    const { title, org, start, end, body } = doc as Collections['education']
+    const isCurrent = end ? new Date(end).getTime() > Date.now() : true
 
-      const parts: string[] = [
-        `# [Academic Education] ${title} - ${org}`,
-        `- Institution: ${org}`,
-        `- Degree / Program: ${title}`,
-        `- Period: ${startStr} to ${endStr}`,
-        `- Status: ${status}`,
-      ]
+    const parts: string[] = [
+      `# [Academic Education] ${title} - ${org}`,
+      `- Institution: ${org}`,
+      `- Degree / Program: ${title}`,
+      `- Period: ${toIsoDay(start)} to ${end ? toIsoDay(end) : 'Present'}`,
+      `- Status: ${isCurrent ? 'In Progress' : 'Completed'}`,
+    ]
 
-      if (body) {
-        const bodyText = typeof body === 'string' ? body : extractTreeText(body as MinimarkTree)
-        if (bodyText) {
-          parts.push(`\n## Description\n${bodyText}`)
-        }
-      }
-
-      return parts.join('\n')
+    const bodyText = extractTreeText(body)
+    if (bodyText) {
+      parts.push(`\n## Description\n${bodyText}`)
     }
+
+    return parts.join('\n')
   }
 
   if (collectionName === 'blog') {
-    const parsed = blogSchemaWithBody.safeParse(doc)
-    if (parsed.success) {
-      const { title, createdAt, body } = parsed.data
-      const createdStr = createdAt ? new Date(createdAt).toISOString().split('T')[0] : ''
-      const parts: string[] = [`# [Blog Post] ${title}`, `- Publication Date: ${createdStr}`]
+    const { title, createdAt, description, body } = doc as Collections['blog']
+    const parts: string[] = [`# [Blog Post] ${title}`, `- Publication Date: ${toIsoDay(createdAt)}`]
 
-      if ('description' in doc && typeof doc.description === 'string' && doc.description) {
-        parts.push(`- Summary: ${doc.description}`)
-      }
-
-      if (body) {
-        const bodyText = typeof body === 'string' ? body : extractTreeText(body as MinimarkTree)
-        if (bodyText) {
-          parts.push(`\n${bodyText}`)
-        }
-      }
-
-      return parts.join('\n')
+    if (description) {
+      parts.push(`- Summary: ${description}`)
     }
+
+    const bodyText = extractTreeText(body)
+    if (bodyText) {
+      parts.push(`\n${bodyText}`)
+    }
+
+    return parts.join('\n')
   }
 
   if (collectionName === 'projects') {
-    const parsed = projectSchema.safeParse(doc)
-    const title = ('title' in doc && typeof doc.title === 'string' && doc.title) || 'Project'
-    const parts: string[] = [`# [Project] ${title}`]
+    const { title, url, github, description, body } = doc as Collections['projects']
+    const parts: string[] = [`# [Project] ${title || 'Project'}`, `- Project URL: ${url}`]
 
-    if (parsed.success) {
-      if (parsed.data.url) parts.push(`- Project URL: ${parsed.data.url}`)
-      if (parsed.data.github) parts.push(`- GitHub Repository: ${parsed.data.github}`)
+    if (github) parts.push(`- GitHub Repository: ${github}`)
+
+    if (description) {
+      parts.push(description)
     }
 
-    if ('description' in doc && typeof doc.description === 'string' && doc.description) {
-      parts.push(doc.description)
-    }
-
-    if ('body' in doc && doc.body) {
-      const bodyText =
-        typeof doc.body === 'string' ? doc.body : extractTreeText(doc.body as MinimarkTree)
-      if (bodyText) {
-        parts.push(`\n${bodyText}`)
-      }
+    const bodyText = extractTreeText(body)
+    if (bodyText) {
+      parts.push(`\n${bodyText}`)
     }
 
     return parts.join('\n')

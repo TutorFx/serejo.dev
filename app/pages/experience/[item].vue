@@ -9,7 +9,7 @@ defineI18nRoute({
 const route = useRoute()
 const { locale } = useI18n()
 
-const { data, error } = await useFetch('/api/experience', {
+const { data, error } = await useFetch<ExperienceDto>('/api/experience', {
   query: {
     lang: locale.value,
     path: 'item' in route.params ? route.params.item : '',
@@ -39,5 +39,5 @@ defineOgImage('CmsThumbnail.takumi', {
 </script>
 
 <template>
-  <CmsExperience v-if="data" v-bind="data" />
+  <CmsExperience v-if="data" :experience="data" />
 </template>

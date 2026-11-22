@@ -1,7 +1,7 @@
 <script lang="ts">
-import type { BlogPostsDto } from '~~/shared/utils/dto/cms.dto'
-
-export type BlogPostCardProps = BlogPostsDto
+export interface BlogPostCardProps {
+  post: BlogPostsDto
+}
 </script>
 
 <script setup lang="ts">
@@ -17,17 +17,17 @@ const { t } = useI18n()
       :ui="{ content: 'grid items-center', header: 'text-lg' }"
     >
       <template #header>
-        {{ title }}
+        {{ props.post.title }}
       </template>
       <div>
         <div class="line-clamp-3 font-light text-balance">
-          {{ props.reducedBody }}
+          {{ props.post.reducedBody }}
         </div>
       </div>
       <template #footer>
         <div class="grid grid-flow-col justify-between">
           <div class="text-neutral-content grid items-center">
-            {{ props.readingTimeString }}
+            {{ props.post.readingTimeString }}
           </div>
           <div>
             <UIButton variant="link">

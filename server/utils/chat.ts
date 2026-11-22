@@ -1,7 +1,6 @@
 import type { H3Event } from 'h3'
 import { queryCollection } from '@nuxt/content/server'
 import enUS from '~~/i18n/locales/en-US'
-import { educationSchema, historySchema } from '~~/shared/utils/cms/cms.schemas'
 
 export async function getResumeContext(event?: H3Event): Promise<string> {
   const enLocale = await enUS('en-US')
@@ -16,20 +15,13 @@ export async function getResumeContext(event?: H3Event): Promise<string> {
       .order('start', 'DESC')
       .all()
 
-    const formattedExp = historyDocs
-      .map(doc => {
-        const parsed = historySchema.safeParse(doc)
-        if (!parsed.success) {
-          return null
-        }
-        const { title, org, start, end, location } = parsed.data
-        const startYear = start ? new Date(start).getFullYear() : ''
-        const endYear = end ? new Date(end).getFullYear() : 'Present'
-        // The CV gives the current role its planned end date; it stays current until that date
-        const isCurrent = !end || end > new Date()
-        return `- ${title} at ${org} (${startYear} - ${endYear}, ${location}) ${isCurrent ? '[CURRENT ROLE / ACTIVE]' : '[PAST ROLE]'}`
-      })
-      .filter(Boolean)
+    const formattedExp = historyDocs.map(({ title, org, start, end, location }) => {
+      const startYear = new Date(start).getFullYear()
+      const endYear = end ? new Date(end).getFullYear() : 'Present'
+      // The CV gives the current role its planned end date; it stays current until that date
+      const isCurrent = !end || new Date(end) > new Date()
+      return `- ${title} at ${org} (${startYear} - ${endYear}, ${location}) ${isCurrent ? '[CURRENT ROLE / ACTIVE]' : '[PAST ROLE]'}`
+    })
 
     experiencesText = formattedExp.join('\n')
   } catch {
@@ -42,18 +34,11 @@ export async function getResumeContext(event?: H3Event): Promise<string> {
       .order('end', 'DESC')
       .all()
 
-    const formattedEdu = educationDocs
-      .map(doc => {
-        const parsed = educationSchema.safeParse(doc)
-        if (!parsed.success) {
-          return null
-        }
-        const { title, org, start, end } = parsed.data
-        const startYear = start ? new Date(start).getFullYear() : ''
-        const endYear = end ? new Date(end).getFullYear() : 'Present'
-        return `- ${title} — ${org} (${startYear} - ${endYear})`
-      })
-      .filter(Boolean)
+    const formattedEdu = educationDocs.map(({ title, org, start, end }) => {
+      const startYear = new Date(start).getFullYear()
+      const endYear = end ? new Date(end).getFullYear() : 'Present'
+      return `- ${title} — ${org} (${startYear} - ${endYear})`
+    })
 
     educationText = formattedEdu.join('\n')
   } catch {

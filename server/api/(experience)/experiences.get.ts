@@ -13,42 +13,19 @@ export default defineEventHandler(async event => {
     })
   }
 
+  const { lang, includeBody } = query.data
+
   const experiences = await queryCollection(event, 'history')
-    .where('id', 'LIKE', `%/${query.data.lang || LOCALE_KEYS.EN_US}/%`)
+    .where('id', 'LIKE', `%/${lang || LOCALE_KEYS.EN_US}/%`)
     .order('start', 'DESC')
     .all()
 
-  return (
-    (experiences
-      ?.map(item => {
-        const hasBody = query.data?.includeBody === true
+  return experiences.map(item => {
+    const experience = toExperienceDto(item, t)
 
-        const { data } = historyWithBodySchema.safeParse(item)
-
-        if (!data) return null
-
-        const { title, start, end, location, meta, org, stem, body, image, delivered } = data
-        const { locale, readingTimeInSeconds, reducedBody } = meta
-
-        const readingTimeString = getExtenseShift(readingTimeInSeconds, locale)
-        const path = processCmsPath(locale, stem)
-
-        return {
-          title,
-          org,
-          image,
-          start: formatCardDate(start, locale),
-          end: end ? formatCardDate(end, locale) : t('time.the_moment', {}, { locale }),
-          location,
-          locale,
-          readingTimeInSeconds,
-          readingTimeString: t('time.reading_time', { time: readingTimeString }, { locale }),
-          reducedBody,
-          path,
-          body: hasBody ? body : null,
-          delivered,
-        }
-      })
-      .filter(item => item !== null) satisfies ExperiencesDto[]) ?? []
-  )
+    return {
+      ...experience,
+      body: includeBody ? experience.body : null,
+    } satisfies ExperiencesDto
+  })
 })

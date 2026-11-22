@@ -16,7 +16,7 @@ const { data: posts } = useFetch<BlogPostsDto[]>('/api/posts', {
       :key
       :to="localePath({ name: 'post-item', params: { item: post.slug || post.path } })"
     >
-      <CmsBlogPostCard v-if="post" v-bind="post" />
+      <CmsBlogPostCard v-if="post" :post />
     </NuxtLink>
   </div>
 </template>

@@ -14,7 +14,7 @@ const { locale } = useI18n()
 
 const routeItem = 'item' in route.params ? route.params.item : ''
 
-const { data, error } = await useFetch('/api/post', {
+const { data, error } = await useFetch<BlogPostDto>('/api/post', {
   query: {
     lang: locale.value,
     path: routeItem,
@@ -63,5 +63,5 @@ defineOgImage('CmsThumbnail.takumi', {
 </script>
 
 <template>
-  <CmsBlogPost v-if="data" v-bind="{ ...data, createdAt: new Date(data.createdAt) }" />
+  <CmsBlogPost v-if="data" :post="data" />
 </template>

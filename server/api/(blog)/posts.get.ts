@@ -18,30 +18,12 @@ export default defineEventHandler(async event => {
     .order('createdAt', 'DESC')
     .all()
 
-  return (
-    posts
-      ?.map(item => {
-        const { data } = blogSchema.safeParse(item)
+  return posts.map(item => {
+    const { body, ...post } = toBlogPostDto(item, t)
 
-        if (!data) return null
-
-        const { title, meta, stem, slug, createdAt } = data
-        const { locale, readingTimeInSeconds, reducedBody } = meta
-
-        const readingTimeString = getExtenseShift(readingTimeInSeconds, locale)
-        const path = processCmsPath(locale, stem)
-
-        return {
-          title,
-          locale,
-          readingTimeInSeconds,
-          readingTimeString: t('time.reading_time', { time: readingTimeString }, { locale }),
-          reducedBody: reducedBody ? truncateString(reducedBody, 200) : undefined,
-          path,
-          slug,
-          createdAt,
-        }
-      })
-      .filter(item => item !== null) ?? ([] satisfies BlogPostsDto[])
-  )
+    return {
+      ...post,
+      reducedBody: truncateString(post.reducedBody, 200),
+    } satisfies BlogPostsDto
+  })
 })

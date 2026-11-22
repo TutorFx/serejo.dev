@@ -1,67 +1,73 @@
-import { defineCollection, defineContentConfig, z } from '@nuxt/content'
+import { defineCollection, defineContentConfig } from '@nuxt/content'
+import { z } from 'zod/v4'
+import { LOCALES } from './shared/utils/cms/cms.constants'
 
-export const cmsEntrySchema = {
-  title: z.string().min(1),
-  _id: z.string(),
+// Written by transformers/reading-time.ts: declared so they become typed columns instead of `meta`
+const computedFields = {
+  locale: z.enum(LOCALES),
+  readingTimeInSeconds: z.number(),
+  reducedBody: z.string(),
 }
 
-export const dateObjectSchema = {
-  start: z.date(),
-  end: z.date().nullable(),
+// Stored as DATE columns: the generated types (and the rows) carry them as strings
+const periodFields = {
+  start: z.coerce.date(),
+  end: z.coerce.date().nullable(),
 }
 
-export const blogSchema = z
-  .object({
-    createdAt: z.date(),
-    slug: z.string().nullable(),
-  })
-  .extend(cmsEntrySchema)
-
-export const historySchema = z
-  .object({
-    image: z.string(),
-    delivered: z.array(z.string().min(1)).optional(),
-    org: z.string().min(1),
-    location: z.string().min(1),
-  })
-  .extend(cmsEntrySchema)
-  .extend(dateObjectSchema)
-
-export const projectSchema = z.object({
-  url: z.string().url(),
-  github: z.string().url(),
-  scroller: z.string(),
-})
-
-export const educationSchema = z
-  .object({
+// The only declaration of each collection. Nuxt Content generates the tables and the `Collections`
+// types from these schemas, and modules/content-validation.ts checks every file against them
+export const collectionSchemas = {
+  blog: z.object({
+    title: z.string().min(1),
+    createdAt: z.coerce.date(),
+    slug: z.string().optional(),
+    ...computedFields,
+  }),
+  education: z.object({
+    title: z.string().min(1),
     org: z.string(),
     location: z.string().min(1),
-  })
-  .extend(cmsEntrySchema)
-  .extend(dateObjectSchema)
+    ...periodFields,
+    ...computedFields,
+  }),
+  history: z.object({
+    title: z.string().min(1),
+    org: z.string().min(1),
+    image: z.string(),
+    location: z.string().min(1),
+    delivered: z.array(z.string().min(1)).optional(),
+    ...periodFields,
+    ...computedFields,
+  }),
+  projects: z.object({
+    url: z.url(),
+    github: z.url().optional(),
+    scroller: z.string().optional(),
+  }),
+}
 
 export default defineContentConfig({
   collections: {
     blog: defineCollection({
       type: 'page',
       source: 'blog/**/*.md',
-      schema: blogSchema,
+      schema: collectionSchemas.blog,
     }),
     education: defineCollection({
       type: 'page',
       source: 'education/**/*.md',
-      schema: educationSchema,
+      schema: collectionSchemas.education,
     }),
     history: defineCollection({
       type: 'page',
       source: 'history/**/*.md',
-      schema: historySchema,
+      schema: collectionSchemas.history,
     }),
     projects: defineCollection({
       type: 'page',
       source: 'projects/**/*.md',
-      schema: projectSchema,
+      schema: collectionSchemas.projects,
     }),
     pages: defineCollection({
       type: 'page',

@@ -1,7 +1,7 @@
 <script lang="ts">
-import type { ExperiencesDto } from '~~/shared/utils/dto/cms.dto'
-
-export type ExperienceCardProps = ExperiencesDto
+export interface ExperienceCardProps {
+  experience: ExperiencesDto
+}
 </script>
 
 <script setup lang="ts">
@@ -19,17 +19,17 @@ const { t } = useI18n()
       <template #header>
         <div class="grid grid-flow-col justify-between">
           <div class="line-clamp-2 text-xl xl:text-3xl">
-            {{ props.org }}
+            {{ props.experience.org }}
           </div>
           <div class="text-neutral-content grid grid-flow-col items-center justify-start gap-3">
             <Icon name="line-md:calendar" />
             <div class="grid">
               <div class="text-sm">
                 <div>
-                  {{ props.start }}
+                  {{ props.experience.start }}
                 </div>
                 <div>
-                  {{ props.end }}
+                  {{ props.experience.end }}
                 </div>
               </div>
             </div>
@@ -38,13 +38,13 @@ const { t } = useI18n()
       </template>
       <div>
         <div class="line-clamp-3 font-light text-balance">
-          {{ props.reducedBody }}
+          {{ props.experience.reducedBody }}
         </div>
       </div>
       <template #footer>
         <div class="grid grid-flow-col justify-between">
           <div class="text-neutral-content grid items-center">
-            {{ props.readingTimeString }}
+            {{ props.experience.readingTimeString }}
           </div>
           <div>
             <UIButton variant="link">

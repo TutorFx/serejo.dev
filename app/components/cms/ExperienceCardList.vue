@@ -16,7 +16,7 @@ const { data: experiences } = useFetch<ExperiencesDto[]>('/api/experiences', {
       :key
       :to="localePath({ name: 'experience-item', params: { item: experience.path } })"
     >
-      <CmsExperienceCard v-bind="experience" />
+      <CmsExperienceCard :experience />
     </NuxtLink>
   </div>
 </template>
