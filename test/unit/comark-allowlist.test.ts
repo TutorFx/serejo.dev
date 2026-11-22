@@ -1,18 +1,19 @@
 import { describe, expect, it } from 'vitest'
-import { parse } from 'comark'
-import security from 'comark/plugins/security'
+import { parseMarkdown } from '@comark/vue/parse'
+import security from '@comark/vue/plugins/security'
 import {
   chatAllowlist,
   chatSecurityOptions,
+  chatSyntaxPlugins,
   sanitizeComarkNodes,
 } from '../../app/utils/ai/comark-allowlist'
 
 const SITE_URL = 'https://serejo.dev'
 
 async function renderTree(markdown: string) {
-  const tree = await parse(markdown, {
-    html: false,
-    plugins: [security(chatSecurityOptions(SITE_URL)), chatAllowlist()],
+  const tree = await parseMarkdown(markdown, {
+    registerDefaultPlugins: false,
+    plugins: [...chatSyntaxPlugins(), security(chatSecurityOptions(SITE_URL)), chatAllowlist()],
   })
   return tree.nodes
 }

@@ -31,7 +31,7 @@ const emit = defineEmits<{
       :streaming="isPartStreaming(part)"
       chevron="leading"
     >
-      <ChatComark :markdown="part.text" :streaming="isPartStreaming(part)" />
+      <ChatComark :value="part.text" :streaming="isPartStreaming(part)" />
     </UChatReasoning>
 
     <template v-else-if="isToolUIPart(part)">
@@ -67,7 +67,7 @@ const emit = defineEmits<{
     <template v-else-if="isTextUIPart(part)">
       <ChatComark
         v-if="message.role === 'assistant'"
-        :markdown="part.text"
+        :value="part.text"
         :streaming="isPartStreaming(part)"
       />
       <template v-else-if="message.role === 'user'">

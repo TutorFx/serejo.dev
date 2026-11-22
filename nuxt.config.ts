@@ -22,12 +22,16 @@ export default defineNuxtConfig({
     '@nuxt/content',
     '@nuxt/eslint',
     '@nuxt/icon',
-    '@comark/nuxt',
+    '@comark/vue',
     'nuxt-auth-utils',
     'nuxt-csurf',
     'nuxt-gtag',
     '@nuxt/ui',
   ],
+
+  // Prose components are resolved by name at runtime (markdown of the blog, of the chat and of the
+  // locale texts), so they have to be global; @comark/nuxt used to register this directory
+  components: [{ path: '~/components/prose', global: true, pathPrefix: false }, '~/components'],
 
   devtools: {
     enabled: true,

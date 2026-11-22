@@ -1,13 +1,14 @@
 <script setup lang="ts">
 const { t } = useI18n()
-const runtimeConfig = useRuntimeConfig()
+// Read here as plain strings: in the template vue-tsc (3.3.14) takes the runtime config for a ref
+const { name: appName, version: appVersion } = useRuntimeConfig().public
 const LocalePathFunction = useLocalePath()
 // Kept in the payload so prerendered pages hydrate with the year they were rendered with
 const copyrightYear = useState('copyright-year', () => new Date().getFullYear())
 </script>
 
 <template>
-  <footer class="bg-base-100 grid">
+  <footer class="grid bg-base-100">
     <UIContainer class="grid grid-flow-col justify-between py-24">
       <div class="grid gap-6">
         <NuxtLink :to="LocalePathFunction({ name: 'index' })" class="font-logo text-2xl">
@@ -65,11 +66,11 @@ const copyrightYear = useState('copyright-year', () => new Date().getFullYear())
       </div>
       <div />
     </UIContainer>
-    <div class="text-base-content py-8 text-center text-lg font-bold">
+    <div class="py-8 text-center text-lg font-bold text-base-content">
       <div class="grid gap-3">
         <div>{{ t('copyright') }} ©2024 — {{ copyrightYear }}</div>
       </div>
-      <div>{{ runtimeConfig.public.name }} {{ runtimeConfig.public.version }}</div>
+      <div>{{ appName }} {{ appVersion }}</div>
     </div>
   </footer>
 </template>

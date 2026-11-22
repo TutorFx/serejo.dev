@@ -1,4 +1,10 @@
-import type { ComarkElementAttributes, ComarkNode, ComarkPlugin } from 'comark'
+import type { ComarkPlugin, ElementNodeAttributes, Node } from '@comark/vue'
+import alert from '@comark/vue/plugins/alert'
+import attributes from '@comark/vue/plugins/attributes'
+import components from '@comark/vue/plugins/components'
+import frontmatter from '@comark/vue/plugins/frontmatter'
+import linkify from '@comark/vue/plugins/linkify'
+import taskList from '@comark/vue/plugins/task-list'
 
 /**
  * Positive allowlist for markdown produced by the model.
@@ -112,10 +118,10 @@ function sanitizeProp(tag: string, name: string, value: unknown, insidePre: bool
 
 function sanitizeAttributes(
   tag: string,
-  attributes: ComarkElementAttributes | undefined,
+  attributes: ElementNodeAttributes | undefined,
   insidePre: boolean
-): ComarkElementAttributes {
-  const result: ComarkElementAttributes = {}
+): ElementNodeAttributes {
+  const result: ElementNodeAttributes = {}
   if (!attributes) return result
 
   // Parser metadata (source line, block/inline), never rendered as an attribute
@@ -137,8 +143,8 @@ function sanitizeAttributes(
 /**
  * Sanitizes a list of Comark nodes. Exported for unit tests.
  */
-export function sanitizeComarkNodes(nodes: readonly ComarkNode[], insidePre = false): ComarkNode[] {
-  const result: ComarkNode[] = []
+export function sanitizeComarkNodes(nodes: readonly Node[], insidePre = false): Node[] {
+  const result: Node[] = []
 
   for (const node of nodes) {
     if (typeof node === 'string') {
@@ -153,7 +159,7 @@ export function sanitizeComarkNodes(nodes: readonly ComarkNode[], insidePre = fa
 
     const name = tag.toLowerCase()
     const allowed = insidePre ? PRE_CHILD_TAGS.has(name) : ALLOWED_TAGS.has(name)
-    const safeChildren = sanitizeComarkNodes(children as ComarkNode[], insidePre || name === 'pre')
+    const safeChildren = sanitizeComarkNodes(children as Node[], insidePre || name === 'pre')
 
     if (!allowed) {
       result.push(...safeChildren)
@@ -200,6 +206,14 @@ export function chatSecurityOptions(siteUrl: string) {
     allowedImagePrefixes: [`${siteUrl.replace(/\/$/, '')}/`],
     allowDataImages: false,
   }
+}
+
+/**
+ * The default plugins of comark, without `html`: with `registerDefaultPlugins: false` and no `html`
+ * plugin, raw HTML stays text instead of turning into elements. Shared by the renderer and the unit tests.
+ */
+export function chatSyntaxPlugins(): ComarkPlugin[] {
+  return [linkify(), frontmatter(), alert(), taskList(), components(), attributes()]
 }
 
 export function chatAllowlist(): ComarkPlugin {

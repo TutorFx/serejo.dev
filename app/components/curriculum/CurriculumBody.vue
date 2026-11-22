@@ -10,13 +10,16 @@ export interface CurriculumBody {
 <script setup lang="ts">
 const { t } = useI18n()
 defineProps<CurriculumBody>()
+
+// Bound from here: vue-tsc (3.3.12+) breaks on a literal attribute with `//` in a local component
+const siteUrl = SITE_URL
 </script>
 
 <template>
-  <div class="bg-base-100 text-base-content @container grid grid-cols-12 items-start gap-1 px-4">
+  <div class="@container grid grid-cols-12 items-start gap-1 bg-base-100 px-4 text-base-content">
     <div class="col-span-5 grid gap-6 @7xl:col-span-3">
       <div class="relative grid gap-8">
-        <div class="text-accent absolute left-2 py-2 text-sm">
+        <div class="absolute left-2 py-2 text-sm text-accent">
           <div class="aspect-square rotate-270 transform text-end uppercase">
             {{ t('sections.statement.title') }}
           </div>
@@ -26,7 +29,7 @@ defineProps<CurriculumBody>()
         </div>
       </div>
       <div class="relative grid gap-8">
-        <div class="text-accent absolute left-2 py-2 text-sm">
+        <div class="absolute left-2 py-2 text-sm text-accent">
           <div class="aspect-square rotate-270 transform text-end uppercase">
             {{ t('curriculum.education') }}
           </div>
@@ -38,7 +41,7 @@ defineProps<CurriculumBody>()
                 {{ graduation.org }}
               </div>
               <div
-                class="text-neutral-content -mt-1 grid grid-flow-col items-center justify-start gap-1 text-sm font-bold"
+                class="-mt-1 grid grid-flow-col items-center justify-start gap-1 text-sm font-bold text-neutral-content"
               >
                 {{ graduation.date }}
               </div>
@@ -56,14 +59,14 @@ defineProps<CurriculumBody>()
           background="var(--base-100)"
           foreground="var(--base-content)"
           :size="140"
-          value="https://serejo.dev"
+          :value="siteUrl"
           level="L"
         />
       </div>
     </div>
     <div class="col-span-7 @7xl:col-span-9">
       <div class="relative">
-        <div class="text-accent absolute left-2 py-2 text-sm">
+        <div class="absolute left-2 py-2 text-sm text-accent">
           <div class="aspect-square rotate-270 transform text-end uppercase">
             {{ t('sections.experiences.title') }}
           </div>
@@ -86,7 +89,7 @@ defineProps<CurriculumBody>()
                 </div>
                 <div class="grid grid-flow-col items-end justify-start gap-3">
                   <div
-                    class="bg-accent/35 grid grid-flow-col items-center justify-start gap-1 rounded-lg px-1 py-0.5 text-xs font-bold @md:text-sm"
+                    class="grid grid-flow-col items-center justify-start gap-1 rounded-lg bg-accent/35 px-1 py-0.5 text-xs font-bold @md:text-sm"
                   >
                     <div class="break-keep">
                       {{ experience.start }}

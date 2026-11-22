@@ -9,7 +9,7 @@ const localePath = useLocalePath()
       <div class="grid min-h-82 items-center">
         <div class="grid gap-6">
           <div class="text-lg md:text-xl">
-            <Comark :markdown="t('me.abroad')" />
+            <Markdown :value="t('me.abroad')" />
           </div>
           <div class="mx-auto">
             <UIButton

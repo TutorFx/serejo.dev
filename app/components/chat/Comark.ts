@@ -10,20 +10,22 @@ import xml from '@shikijs/langs/xml'
 import toml from '@shikijs/langs/toml'
 import markdown from '@shikijs/langs/markdown'
 import { SITE_URL } from '#shared/utils/constants'
-import { chatAllowlist, chatSecurityOptions } from '~/utils/ai/comark-allowlist'
+import { chatAllowlist, chatSecurityOptions, chatSyntaxPlugins } from '~/utils/ai/comark-allowlist'
 import SourceLink from './SourceLink.vue'
 
 /**
  * Renderer for model output (assistant text and reasoning). Everything here is untrusted:
- * - `html: false` keeps raw HTML as text instead of turning it into elements
+ * - no default plugins: `chatSyntaxPlugins` leaves `html` out, so raw HTML stays text instead of
+ *   turning into elements
  * - `security` drops dangerous tags, `on*` attributes and unsafe link/image protocols
  * - `chatAllowlist` runs last and keeps only plain markdown elements, so the model cannot
  *   instantiate global components (Prose cards, callouts, images) or swap them with `as`
  */
-export default defineComarkComponent({
+export default defineMarkdownComponent({
   name: 'ChatComark',
-  html: false,
+  registerDefaultPlugins: false,
   plugins: [
+    ...chatSyntaxPlugins(),
     highlight({
       languages: [html, css, python, sql, diff, dockerfile, xml, toml, markdown],
     }),
