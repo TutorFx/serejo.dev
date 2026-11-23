@@ -33,7 +33,7 @@
     "@nuxtjs/google-fonts": "^3.2.0",
     "@nuxtjs/seo": "^5.3.16",
     "@nuxtjs/sitemap": "^8.6.2",
-    "@takumi-rs/core": "^1.8.7",
+    "@takumi-rs/core": "^2.0.0",
     "@types/eslint": "^9.6.1",
     "@upstash/vector": "^1.2.4",
     "googleapis": "^190.0.0",
