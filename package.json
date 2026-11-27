@@ -100,7 +100,7 @@
     "remark-frontmatter": "^5.0.0",
     "shiki": "^4.6.0",
     "swiper": "^14.0.0",
-    "tailwind-variants": "^3.3.1",
+    "tailwind-variants": "^4.0.0",
     "tailwindcss": "^4.3.5",
     "three": "^0.187.0",
     "twilio": "^6.3.1",
